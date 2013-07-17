@@ -11,7 +11,7 @@
 /db/TEST.sqlite3
 /db/TEST.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and temporary files.
 /log/*.log
 /tmp
 
@@ -19,5 +19,5 @@
 *.rb~
 *.erb~
 *.lock
-.gitignore~
-.Gemfile~
+/.gitignore~
+/.Gemfile~
