@@ -97,12 +97,14 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.text     "description"
     t.text     "business_value"
     t.string   "hierarchy"
-    t.string   "PCF_index"
-    t.string   "PCF_reference"
     t.integer  "status_id"
     t.integer  "owner_id"
+    t.text     "check_description"
+    t.text     "check_script"
     t.text     "correction_method"
+    t.text     "correction_script"
     t.string   "correction_batch"
+    t.text     "white_list"
     t.string   "rule_type"
     t.text     "condition"
     t.decimal  "complexity"
@@ -113,7 +115,6 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "version"
     t.integer  "approver_id"
     t.datetime "approved_at"
-    t.integer  "scope_id"
     t.integer  "business_process_id"
     t.integer  "business_object_id"
     t.string   "created_by"
@@ -131,12 +132,16 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.text     "organisations_list"
     t.text     "territories_list"
     t.text     "business_rules_list"
+    t.text     "date_limitations"
+    t.text     "policy_matrix"
     t.string   "status_id"
     t.string   "owner_id"
     t.datetime "active_from"
     t.datetime "active_to"
     t.integer  "scope_id"
     t.integer  "business_process_id"
+    t.integer  "approver_id"
+    t.datetime "approved_at"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",          null: false
@@ -147,6 +152,7 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "code"
     t.string   "name"
     t.text     "description"
+    t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",  null: false
@@ -158,6 +164,7 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "code"
     t.string   "name"
     t.text     "description"
+    t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",    null: false
@@ -173,7 +180,11 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.text     "SQL_query"
     t.string   "load_interface"
     t.integer  "organisation_level"
+    t.integer  "territory_level"
     t.integer  "business_object_id"
+    t.integer  "business_process_id"
+    t.text     "impacted_business_rules"
+    t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",         null: false
@@ -208,13 +219,15 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.integer  "user_id"
     t.integer  "organisation_id"
     t.integer  "territory_id"
-    t.string   "business_area_id"
-    t.string   "business_flow_id"
-    t.string   "business_process_id"
-    t.string   "business_object_id"
+    t.integer  "business_area_id"
+    t.integer  "business_flow_id"
+    t.integer  "business_process_id"
+    t.integer  "business_object_id"
     t.text     "description"
     t.integer  "organisation_level"
     t.integer  "territory_level"
+    t.datetime "active_from"
+    t.datetime "active_to"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",           null: false
@@ -222,7 +235,10 @@ ActiveRecord::Schema.define(version: 20130626150630) do
   end
 
   create_table "users", force: true do |t|
+    t.integer  "playground_id"
     t.integer  "default_playground_id"
+    t.integer  "current_playground_id"
+    t.integer  "current_landscape_id"
     t.string   "directory_id"
     t.string   "login"
     t.string   "email"
@@ -240,12 +256,12 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "roles", force: true do |t|
+  create_table "user_roles", force: true do |t|
     t.integer  "playground_id"
     t.integer  "user_id"
-    t.string   "code"
-    t.string   "role"
-    t.text     "description"
+    t.string   "role_id"
+    t.datetime "active_from"
+    t.datetime "active_to"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",    null: false
@@ -259,6 +275,7 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.text     "description"
     t.integer  "parent_organisation_id"
     t.integer  "organisation_level"
+    t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",            null: false
@@ -272,10 +289,23 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.text     "description"
     t.integer  "parent_territory_id"
     t.integer  "territory_level"
+    t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "roles", force: true do |t|
+    t.integer  "playground_id"
+    t.integer  "code"
+    t.string   "role"
+    t.datetime "active_from"
+    t.datetime "active_to"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 
