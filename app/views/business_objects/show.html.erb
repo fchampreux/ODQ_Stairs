@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Playground:</b>
+  <%= @business_object.playground_id %>
+</p>
+
+<p>
+  <b>Business flow:</b>
+  <%= @business_object.business_flow_id %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @business_object.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @business_object.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @business_object.description %>
+</p>
+
+<p>
+  <b>Organisation level:</b>
+  <%= @business_object.organisation_level %>
+</p>
+
+<p>
+  <b>Db technology:</b>
+  <%= @business_object.db_technology %>
+</p>
+
+<p>
+  <b>Db connection:</b>
+  <%= @business_object.db_connection %>
+</p>
+
+<p>
+  <b>Db owner schema:</b>
+  <%= @business_object.db_owner_schema %>
+</p>
+
+<p>
+  <b>Structure name:</b>
+  <%= @business_object.structure_name %>
+</p>
+
+<p>
+  <b>Key columns:</b>
+  <%= @business_object.key_columns %>
+</p>
+
+<p>
+  <b>Published columns:</b>
+  <%= @business_object.published_columns %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @business_object.created_by %>
+</p>
+
+<p>
+  <b>Updated by:</b>
+  <%= @business_object.updated_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_business_object_path(@business_object) %> |
+<%= link_to 'Back', business_objects_path %>

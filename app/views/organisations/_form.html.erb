@@ -1,0 +1,57 @@
+<%= form_for(@organisation) do |f| %>
+  <% if @organisation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+      <ul>
+      <% @organisation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :playground_id %><br />
+    <%= f.number_field :playground_id %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :upper_organisation_id %><br />
+    <%= f.number_field :upper_organisation_id %>
+  </div>
+  <div class="field">
+    <%= f.label :organisation_level %><br />
+    <%= f.number_field :organisation_level %>
+  </div>
+  <div class="field">
+    <%= f.label :session_number %><br />
+    <%= f.number_field :session_number %>
+  </div>
+  <div class="field">
+    <%= f.label :session_name %><br />
+    <%= f.text_field :session_name %>
+  </div>
+  <div class="field">
+    <%= f.label :created_by %><br />
+    <%= f.text_field :created_by %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

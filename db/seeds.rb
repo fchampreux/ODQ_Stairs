@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if User.count == 0
   puts "Creating admin user"
-  User.create(login: 'Admin', password: 'DQAdmin', default_playground: 0, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', active_to: '2100-01-01' )
+  User.create(login: 'Admin', password: 'DQAdmin', default_playground_id: 1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', active_to: '2100-01-01' )
 end

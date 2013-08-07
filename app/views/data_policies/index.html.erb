@@ -1,0 +1,66 @@
+<% provide(:title, 'Data Policies index') %>
+
+<% if signed_in? %>
+
+<h1>Listing data_policies</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Playground</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Filter</th>
+    <th>Organisations list</th>
+    <th>Business rules list</th>
+    <th>Status</th>
+    <th>Owner</th>
+    <th>Active from</th>
+    <th>Active to</th>
+    <th>Scope</th>
+    <th>Business process</th>
+    <th>Session number</th>
+    <th>Session name</th>
+    <th>Created by</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @data_policies.each do |data_policy| %>
+  <tr>
+    <td><%= data_policy.playground_id %></td>
+    <td><%= data_policy.code %></td>
+    <td><%= data_policy.name %></td>
+    <td><%= data_policy.description %></td>
+    <td><%= data_policy.filter %></td>
+    <td><%= data_policy.organisations_list %></td>
+    <td><%= data_policy.business_rules_list %></td>
+    <td><%= data_policy.status %></td>
+    <td><%= data_policy.owner %></td>
+    <td><%= data_policy.active_from %></td>
+    <td><%= data_policy.active_to %></td>
+    <td><%= data_policy.scope_id %></td>
+    <td><%= data_policy.business_process_id %></td>
+    <td><%= data_policy.session_number %></td>
+    <td><%= data_policy.session_name %></td>
+    <td><%= data_policy.created_by %></td>
+    <td><%= data_policy.updated_by %></td>
+    <td><%= link_to 'Show', data_policy %></td>
+    <td><%= link_to 'Edit', edit_data_policy_path(data_policy) %></td>
+    <td><%= link_to 'Destroy', data_policy, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Data policy', new_data_policy_path %>
+
+<% else %>
+
+You must log in to access this page. 
+<%= link_to ' Click here', root_path %>
+
+<% end %>

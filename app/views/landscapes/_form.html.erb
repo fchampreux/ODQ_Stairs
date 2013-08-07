@@ -1,0 +1,53 @@
+<%= form_for [@landscape] do |f| %>
+  <% if @landscape.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@landscape.errors.count, "error") %> prohibited this landscape from being saved:</h2>
+
+      <ul>
+      <% @landscape.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <td>
+      <div class="field">
+        <%= f.label :code %><br />
+        <%= f.text_field :code %>
+      </div>
+    </td>
+    <td>
+       <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </div>
+   </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_area :description %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">
+        <%= f.label :playground_id %><br />
+        <%= f.text_area :playground_id%>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </td>
+  </tr>
+<% end %>
+</table

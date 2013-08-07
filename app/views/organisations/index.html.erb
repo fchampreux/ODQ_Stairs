@@ -1,0 +1,41 @@
+<h1>Listing organisations</h1>
+
+<table>
+  <tr>
+    <th>Playground</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Upper organisation</th>
+    <th>Organisation level</th>
+    <th>Session number</th>
+    <th>Session name</th>
+    <th>Created by</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organisations.each do |organisation| %>
+  <tr>
+    <td><%= organisation.playground_id %></td>
+    <td><%= organisation.code %></td>
+    <td><%= organisation.name %></td>
+    <td><%= organisation.description %></td>
+    <td><%= organisation.upper_organisation_id %></td>
+    <td><%= organisation.organisation_level %></td>
+    <td><%= organisation.session_number %></td>
+    <td><%= organisation.session_name %></td>
+    <td><%= organisation.created_by %></td>
+    <td><%= organisation.updated_by %></td>
+    <td><%= link_to 'Show', organisation %></td>
+    <td><%= link_to 'Edit', edit_organisation_path(organisation) %></td>
+    <td><%= link_to 'Destroy', organisation, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Organisation', new_organisation_path %>

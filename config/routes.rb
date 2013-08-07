@@ -1,20 +1,69 @@
 ODQStep1::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  root to: "sessions#new"
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]  
+  get '/signout', to: 'sessions#destroy', via: :delete
+  get '/signin',  to: 'sessions#new'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  resources :business_objects
+  resources :check_types
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get '/help', 	to: "static_pages#help"
+  get '/about', 	to: "static_pages#about"
+  get '/contact', 	to: "static_pages#contact"
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
+  resources :user_accesses
+
+  resources :roles
+
+  resources :organisations
+
+  resources :time_scales
+
+  resources :data_policies
+
+  resources :business_rules
+
+  resources :business_processes do
+      resources :business_rules, :only=>[:new, :create]
+  end
+
+  resources :business_flows do
+      resources :business_processes, :only=>[:new, :create]
+  end
+
+  resources :business_areas do
+      resources :business_flows, :only=>[:new, :create]
+  end
+
+  resources :scopes do
+    resources :business_rules, :only=>[:new, :create]
+  end
+
+  resources :landscapes do
+      resources :scopes, :only=>[:new, :create]
+  end
+
+  resources :playgrounds do
+    resources :landscapes, :only=>[:new, :create]
+  end
+
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
+  # Sample of regular route:
+  #   match 'products/:id' => 'catalog#view'
+  # Keep in mind you can assign values other than :controller and :action
+
+  # Sample of named route:
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  # This route can be invoked with purchase_url(:id => product.id)
+
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  # Example resource route with options:
+  # Sample resource route with options:
   #   resources :products do
   #     member do
   #       get 'short'
@@ -26,31 +75,34 @@ ODQStep1::Application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with sub-resources:
+  # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
   #     resource :seller
   #   end
 
-  # Example resource route with more complex sub-resources:
+  # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', on: :collection
+  #       get 'recent', :on => :collection
   #     end
   #   end
-  
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
+  # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => 'welcome#index'
+
+  # See how all your routes lay out with "rake routes"
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id))(.:format)'
 end

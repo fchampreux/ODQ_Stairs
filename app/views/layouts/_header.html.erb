@@ -1,0 +1,21 @@
+<header>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">     
+        <%= link_to image_tag("ODQ_Logo.png", alt: "OpenDataQuality"), 'http://www.opendataquality.org/' %>
+      </div>
+      <div class="span10">
+        <nav class="top_menu">
+          <ul>
+            <li> <%= link_to "Home | ",    root_path %></li>
+            <li> <%= link_to "Help | ",    help_path %></li>
+            <li> <%= link_to "About |",   about_path %></li>
+            <% if signed_in? %>
+            <li> <%= link_to "Sign out", signout_path, method: "delete" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

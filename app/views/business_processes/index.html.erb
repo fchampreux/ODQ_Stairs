@@ -1,0 +1,38 @@
+<% provide(:title, 'Business Processes index') %>
+
+<% if signed_in? %>
+
+<h1>Business processes</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created by</th>
+    <th>Created at</th>
+    <th>Business flow</th>
+  </tr>
+
+<% @business_processes.each do |business_process| %>
+  <tr>
+    <td><%= link_to business_process.code, business_process %></td>
+    <td><%= business_process.name %></td>
+    <td><%= business_process.description %></td>
+    <td><%= business_process.created_by %></td>
+    <td><%= business_process.created_at %></td>
+    <td><%= business_process.business_flow_id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Business process', new_business_process_path %>
+
+<% else %>
+
+You must log in to access this page. 
+<%= link_to ' Click here', root_path %>
+
+<% end %>

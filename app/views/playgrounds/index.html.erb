@@ -1,0 +1,37 @@
+<% provide(:title, 'Playgrounds index') %>
+
+<% if signed_in? %>
+
+<h1>Playgrounds</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created by</th>
+    <th>Created at</th>
+  </tr>
+
+<% @playgrounds.each do |playground| %>
+  <tr>
+    <td><%= link_to playground.code, playground %></td>
+    <td><%= playground.name %></td>
+    <td><%= playground.description %></td>
+    <td><%= playground.created_by %></td>
+    <td><%= playground.created_at %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Playground', new_playground_path %>
+
+<% else %>
+
+You must log in to access this page. 
+<%= link_to ' Click here', root_path %>
+
+<% end %>
+

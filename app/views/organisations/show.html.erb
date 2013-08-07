@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Playground:</b>
+  <%= @organisation.playground_id %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @organisation.code %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @organisation.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @organisation.description %>
+</p>
+
+<p>
+  <b>Upper organisation:</b>
+  <%= @organisation.upper_organisation_id %>
+</p>
+
+<p>
+  <b>Organisation level:</b>
+  <%= @organisation.organisation_level %>
+</p>
+
+<p>
+  <b>Session number:</b>
+  <%= @organisation.session_number %>
+</p>
+
+<p>
+  <b>Session name:</b>
+  <%= @organisation.session_name %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @organisation.created_by %>
+</p>
+
+<p>
+  <b>Updated by:</b>
+  <%= @organisation.updated_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_organisation_path(@organisation) %> |
+<%= link_to 'Back', organisations_path %>

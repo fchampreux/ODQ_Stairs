@@ -1,0 +1,81 @@
+<%= form_for(@scope) do |f| %>
+  <% if @scope.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scope.errors.count, "error") %> prohibited this scope from being saved:</h2>
+
+      <ul>
+      <% @scope.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :playground_id %><br />
+    <%= f.number_field :playground_id %>
+  </div>
+  <div class="field">
+    <%= f.label :landscape_id %><br />
+    <%= f.number_field :landscape_id %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :organisation_level %><br />
+    <%= f.number_field :organisation_level %>
+  </div>
+  <div class="field">
+    <%= f.label :db_technology %><br />
+    <%= f.text_field :db_technology %>
+  </div>
+  <div class="field">
+    <%= f.label :db_connection %><br />
+    <%= f.text_field :db_connection %>
+  </div>
+  <div class="field">
+    <%= f.label :db_owner_schema %><br />
+    <%= f.text_field :db_owner_schema %>
+  </div>
+  <div class="field">
+    <%= f.label :tables_list %><br />
+    <%= f.text_area :tables_list %>
+  </div>
+  <div class="field">
+    <%= f.label :join_expression %><br />
+    <%= f.text_area :join_expression %>
+  </div>
+  <div class="field">
+    <%= f.label :where_clause %><br />
+    <%= f.text_area :where_clause %>
+  </div>
+  <div class="field">
+    <%= f.label :group_by_clause %><br />
+    <%= f.text_area :group_by_clause %>
+  </div>
+  <div class="field">
+    <%= f.label :having_clause %><br />
+    <%= f.text_area :having_clause %>
+  </div>
+  <div class="field">
+    <%= f.label :key_columns %><br />
+    <%= f.text_area :key_columns %>
+  </div>
+  <div class="field">
+    <%= f.label :published_columns %><br />
+    <%= f.text_area :published_columns %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

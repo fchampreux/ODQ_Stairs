@@ -1,0 +1,18 @@
+<% provide(:title, 'Edit Playground') %>
+
+<% if signed_in? %>
+
+<h1>Editing playground</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @playground %> |
+<%= link_to 'Back', playgrounds_path %>
+
+<% else %>
+
+You must log in to access this page. 
+<%= link_to ' Click here', root_path %>
+
+<% end %>
+

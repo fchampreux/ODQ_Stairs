@@ -1,0 +1,47 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Playground</th>
+    <th>Directory</th>
+    <th>Code</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Description</th>
+    <th>Active from</th>
+    <th>Active to</th>
+    <th>Is admin</th>
+    <th>Session number</th>
+    <th>Session name</th>
+    <th>Created by</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.playground_id %></td>
+    <td><%= user.directory_id %></td>
+    <td><%= user.code %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.description %></td>
+    <td><%= user.active_from %></td>
+    <td><%= user.active_to %></td>
+    <td><%= user.is_admin %></td>
+    <td><%= user.session_number %></td>
+    <td><%= user.session_name %></td>
+    <td><%= user.created_by %></td>
+    <td><%= user.updated_by %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>

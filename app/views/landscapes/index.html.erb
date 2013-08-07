@@ -1,0 +1,39 @@
+<% provide(:title, 'Landscapes index') %>
+
+<% if signed_in? %>
+
+<h1>Landscapes</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created by</th>
+    <th>Created at</th>
+    <th>Playground</th>
+  </tr>
+
+<% @landscapes.each do |landscape| %>
+  <tr>
+    <td><%= link_to landscape.code, landscape %></td>
+    <td><%= landscape.name %></td>
+    <td><%= landscape.description %></td>
+    <td><%= landscape.created_by %></td>
+    <td><%= landscape.created_at %></td>
+    <td><%= landscape.playground_id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Landscape', new_landscape_path %>
+
+<% else %>
+
+You must log in to access this page. 
+<%= link_to ' Click here', root_path %>
+
+<% end %>
+

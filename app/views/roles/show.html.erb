@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Playground:</b>
+  <%= @role.playground_id %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @role.code %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @role.role %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @role.description %>
+</p>
+
+<p>
+  <b>Session number:</b>
+  <%= @role.session_number %>
+</p>
+
+<p>
+  <b>Session name:</b>
+  <%= @role.session_name %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @role.created_by %>
+</p>
+
+<p>
+  <b>Updated by:</b>
+  <%= @role.updated_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_role_path(@role) %> |
+<%= link_to 'Back', roles_path %>

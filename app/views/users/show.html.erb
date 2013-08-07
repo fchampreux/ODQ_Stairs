@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Playground:</b>
+  <%= @user.playground_id %>
+</p>
+
+<p>
+  <b>Directory:</b>
+  <%= @user.directory_id %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @user.code %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @user.description %>
+</p>
+
+<p>
+  <b>Active from:</b>
+  <%= @user.active_from %>
+</p>
+
+<p>
+  <b>Active to:</b>
+  <%= @user.active_to %>
+</p>
+
+<p>
+  <b>Is admin:</b>
+  <%= @user.is_admin %>
+</p>
+
+<p>
+  <b>Session number:</b>
+  <%= @user.session_number %>
+</p>
+
+<p>
+  <b>Session name:</b>
+  <%= @user.session_name %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @user.created_by %>
+</p>
+
+<p>
+  <b>Updated by:</b>
+  <%= @user.updated_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

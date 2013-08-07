@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ODQStep1</title>
+  <title> <%= full_title(yield(:title))%> </title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render "layouts/shim" %>
 </head>
+
 <body>
 
-<%= yield %>
+  <%= render "layouts/header" %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <% if signed_in? %> 
+          <nav id="main_menu">
+            <ul class="nav nav-list">
+              <li class="nav-header">Business Hierarchy</li>
+              <li><%= link_to "Business Areas", business_areas_path %></li>
+              <li><%= link_to "Business Flows", business_flows_path %></li>
+              <li><%= link_to "Business Processes", business_processes_path %></li>
+              <li><%= link_to "Business Objects", business_objects_path %></li>
+              <li><%= link_to "Business Rules", business_rules_path %></li>
+
+              <li class="nav-header">Project Hierarchy</li>
+              <li><%= link_to "Playgrounds", playgrounds_path %></li>
+              <li><%= link_to "Landscapes", landscapes_path %></li>
+              <li><%= link_to "Scopes", scopes_path %></li>
+
+              <li class="nav-header">Quality Assessment</li>
+              <li><%= link_to "Data Policies", data_policies_path %></li>
+              <li><%= link_to "Key Performance Indicators", "#" %></li>
+              <li><%= link_to "Objectives", "#" %></li>
+              
+              <li class="nav-header">Analysis axis</li>
+              <li><%= link_to "Organisations", organisations_path %></li>
+              <li><%= link_to "Geopgraphy", "#" %></li>
+              <li><%= link_to "Times scales", time_scales_path %></li>
+
+              <li class="nav-header">Configuration</li>
+              <li><%= link_to "Lists of parameters", "#" %></li>
+              
+              <li class="nav-header">Security</li>
+              <li><%= link_to "Users", users_path %></li>
+              <li><%= link_to "Roles", roles_path %></li>
+              <li><%= link_to "Access management", user_accesses_path %></li>
+            </ul>
+          </nav>
+        <% end %>
+      </div>
+      <div class="span10">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+ 
+  <%= render "layouts/footer" %>
+  <%= debug(params) if Rails.env.development? %>
 
 </body>
 </html>

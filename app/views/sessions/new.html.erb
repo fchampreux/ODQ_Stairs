@@ -1,0 +1,63 @@
+<% provide(:title, 'Home') %>
+<h1>Welcome to Open Data Quality Stairs</h1>
+
+<% if signed_in? %>
+
+  <div class="container-fluid">
+
+    <!-- Info bar -->    
+    <div class="row-fluid">
+
+      <!-- User info -->
+      <div class="span8">
+        You are logged in as <%= @current_user.first_name %>
+      </div>
+
+      <!-- Search tool -->
+      <div class="span4">
+        Search
+      </div>
+
+    </div>
+
+    <!-- Info display -->    
+    <div class="row-fluid">
+
+      <!-- Articles -->
+      <div class="span8">
+        <img src="assets/ODQ_Stairs.png" alt="Pragmatic & progressive">
+      </div>
+
+      <!-- History -->
+      <div class="span4">
+        History
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+<% else %>
+
+<h2>Please sign in</h2>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :login %>
+      <%= f.text_field :login %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? Please contact your administrator</p>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,61 @@
+<h1>Listing time_scales</h1>
+
+<table>
+  <tr>
+    <th>Playground</th>
+    <th>Day number</th>
+    <th>Day of week</th>
+    <th>Day of month</th>
+    <th>Day of year</th>
+    <th>Week number</th>
+    <th>Week of month</th>
+    <th>Week of year</th>
+    <th>Month number</th>
+    <th>Month of year</th>
+    <th>Quarter number</th>
+    <th>Quarter</th>
+    <th>Semester number</th>
+    <th>Semester</th>
+    <th>Year number</th>
+    <th>Year</th>
+    <th>Session number</th>
+    <th>Session name</th>
+    <th>Created by</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @time_scales.each do |time_scale| %>
+  <tr>
+    <td><%= time_scale.playground_id %></td>
+    <td><%= time_scale.day_number %></td>
+    <td><%= time_scale.day_of_week %></td>
+    <td><%= time_scale.day_of_month %></td>
+    <td><%= time_scale.day_of_year %></td>
+    <td><%= time_scale.week_number %></td>
+    <td><%= time_scale.week_of_month %></td>
+    <td><%= time_scale.week_of_year %></td>
+    <td><%= time_scale.month_number %></td>
+    <td><%= time_scale.month_of_year %></td>
+    <td><%= time_scale.quarter_number %></td>
+    <td><%= time_scale.quarter %></td>
+    <td><%= time_scale.semester_number %></td>
+    <td><%= time_scale.semester %></td>
+    <td><%= time_scale.year_number %></td>
+    <td><%= time_scale.year %></td>
+    <td><%= time_scale.session_number %></td>
+    <td><%= time_scale.session_name %></td>
+    <td><%= time_scale.created_by %></td>
+    <td><%= time_scale.updated_by %></td>
+    <td><%= link_to 'Show', time_scale %></td>
+    <td><%= link_to 'Edit', edit_time_scale_path(time_scale) %></td>
+    <td><%= link_to 'Destroy', time_scale, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Time scale', new_time_scale_path %>

@@ -1,0 +1,37 @@
+<%= form_for(@business_flow) do |f| %>
+  <% if @business_flow.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@business_flow.errors.count, "error") %> prohibited this business_flow from being saved:</h2>
+
+      <ul>
+      <% @business_flow.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :playground_id %><br />
+    <%= @business_flow.playground_id %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :business_area_id %><br />
+    <%= @business_flow.business_area_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
