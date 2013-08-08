@@ -8,7 +8,7 @@ development:
 
 # TEST environment
 # SQLite3
-test:
+development:
   adapter: sqlite3
   database: db/ODQ_TEST.sqlite3
   pool: 5

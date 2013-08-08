@@ -25,16 +25,25 @@
 #
 
 class User < ActiveRecord::Base
-        has_secure_password
+#        has_secure_password
+	validates :playground_id, presence: true
+	validates :default_playground_id, presence: true
+	validates :active_from, presence: true
+	validates :active_to, presence: true
+	validates :last_name, presence: true
 	validates :login, presence: true, uniqueness: true
+	validates :email, presence: true, uniqueness: true	
+#	validates :is_admin, presence: true -- boolean is always present, as true or false --
 
-  before_save { |user| user.login = login.downcase }
-  before_save :create_remember_token
+
+
+#  before_save { |user| user.login = login.downcase }
+#  before_save :create_remember_token
 
 private
   
   def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
+#    self.remember_token = SecureRandom.urlsafe_base64
   end
 
 end

@@ -1,0 +1,274 @@
+  [1m[36m (1.3ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (1.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-07 00:57:11 +0200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (42.4ms)
+Completed 500 Internal Server Error in 72ms
+
+ActionView::Template::Error (can't activate bcrypt-ruby (~> 3.0.0), already activated bcrypt-ruby-3.1.1. Make sure all dependencies are added to Gemfile.):
+    1: <% provide(:title, 'Home') %>
+    2: <h1>Welcome to Open Data Quality Stairs</h1>
+    3: 
+    4: <% if signed_in? %>
+    5: 
+    6:   <div class="container-fluid">
+    7: 
+  app/models/user.rb:28:in `<class:User>'
+  app/models/user.rb:27:in `<top (required)>'
+  app/helpers/sessions_helper.rb:13:in `current_user'
+  app/helpers/sessions_helper.rb:17:in `signed_in?'
+  app/views/sessions/new.html.erb:4:in `_app_views_sessions_new_html_erb__3117335824402397678_44956380'
+
+
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.7ms)
+
+
+Started GET "/help" for 127.0.0.1 at 2013-08-07 00:58:18 +0200
+Processing by StaticPagesController#help as HTML
+  Rendered static_pages/help.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (6.4ms)
+Completed 500 Internal Server Error in 3112ms
+
+ActionView::Template::Error (can't activate bcrypt-ruby (~> 3.0.0), already activated bcrypt-ruby-3.1.1. Make sure all dependencies are added to Gemfile.):
+    10:             <li> <%= link_to "Home | ",    root_path %></li>
+    11:             <li> <%= link_to "Help | ",    help_path %></li>
+    12:             <li> <%= link_to "About |",   about_path %></li>
+    13:             <% if signed_in? %>
+    14:             <li> <%= link_to "Sign out", signout_path, method: "delete" %></li>
+    15:             <% end %>
+    16:           </ul>
+  app/models/user.rb:28:in `<class:User>'
+  app/models/user.rb:27:in `<top (required)>'
+  app/helpers/sessions_helper.rb:13:in `current_user'
+  app/helpers/sessions_helper.rb:17:in `signed_in?'
+  app/views/layouts/_header.html.erb:13:in `_app_views_layouts__header_html_erb___4501924490693366283_49192540'
+  app/views/layouts/application.html.erb:13:in `_app_views_layouts_application_html_erb___3011802017739105484_44951240'
+
+
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.1ms)
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-07 08:08:40 +0200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (6.5ms)
+Completed 500 Internal Server Error in 37ms
+
+ActionView::Template::Error (can't activate bcrypt-ruby (~> 3.0.0), already activated bcrypt-ruby-3.1.1. Make sure all dependencies are added to Gemfile.):
+    1: <% provide(:title, 'Home') %>
+    2: <h1>Welcome to Open Data Quality Stairs</h1>
+    3: 
+    4: <% if signed_in? %>
+    5: 
+    6:   <div class="container-fluid">
+    7: 
+  app/models/user.rb:28:in `<class:User>'
+  app/models/user.rb:27:in `<top (required)>'
+  app/helpers/sessions_helper.rb:13:in `current_user'
+  app/helpers/sessions_helper.rb:17:in `signed_in?'
+  app/views/sessions/new.html.erb:4:in `_app_views_sessions_new_html_erb__3404448190509319647_35783400'
+
+
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /home/fred/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-07 08:36:06 +0200
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (28.3ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1
+  Rendered layouts/_header.html.erb (3.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1[0m
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 307ms (Views: 282.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/ODQ.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/ODQ_Logo.png" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:07 +0200
+
+
+Started POST "/sessions" for 127.0.0.1 at 2013-08-07 08:36:24 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"90O9wAVV9D6HkrtN+5DM8bPlSUifd9sHMUxKwvg05J8=", "session"=>{"login"=>"Admin", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."login" = 'admin' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1
+  Rendered layouts/_header.html.erb (0.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'YXoTEm6ReAsx_pKK2kU_UQ' LIMIT 1[0m
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 18ms (Views: 15.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/ODQ.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-08-07 08:36:25 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."login" = 'Admin' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
