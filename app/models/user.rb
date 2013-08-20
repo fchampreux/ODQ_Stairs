@@ -26,13 +26,21 @@
 
 class User < ActiveRecord::Base
 #        has_secure_password
-	validates :playground_id, presence: true
-	validates :default_playground_id, presence: true
-	validates :active_from, presence: true
-	validates :active_to, presence: true
-	validates :last_name, presence: true
-	validates :login, presence: true, uniqueness: true
-	validates :email, presence: true, uniqueness: true	
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :playground_id, presence: true
+  validates :default_playground_id, presence: true
+  validates :active_from, presence: true
+  validates :active_to, presence: true
+  validates :last_name, presence: true, length: { maximum: 100 }
+  validates :login, presence: true, uniqueness: true, length: { maximum: 30 }
+  validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
+  validates :directory_id, length: { maximum: 100 }
+  validates :first_name, length: { maximum: 100 }
+  validates :password_digest, length: { maximum: 100 }
+  validates :remember_token, length: { maximum: 100 }
+  validates :created_by, length: { maximum: 30 }
+  validates :updated_by, length: { maximum: 30 }
+
 #	validates :is_admin, presence: true -- boolean is always present, as true or false --
 
 

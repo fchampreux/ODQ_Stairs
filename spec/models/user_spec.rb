@@ -33,6 +33,7 @@ describe "User model validation:" do
 
   subject { @user }
 
+###USER1 to test that mandatory fields are present in the model
   describe "availability of mandatory fields" do
     it { should respond_to(:playground_id) }
     it { should respond_to(:default_playground_id) }
@@ -46,6 +47,7 @@ describe "User model validation:" do
     it { should be_valid}
   end
 
+###USER2 to test that mandatory fields are tested for null values
   describe "when playground_id is not present" do
     before { @user.playground_id = " " }
     it { should_not be_valid }
@@ -75,7 +77,88 @@ describe "User model validation:" do
     it { should_not be_valid }
   end
 
+###USER3 to test that length of fields is controlled
+  describe "when directory_id length is more than 100" do
+    before { @user.directory_id = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when first_name length is more than 100" do
+    before { @user.first_name = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when last_name length is more than 100" do
+    before { @user.last_name = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when email length is more than 100" do
+    before { @user.email = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when login length is more than 30" do
+    before { @user.login = ("a" * 31) }
+    it { should_not be_valid }
+  end
+  describe "when password_digest length is more than 100" do
+    before { @user.password_digest = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when remember_token length is more than 100" do
+    before { @user.remember_token = ("a" * 101) }
+    it { should_not be_valid }
+  end
+  describe "when created_by length is more than 30" do
+    before { @user.created_by = ("a" * 31) }
+    it { should_not be_valid }
+  end
+  describe "when updated_by length is more than 30" do
+    before { @user.updated_by = ("a" * 31) }
+    it { should_not be_valid }
+  end
+
+###USER4 to test that email field content is correctly formated 
+  describe "when email format is invalid" do
+    it "should be invalid" do
+      addresses = %w[user@foo,com user_at_foo.org example.user@foo.
+                     foo@bar_baz.com foo@bar+baz.com]
+      addresses.each do |invalid_address|
+        @user.email = invalid_address
+        expect(@user).not_to be_valid
+      end
+    end
+  end
+
+  describe "when email format is valid" do
+    it "should be valid" do
+      addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+      addresses.each do |valid_address|
+        @user.email = valid_address
+        expect(@user).to be_valid
+      end
+    end
+  end
+
+###USER to test that email and login have unique values
+  describe "when email address is already taken" do
+    before do
+      user_with_same_email = @user.dup
+      user_with_same_email.login = "Dummy login"
+      user_with_same_email.save
+    end
+
+    it { should_not be_valid }
+  end
+
+  describe "when login is already taken" do
+    before do
+      user_with_same_login = @user.dup
+      user_with_same_login.email = "Dummy email"
+      user_with_same_login.save
+    end
+
+    it { should_not be_valid }
+  end
 
 
+### end
 end
 
