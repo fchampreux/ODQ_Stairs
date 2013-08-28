@@ -29,6 +29,7 @@ describe "User model validation:" do
   before do
     @user = User.new(playground_id: 0, default_playground_id: 0, last_name: "Example User", login: "EX_USR", 
 		email: "user@example.com", active_from: "2013-01-01", active_to: "2113-01-01", is_admin: 1.zero?)
+    @user.save
   end
 
   subject { @user }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130626150630) do
+ActiveRecord::Schema.define(version: 20130820212513) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "updated_by"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-
   end
 
   create_table "business_flows", force: true do |t|
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "updated_by"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-
   end
 
   create_table "business_objects", force: true do |t|
@@ -148,6 +146,32 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.datetime "updated_at",          null: false
   end
 
+  create_table "landscapes", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.string   "hierarchy"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "organisations", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "parent_organisation_id"
+    t.integer  "organisation_level"
+    t.string   "hierarchy"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "playgrounds", force: true do |t|
     t.string   "code"
     t.string   "name"
@@ -159,12 +183,12 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "landscapes", force: true do |t|
+  create_table "roles", force: true do |t|
     t.integer  "playground_id"
-    t.string   "code"
-    t.string   "name"
-    t.text     "description"
-    t.string   "hierarchy"
+    t.integer  "code"
+    t.string   "role"
+    t.datetime "active_from"
+    t.datetime "active_to"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at",    null: false
@@ -187,8 +211,22 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "territories", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "parent_territory_id"
+    t.integer  "territory_level"
+    t.string   "hierarchy"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "time_scales", force: true do |t|
@@ -230,8 +268,20 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.datetime "active_to"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "user_roles", force: true do |t|
+    t.integer  "playground_id"
+    t.integer  "user_id"
+    t.string   "role_id"
+    t.datetime "active_from"
+    t.datetime "active_to"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: true do |t|
@@ -252,64 +302,11 @@ ActiveRecord::Schema.define(version: 20130626150630) do
     t.string   "remember_token"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  create_table "user_roles", force: true do |t|
-    t.integer  "playground_id"
-    t.integer  "user_id"
-    t.string   "role_id"
-    t.datetime "active_from"
-    t.datetime "active_to"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "organisations", force: true do |t|
-    t.integer  "playground_id"
-    t.string   "code"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "parent_organisation_id"
-    t.integer  "organisation_level"
-    t.string   "hierarchy"
-    t.string   "created_by"
-    t.string   "updated_by"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
-  create_table "territories", force: true do |t|
-    t.integer  "playground_id"
-    t.string   "code"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "parent_territory_id"
-    t.integer  "territory_level"
-    t.string   "hierarchy"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  create_table "roles", force: true do |t|
-    t.integer  "playground_id"
-    t.integer  "code"
-    t.string   "role"
-    t.datetime "active_from"
-    t.datetime "active_to"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-
-
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["login"], name: "index_users_on_login", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
