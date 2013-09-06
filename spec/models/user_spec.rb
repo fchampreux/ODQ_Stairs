@@ -159,6 +159,15 @@ describe "User model validation:" do
     it { should_not be_valid }
   end
 
+  describe "when email address is already used" do
+    before do
+      user_with_same_email2 = @user.dup
+      user_with_same_email2.save
+    end
+
+    it { should_not be_valid }
+  end
+
 
 ### end
 end
