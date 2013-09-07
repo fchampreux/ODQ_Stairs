@@ -28,13 +28,15 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }      
+
   validates :playground_id, presence: true
   validates :default_playground_id, presence: true
   validates :active_from, presence: true
   validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :login, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
   validates :password_digest, length: { maximum: 100 }
@@ -43,5 +45,6 @@ class User < ActiveRecord::Base
   validates :updated_by, length: { maximum: 30 }
 
   has_secure_password
-#  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }
+
 end

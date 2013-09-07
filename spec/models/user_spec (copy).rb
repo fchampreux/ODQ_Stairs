@@ -29,7 +29,7 @@ describe "User model validation:" do
   before do
     @user = User.new(playground_id: 0, default_playground_id: 0, last_name: "Example User", login: "EX_USR", 
 		email: "user@example.com", active_from: "2013-01-01", active_to: "2113-01-01", is_admin: 1.zero?,
-                     password: "dummy", password_confirmation: "dummy")
+		password: "dummy", password_confirmation: "dummy")
   end
 
   subject { @user }
@@ -44,9 +44,10 @@ describe "User model validation:" do
     it { should respond_to(:login) }
     it { should respond_to(:email) }
     it { should respond_to(:is_admin) }
-    it { should respond_to(:password_digest) }
     it { should respond_to(:password) }
-    it { should respond_to(:password_confirmation) }
+    it { should respond_to(:password_confirmation) } 
+    it { should respond_to(:password_digest) }
+    it { should respond_to(:authenticate) }
 
     it { should be_valid}
   end
@@ -142,7 +143,7 @@ describe "User model validation:" do
   end
 
 ###USER5 to test that email and login have unique values
-  describe "when email address or login are already taken" do
+  describe "when email or login is already taken" do
     before do
       user_with_same_email = @user.dup
       user_with_same_email.save
@@ -152,11 +153,12 @@ describe "User model validation:" do
   end
 
 ###USER6 to test that password is correctly managed
+
   describe "when password is not present" do
     before do
-      @user = User.new(playground_id: 0, default_playground_id: 0, last_name: "Other User", login: "OTHER_USR", 
-		email: "other@example.com", active_from: "2013-01-01", active_to: "2113-01-01", is_admin: 1.zero?,
-                     password: " ", password_confirmation: " ")
+      @user = User.new(playground_id: 0, default_playground_id: 0, last_name: "Example User", login: "EX_USR", 
+		email: "user@example.com", active_from: "2013-01-01", active_to: "2113-01-01", is_admin: 1.zero?,
+		password: " ", password_confirmation: " ")
     end
     it { should_not be_valid }
   end
@@ -168,7 +170,7 @@ describe "User model validation:" do
 
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
-    it { should be_invalid }
+    it { should_not be_valid }
   end
 
   describe "return value of authenticate method" do
