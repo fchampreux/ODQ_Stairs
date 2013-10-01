@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_login(params[:session][:login].downcase)
+    user = User.find_by_login(params[:session][:login])
     if user && user.authenticate(params[:session][:password])
       sign_in user
       redirect_to root_url
     else
-      flash.now[:error] = 'Invalid login/password combination' # Not quite right!
+      flash.now[:error] = 'Invalid login/password combination'
       render 'new'
     end
   end

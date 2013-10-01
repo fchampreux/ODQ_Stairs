@@ -1,15 +1,16 @@
 require 'spec_helper'
 
-describe "Authentication" do
+describe "Authentication : " do
 
   subject { page }
 
 ###2
-  describe "home page heading" do
-    before { visit root_path }
+  describe "signin page" do
+    before { visit signin_path }
 
-    it { should have_selector('h1',    text: 'Welcome') }
-    it { should have_selector('title', text: 'Home') }
+    it { should have_content('Sign in') }
+    it { should have_title('Sign in') }
+  end
 
 ###3
     describe "with invalid information" do
@@ -20,7 +21,7 @@ describe "Authentication" do
 
 ###4
     describe "after visiting another page" do
-      before { click_link "Home" }
+      before { click_link "About" }
         it { should_not have_selector('div.alert.alert-error') }
     end
   end
@@ -39,5 +40,6 @@ describe "Authentication" do
     end
 
   end
+
 
 end

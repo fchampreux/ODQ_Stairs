@@ -1,17 +1,23 @@
 ODQStep1::Application.routes.draw do
-  root to: "sessions#new"
+
+#static pages
+  get '/help', 		to: "static_pages#help"
+  get '/about', 	to: "static_pages#about"
+  get '/contact', 	to: "static_pages#contact"
+  get '/home', 		to: "static_pages#home"
+
+#root definition
+  root to: "static_pages#home"
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]  
   get '/signout', to: 'sessions#destroy', via: :delete
-  get '/signin',  to: 'sessions#new'
+  get '/signin',  to: 'sessions#new'	, via: :get
 
   resources :business_objects
   resources :check_types
 
-  get '/help', 	to: "static_pages#help"
-  get '/about', 	to: "static_pages#about"
-  get '/contact', 	to: "static_pages#contact"
+
 
   resources :user_accesses
 
