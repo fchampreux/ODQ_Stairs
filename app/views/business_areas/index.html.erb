@@ -1,7 +1,5 @@
 <% provide(:title, 'Business Areas index') %>
 
-<% if signed_in? %>
-
 <h1>Business areas</h1>
 
 <table class="table table-striped">
@@ -29,11 +27,4 @@
 <br />
 
 <%= link_to 'New Business area', new_business_area_path %>
-
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 

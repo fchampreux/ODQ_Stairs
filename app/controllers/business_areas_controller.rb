@@ -1,4 +1,6 @@
 class BusinessAreasController < ApplicationController
+  before_action :signed_in_user
+
   # GET /business_areas
   # GET /business_areas.json
   def index
@@ -40,7 +42,7 @@ class BusinessAreasController < ApplicationController
   # POST /business_areas
   # POST /business_areas.json
   def create
-    @business_area = BusinessArea.new(params[:business_area])
+    @business_area = BusinessArea.new(business_area_params)
 
     respond_to do |format|
       if @business_area.save
@@ -59,7 +61,7 @@ class BusinessAreasController < ApplicationController
     @business_area = BusinessArea.find(params[:id])
 
     respond_to do |format|
-      if @business_area.update_attributes(params[:business_area])
+      if @business_area.update_attributes(business_area_params)
         format.html { redirect_to @business_area, notice: 'Business area was successfully updated.' }
         format.json { head :no_content }
       else
@@ -80,4 +82,18 @@ class BusinessAreasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+### private functions
+  private
+
+  ### before filters
+  def signed_in_user
+    redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+  end
+
+  ### strong parameters
+  def business_area_params
+    params.require(:business_area).permit(:code, :name, :hierarchy, :created_by, :updated_by, :owner_id, :status_id, :playground_id, :PCF_index, :PCF_reference, :description)
+  end
+
 end

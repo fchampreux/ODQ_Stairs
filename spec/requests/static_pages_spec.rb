@@ -4,7 +4,7 @@ describe "Static pages : " do
 
   subject { page }
 
-###1
+### PAGE1 to test that Home Page has header and title
   describe "Home" do
     before { visit root_path }
 
@@ -13,6 +13,7 @@ describe "Static pages : " do
 
   end
 
+### PAGE2 to test that About Page has header and title
   describe "About" do
     before { visit '/about' }
 
@@ -21,6 +22,7 @@ describe "Static pages : " do
 
   end
 
+### PAGE3 to test that Help Page has header and title
   describe "Help" do
     before { visit '/help'}
 
@@ -29,6 +31,7 @@ describe "Static pages : " do
 
   end
 
+### PAGE4 to test that Contact Page has header and title
   describe "Contact" do
     before { visit '/contact' }
 

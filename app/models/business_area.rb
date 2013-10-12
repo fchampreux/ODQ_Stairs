@@ -19,12 +19,16 @@
 #
 
 class BusinessArea < ActiveRecord::Base
-	validates :code, presence: true, uniqueness: true
-	validates :name, presence: true, uniqueness: true
-	validates :hierarchy, presence: true, uniqueness: true
+	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :created_by , presence: true
+	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
+	validates :PCF_index, length: { maximum: 30 }
+	validates :PCF_reference, length: { maximum: 30 }
 	
 	has_many :business_flows
 	belongs_to :playground

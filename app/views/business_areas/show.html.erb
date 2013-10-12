@@ -1,7 +1,5 @@
 <% provide(:title, 'Show Business Area') %>
 
-<% if signed_in? %>
-
   <h1>Business Area: <%= @business_area.code %></h1>
 
   <ul class="mid_menu">
@@ -108,14 +106,4 @@
     </td>
   </tr>
 </table>
-
-<% else %>
-
-You must log in to access this page.
-
-<%= link_to ' Click here', root_path %>
-
-<% end %>
-
-
 

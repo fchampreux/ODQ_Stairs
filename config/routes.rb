@@ -9,14 +9,19 @@ ODQStep1::Application.routes.draw do
 #root definition
   root to: "static_pages#home"
 
-  resources :users
+
   resources :sessions, only: [:new, :create, :destroy]  
-  get '/signout', to: 'sessions#destroy', via: :delete
   get '/signin',  to: 'sessions#new'	, via: :get
+  match '/signout', to: 'sessions#destroy', via: :delete
+
+
+ resources :business_areas do
+      resources :business_flows, :only=>[:new, :create]
+ end
 
   resources :business_objects
   resources :check_types
-
+  resources :users
 
 
   resources :user_accesses
@@ -39,9 +44,7 @@ ODQStep1::Application.routes.draw do
       resources :business_processes, :only=>[:new, :create]
   end
 
-  resources :business_areas do
-      resources :business_flows, :only=>[:new, :create]
-  end
+
 
   resources :scopes do
     resources :business_rules, :only=>[:new, :create]
@@ -54,6 +57,7 @@ ODQStep1::Application.routes.draw do
   resources :playgrounds do
     resources :landscapes, :only=>[:new, :create]
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

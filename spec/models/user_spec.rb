@@ -195,7 +195,7 @@ describe "User model validation:" do
     end
   end
 
-### end
+###USER7 to test that the remember token is initialised
 
   describe "remember token" do
     before { @user.save }
