@@ -10,6 +10,8 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'jquery-rails', '~> 3.0.4'
 gem 'turbolinks', '1.3.0'
 gem 'jbuilder', '1.4.2'
+gem 'bootstrap-datepicker-rails'
+
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

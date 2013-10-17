@@ -1,5 +1,6 @@
 ODQStep1::Application.routes.draw do
 
+
 #static pages
   get '/help', 		to: "static_pages#help"
   get '/about', 	to: "static_pages#about"
@@ -9,11 +10,12 @@ ODQStep1::Application.routes.draw do
 #root definition
   root to: "static_pages#home"
 
-
   resources :sessions, only: [:new, :create, :destroy]  
   get '/signin',  to: 'sessions#new'	, via: :get
   match '/signout', to: 'sessions#destroy', via: :delete
 
+
+ resources :parameters
 
  resources :business_areas do
       resources :business_flows, :only=>[:new, :create]

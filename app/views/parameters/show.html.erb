@@ -1,0 +1,54 @@
+<% provide(:title, 'Managing parameters') %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Configuration parameter</h1>
+
+<p>
+  <strong>Playground:</strong>
+  <%= @parameter.playground_id %>
+</p>
+
+<p>
+  <strong>Is list:</strong>
+  <%= @parameter.is_list %>
+</p>
+
+<p>
+  <strong>Parent list:</strong>
+  <%= @parameter.parent_list %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @parameter.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @parameter.description %>
+</p>
+
+
+<p>
+  <strong>Active from:</strong>
+  <%= @parameter.active_from %>
+</p>
+
+<p>
+  <strong>Active to:</strong>
+  <%= @parameter.active_to %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @parameter.created_by %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @parameter.updated_by %>
+</p>
+
+<%= link_to 'Edit', edit_parameter_path(@parameter) %> |
+<%= link_to 'Back', parameters_path %>

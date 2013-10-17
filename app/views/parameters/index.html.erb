@@ -1,0 +1,45 @@
+<% provide(:title, 'Managing parameters') %>
+
+<h1>Configuration parameters</h1>
+
+<table  class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Is list</th>
+      <th>Parent list</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active from</th>
+      <th>Active to</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parameters.each do |parameter| %>
+      <tr>
+        <td><%= parameter.id %></td>
+        <td><%= parameter.is_list %></td>
+        <td><%= parameter.parent_list %></td>
+        <td><%= parameter.name %></td>
+        <td><%= parameter.description %></td>
+        <td><%= parameter.active_from %></td>
+        <td><%= parameter.active_to %></td>
+        <td><%= parameter.created_by %></td>
+        <td><%= parameter.updated_by %></td>
+        <td><%= link_to 'Show', parameter %></td>
+        <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
+        <td><%= link_to 'Destroy', parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parameter', new_parameter_path %>
