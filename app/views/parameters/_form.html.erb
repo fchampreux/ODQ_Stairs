@@ -29,58 +29,14 @@
     <%= f.text_area :description %>
   </div>
 
-
-<!--
-<div class="input-daterange" data-behaviour='datepicker' id="datepicker" data-date-format="dd/mm/yyyy">
-   <input type="text" class="input-small" name="active_from" />
-   <span class="add-on">to</span>
-   <input type="text" class="input-small" name="active_to" />
-</div>
-
-
-    <script type="text/javascript">
-      $('[data-behaviour~=datepicker]').datepicker();
-    </script>
-
-
-
-
-
-<div class="input-daterange" data-behaviour='datepicker' id="datepicker" data-date-format="dd/mm/yyyy">
+<div class="input-daterange" data-behaviour="datepicker" id="datepicker" data-date-format="dd/mm/yyyy">
    <%= f.text_field :active_from, :class => "input-small" %>  
    <span class="add-on">to</span>
    <%= f.text_field :active_to, :class => "input-small" %> 
 </div>
-
-
-
--->
-<!--
-<div class="input-daterange">
-    <%= f.text_field :active_from, 'data-behaviour' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'value' =>  DateTime.now.strftime("%d/%m/%Y") %>
-    <span class="add-on">to</span>
-    <%= f.text_field :active_to, 'data-behaviour' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'value' =>  (DateTime.now + 1.years).strftime("%d/%m/%Y") %>
-    <script type="text/javascript">
-      $('[data-behaviour~=datepicker]').datepicker();
-    </script>
-</div>
-
--->
-  <div class="field">
-    <%= f.label :active_from %><br>
-    <%= f.text_field :active_from, 'data-behaviour' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'value' =>  DateTime.now.strftime("%d/%m/%Y") %>
-    <script type="text/javascript">
-      $('[data-behaviour~=datepicker]').datepicker();
-    </script>
-  </div>
-  <div class="field">
-    <%= f.label :active_to %><br>
-    <%= f.text_field :active_to, 'data-behaviour' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'value' =>  (DateTime.now + 1.years).strftime("%d/%m/%Y") %>
-    <script type="text/javascript">
-      $('[data-behaviour~=datepicker]').datepicker();
-    </script>
-  </div>
-
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker();
+</script>
 
   <div class="actions">
     <%= f.submit %>

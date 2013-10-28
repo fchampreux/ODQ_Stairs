@@ -1,5 +1,9 @@
 class BusinessAreasController < ApplicationController
+# Check for active session 
   before_action :signed_in_user
+
+# Create the list statuses to be used in the form
+  before_action :set_statuses_lists, only: [:new, :edit, :update, :create]
 
   # GET /business_areas
   # GET /business_areas.json
@@ -86,10 +90,22 @@ class BusinessAreasController < ApplicationController
 ### private functions
   private
 
+    # retrieve current user 
+    def current_user
+      remember_token = User.encrypt(cookies[:remember_token])
+      @current_user ||= User.find_by(remember_token: remember_token)
+    end
+
+    # retrieve the list of statuses
+    def set_statuses_list
+      @statuses = Parameter.where("parameters_list=LIST_OF_STATUSES")
+    end 
+
   ### before filters
-  def signed_in_user
-    redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-  end
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
 
   ### strong parameters
   def business_area_params
