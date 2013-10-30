@@ -3,7 +3,7 @@ class BusinessAreasController < ApplicationController
   before_action :signed_in_user
 
 # Create the list statuses to be used in the form
-  before_action :set_statuses_lists, only: [:new, :edit, :update, :create]
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
 
   # GET /business_areas
   # GET /business_areas.json
@@ -87,8 +87,14 @@ class BusinessAreasController < ApplicationController
     end
   end
 
+
 ### private functions
   private
+
+  # retrieve the list of statuses
+    def set_statuses_list
+      @statuses_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_STATUSES' , false, Time.now ) 
+    end 
 
     # retrieve current user 
     def current_user
@@ -96,10 +102,6 @@ class BusinessAreasController < ApplicationController
       @current_user ||= User.find_by(remember_token: remember_token)
     end
 
-    # retrieve the list of statuses
-    def set_statuses_list
-      @statuses = Parameter.where("parameters_list=LIST_OF_STATUSES")
-    end 
 
   ### before filters
     # Check for active session

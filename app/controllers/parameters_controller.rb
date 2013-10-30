@@ -50,7 +50,6 @@ class ParametersController < ApplicationController
   # PATCH/PUT /parameters/1
   # PATCH/PUT /parameters/1.json
   def update
-#    @parameter= Parameter.find(params[:id])
     @parameter.updated_by = current_user.login
     respond_to do |format|
       if @parameter.update(parameter_params)
@@ -66,20 +65,22 @@ class ParametersController < ApplicationController
   # DELETE /parameters/1
   # DELETE /parameters/1.json
   def destroy
-#      @parameter = Parameter.find(params[:id])
       @parameter.active_to = DateTime.now
       @parameter.save
       redirect_to parameters_path
   end
 
-# callback for building the list of parameters lists
-  def set_parameters_lists
-    @parameters_lists = Parameter.where(is_list: true)
-  end
-
 ### private functions definitions
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  ### Use callbacks to share common setup or constraints between actions.
+
+    # callback for building the list of parameters lists
+    def set_parameters_lists
+      @parameters_lists = Parameter.where(is_list: true)
+    end
+
+    # callback to retrieve current parameter for edit or destroy actions
     def set_parameter
       @parameter = Parameter.find(params[:id])
     end
