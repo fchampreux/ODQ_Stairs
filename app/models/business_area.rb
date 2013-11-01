@@ -21,6 +21,7 @@
 class BusinessArea < ActiveRecord::Base
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :description, length: { maximum: 255 }
 	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true

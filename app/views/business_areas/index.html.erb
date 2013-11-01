@@ -1,25 +1,27 @@
-<% provide(:title, 'Business Areas index') %>
+<% provide(:title, 'Managing business areas') %>
 
 <h1>Business areas</h1>
 
 <table class="table table-striped">
   <tr>
+    <th>Hierarchy</th>
     <th>Code</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Status</th>
     <th>Created by</th>
-    <th>Created at</th>
-    <th>Playground</th>
+    <th>Updated by</th>
   </tr>
 
 <% @business_areas.each do |business_area| %>
   <tr>
+    <td><%= link_to business_area.hierarchy, business_area %></td>
     <td><%= link_to business_area.code, business_area %></td>
     <td><%= business_area.name %></td>
     <td><%= business_area.description %></td>
+    <td><%= business_area.status_id %></td>
     <td><%= business_area.created_by %></td>
-    <td><%= business_area.created_at %></td>
-    <td><%= business_area.playground_id %></td>
+    <td><%= business_area.updated_by %></td>
   </tr>
 <% end %>
 </table>
