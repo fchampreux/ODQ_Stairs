@@ -1,5 +1,11 @@
 class ParametersController < ApplicationController
+# Check for active session  
+  before_action :signed_in_user
+
+# Retrieve current parameter
   before_action :set_parameter, only: [:show, :edit, :update, :destroy]
+
+# Create the list of parameters lists to be used in the form
   before_action :set_parameters_lists, only: [:new, :edit, :update, :create]
 
 
@@ -44,7 +50,6 @@ class ParametersController < ApplicationController
   # PATCH/PUT /parameters/1
   # PATCH/PUT /parameters/1.json
   def update
-    @parameter= Parameter.find(params[:id])
     @parameter.updated_by = current_user.login
     respond_to do |format|
       if @parameter.update(parameter_params)
@@ -60,43 +65,37 @@ class ParametersController < ApplicationController
   # DELETE /parameters/1
   # DELETE /parameters/1.json
   def destroy
-    @parameter.destroy
-    respond_to do |format|
-      format.html { redirect_to parameters_url }
-      format.json { head :no_content }
-    end
-  end
-=begin
-  def destroy
-    @parameter= Parameter.find(params[:id])
-    @parameter.updated_by = current_user.login
-    @parameter.active_to = (DateTime.now - 1.days)
-    respond_to do |format|
-      if @parameter.update(parameter_params)
-        format.html { redirect_to parameters_url , notice: 'Parameter was successfully de-activated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @parameter.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-=end
-
-  def set_parameters_lists
-    @parameters_lists = Parameter.where(is_list: true)
+      @parameter.active_to = DateTime.now
+      @parameter.save
+      redirect_to parameters_path
   end
 
+### private functions definitions
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  ### Use callbacks to share common setup or constraints between actions.
+
+    # callback for building the list of parameters lists
+    def set_parameters_lists
+      @parameters_lists = Parameter.where(is_list: true)
+    end
+
+    # callback to retrieve current parameter for edit or destroy actions
     def set_parameter
       @parameter = Parameter.find(params[:id])
     end
 
-  def current_user
-    remember_token = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.find_by(remember_token: remember_token)
-  end
+    # retrieve current user 
+    def current_user
+      remember_token = User.encrypt(cookies[:remember_token])
+      @current_user ||= User.find_by(remember_token: remember_token)
+    end
+
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameter_params

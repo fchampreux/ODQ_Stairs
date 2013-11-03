@@ -11,7 +11,6 @@
     </div>
   <% end %>
 
-
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
@@ -25,7 +24,7 @@
         </div>
         <div class="span2 text-right">Status:
         </div>
-        <div class="span2 field"><%= f.text_field :status_id %>
+        <div class="span2 field"><%= f.collection_select :status_id, @statuses_list, :id, :name %>
         </div>
       </div>
 
@@ -53,6 +52,7 @@
         <div class="span2 field"><%= f.text_field :PCF_reference %>
         </div>
       </div>
+
 
   <div class="actions">
     <%= f.submit %>
