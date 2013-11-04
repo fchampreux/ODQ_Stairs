@@ -2,13 +2,16 @@ class BusinessAreasController < ApplicationController
 # Check for active session 
   before_action :signed_in_user
 
+# Retrieve current business area
+  before_action :set_business_area, only: [:show, :edit, :update, :destroy]
+
 # Create the list statuses to be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
 
   # GET /business_areas
   # GET /business_areas.json
   def index
-    @business_areas = BusinessArea.all
+    @business_areas = BusinessArea.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,34 +22,26 @@ class BusinessAreasController < ApplicationController
   # GET /business_areas/1
   # GET /business_areas/1.json
   def show
-    @business_area = BusinessArea.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @business_area }
-    end
   end
 
   # GET /business_areas/new
   # GET /business_areas/new.json
   def new
     @business_area = BusinessArea.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @business_area }
-    end
   end
 
   # GET /business_areas/1/edit
   def edit
-    @business_area = BusinessArea.find(params[:id])
   end
 
   # POST /business_areas
   # POST /business_areas.json
   def create
     @business_area = BusinessArea.new(business_area_params)
+    @business_area.updated_by = current_user.login
+    @business_area.created_by = current_user.login
+    @business_area.playground_id = current_user.current_playground_id
+    @business_area.owner_id = current_user.id
 
     respond_to do |format|
       if @business_area.save
@@ -62,7 +57,7 @@ class BusinessAreasController < ApplicationController
   # PUT /business_areas/1
   # PUT /business_areas/1.json
   def update
-    @business_area = BusinessArea.find(params[:id])
+    @business_area.updated_by = current_user.login
 
     respond_to do |format|
       if @business_area.update_attributes(business_area_params)
@@ -78,7 +73,6 @@ class BusinessAreasController < ApplicationController
   # DELETE /business_areas/1
   # DELETE /business_areas/1.json
   def destroy
-    @business_area = BusinessArea.find(params[:id])
     @business_area.destroy
 
     respond_to do |format|
@@ -91,18 +85,12 @@ class BusinessAreasController < ApplicationController
 ### private functions
   private
 
-  # retrieve the list of statuses
-    def set_statuses_list
-      @statuses_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_STATUSES' , false, Time.now ) 
-    end 
-
-    # retrieve current user 
-    def current_user
-      remember_token = User.encrypt(cookies[:remember_token])
-      @current_user ||= User.find_by(remember_token: remember_token)
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current business area
+    def set_business_area
+      @business_area = BusinessArea.includes(:owner, :status).find(params[:id]) 
     end
-
-
+    
   ### before filters
     # Check for active session
     def signed_in_user
@@ -111,7 +99,7 @@ class BusinessAreasController < ApplicationController
 
   ### strong parameters
   def business_area_params
-    params.require(:business_area).permit(:code, :name, :hierarchy, :created_by, :updated_by, :owner_id, :status_id, :playground_id, :PCF_index, :PCF_reference, :description)
+    params.require(:business_area).permit(:code, :name, :hierarchy, :created_by, :updated_by, :status_id, :PCF_index, :PCF_reference, :description)
   end
 
 end

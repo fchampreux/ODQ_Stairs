@@ -36,6 +36,7 @@ class ParametersController < ApplicationController
     @parameter.updated_by = current_user.login
     @parameter.created_by = current_user.login
     @parameter.playground_id = current_user.current_playground_id
+
     respond_to do |format|
       if @parameter.save
         format.html { redirect_to parameters_url , notice: 'Parameter was successfully created.' }
@@ -51,6 +52,7 @@ class ParametersController < ApplicationController
   # PATCH/PUT /parameters/1.json
   def update
     @parameter.updated_by = current_user.login
+
     respond_to do |format|
       if @parameter.update(parameter_params)
         format.html { redirect_to parameters_url , notice: 'Parameter was successfully updated.' }
@@ -74,21 +76,14 @@ class ParametersController < ApplicationController
   private
 
   ### Use callbacks to share common setup or constraints between actions.
-
-    # callback for building the list of parameters lists
+    # build the list of parameters lists
     def set_parameters_lists
       @parameters_lists = Parameter.where(is_list: true)
     end
 
-    # callback to retrieve current parameter for edit or destroy actions
+    # retrieve current parameter for edit or destroy actions
     def set_parameter
       @parameter = Parameter.find(params[:id])
-    end
-
-    # retrieve current user 
-    def current_user
-      remember_token = User.encrypt(cookies[:remember_token])
-      @current_user ||= User.find_by(remember_token: remember_token)
     end
 
   ### before filters
