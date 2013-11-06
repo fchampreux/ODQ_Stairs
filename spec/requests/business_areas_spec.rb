@@ -27,7 +27,7 @@ describe "Business Areas pages: " do
       before { visit business_areas_path }
 
       it { should have_selector('h1', text: 'Business areas') }
-      it { should have_title('Business Areas index') }
+      it { should have_title('Managing business areas') }
       it { should have_content('New Business area') }
     end
   end
