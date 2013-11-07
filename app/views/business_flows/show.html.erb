@@ -1,8 +1,6 @@
-<% provide(:title, 'Show Business Flow') %>
+<% provide(:title, 'Managing business flows') %>
 
-<% if signed_in? %>
-
-  <h1>Business Flow: <%= @business_flow.code %></h1>
+  <h1>Business Flow: <%= @business_flow.name %></h1>
       
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_flow_path(@business_flow) %> |</li>
@@ -10,79 +8,112 @@
     <li><%= link_to 'Destroy', @business_flow, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
       <li><a href="#tab2" data-toggle="tab">Ownership</a></li>
-   </ul>
+    </ul>
     <div class="tab-content">
-  
-    <div class="tab-pane" id="tab2">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right" width="100px"><b>Name:</b>
-          </td>
-          <td><%= @business_flow.name %>
-          </td>
-          <td align="right"><b>Created by:</b>
-          </td>
-          <td><%= @business_flow.created_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Code:</b>
-          </td>
-          <td><%= @business_flow.code %>
-          </td>
-          <td align="right"><b>Created at:</b>
-          </td>
-          <td><%= @business_flow.created_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Id:</b>
-          </td>
-          <td><%= @business_flow.id %>
-          </td>
-          <td align="right"><b>Updated by:</b>
-          </td>
-          <td><%= @business_flow.updated_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Owned by:</b>
-          </td>
-          <td>
-          </td>
-          <td align="right"><b>Updated at:</b>
-          </td>
-          <td><%= @business_flow.updated_at %>
-          </td>
-        </tr>
-      </table>
-<!-- Tab content -->
 
-    </div>
-    
     <div class="tab-pane active" id="tab1">
+<!-- Tab content for Definition -->
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6"><%= @business_flow.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1"><%= @business_flow.code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1"><%= @business_flow.status.name%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10"><%= @business_flow.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2"><%= @business_flow.hierarchy%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">PCF index:
+        </div>
+        <div class="span2"><%= @business_flow.PCF_index%>
+        </div>
+        <div class="span2 text-right">PCF reference:
+        </div>
+        <div class="span2"><%= @business_flow.PCF_reference%>
+        </div>
+      </div>
+
+
 <!-- Tab content -->
-      <table>         
-        <tr>
-          <td align="right"><b>Description:</b>
-          </td>
-          <td><%= @business_flow.description %>
-          </td>
-        </tr>
-      </table>
+    </div>    
+
+    <div class="tab-pane" id="tab2">
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @business_flow.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @business_flow.created_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @business_flow.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @business_flow.created_at%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @business_flow.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @business_flow.updated_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2 text-right">updated at:
+        </div>
+        <div class="span2"><%= @business_flow.updated_at%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>
     
     </div>
   </div>
-  
+
 <table width=100%>    
   <tr><td><hr /></td></tr>
   <tr align="left">
@@ -110,12 +141,5 @@
   </tr>
 </table>
 
-<% else %>
-
-You must log in to access this page.
-
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 
 

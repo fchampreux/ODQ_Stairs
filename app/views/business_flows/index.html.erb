@@ -1,37 +1,31 @@
-<% provide(:title, 'Business Flows index') %>
+<% provide(:title, 'Managing business flows') %>
 
-<% if signed_in? %>
 <h1>Business flows</h1>
 
 <table class="table table-striped">
   <tr>
+    <th>Hierarchy</th>
     <th>Code</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Status</th>
     <th>Created by</th>
-    <th>Created at</th>
-    <th>Business area</th>
+    <th>Updated by</th>
   </tr>
 
 <% @business_flows.each do |business_flow| %>
   <tr>
+    <td><%= link_to business_flow.hierarchy, business_flow %></td>
     <td><%= link_to business_flow.code, business_flow %></td>
     <td><%= business_flow.name %></td>
     <td><%= business_flow.description %></td>
+    <td><%= business_flow.status.name %></td>
     <td><%= business_flow.created_by %></td>
-    <td><%= business_flow.created_at %></td>
-    <td><%= business_flow.business_area_id %></td>
+    <td><%= business_flow.updated_by %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Business flow', new_business_flow_path %>
 
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>

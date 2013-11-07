@@ -22,6 +22,7 @@ class BusinessAreasController < ApplicationController
   # GET /business_areas/1
   # GET /business_areas/1.json
   def show
+    ### Retrieved by Callback function
   end
 
   # GET /business_areas/new
@@ -32,6 +33,7 @@ class BusinessAreasController < ApplicationController
 
   # GET /business_areas/1/edit
   def edit
+    ### Retrieved by Callback function
   end
 
   # POST /business_areas
@@ -57,6 +59,7 @@ class BusinessAreasController < ApplicationController
   # PUT /business_areas/1
   # PUT /business_areas/1.json
   def update
+    ### Retrieved by Callback function
     @business_area.updated_by = current_user.login
 
     respond_to do |format|
@@ -73,6 +76,7 @@ class BusinessAreasController < ApplicationController
   # DELETE /business_areas/1
   # DELETE /business_areas/1.json
   def destroy
+    ### Retrieved by Callback function
     @business_area.destroy
 
     respond_to do |format|

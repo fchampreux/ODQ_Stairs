@@ -18,6 +18,7 @@ class ParametersController < ApplicationController
   # GET /parameters/1
   # GET /parameters/1.json
   def show
+    ### Retrieved by Callback function
   end
 
   # GET /parameters/new
@@ -27,6 +28,7 @@ class ParametersController < ApplicationController
 
   # GET /parameters/1/edit
   def edit
+    ### Retrieved by Callback function
   end
 
   # POST /parameters
@@ -51,6 +53,7 @@ class ParametersController < ApplicationController
   # PATCH/PUT /parameters/1
   # PATCH/PUT /parameters/1.json
   def update
+    ### Retrieved by Callback function
     @parameter.updated_by = current_user.login
 
     respond_to do |format|
