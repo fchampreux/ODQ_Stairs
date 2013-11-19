@@ -1,60 +1,30 @@
-<% provide(:title, 'Business Objects index') %>
+<% provide(:title, 'Managing business objects') %>
 
-<% if signed_in? %>
-
-<h1>Listing business_objects</h1>
+<h1>Business objects</h1>
 
 <table class="table table-striped">
   <tr>
-    <th>Playground</th>
-    <th>Business flow</th>
+    <th>Hierarchy</th>
     <th>Code</th>
     <th>Name</th>
     <th>Description</th>
-    <th>Organisation level</th>
-    <th>Db technology</th>
-    <th>Db connection</th>
-    <th>Db owner schema</th>
-    <th>Structure name</th>
-    <th>Key columns</th>
-    <th>Published columns</th>
+    <th>Status</th>
     <th>Created by</th>
     <th>Updated by</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @business_objects.each do |business_object| %>
   <tr>
-    <td><%= business_object.playground_id %></td>
-    <td><%= business_object.business_flow_id %></td>
-    <td><%= business_object.code %></td>
+    <td><%= link_to business_object.hierarchy, business_object %></td>
+    <td><%= link_to business_object.code, business_object %></td>
     <td><%= business_object.name %></td>
     <td><%= business_object.description %></td>
-    <td><%= business_object.organisation_level %></td>
-    <td><%= business_object.db_technology %></td>
-    <td><%= business_object.db_connection %></td>
-    <td><%= business_object.db_owner_schema %></td>
-    <td><%= business_object.structure_name %></td>
-    <td><%= business_object.key_columns %></td>
-    <td><%= business_object.published_columns %></td>
+    <td><%= business_object.status.name %></td>
     <td><%= business_object.created_by %></td>
     <td><%= business_object.updated_by %></td>
-    <td><%= link_to 'Show', business_object %></td>
-    <td><%= link_to 'Edit', edit_business_object_path(business_object) %></td>
-    <td><%= link_to 'Destroy', business_object, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Business object', new_business_object_path %>
-
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>

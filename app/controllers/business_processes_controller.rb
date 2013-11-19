@@ -1,8 +1,17 @@
 class BusinessProcessesController < ApplicationController
+# Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current business process
+  before_action :set_business_process, only: [:show, :edit, :update, :destroy]
+
+# Create the list of statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+
   # GET /business_processes
   # GET /business_processes.json
   def index
-    @business_processes = BusinessProcess.all
+    @business_processes = BusinessProcess.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,35 +22,30 @@ class BusinessProcessesController < ApplicationController
   # GET /business_processes/1
   # GET /business_processes/1.json
   def show
-    @business_process = BusinessProcess.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @business_process }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /business_processes/new
   # GET /business_processes/new.json
   def new
+    @business_flow = BusinessFlow.find(params[:business_flow_id])
     @business_process = BusinessProcess.new
-      @business_process.business_flow_id = params[:business_flow_id]
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @business_process }
-    end
   end
 
   # GET /business_processes/1/edit
   def edit
-    @business_process = BusinessProcess.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /business_processes
   # POST /business_processes.json
   def create
-    @business_process = BusinessProcess.new(params[:business_process])
+    @business_flow = BusinessFlow.find(params[:business_flow_id])
+    @business_process = @business_flow.business_processes.build(business_process_params)
+    @business_process.updated_by = current_user.login
+    @business_process.created_by = current_user.login
+    @business_process.playground_id = current_user.current_playground_id
+    @business_process.owner_id = current_user.id
 
     respond_to do |format|
       if @business_process.save
@@ -57,7 +61,8 @@ class BusinessProcessesController < ApplicationController
   # PUT /business_processes/1
   # PUT /business_processes/1.json
   def update
-    @business_process = BusinessProcess.find(params[:id])
+    ### Retrieved by Callback function
+    @business_process.updated_by = current_user.login
 
     respond_to do |format|
       if @business_process.update_attributes(params[:business_process])
@@ -73,7 +78,7 @@ class BusinessProcessesController < ApplicationController
   # DELETE /business_processes/1
   # DELETE /business_processes/1.json
   def destroy
-    @business_process = BusinessProcess.find(params[:id])
+    ### Retrieved by Callback function
     @business_process.destroy
 
     respond_to do |format|
@@ -81,4 +86,26 @@ class BusinessProcessesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current business flow
+    def set_business_process
+      @business_process = BusinessProcess.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def business_process_params
+    params.require(:business_process).permit(:code, :name, :hierarchy, :status_id, :PCF_index, :PCF_reference, :description)
+  end
+
 end

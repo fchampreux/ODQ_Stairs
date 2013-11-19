@@ -2,10 +2,10 @@ class BusinessFlowsController < ApplicationController
 # Check for active session 
   before_action :signed_in_user
 
-# Retrieve current business area
+# Retrieve current business flow
   before_action :set_business_flow, only: [:show, :edit, :update, :destroy]
 
-# Create the list statuses to be used in the form
+# Create the list of statuses to be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
 
   # GET /business_flows
@@ -28,8 +28,8 @@ class BusinessFlowsController < ApplicationController
   # GET /business_flows/new
   # GET /business_flows/new.json
   def new
+    @business_area = BusinessArea.find(params[:business_area_id])
     @business_flow = BusinessFlow.new
-#    @business_flow.business_area_id = params[:business_area_id]
   end
 
   # GET /business_flows/1/edit
@@ -40,8 +40,8 @@ class BusinessFlowsController < ApplicationController
   # POST /business_flows
   # POST /business_flows.json
   def create
-    @business_flow = BusinessFlow.new(business_flow_params)
-    @business_flow.business_area_id = params[:business_area_id]
+    @business_area = BusinessArea.find(params[:business_area_id])
+    @business_flow = @business_area.business_flows.build(business_flow_params)
     @business_flow.updated_by = current_user.login
     @business_flow.created_by = current_user.login
     @business_flow.playground_id = current_user.current_playground_id
@@ -65,7 +65,7 @@ class BusinessFlowsController < ApplicationController
     @business_flow.updated_by = current_user.login
 
     respond_to do |format|
-      if @business_flow.update_attributes(params[:business_flow])
+      if @business_flow.update_attributes(business_flow_params)
         format.html { redirect_to @business_flow, notice: 'Business flow was successfully updated.' }
         format.json { head :no_content }
       else
@@ -92,9 +92,9 @@ class BusinessFlowsController < ApplicationController
   private
 
   ### Use callbacks to share common setup or constraints between actions.
-    # Retrieve current business area
+    # Retrieve current business flow
     def set_business_flow
-      @business_area = BusinessFlow.includes(:owner, :status).find(params[:id]) 
+      @business_flow = BusinessFlow.includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters
@@ -105,7 +105,7 @@ class BusinessFlowsController < ApplicationController
 
   ### strong parameters
   def business_flow_params
-    params.require(:business_flow).permit(:code, :name, :hierarchy, :created_by, :updated_by, :status_id, :PCF_index, :PCF_reference, :description)
+    params.require(:business_flow).permit(:code, :name, :hierarchy, :status_id, :PCF_index, :PCF_reference, :description)
   end
 
 end

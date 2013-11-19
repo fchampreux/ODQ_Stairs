@@ -22,15 +22,21 @@
 
 
 class BusinessProcess < ActiveRecord::Base
-	validates :code, presence: true, uniqueness: true
-	validates :name, presence: true, uniqueness: true
-	validates :hierarchy, presence: true, uniqueness: true
+	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :description, length: { maximum: 1000 }
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :created_by , presence: true
+	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
-	validates :business_flow_id, presence: true	
-	
+	validates :business_flow_id, presence: true
+	validates :PCF_index, length: { maximum: 30 }
+	validates :PCF_reference, length: { maximum: 30 }
+	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
+	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
+	belongs_to :playground
 	has_many :business_objects
-	has_many :business_rules
 	belongs_to :business_flow
 end

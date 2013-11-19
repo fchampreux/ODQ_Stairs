@@ -14,14 +14,25 @@ ODQStep1::Application.routes.draw do
   get '/signin',  to: 'sessions#new'	, via: :get
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  resources :parameters
 
- resources :parameters
-
- resources :business_areas do
+  resources :business_areas do
       resources :business_flows, :only=>[:new, :create]
- end
+  end
 
-  resources :business_objects
+  resources :business_flows do
+      resources :business_processes, :only=>[:new, :create]
+  end
+
+  resources :business_processes do
+      resources :business_objects, :only=>[:new, :create]
+  end
+
+  resources :business_objects do
+      resources :business_rules, :only=>[:new, :create]
+  end
+
+  resources :business_rules
   resources :check_types
   resources :users
 
@@ -35,18 +46,6 @@ ODQStep1::Application.routes.draw do
   resources :time_scales
 
   resources :data_policies
-
-  resources :business_rules
-
-  resources :business_processes do
-      resources :business_rules, :only=>[:new, :create]
-  end
-
-  resources :business_flows do
-      resources :business_processes, :only=>[:new, :create]
-  end
-
-
 
   resources :scopes do
     resources :business_rules, :only=>[:new, :create]
