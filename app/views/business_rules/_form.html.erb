@@ -1,10 +1,10 @@
-<%= form_for(@business_rule) do |f| %>
+<%= form_for [@business_object, @business_rule] do |f| %>
   <% if @business_rule.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@business_rule.errors.count, "error") %> prohibited this business_rule from being saved:</h2>
+      <h2><%= pluralize(@errors.count, "error") %> prohibited this business_rule from being saved:</h2>
 
       <ul>
-      <% @business_rule.errors.full_messages.each do |msg| %>
+      <% @errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -18,128 +18,168 @@
       <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
       <li><a href="#tab4" data-toggle="tab">Solving</a></li>
       <li><a href="#tab5" data-toggle="tab">Exceptions list</a></li>    
-      <li><a href="#tab6" data-toggle="tab">Ownership</a></li>
     </ul>
     <div class="tab-content">
 
     <div class="tab-pane active" id="tab1">
-<!-- Tab content -->
-      <div class="field">
-        <%= f.label :code %><br />
-        <%= f.text_field :code %>
-      </div>
-      <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name %>
-      </div>
-      <div class="field">
-        <%= f.label :description %><br />
-        <%= f.text_area :description, :rows => 5 %>
-      </div>
-      <div class="field">
-        <%= f.label :business_value %><br />
-        <%= f.text_area :business_value, :rows => 5 %>
+<!-- Tab content for Definition -->
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6 field"><%= f.text_field :name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1 field"><%= f.text_field :code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1 field"><%=  f.collection_select :status_id, @statuses_list, :id, :name %>
+        </div>
       </div>
 
-      <div class="actions">
-        <%= f.submit %>
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2 field"><%= f.text_field :hierarchy%>
+        </div>
+         <div class="span2 text-right"> Rule type:
+         </div>
+         <div class="span2 field"><%=  f.collection_select :rule_type_id, @rule_types_list, :id, :name  %>
+         </div>
       </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10 field"><%= f.text_field :description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Business value:
+        </div>
+        <div class="span10 field"><%= f.text_field :business_value%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>
 
     <div class="tab-pane" id="tab2">
-<!-- Tab content -->
-      <div class="field">
-        <%= f.label :complexity %><br />
-        <%= f.text_field :complexity %>
-      </div>
-      <div class="field">
-        <%= f.label :added_value %><br />
-        <%= f.text_field :added_value %>
-      </div>
-      <div class="field">
-        <%= f.label :severity %><br />
-        <%= f.text_field :severity %>
-      </div>
-      <div class="field">
-        <%= f.label :maintenance_cost %><br />
-        <%= f.text_field :maintenance_cost %>
-      </div>
-      <div class="field">
-        <%= f.label :maintenance_duration %><br />
-        <%= f.text_field :maintenance_duration %>
-      </div>
+<!-- Tab content for Metrics -->
+      
+        <div class="row">
+          <div class="span2 text-right" Complexity:
+          </div>
+          <div class="span2 field"><%= f.text_field :complexity %>
+          </div>
+          <div class="span2 text-right">Added value:
+          </div>
+          <div class="span2 field"><%= f.text_field :added_value %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2 text-right">Severity:
+          </div>
+          <div class="span2 field"><%= f.text_field :severity %>
+          </div>
+          <div class="span2 text-right">Maintenance cost:
+          </div>
+          <div class="span2 field"><%= f.text_field :maintenance_cost %>
+          </div>
+          <div class="span2 text-right">Maintenance workload:
+          </div>
+          <div class="span2 field"><%= f.text_field :maintenance_duration %>
+          </div>
+        </div>
+
 <!-- Tab content -->
     </div>
-
+ 
     <div class="tab-pane" id="tab3">
-<!-- Tab content -->
-      <div class="field">
-        <%= f.label :rule_type_string %><br />
-        <%= f.text_field :rule_type_string %>
-      </div>
-      <div class="field">
-        <%= f.label :condition %><br />
-        <%= f.text_area :condition, :rows => 5  %>
-      </div>
+<!-- Tab content for Implementation -->
+      
+        <div class="row">
+          <div class="span2 text-right">Object:
+          </div>
+          <div class="span2 field"><%= @business_object.name%>
+          </div>
+          <div class="span2 text-right">Business process:
+          </div>
+          <div class="span2 field"><%= %>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="span2 text-right">Check description:
+          </div>
+          <div class="span10 field"><%= f.text_field :check_description %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Check script:
+          </div>
+          <div class="span10 field"><%= f.text_field :check_script %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Generated condition:
+          </div>
+          <div class="span10 field"><%= f.text_field :condition %>
+          </div>
+        </div>
+
+List of scopes ?
+
+      
 <!-- Tab content -->
     </div>
 
     <div class="tab-pane" id="tab4">
-<!-- Tab content -->
-      <div class="field">
-        <%= f.label :correction_method %><br />
-        <%= f.text_area :correction_method, :rows => 5  %>
-      </div>
-      <div class="field">
-        <%= f.label :correction_batch %><br />
-        <%= f.text_field :correction_batch %>
-      </div>
+<!-- Tab content for Solving -->
+      
+        <div class="row">
+          <div class="span2 text-right" width="200">Correction method:
+          </div>
+          <div class="span2 field"><%= f.text_field :correction_method %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Correction script:
+          </div>
+          <div class="span2 field"><%= f.text_field :correction_batch %>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="span2 text-right">Correction batch:
+          </div>
+          <div class="span2 field"><%= f.text_field :correction_batch %>
+          </div>
+        </div>
+      
 <!-- Tab content -->
     </div>
 
+    
     <div class="tab-pane" id="tab5">
-<!-- Tab content -->
-Not exception list yet
+<!-- Tab content for Exceptions -->
+      
+        <div class="row">
+          <div class="span2 text-right" width="200">Exceptions:
+          </div>
+          <div class="span10 field"><%= f.text_field :white_list %>
+          </div>
+        </div>
+      
 <!-- Tab content -->
     </div>
 
-    <div class="tab-pane" id="tab6">
-<!-- Tab content -->
-      <div class="field">
-        <%= f.label :playground_id %><br />
-        <%= @business_rule.playground_id %>
-      </div>
-      <div class="field">
-        <%= f.label :version %><br />
-        <%= f.text_field :version %>
-      </div>
-      <div class="field">
-        <%= f.label :status %><br />
-        <%= f.text_field :status %>
-      </div>
-      <div class="field">
-        <%= f.label :owner %><br />
-        <%= f.text_field :owner %>
-      </div>
-      <div class="field">
-        <%= f.label :approver %><br />
-        <%= f.text_field :approver %>
-      </div>
-      <div class="field">
-        <%= f.label :approved_at %><br />
-        <%= @business_rule.approved_at %>
-      </div>
-      <div class="field">
-        <%= f.label :scope_id %><br />
-        <%= @business_rule.scope_id %>
-      </div>
-      <div class="field">
-        <%= f.label :business_process_id %><br />
-        <%= @business_rule.business_process_id %>
-      </div>
-<!-- Tab content -->
-    </div>
     </div>
   </div>
 

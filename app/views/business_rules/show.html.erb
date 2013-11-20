@@ -1,8 +1,6 @@
-<% provide(:title, 'Show Business Rules') %>
+<% provide(:title, 'Managing business rules') %>
 
-<% if signed_in? %>
-
-   <h1>Business Rule: <%= @business_rule.code %></h1>
+   <h1>Business Rule: <%= @business_rule.name %></h1>
    
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_rule_path(@business_rule) %> |</li>
@@ -10,7 +8,7 @@
     <li><%= link_to 'Destroy', @business_rule, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 
   <div class="tabbable">
@@ -25,210 +23,228 @@
     <div class="tab-content">
  
     <div class="tab-pane active" id="tab1">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right" width="100px"><b>Name:</b>
-          </td>
-          <td><%= @business_rule.name %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Description:</b>
-          </td>
-          <td><%= @business_rule.description %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Business value:</b>
-          </td>
-          <td><%= @business_rule.business_value %>
-          </td>
-        </tr>
-      </table>
+<!-- Tab content for Definition -->
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6"><%= @business_rule.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1"><%= @business_rule.code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1"><%= @business_rule.status.name%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2"><%= @business_rule.hierarchy%>
+        </div>
+         <div class="span2 text-right"> Rule type:
+         </div>
+         <div class="span2"><%= @business_rule.rule_type.name %>
+         </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10"><%= @business_rule.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Business value:
+        </div>
+        <div class="span10"><%= @business_rule.business_value%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>
 
     <div class="tab-pane" id="tab2">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right" width="200px"><b>Rule type:</b>
-          </td>
-          <td><%= @business_rule.rule_type_string %>
-          </td>
-          <td align="right"><b>Condition:</b>
-          </td>
-          <td><%= @business_rule.condition %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Complexity:</b>
-          </td>
-          <td><%= @business_rule.complexity %>
-          </td>
-          <td align="right"><b>Added value:</b>
-          </td>
-          <td><%= @business_rule.added_value %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Severity:</b>
-          </td>
-          <td><%= @business_rule.severity %>
-          </td>
-          <td align="right"><b>Owner:</b>
-          </td>
-          <td><%= @business_rule.owner %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Maintenance cost:</b>
-          </td>
-          <td><%= @business_rule.maintenance_cost %>
-          </td>
-          <td align="right"><b>Maintenance workload:</b>
-          </td>
-          <td><%= @business_rule.maintenance_duration %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Scope:</b>
-          </td>
-          <td><%= @business_rule.scope_id%>
-          </td>
-          <td align="right"><b>Business process:</b>
-          </td>
-          <td><%= @business_rule.business_process_id%>
-          </td>
-        </tr>
-      </table>
+<!-- Tab content for Metrics -->
+      
+        <div class="row">
+          <div class="span2 text-right" Complexity:
+          </div>
+          <div class="span2"><%= @business_rule.complexity %>
+          </div>
+          <div class="span2 text-right">Added value:
+          </div>
+          <div class="span2"><%= @business_rule.added_value %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2 text-right">Severity:
+          </div>
+          <div class="span2"><%= @business_rule.severity %>
+          </div>
+          <div class="span2 text-right">Maintenance cost:
+          </div>
+          <div class="span2"><%= @business_rule.maintenance_cost %>
+          </div>
+          <div class="span2 text-right">Maintenance workload:
+          </div>
+          <div class="span2"><%= @business_rule.maintenance_duration %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2 text-right">Object:
+          </div>
+          <div class="span2"><%= @business_rule.object.name%>
+          </div>
+          <div class="span2 text-right">Business process:
+          </div>
+          <div class="span2"><%= @business_rule.business_process.name%>
+          </div>
+        </div>
+      
 <!-- Tab content -->
     </div>
  
     <div class="tab-pane" id="tab3">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right"><b>Description:</b>
-          </td>
-          <td><%= @business_rule.description %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Check:</b>
-          </td>
-          <td><%= @business_rule.condition %>
-          </td>
-        </tr>
-      </table>
+<!-- Tab content for Implementation -->
+      
+        <div class="row">
+          <div class="span2 text-right">Object:
+          </div>
+          <div class="span2"><%= @business_rule.object.name%>
+          </div>
+          <div class="span2 text-right">Business process:
+          </div>
+          <div class="span2"><%= @business_rule.business_process.name%>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="span2 text-right">Check description:
+          </div>
+          <div class="span10"><%= @business_rule.check_description %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Check script:
+          </div>
+          <div class="span10"><%= @business_rule.check_script %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Generated condition:
+          </div>
+          <div class="span10"><%= @business_rule.condition %>
+          </div>
+        </div>
+
+List of scopes ?
+
+      
 <!-- Tab content -->
     </div>
 
     <div class="tab-pane" id="tab4">
+<!-- Tab content for Solving -->
+      
+        <div class="row">
+          <div class="span2 text-right" width="200">Correction method:
+          </div>
+          <div class="span2"><%= @business_rule.correction_method %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Correction script:
+          </div>
+          <div class="span2"><%= @business_rule.correction_script %>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="span2 text-right">Correction batch:
+          </div>
+          <div class="span2"><%= @business_rule.correction_batch %>
+          </div>
+        </div>
+      
 <!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right" width="200"><b>Correction method:</b>
-          </td>
-          <td><%= @business_rule.correction_method %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Correction batch:</b>
-          </td>
-          <td><%= @business_rule.correction_batch %>
-          </td>
-        </tr>
-      </table>
+    </div>
+
+    
+    <div class="tab-pane" id="tab5">
+<!-- Tab content for Exceptions -->
+      
+        <div class="row">
+          <div class="span2 text-right" width="200">Exceptions:
+          </div>
+          <div class="span10"><%= @business_rule.white_list %>
+          </div>
+        </div>
+      
 <!-- Tab content -->
     </div>
     
+
     <div class="tab-pane" id="tab6">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right" width="100px"><b>Name:</b>
-          </td>
-          <td><%= @business_rule.name %>
-          </td>
-          <td align="right"><b>Created by:</b>
-          </td>
-          <td><%= @business_rule.created_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Code:</b>
-          </td>
-          <td><%= @business_rule.code %>
-          </td>
-          <td align="right"><b>Created at:</b>
-          </td>
-          <td><%= @business_rule.created_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Id:</b>
-          </td>
-          <td><%= @business_rule.id %>
-          </td>
-          <td align="right"><b>Updated by:</b>
-          </td>
-          <td><%= @business_rule.updated_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Owned by:</b>
-          </td>
-          <td>
-          </td>
-          <td align="right"><b>Updated at:</b>
-          </td>
-          <td><%= @business_rule.updated_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Version:</b>
-          </td>
-          <td><%= @business_rule.version%>
-          </td>
-          <td align="right"><b>Status:</b>
-          </td>
-          <td><%= @business_rule.status%>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" width="100px"><b>Approver:</b>
-          </td>
-          <td><%= @business_rule.approver%>
-          </td>
-          <td align="right"><b>Approval date:</b>
-          </td>
-          <td><%= @business_rule.approved_at%>
-          </td>
-        </tr>
-      </table>
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @business_object.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @business_object.created_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @business_object.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @business_object.created_at%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @business_object.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @business_object.updated_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2 text-right">updated at:
+        </div>
+        <div class="span2"><%= @business_object.updated_at%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>
    
     </div>
   </div>
     
-<table width=100%<
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>Linked business policies</th>
-    <th></th>
-  </tr>
-</table>
 
-<% else %>
 
-You must log in to access this page.
 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 
 
 

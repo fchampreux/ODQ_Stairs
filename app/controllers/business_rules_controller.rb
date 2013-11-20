@@ -1,8 +1,20 @@
 class BusinessRulesController < ApplicationController
+# Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current business object
+  before_action :set_business_rule, only: [:show, :edit, :update, :destroy]
+
+# Create the list of statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+
+# Create the list of rule types to be used in the form
+  before_action :set_rule_types_list, only: [:new, :edit, :update, :create]
+
   # GET /business_rules
   # GET /business_rules.json
   def index
-    @business_rules = BusinessRule.all
+    @business_rules = BusinessRule.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,35 +25,31 @@ class BusinessRulesController < ApplicationController
   # GET /business_rules/1
   # GET /business_rules/1.json
   def show
-    @business_rule = BusinessRule.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @business_rule }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /business_rules/new
   # GET /business_rules/new.json
   def new
+    @business_object = BusinessObject.find(params[:business_object_id])
     @business_rule = BusinessRule.new
-    @business_rule.business_process_id = params[:business_process_id]
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @business_rule }
-    end
   end
 
   # GET /business_rules/1/edit
   def edit
-    @business_rule = BusinessRule.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /business_rules
   # POST /business_rules.json
   def create
-    @business_rule = BusinessRule.new(params[:business_rule])
+    @business_object = BusinessObject.find(params[:business_object_id])
+    @business_rule = @business_object.business_rule.build(business_rule_params)
+    @business_rule.updated_by = current_user.login
+    @business_rule.created_by = current_user.login
+    @business_rule.playground_id = current_user.current_playground_id
+    @business_rule.owner_id = current_user.id
+
 
     respond_to do |format|
       if @business_rule.save
@@ -57,7 +65,8 @@ class BusinessRulesController < ApplicationController
   # PUT /business_rules/1
   # PUT /business_rules/1.json
   def update
-    @business_rule = BusinessRule.find(params[:id])
+    ### Retrieved by Callback function
+    @business_rule.updated_by = current_user.login
 
     respond_to do |format|
       if @business_rule.update_attributes(params[:business_rule])
@@ -73,7 +82,7 @@ class BusinessRulesController < ApplicationController
   # DELETE /business_rules/1
   # DELETE /business_rules/1.json
   def destroy
-    @business_rule = BusinessRule.find(params[:id])
+    ### Retrieved by Callback function
     @business_rule.destroy
 
     respond_to do |format|
@@ -81,4 +90,29 @@ class BusinessRulesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current business flow
+    def set_business_rule
+      @business_rule = BusinessRule.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def business_rule_params
+    params.require(:business_rule).permit(:code, :name, :hierarchy, :status_id, :description, :check_description, :check_script, :correction_method, :correction_script, 
+				:correction_batch, :white_list, :rule_type, :condition, :complexity, :added_value, :severity, :maintenance_cost, :maintenance_duration, 
+				:version, :approver_id, :approved_at)
+  end
+
+
 end

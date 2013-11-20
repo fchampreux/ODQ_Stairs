@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017211341) do
+ActiveRecord::Schema.define(version: 20131120153043) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 20131017211341) do
     t.text     "correction_script"
     t.string   "correction_batch"
     t.text     "white_list"
-    t.string   "rule_type"
     t.text     "condition"
     t.decimal  "complexity"
     t.decimal  "added_value"
@@ -123,6 +122,7 @@ ActiveRecord::Schema.define(version: 20131017211341) do
     t.string   "updated_by"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "rule_type_id"
   end
 
   create_table "data_policies", force: true do |t|
