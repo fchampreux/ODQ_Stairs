@@ -1,25 +1,27 @@
-<% provide(:title, 'Playgrounds index') %>
-
-<% if signed_in? %>
+<% provide(:title, 'Managing playgrounds') %>
 
 <h1>Playgrounds</h1>
 
 <table class="table table-striped">
   <tr>
+    <th>Hierarchy</th>
     <th>Code</th>
     <th>Name</th>
     <th>Description</th>
+    <th>Status</th>
     <th>Created by</th>
-    <th>Created at</th>
+    <th>Updated by</th>
   </tr>
 
-<% @playgrounds.each do |playground| %>
+<% @playgrounds.each do |business_flow| %>
   <tr>
+    <td><%= link_to playground.hierarchy, playground %></td>
     <td><%= link_to playground.code, playground %></td>
     <td><%= playground.name %></td>
     <td><%= playground.description %></td>
+    <td><%= playground.status.name %></td>
     <td><%= playground.created_by %></td>
-    <td><%= playground.created_at %></td>
+    <td><%= playground.updated_by %></td>
   </tr>
 <% end %>
 </table>
@@ -28,10 +30,4 @@
 
 <%= link_to 'New Playground', new_playground_path %>
 
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 

@@ -1,8 +1,16 @@
 class PlaygroundsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current playground
+  before_action :set_playground, only: [:show, :edit, :update, :destroy]
+
+# Create the list statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
   # GET /playgrounds
   # GET /playgrounds.json
   def index
-    @playgrounds = Playground.all
+    @playgrounds = Playground.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,34 +21,28 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds/1
   # GET /playgrounds/1.json
   def show
-    @playground = Playground.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @playground }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /playgrounds/new
   # GET /playgrounds/new.json
   def new
     @playground = Playground.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @playground }
-    end
   end
 
   # GET /playgrounds/1/edit
   def edit
-    @playground = Playground.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /playgrounds
   # POST /playgrounds.json
   def create
-    @playground = Playground.new(params[:playground])
+    @playground = Playground.new(playground_params)
+    @playground.updated_by = current_user.login
+    @playground.created_by = current_user.login
+    @playground.playground_id = current_user.current_playground_id
+    @playground.owner_id = current_user.id
 
     respond_to do |format|
       if @playground.save
@@ -58,7 +60,8 @@ class PlaygroundsController < ApplicationController
   # PUT /playgrounds/1
   # PUT /playgrounds/1.json
   def update
-    @playground = Playground.find(params[:id])
+    ### Retrieved by Callback function
+    @playground.updated_by = current_user.login    
 
     respond_to do |format|
       if @playground.update_attributes(params[:playground])
@@ -74,7 +77,7 @@ class PlaygroundsController < ApplicationController
   # DELETE /playgrounds/1
   # DELETE /playgrounds/1.json
   def destroy
-    @playground = Playground.find(params[:id])
+    ### Retrieved by Callback function
     @playground.destroy
 
     respond_to do |format|
@@ -82,4 +85,28 @@ class PlaygroundsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current playground
+    def set_playground
+      @playground = Playground.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def playground_params
+    params.require(:playground).permit(:code, :name, :hierarchy, :status_id, :description)
+  end
+
+  
 end

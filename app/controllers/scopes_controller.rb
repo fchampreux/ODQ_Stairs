@@ -1,8 +1,17 @@
 class ScopesController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current business area
+  before_action :set_scope, only: [:show, :edit, :update, :destroy]
+
+# Create the list statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+  
   # GET /scopes
   # GET /scopes.json
   def index
-    @scopes = Scope.all
+    @scopes = Scope.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,35 +22,29 @@ class ScopesController < ApplicationController
   # GET /scopes/1
   # GET /scopes/1.json
   def show
-    @scope = Scope.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @scope }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /scopes/new
   # GET /scopes/new.json
   def new
     @scope = Scope.new
-    @scope.landscape_id = params[:landscape_id]
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @scope }
-    end
   end
 
   # GET /scopes/1/edit
   def edit
-    @scope = Scope.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /scopes
   # POST /scopes.json
   def create
-    @scope = Scope.new(params[:scope])
+    @landscape = Landscape.find(params[:landscape_id])
+    @scope = @landscape.scopes.build(scope_params)
+    @scope.updated_by = current_user.login
+    @scope.created_by = current_user.login
+    @scope.playground_id = current_user.current_playground_id
+    @scope.owner_id = current_user.id    
 
     respond_to do |format|
       if @scope.save
@@ -57,7 +60,8 @@ class ScopesController < ApplicationController
   # PUT /scopes/1
   # PUT /scopes/1.json
   def update
-    @scope = Scope.find(params[:id])
+    ### Retrieved by Callback function
+    @scope.updated_by = current_user.login    
 
     respond_to do |format|
       if @scope.update_attributes(params[:scope])
@@ -73,7 +77,7 @@ class ScopesController < ApplicationController
   # DELETE /scopes/1
   # DELETE /scopes/1.json
   def destroy
-    @scope = Scope.find(params[:id])
+    ### Retrieved by Callback function
     @scope.destroy
 
     respond_to do |format|
@@ -81,4 +85,28 @@ class ScopesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current scope
+    def set_scope
+      @scope = Scope.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def scope_params
+    params.require(:scope).permit(:code, :name, :hierarchy, :status_id, :description)
+  end
+
+  
 end

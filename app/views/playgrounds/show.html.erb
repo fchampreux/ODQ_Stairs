@@ -1,8 +1,6 @@
-<% provide(:title, 'Show Playground') %>
+<% provide(:title, 'Managing playgrounds') %>
 
-<% if signed_in? %>
-
-  <h1>Playground: <%= @playground.code %></h1>
+  <h1>Playground: <%= @playground.name %></h1>
     
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_playground_path(@playground) %> |</li>
@@ -10,82 +8,99 @@
     <li><%= link_to 'Destroy', @playground, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
-  <p id="notice"><%= notice %></p>
-
-  <hr />
+<!-- <p id="notice"><%= notice %></p> -->
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Ownership</a></li>    
+      <li><a href="#tab2" data-toggle="tab">Ownership</a></li>
     </ul>
     <div class="tab-content">
 
     <div class="tab-pane active" id="tab1">
+<!-- Tab content for Definition -->
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6"><%= @playground.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1"><%= @playground.code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1"><%= @playground.status.name%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10"><%= @playground.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2"><%= @playground.hierarchy%>
+        </div>
+      </div>
 
 <!-- Tab content -->
-      <table>         
-        <tr>
-          <td align="right"><b>Description:</b>
-          </td>
-          <td><%= @playground.description %>
-          </td>
-        </tr>
-      </table>
-<!-- Tab content -->
-
-    </div>
+    </div>    
 
     <div class="tab-pane" id="tab2">
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @playground.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @playground.created_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @playground.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @playground.created_at%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @playground.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @playground.updated_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2 text-right">updated at:
+        </div>
+        <div class="span2"><%= @playground.updated_at%>
+        </div>
+      </div>
 
 <!-- Tab content -->
-      <table width=100%>
-        <tr>
-          <td align="right" width="100px"><b>Name:</b>
-          </td>
-          <td><%= @playground.name %>
-          </td>
-          <td align="right"><b>Created by:</b>
-          </td>
-          <td><%= @playground.created_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Code:</b>
-          </td>
-          <td><%= @playground.code %>
-          </td>
-          <td align="right"><b>Created at:</b>
-          </td>
-          <td><%= @playground.created_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Id:</b>
-          </td>
-          <td><%= @playground.id %>
-          </td>
-          <td align="right"><b>Updated by:</b>
-          </td>
-          <td><%= @playground.updated_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Owned by:</b>
-          </td>
-          <td>
-          </td>
-          <td align="right"><b>Updated at:</b>
-          </td>
-          <td><%= @playground.updated_at %>
-          </td>
-        </tr>
-      </table>
-<!-- Tab content -->
-
+    </div>
+    
     </div>
   </div>
-</div>
 
 <table width=100%>
   <tr><td><hr /></td></tr>
@@ -113,13 +128,6 @@
     </td>
   </tr>
 </table>
-
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 
 
 

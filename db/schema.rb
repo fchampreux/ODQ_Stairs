@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120153043) do
+ActiveRecord::Schema.define(version: 20131121225539) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20131120153043) do
     t.string   "updated_by"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "status_id"
+    t.integer  "owner_id"
   end
 
   create_table "organisations", force: true do |t|
@@ -202,6 +204,8 @@ ActiveRecord::Schema.define(version: 20131120153043) do
     t.string   "updated_by"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "status_id"
+    t.integer  "owner_id"
   end
 
   create_table "roles", force: true do |t|
@@ -234,6 +238,8 @@ ActiveRecord::Schema.define(version: 20131120153043) do
     t.string   "updated_by"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "status_id"
+    t.integer  "owner_id"
   end
 
   create_table "territories", force: true do |t|

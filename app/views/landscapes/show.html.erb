@@ -1,8 +1,6 @@
-<% provide(:title, 'Show Landscape') %>
+<% provide(:title, 'Managing landscapes') %>
 
-<% if signed_in? %>
-
-  <h1>Landscape: <%= @landscape.code %></h1>
+  <h1>Landscape: <%= @landscape.name %></h1>
   
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_landscape_path(@landscape) %> |</li>
@@ -10,83 +8,89 @@
     <li><%= link_to 'Destroy', @landscape, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
-  <p id="notice"><%= notice %></p>
+<!-- Tab content for Definition -->
 
-  <hr />
-  
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Ownership</a></li>    
-    </ul>
-    <div class="tab-content">
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6"><%= @landscape.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1"><%= @landscape.code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1"><%= @landscape.status.name%>
+        </div>
+      </div>
 
-    <div class="tab-pane active" id="tab1">
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10"><%= @landscape.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2"><%= @landscape.hierarchy%>
+        </div>
+      </div>
 
 <!-- Tab content -->
-      <table>         
-        <tr>
-          <td align="right"><b>Description:</b>
-          </td>
-          <td><%= @landscape.description %>
-          </td>
-        </tr>
-      </table>
-<!-- Tab content -->
-
-    </div>
+    </div>    
 
     <div class="tab-pane" id="tab2">
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @landscape.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @landscape.created_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @landscape.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @landscape.created_at%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @landscape.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @landscape.updated_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2 text-right">updated at:
+        </div>
+        <div class="span2"><%= @landscape.updated_at%>
+        </div>
+      </div>
 
 <!-- Tab content -->
-
-      <table width=100%>
-        <tr>
-          <td align="right"><b>Name:</b>
-          </td>
-          <td><%= @landscape.name %>
-          </td>
-          <td align="right"><b>Created by:</b>
-          </td>
-          <td><%= @landscape.created_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Code:</b>
-          </td>
-          <td><%= @landscape.code %>
-          </td>
-          <td align="right"><b>Created at:</b>
-          </td>
-          <td><%= @landscape.created_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Id:</b>
-          </td>
-          <td><%= @landscape.id %>
-          </td>
-          <td align="right"><b>Updated by:</b>
-          </td>
-          <td><%= @landscape.updated_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Belongs to playground:</b>
-          </td>
-          <td><%= @landscape.playground_id %>
-          </td>
-          <td align="right"><b>Updated at:</b
-          </td>
-          <td><%= @landscape.updated_at %>
-          </td>
-        </tr>
-      </table>
-
-  <!-- Tab content -->
+    </div>
+    
     </div>
   </div>
-</div>
 
 <table width=100%>
   <tr><td><hr /></td></tr>
@@ -113,15 +117,3 @@
     </td>
   </tr>
 </table>
-
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
-
-
-
-
-

@@ -1,8 +1,6 @@
-<% provide(:title, 'Show Scope') %>
+<% provide(:title, 'Managing scopes') %>
 
-<% if signed_in? %>
-
-  <h1>Scope: <%= @scope.code %></h1>
+  <h1>Scope: <%= @scope.name %></h1>
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_scope_path(@scope) %> |</li>
@@ -15,154 +13,99 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Ownership</a></li>
-      <li><a href="#tab3" data-toggle="tab">Query</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Connection</a></li>
+      <li><a href="#tab2" data-toggle="tab">Query</a></li>    
+      <li><a href="#tab3" data-toggle="tab">Connection</a></li>
+      <li><a href="#tab4" data-toggle="tab">Ownership</a></li>
+
       <!-- li class="inactive"><a href="#tab5" data-toggle="tab">Sample data</a></li -->    
     </ul>
     <div class="tab-content">
   
     <div class="tab-pane active" id="tab1">
-<!-- Tab content -->
-      <table>
-        <tr>
-           <td align="right"><b>Description:</b>
-           </td>
-           <td><%= @scope.description %>
-           </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Organisation level:</b>
-          </td>
-          <td><%= @scope.organisation_level %>
-          </td>
-        </tr>
-      </table>
+<!-- Tab content for Definition -->
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6"><%= @scope.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span1"><%= @scope.code%>
+        </div>
+        <div class="span1 text-right">Status:
+        </div>
+        <div class="span1"><%= @scope.status.name%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10"><%= @scope.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2"><%= @scope.hierarchy%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>    
 
-    <div class="tab-pane" id="tab2">
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right"><b>Name:</b>
-          </td>
-          <td><%= @scope.name %>
-          </td>
-          <td align="right"><b>Created by:</b>
-          </td>
-          <td><%= @scope.created_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Code:</b>
-          </td>
-          <td><%= @scope.code %>
-          </td>
-          <td align="right"><b>Created at:</b>
-          </td>
-          <td><%= @scope.created_at %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Id:</b>
-          </td>
-          <td><%= @scope.id %>
-          </td>
-          <td align="right"><b>Updated by:</b>
-          </td>
-          <td><%= @scope.updated_by %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Belongs to:</b>
-          </td>
-          <td><%= @scope.landscape_id %>
-          </td>
-          <td align="right"><b>Updated at:</b
-          </td>
-          <td><%= @scope.updated_at %>
-          </td>
-        </tr>
-      </table>
+    <div class="tab-pane" id="tab4">
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @scope.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @scope.created_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @scope.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @scope.created_at%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @scope.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @scope.updated_by%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2 text-right">updated at:
+        </div>
+        <div class="span2"><%= @scope.updated_at%>
+        </div>
+      </div>
+
 <!-- Tab content -->
     </div>
     
-    <div class="tab-pane" id="tab3">        
-<!-- Tab content -->
-      <table>
-         <tr>
-          <td align="right"><b>Tables list:</b>
-          </td>
-          <td><%= @scope.tables_list %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Join expression:</b>
-          </td>
-          <td><%= @scope.join_expression %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Where clause:</b>
-          </td>
-          <td><%= @scope.where_clause %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Group By clause:</b>
-          </td>
-          <td><%= @scope.group_by_clause %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Having clause:</b>
-          </td>
-          <td><%= @scope.having_clause %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Key columns:</b>
-          </td>
-          <td><%= @scope.key_columns %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>Published columns:</b>
-          </td>
-          <td><%= @scope.published_columns %>
-          </td>
-        </tr>
-      </table>
-    </div>
-              
-    <div class="tab-pane" id="tab4">        
-<!-- Tab content -->
-      <table>
-        <tr>
-          <td align="right"><b>DB technology:</b>
-          </td>
-          <td><%= @scope.db_technology %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>DB connection:</b>
-          </td>
-          <td><%= @scope.db_connection %>
-          </td>
-        </tr>
-        <tr>
-          <td align="right"><b>DB owner schema:</b>
-          </td>
-          <td><%= @scope.db_owner_schema %>
-          </td>
-        </tr>
-      </table>
-<!-- Tab content -->
-    </div>
-
     </div>
   </div>
+
     
 <table width=100%>
   <tr><td><hr /></td></tr>
@@ -191,13 +134,6 @@
   </tr>
 </table>
 
-<% else %>
-
-You must log in to access this page.
-
-<%= link_to ' Click here', root_path %>
-
-<% end %>
 
 
 

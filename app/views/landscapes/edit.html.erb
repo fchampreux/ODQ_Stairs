@@ -1,19 +1,9 @@
-% provide(:title, 'Edit Landscape') %>
+<% provide(:title, 'Managing landscapes') %>
 
-<% if signed_in? %>
-
-<h1>Editing landscape</h1>
+<h1>Editing a landscape</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @landscape %> |
 <%= link_to 'Back', landscapes_path %>
-
-<% else %>
-
-You must log in to access this page. 
-<%= link_to ' Click here', root_path %>
-
-<% end %>
-
 

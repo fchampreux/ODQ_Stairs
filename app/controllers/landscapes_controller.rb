@@ -1,8 +1,17 @@
 class LandscapesController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current landscape
+  before_action :set_landscape, only: [:show, :edit, :update, :destroy]
+
+# Create the list statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+
   # GET /landscapes
   # GET /landscapes.json
   def index
-    @landscapes = Landscape.all
+    @landscapes = Landscape.order("hierarchy ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,36 +22,29 @@ class LandscapesController < ApplicationController
   # GET /landscapes/1
   # GET /landscapes/1.json
   def show
-    @landscape = Landscape.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @landscape }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /landscapes/new
   # GET /landscapes/new.json
   def new
-
     @landscape = Landscape.new
-    @landscape.playground_id = params[:playground_id]
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @landscape }
-    end
   end
 
   # GET /landscapes/1/edit
   def edit
-    @landscape = Landscape.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /landscapes
   # POST /landscapes.json
   def create
-    @landscape = Landscape.new(params[:landscape])
+    @playground = Playground.find(params[:playground_id])
+    @landscape = @playground.landscapes.build(landscape_params)
+    @landscape.updated_by = current_user.login
+    @landscape.created_by = current_user.login
+    @landscape.playground_id = current_user.current_playground_id
+    @landscape.owner_id = current_user.id
     
     respond_to do |format|
       if @landscape.save
@@ -58,7 +60,8 @@ class LandscapesController < ApplicationController
   # PUT /landscapes/1
   # PUT /landscapes/1.json
   def update
-    @landscape = Landscape.find(params[:id])
+    ### Retrieved by Callback function
+    @landscape.updated_by = current_user.login    
 
     respond_to do |format|
       if @landscape.update_attributes(params[:landscape])
@@ -74,7 +77,7 @@ class LandscapesController < ApplicationController
   # DELETE /landscapes/1
   # DELETE /landscapes/1.json
   def destroy
-    @landscape = Landscape.find(params[:id])
+    ### Retrieved by Callback function
     @landscape.destroy
 
     respond_to do |format|
@@ -82,4 +85,27 @@ class LandscapesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current landscape
+    def set_landscape
+      @landscape= Landscape.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def landscape_params
+    params.require(:landscape).permit(:code, :name, :hierarchy, :status_id, :description)
+  end  
+  
 end
