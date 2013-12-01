@@ -1,4 +1,4 @@
-<%= form_for [@business_process, @business_object] do |f| %>
+<%= form_for [@business_area, @business_object] do |f| %>
   <% if @business_object.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@business_object.errors.count, "error") %> prohibited this business_object from being saved:</h2>

@@ -114,14 +114,18 @@
     </div>
   </div>
 
-<table width=100%>    
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>Linked Business Flows</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>
+<hr />
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab10" data-toggle="tab">Linked Business Flows</a></li>
+      <li><a href="#tab11" data-toggle="tab">Linked Business Objects</a></li>
+    </ul>
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="tab10">
+<!-- Tab content for Linked Business Flows -->
+
       <table class="table table-striped table-condensed">
         <%@business_area.business_flows.each do |business_flow| %>
         <tr align="left">
@@ -132,12 +136,31 @@
         </tr>
         <% end%>
       </table>
-    </td>
-  </tr>
-  <tr>
-    <td>
+
       <%= link_to 'Add business flow', new_business_area_business_flow_path(@business_area) %>
-    </td>
-  </tr>
-</table>
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane active" id="tab11">
+<!-- Tab content for Linked Business Objects -->
+
+      <table class="table table-striped table-condensed">
+        <%@business_area.business_objects.each do |business_object| %>
+        <tr align="left">
+          <td valign="top"> <%=link_to business_object.code, business_object%> </td>
+          <td valign="top"> <%=business_object.name%> </td>
+          <td valign="top"> <%=business_object.description%> </td>
+          <td> </td>
+        </tr>
+        <% end%>
+      </table>
+
+      <%= link_to 'Add business object', new_business_area_business_object_path(@business_area) %>
+
+<!-- Tab content -->
+    </div>
+
+  </div>
+</div>
 

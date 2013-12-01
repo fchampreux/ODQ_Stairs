@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121225539) do
+ActiveRecord::Schema.define(version: 20131128083200) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131121225539) do
 
   create_table "business_objects", force: true do |t|
     t.integer  "playground_id"
-    t.string   "business_process_id"
     t.string   "code"
     t.string   "name"
     t.text     "description"
@@ -71,8 +70,9 @@ ActiveRecord::Schema.define(version: 20131121225539) do
     t.text     "published_columns"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "business_area_id"
   end
 
   create_table "business_processes", force: true do |t|

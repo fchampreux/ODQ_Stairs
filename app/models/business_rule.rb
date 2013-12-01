@@ -50,8 +50,7 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"		# helps retrieving the approver name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name
 	belongs_to :rule_type, :class_name => "Parameter", :foreign_key => "rule_type_id"	# helps retrieving the rule type name
-	belongs_to :playground	
-	belongs_to :business_object
+	belongs_to :business_object								# helps retrieving the target business object
 	belongs_to :business_process
 end
 

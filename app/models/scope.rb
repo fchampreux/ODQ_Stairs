@@ -36,7 +36,7 @@ class Scope < ActiveRecord::Base
 	validates :playground_id, presence: true
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
+	belongs_to :business_object							# helps retrieving the target business object
 	validates :organisation_level, presence: true
-
-	belongs_to :business_object
+	belongs_to :landscape
 end

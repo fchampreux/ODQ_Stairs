@@ -18,6 +18,7 @@ ODQStep1::Application.routes.draw do
 
   resources :business_areas do
       resources :business_flows, :only=>[:new, :create]
+      resources :business_objects, :only=>[:new, :create]
   end
 
   resources :business_flows do
@@ -25,12 +26,10 @@ ODQStep1::Application.routes.draw do
   end
 
   resources :business_processes do
-      resources :business_objects, :only=>[:new, :create]
-  end
-
-  resources :business_objects do
       resources :business_rules, :only=>[:new, :create]
   end
+
+  resources :business_objects
 
   resources :business_rules
   resources :check_types
