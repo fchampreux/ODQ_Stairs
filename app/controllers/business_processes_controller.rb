@@ -65,7 +65,7 @@ class BusinessProcessesController < ApplicationController
     @business_process.updated_by = current_user.login
 
     respond_to do |format|
-      if @business_process.update_attributes(params[:business_process])
+      if @business_process.update_attributes(business_process_params)
         format.html { redirect_to @business_process, notice: 'Business process was successfully updated.' }
         format.json { head :no_content }
       else

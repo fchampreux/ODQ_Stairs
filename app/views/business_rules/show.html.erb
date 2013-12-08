@@ -28,11 +28,14 @@
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
-        <div class="span6"><%= @business_rule.name%>
+        <div class="span10"><%= @business_rule.name%>
         </div>
-        <div class="span1 text-right">Code:
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Code:
         </div>
-        <div class="span1"><%= @business_rule.code%>
+        <div class="span2"><%= @business_rule.code%>
         </div>
         <div class="span1 text-right">Status:
         </div>
@@ -45,23 +48,23 @@
         </div>
         <div class="span2"><%= @business_rule.hierarchy%>
         </div>
-         <div class="span2 text-right"> Rule type:
+         <div class="span1 text-right"> Rule type:
          </div>
-         <div class="span2"><%= @business_rule.rule_type.name %>
+         <div class="span2"><%= @business_rule.rule_type.name%>
          </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span10"><%= @business_rule.description%>
+        <div class="span10"><%= @business_rule.description %>
         </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">Business value:
         </div>
-        <div class="span10"><%= @business_rule.business_value%>
+        <div class="span10"><%= @business_rule.business_value %>
         </div>
       </div>
 
@@ -72,40 +75,40 @@
 <!-- Tab content for Metrics -->
       
         <div class="row">
-          <div class="span2 text-right" Complexity:
+          <div class="span2 text-right"> Complexity:
           </div>
           <div class="span2"><%= @business_rule.complexity %>
           </div>
+        </div>
+
+        <div class="row">
           <div class="span2 text-right">Added value:
           </div>
           <div class="span2"><%= @business_rule.added_value %>
           </div>
         </div>
+
         <div class="row">
           <div class="span2 text-right">Severity:
           </div>
           <div class="span2"><%= @business_rule.severity %>
           </div>
+        </div>
+
+        <div class="row">
           <div class="span2 text-right">Maintenance cost:
           </div>
           <div class="span2"><%= @business_rule.maintenance_cost %>
           </div>
+        </div>
+
+        <div class="row">
           <div class="span2 text-right">Maintenance workload:
           </div>
           <div class="span2"><%= @business_rule.maintenance_duration %>
           </div>
         </div>
-        <div class="row">
-          <div class="span2 text-right">Object:
-          </div>
-          <div class="span2"><%= @business_rule.object.name%>
-          </div>
-          <div class="span2 text-right">Business process:
-          </div>
-          <div class="span2"><%= @business_rule.business_process.name%>
-          </div>
-        </div>
-      
+
 <!-- Tab content -->
     </div>
  
@@ -115,7 +118,7 @@
         <div class="row">
           <div class="span2 text-right">Object:
           </div>
-          <div class="span2"><%= @business_rule.object.name%>
+          <div class="span2"><%= @business_rule.business_object.name%>
           </div>
           <div class="span2 text-right">Business process:
           </div>
@@ -144,9 +147,6 @@
           </div>
         </div>
 
-List of scopes ?
-
-      
 <!-- Tab content -->
     </div>
 
@@ -198,41 +198,41 @@ List of scopes ?
       <div class="row">
         <div class="span2 text-right">Unique id:
         </div>
-        <div class="span2"><%= @business_object.id%>
+        <div class="span2"><%= @business_rule.id%>
         </div>
         <div class="span2 text-right">Created by:
         </div>
-        <div class="span2"><%= @business_object.created_by%>
+        <div class="span2"><%= @business_rule.created_by%>
         </div>
       </div>
       <div class="row">
         <div class="span2 text-right">Playground id:
         </div>
-        <div class="span2"><%= @business_object.playground_id%>
+        <div class="span2"><%= @business_rule.playground_id%>
         </div>
         <div class="span2 text-right">Created at:
         </div>
-        <div class="span2"><%= @business_object.created_at%>
+        <div class="span2"><%= @business_rule.created_at%>
         </div>
       </div>
       <div class="row">
         <div class="span2 text-right">Owner:
         </div>
-        <div class="span2"><%= @business_object.owner.login%>
+        <div class="span2"><%= @business_rule.owner.login%>
         </div>
         <div class="span2 text-right">Updated by:
         </div>
-        <div class="span2"><%= @business_object.updated_by%>
+        <div class="span2"><%= @business_rule.updated_by%>
         </div>
       </div>
       <div class="row">
-        <div class="span2 text-right">
+        <div class="span2 text-right">Parent:
         </div>
-        <div class="span2">
+        <div class="span2"><%= @business_rule.business_process.name%>
         </div>
         <div class="span2 text-right">updated at:
         </div>
-        <div class="span2"><%= @business_object.updated_at%>
+        <div class="span2"><%= @business_rule.updated_at%>
         </div>
       </div>
 

@@ -65,7 +65,7 @@ class BusinessObjectsController < ApplicationController
     @business_object.updated_by = current_user.login
 
     respond_to do |format|
-      if @business_object.update_attributes(params[:business_object])
+      if @business_object.update_attributes(business_object_params)
         format.html { redirect_to @business_object, notice: 'Business object was successfully updated.' }
         format.json { head :no_content }
       else
@@ -86,7 +86,6 @@ class BusinessObjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 
 ### private functions
   private

@@ -1,10 +1,10 @@
-<%= form_for [@business_object, @business_rule] do |f| %>
+<%= form_for [@business_process, @business_rule] do |f| %>
   <% if @business_rule.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@errors.count, "error") %> prohibited this business_rule from being saved:</h2>
+      <h2><%= pluralize(@business_rule.errors.count, "error") %> prohibited this business_rule from being saved:</h2>
 
       <ul>
-      <% @errors.full_messages.each do |msg| %>
+      <% @business_rule.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -27,11 +27,14 @@
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
-        <div class="span6 field"><%= f.text_field :name%>
+        <div class="span10 field"><%= f.text_field :name, :class => "span8" %>
         </div>
-        <div class="span1 text-right">Code:
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Code:
         </div>
-        <div class="span1 field"><%= f.text_field :code%>
+        <div class="span2 field"><%= f.text_field :code%>
         </div>
         <div class="span1 text-right">Status:
         </div>
@@ -44,23 +47,23 @@
         </div>
         <div class="span2 field"><%= f.text_field :hierarchy%>
         </div>
-         <div class="span2 text-right"> Rule type:
+         <div class="span1 text-right"> Rule type:
          </div>
-         <div class="span2 field"><%=  f.collection_select :rule_type_id, @rule_types_list, :id, :name  %>
+         <div class="span2 field"><%= f.collection_select :rule_type_id, @rule_types_list, :id, :name  %>
          </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span10 field"><%= f.text_field :description%>
+        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
         </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">Business value:
         </div>
-        <div class="span10 field"><%= f.text_field :business_value%>
+        <div class="span10 field"><%= f.text_area :business_value, :rows => 5, :class => "span8" %>
         </div>
       </div>
 
@@ -71,24 +74,34 @@
 <!-- Tab content for Metrics -->
       
         <div class="row">
-          <div class="span2 text-right" Complexity:
+          <div class="span2 text-right">Complexity:
           </div>
           <div class="span2 field"><%= f.text_field :complexity %>
           </div>
-          <div class="span2 text-right">Added value:
-          </div>
-          <div class="span2 field"><%= f.text_field :added_value %>
-          </div>
         </div>
+
         <div class="row">
           <div class="span2 text-right">Severity:
           </div>
           <div class="span2 field"><%= f.text_field :severity %>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="span2 text-right">Added value:
+          </div>
+          <div class="span2 field"><%= f.text_field :added_value %>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="span2 text-right">Maintenance cost:
           </div>
           <div class="span2 field"><%= f.text_field :maintenance_cost %>
           </div>
+        </div>
+
+        <div class="row">
           <div class="span2 text-right">Maintenance workload:
           </div>
           <div class="span2 field"><%= f.text_field :maintenance_duration %>
@@ -104,38 +117,35 @@
         <div class="row">
           <div class="span2 text-right">Object:
           </div>
-          <div class="span2 field"><%= @business_object.name%>
+          <div class="span2 field"><%= f.collection_select :business_object_id, @business_objects_list, :id, :name  %>
           </div>
           <div class="span2 text-right">Business process:
           </div>
-          <div class="span2 field"><%= %>
+          <div class="span2">current
           </div>
         </div>
       
         <div class="row">
           <div class="span2 text-right">Check description:
           </div>
-          <div class="span10 field"><%= f.text_field :check_description %>
+          <div class="span10 field"><%= f.text_area :check_description, :rows => 5, :class => "span8" %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Check script:
           </div>
-          <div class="span10 field"><%= f.text_field :check_script %>
+          <div class="span10 field"><%= f.text_area :check_script, :rows => 5, :class => "span8" %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Generated condition:
           </div>
-          <div class="span10 field"><%= f.text_field :condition %>
+          <div class="span10 field"><%= f.text_area :condition, :rows => 5, :class => "span8" %>
           </div>
         </div>
-
-List of scopes ?
-
-      
+     
 <!-- Tab content -->
     </div>
 
@@ -145,21 +155,21 @@ List of scopes ?
         <div class="row">
           <div class="span2 text-right" width="200">Correction method:
           </div>
-          <div class="span2 field"><%= f.text_field :correction_method %>
+          <div class="span10 field"><%= f.text_area :correction_method, :rows => 5, :class => "span8"  %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Correction script:
           </div>
-          <div class="span2 field"><%= f.text_field :correction_batch %>
+          <div class="span10 field"><%= f.text_area :correction_script, :rows => 5, :class => "span8"  %>
           </div>
         </div>
       
         <div class="row">
           <div class="span2 text-right">Correction batch:
           </div>
-          <div class="span2 field"><%= f.text_field :correction_batch %>
+          <div class="span10 field"><%= f.text_field :correction_batch, :class => "span8" %>
           </div>
         </div>
       
@@ -171,9 +181,9 @@ List of scopes ?
 <!-- Tab content for Exceptions -->
       
         <div class="row">
-          <div class="span2 text-right" width="200">Exceptions:
+          <div class="span2 text-right">Exceptions:
           </div>
-          <div class="span10 field"><%= f.text_field :white_list %>
+          <div class="span10 field"><%= f.text_area :white_list, :rows => 5, :class => "span8" %>
           </div>
         </div>
       
@@ -181,6 +191,10 @@ List of scopes ?
     </div>
 
     </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
   </div>
 
 <% end %>

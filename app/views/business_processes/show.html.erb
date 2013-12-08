@@ -98,9 +98,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="span2 text-right">
+        <div class="span2 text-right">Parent:
         </div>
-        <div class="span2">
+        <div class="span2"><%= @business_process.business_flow.name%>
         </div>
         <div class="span2 text-right">updated at:
         </div>
@@ -117,17 +117,17 @@
 <table width=100%>
   <tr><td><hr /></td></tr>
   <tr align="left">
-    <th>Linked business objects</th>
+    <th>Linked business rules</th>
     <th></th>
   </tr>
   <tr>
     <td>
       <table class="table table-striped table-condensed">
-        <%@business_process.business_objects.each do |business_object| %>
+        <%@business_process.business_rules.each do |business_rule| %>
         <tr align="left">
-          <td valign="top"> <%=link_to business_object.code, business_object%> </td>
-          <td valign="top"> <%=business_object.name%> </td>
-          <td valign="top"> <%=business_object.description%> </td>
+          <td valign="top"> <%=link_to business_rule.code, business_rule%> </td>
+          <td valign="top"> <%=business_rule.name%> </td>
+          <td valign="top"> <%=business_rule.description%> </td>
           <td> </td>
         </tr>
         <% end%>
@@ -136,7 +136,7 @@
   </tr>
   <tr>
     <td>
-      <%= link_to 'Add business object', new_business_process_business_object_path(@business_process) %>
+      <%= link_to 'Add business rule', new_business_process_business_rule_path(@business_process) %>
     </td>
   </tr>
 </table>

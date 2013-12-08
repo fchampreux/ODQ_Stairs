@@ -20,12 +20,10 @@
 class Parameter < ActiveRecord::Base
 
 ### before filter
-  before_save do
-    self.code = parent_list.gsub(/[^0-9A-Za-z]/, '_').upcase
-  end
+  before_save :set_code
 
 ### validation
-	validates :code, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :code, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :parent_list, length: { maximum: 100 }
@@ -34,6 +32,14 @@ class Parameter < ActiveRecord::Base
 	validates :active_from, presence: true
 	validates :active_to, presence: true
 	validates :playground_id, presence: true
+
+### private functions definitions
+  private
+
+  ### before filters
+    def set_code 
+      self.code = parent_list.gsub(/[^0-9A-Za-z]/, '_').upcase
+    end 
 
 end
 

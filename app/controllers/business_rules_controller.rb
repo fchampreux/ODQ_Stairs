@@ -11,6 +11,9 @@ class BusinessRulesController < ApplicationController
 # Create the list of rule types to be used in the form
   before_action :set_rule_types_list, only: [:new, :edit, :update, :create]
 
+# Create the list of business objects to be used in the form
+  before_action :set_business_objects_list, only: [:new, :edit, :update, :create]
+
   # GET /business_rules
   # GET /business_rules.json
   def index
@@ -31,7 +34,7 @@ class BusinessRulesController < ApplicationController
   # GET /business_rules/new
   # GET /business_rules/new.json
   def new
-    @business_object = BusinessObject.find(params[:business_object_id])
+    @business_process = BusinessProcess.find(params[:business_process_id])
     @business_rule = BusinessRule.new
   end
 
@@ -43,8 +46,8 @@ class BusinessRulesController < ApplicationController
   # POST /business_rules
   # POST /business_rules.json
   def create
-    @business_object = BusinessObject.find(params[:business_object_id])
-    @business_rule = @business_object.business_rule.build(business_rule_params)
+    @business_process = BusinessProcess.find(params[:business_process_id])
+    @business_rule = @business_process.business_rules.build(business_rule_params)
     @business_rule.updated_by = current_user.login
     @business_rule.created_by = current_user.login
     @business_rule.playground_id = current_user.current_playground_id
@@ -69,7 +72,7 @@ class BusinessRulesController < ApplicationController
     @business_rule.updated_by = current_user.login
 
     respond_to do |format|
-      if @business_rule.update_attributes(params[:business_rule])
+      if @business_rule.update_attributes(business_rule_params)
         format.html { redirect_to @business_rule, notice: 'Business rule was successfully updated.' }
         format.json { head :no_content }
       else
@@ -100,6 +103,11 @@ class BusinessRulesController < ApplicationController
     def set_business_rule
       @business_rule = BusinessRule.includes(:owner, :status).find(params[:id]) 
     end
+
+    # Retrieve business objects list
+    def set_business_objects_list
+      @business_objects_list = BusinessObject.order("hierarchy ASC")
+    end
     
   ### before filters
     # Check for active session
@@ -110,8 +118,8 @@ class BusinessRulesController < ApplicationController
   ### strong parameters
   def business_rule_params
     params.require(:business_rule).permit(:code, :name, :hierarchy, :status_id, :description, :check_description, :check_script, :correction_method, :correction_script, 
-				:correction_batch, :white_list, :rule_type, :condition, :complexity, :added_value, :severity, :maintenance_cost, :maintenance_duration, 
-				:version, :approver_id, :approved_at)
+				:correction_batch, :white_list, :rule_type_id, :condition, :complexity, :added_value, :severity, :maintenance_cost, :maintenance_duration, 
+				:version, :approver_id, :approved_at, :business_object_id)
   end
 
 

@@ -36,6 +36,6 @@ class BusinessProcess < ActiveRecord::Base
 	validates :PCF_reference, length: { maximum: 30 }
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-	has_many :business_rules
 	belongs_to :business_flow
+	has_many :business_rules
 end
