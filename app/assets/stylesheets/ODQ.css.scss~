@@ -128,18 +128,33 @@ footer {
 }
 
 /* tables */
-td.col_narrow {
-    width:10%;
+.col_span1{
+    td {
+        width:10%;
     }
+}
 
-
-td.col_medium{
-    width:30%;
+.col_span2{
+    td {
+        width:20%;
     }
+}
 
-
-td.col_wide{
-    width:50%;
+.col_span3{
+    td {
+        width:30%;
     }
+}
 
+.col_span4{
+    td {
+        width:50%;
+    }
+}
+
+.col_span5{
+    td {
+        width:75%;
+    }
+}
 

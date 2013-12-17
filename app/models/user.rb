@@ -25,10 +25,7 @@
 #
 
 class User < ActiveRecord::Base
-  before_save do 
-    self.email = email.downcase 
-    self.login = login.downcase
-  end
+  before_save :email_format
   before_create :create_remember_token
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -57,9 +54,16 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+### private functions definitions
   private
 
+  ### before filters
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+
+    def email_format
+      self.email = email.downcase 
+    end
+
 end

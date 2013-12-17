@@ -9,19 +9,19 @@
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
-    <th>Created by</th>
     <th>Updated by</th>
+    <th>Updated at</th>
   </tr>
 
 <% @playgrounds.each do |business_flow| %>
   <tr>
-    <td><%= link_to playground.hierarchy, playground %></td>
-    <td><%= link_to playground.code, playground %></td>
+    <td class="col_narrow"><%= link_to playground.hierarchy, playground %></td>
+    <td class="col_narrow"><%= link_to playground.code, playground %></td>
     <td><%= playground.name %></td>
-    <td><%= playground.description %></td>
+    <td class="col_medium"><%= playground.description %></td>
     <td><%= playground.status.name %></td>
-    <td><%= playground.created_by %></td>
     <td><%= playground.updated_by %></td>
+    <td><%= playground.updated_at %></td>
   </tr>
 <% end %>
 </table>

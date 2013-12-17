@@ -36,10 +36,14 @@
 #
 
 class BusinessRule < ActiveRecord::Base
+
+### before filter
+  before_create :set_code
+  before_create :set_hierarchy
+
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
-	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
@@ -52,5 +56,23 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :rule_type, :class_name => "Parameter", :foreign_key => "rule_type_id"	# helps retrieving the rule type name
 	belongs_to :business_object								# helps retrieving the target business object
 	belongs_to :business_process
+
+### private functions definitions
+  private
+
+  ### before filters
+    def set_code 
+      self.code = self.business_process.code + '-' + code
+    end 
+
+    def set_hierarchy
+      if BusinessRule.count == 0 
+        self.hierarchy = self.business_process.hierarchy + '.001'
+      else 
+        last_one = BusinessRule.maximum("hierarchy")
+        self.hierarchy = last_one.next
+      end
+    end
+
 end
 

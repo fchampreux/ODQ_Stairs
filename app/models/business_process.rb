@@ -22,10 +22,14 @@
 
 
 class BusinessProcess < ActiveRecord::Base
+
+### before filter
+  before_create :set_code
+  before_create :set_hierarchy
+
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
-	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
@@ -38,4 +42,22 @@ class BusinessProcess < ActiveRecord::Base
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_flow
 	has_many :business_rules
+
+### private functions definitions
+  private
+
+  ### before filters
+    def set_code 
+      self.code = self.business_flow.code + '-' + code
+    end 
+
+    def set_hierarchy
+      if BusinessProcess.count == 0 
+        self.hierarchy = self.business_flow.hierarchy + '.001'
+      else 
+        last_one = BusinessProcess.maximum("hierarchy")
+        self.hierarchy = last_one.next
+      end
+    end
+
 end

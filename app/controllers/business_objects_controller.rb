@@ -28,7 +28,7 @@ class BusinessObjectsController < ApplicationController
   # GET /business_objects/new
   # GET /business_objects/new.json
   def new
-    @business_process = BusinessProcess.find(params[:business_process_id])
+    @business_area = BusinessArea.find(params[:business_area_id])
     @business_object = BusinessObject.new
   end
 
@@ -40,8 +40,8 @@ class BusinessObjectsController < ApplicationController
   # POST /business_objects
   # POST /business_objects.json
   def create
-    @business_process = BusinessProcess.find(params[:business_process_id])
-    @business_object = @business_process.business_objects.build(business_object_params)
+    @business_area = BusinessArea.find(params[:business_area_id])
+    @business_object = @business_area.business_objects.build(business_object_params)
     @business_object.updated_by = current_user.login
     @business_object.created_by = current_user.login
     @business_object.playground_id = current_user.current_playground_id

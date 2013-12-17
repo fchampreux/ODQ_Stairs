@@ -9,19 +9,19 @@
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
-    <th>Created by</th>
     <th>Updated by</th>
+    <th>Updated at</th>
   </tr>
 
 <% @business_flows.each do |business_flow| %>
   <tr>
-    <td><%= link_to business_flow.hierarchy, business_flow %></td>
-    <td><%= link_to business_flow.code, business_flow %></td>
+    <td class="col_narrow"><%= link_to business_flow.hierarchy, business_flow %></td>
+    <td class="col_narrow"><%= link_to business_flow.code, business_flow %></td>
     <td><%= business_flow.name %></td>
-    <td><%= business_flow.description %></td>
+    <td class="col_medium"><%= business_flow.description %></td>
     <td><%= business_flow.status.name %></td>
-    <td><%= business_flow.created_by %></td>
     <td><%= business_flow.updated_by %></td>
+    <td><%= business_flow.updated_at %></td>
   </tr>
 <% end %>
 </table>

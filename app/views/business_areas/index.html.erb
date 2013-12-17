@@ -9,19 +9,19 @@
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
-    <th>Created by</th>
     <th>Updated by</th>
+    <th>Updated at</th>
   </tr>
 
 <% @business_areas.each do |business_area| %>
   <tr>
-    <td><%= link_to business_area.hierarchy, business_area %></td>
-    <td><%= link_to business_area.code, business_area %></td>
+    <td class="col_narrow"><%= link_to business_area.hierarchy, business_area %></td>
+    <td class="col_narrow"><%= link_to business_area.code, business_area %></td>
     <td><%= business_area.name %></td>
-    <td><%= business_area.description %></td>
+    <td class="col_medium"><%= business_area.description %></td>
     <td><%= business_area.status.name %></td>
-    <td><%= business_area.created_by %></td>
     <td><%= business_area.updated_by %></td>
+    <td><%= business_area.updated_at %></td>
   </tr>
 <% end %>
 </table>
