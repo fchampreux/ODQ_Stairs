@@ -17,7 +17,7 @@ class BusinessRulesController < ApplicationController
   # GET /business_rules
   # GET /business_rules.json
   def index
-    @business_rules = BusinessRule.order("hierarchy ASC")
+    @business_rules = BusinessRule.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -11,7 +11,7 @@ class BusinessFlowsController < ApplicationController
   # GET /business_flows
   # GET /business_flows.json
   def index
-    @business_flows = BusinessFlow.order("hierarchy ASC")
+    @business_flows = BusinessFlow.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb

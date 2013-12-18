@@ -11,7 +11,7 @@ class BusinessAreasController < ApplicationController
   # GET /business_areas
   # GET /business_areas.json
   def index
-    @business_areas = BusinessArea.order("hierarchy ASC")
+    @business_areas = BusinessArea.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb

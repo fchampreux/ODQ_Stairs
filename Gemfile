@@ -11,7 +11,8 @@ gem 'jquery-rails', '~> 3.0.4'
 gem 'turbolinks', '1.3.0'
 gem 'jbuilder', '1.4.2'
 gem 'bootstrap-datepicker-rails'
-
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
