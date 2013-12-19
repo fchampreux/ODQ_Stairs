@@ -25,6 +25,11 @@
 #
 
 class Scope < ActiveRecord::Base
+
+### before filter
+  before_create :set_code
+  before_create :set_hierarchy
+
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
@@ -39,4 +44,22 @@ class Scope < ActiveRecord::Base
 	belongs_to :business_object							# helps retrieving the target business object
 	validates :organisation_level, presence: true
 	belongs_to :landscape
+
+### private functions definitions
+  private
+
+  ### before filters
+    def set_code 
+      self.code = self.landscape.code + '-' + code
+    end 
+
+    def set_hierarchy
+      if Scope.count == 0 
+        self.hierarchy = self.landscape.hierarchy + '.001'
+      else 
+        last_one = Scope.maximum("hierarchy")
+        self.hierarchy = last_one.next
+      end
+    end
+
 end

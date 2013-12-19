@@ -25,4 +25,8 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
+  def current_playground
+    current_user.current_playground_id
+  end
+
 end

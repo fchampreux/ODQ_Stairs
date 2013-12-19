@@ -2,29 +2,29 @@
 #
 # Table name: business_objects
 #
-#  id                  :integer          not null, primary key
-#  playground_id       :integer
-#  business_process_id :string(255)
-#  code                :string(255)
-#  name                :string(255)
-#  description         :text
-#  organisation_level  :integer
-#  territory_level     :integer
-#  hierarchy           :string(255)
-#  PCF_index           :string(255)
-#  PCF_reference       :string(255)
-#  status_id           :integer
-#  owner_id            :integer
-#  db_technology       :string(255)
-#  db_connection       :string(255)
-#  db_owner_schema     :string(255)
-#  structure_name      :string(255)
-#  key_columns         :text
-#  published_columns   :text
-#  created_by          :string(255)
-#  updated_by          :string(255)
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                 :integer          not null, primary key
+#  playground_id      :integer
+#  code               :string(255)
+#  name               :string(255)
+#  description        :text
+#  organisation_level :integer
+#  territory_level    :integer
+#  hierarchy          :string(255)
+#  PCF_index          :string(255)
+#  PCF_reference      :string(255)
+#  status_id          :integer
+#  owner_id           :integer
+#  db_technology      :string(255)
+#  db_connection      :string(255)
+#  db_owner_schema    :string(255)
+#  structure_name     :string(255)
+#  key_columns        :text
+#  published_columns  :text
+#  created_by         :string(255)
+#  updated_by         :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  business_area_id   :integer
 #
 
 class BusinessObject < ActiveRecord::Base

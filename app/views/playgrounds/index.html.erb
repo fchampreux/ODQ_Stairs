@@ -2,6 +2,8 @@
 
 <h1>Playgrounds</h1>
 
+<%= will_paginate %>
+
 <table class="table table-striped">
   <tr>
     <th>Hierarchy</th>
@@ -13,7 +15,7 @@
     <th>Updated at</th>
   </tr>
 
-<% @playgrounds.each do |business_flow| %>
+<% @playgrounds.each do |playground| %>
   <tr>
     <td class="col_narrow"><%= link_to playground.hierarchy, playground %></td>
     <td class="col_narrow"><%= link_to playground.code, playground %></td>
@@ -25,6 +27,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate %>
 
 <br />
 

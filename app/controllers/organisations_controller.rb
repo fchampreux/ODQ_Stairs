@@ -1,8 +1,17 @@
 class OrganisationsController < ApplicationController
+# Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current business flow
+  before_action :set_organisation, only: [:show, :edit, :update, :destroy]
+
+# Create the list of statuses to be used in the form
+  before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.all
+    @organisations = Organisation.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,12 +22,7 @@ class OrganisationsController < ApplicationController
   # GET /organisations/1
   # GET /organisations/1.json
   def show
-    @organisation = Organisation.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @organisation }
-    end
+    ### Retrieved by Callback function
   end
 
   # GET /organisations/new
@@ -34,13 +38,17 @@ class OrganisationsController < ApplicationController
 
   # GET /organisations/1/edit
   def edit
-    @organisation = Organisation.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /organisations
   # POST /organisations.json
   def create
-    @organisation = Organisation.new(params[:organisation])
+    @organisation = Organisation.new(organisation_params)
+    @organisation.updated_by = current_user.login
+    @organisation.created_by = current_user.login
+    @organisation.playground_id = current_user.current_playground_id
+#    @organisation.owner_id = current_user.id
 
     respond_to do |format|
       if @organisation.save
@@ -56,7 +64,8 @@ class OrganisationsController < ApplicationController
   # PUT /organisations/1
   # PUT /organisations/1.json
   def update
-    @organisation = Organisation.find(params[:id])
+    ### Retrieved by Callback function
+    @organisation.updated_by = current_user.login
 
     respond_to do |format|
       if @organisation.update_attributes(params[:organisation])
@@ -80,4 +89,26 @@ class OrganisationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current business flow
+    def set_organisation
+      @organisation = Organisation.find(params[:id]) 
+#      @organisation = Organisation.includes(:owner, :status).find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def organisation_params
+    params.require(:organisation).permit(:code, :name, :description, :parent_organisation_id, :organisation_level)
+  end
+
 end

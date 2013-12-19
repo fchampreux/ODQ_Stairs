@@ -11,7 +11,7 @@ class ScopesController < ApplicationController
   # GET /scopes
   # GET /scopes.json
   def index
-    @scopes = Scope.order("hierarchy ASC")
+    @scopes = Scope.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb

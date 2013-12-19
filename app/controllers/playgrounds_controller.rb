@@ -10,7 +10,7 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds
   # GET /playgrounds.json
   def index
-    @playgrounds = Playground.order("hierarchy ASC")
+    @playgrounds = Playground.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb

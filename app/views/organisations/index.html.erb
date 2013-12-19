@@ -1,41 +1,35 @@
-<h1>Listing organisations</h1>
+<% provide(:title, 'Managing organisations') %>
 
-<table>
+<h1>Organisations</h1>
+
+<%= will_paginate %>
+
+<table class="table table-striped">
   <tr>
-    <th>Playground</th>
+    <th>Hierarchy</th>
     <th>Code</th>
     <th>Name</th>
     <th>Description</th>
-    <th>Upper organisation</th>
-    <th>Organisation level</th>
-    <th>Session number</th>
-    <th>Session name</th>
-    <th>Created by</th>
+    <th>Status</th>
     <th>Updated by</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Updated at</th>
   </tr>
 
-<% @organisations.each do |organisation| %>
+<% @organisations.each do |business_area| %>
   <tr>
-    <td><%= organisation.playground_id %></td>
-    <td><%= organisation.code %></td>
+    <td class="col_narrow"><%= link_to organisation.hierarchy, organisation %></td>
+    <td class="col_narrow"><%= link_to organisation.code, organisation %></td>
     <td><%= organisation.name %></td>
-    <td><%= organisation.description %></td>
-    <td><%= organisation.upper_organisation_id %></td>
-    <td><%= organisation.organisation_level %></td>
-    <td><%= organisation.session_number %></td>
-    <td><%= organisation.session_name %></td>
-    <td><%= organisation.created_by %></td>
+    <td class="col_medium"><%= organisation.description %></td>
+    <td><%= organisation.status.name %></td>
     <td><%= organisation.updated_by %></td>
-    <td><%= link_to 'Show', organisation %></td>
-    <td><%= link_to 'Edit', edit_organisation_path(organisation) %></td>
-    <td><%= link_to 'Destroy', organisation, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= organisation.updated_at %></td>
   </tr>
 <% end %>
 </table>
 
+<%= will_paginate %>
+
 <br />
 
-<%= link_to 'New Organisation', new_organisation_path %>
+

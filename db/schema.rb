@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128083200) do
+ActiveRecord::Schema.define(version: 20131219112050) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -169,13 +169,15 @@ ActiveRecord::Schema.define(version: 20131128083200) do
     t.string   "code"
     t.string   "name"
     t.text     "description"
-    t.integer  "parent_organisation_id"
     t.integer  "organisation_level"
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "status_id"
+    t.integer  "owner_id"
+    t.integer  "parent_id"
   end
 
   create_table "parameters", force: true do |t|
@@ -247,13 +249,15 @@ ActiveRecord::Schema.define(version: 20131128083200) do
     t.string   "code"
     t.string   "name"
     t.text     "description"
-    t.integer  "parent_territory_id"
     t.integer  "territory_level"
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "status_id"
+    t.integer  "owner_id"
+    t.integer  "parent_id"
   end
 
   create_table "time_scales", force: true do |t|

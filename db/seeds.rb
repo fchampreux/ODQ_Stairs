@@ -14,13 +14,13 @@ end
 puts "Seeding playground"
 if Playground.count == 0
   puts "Creating first Playground"
-  Playground.create(name: 'Main playground', description: 'This playground is created when initialising ODQ application', code: 'MAIN', hierarchy: '1', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
+  Playground.create(name: 'Main playground', description: 'This playground is created when initialising ODQ application', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
 end
 
 puts "Seeding landscape"
 if Landscape.count == 0
   puts "Creating first Landscape"
-  Landscape.create(playground_id: 1, name: 'Test landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'MAIN-TEST', hierarchy: '1.1', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
+  Landscape.create(playground_id: 1, name: 'Test landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
 end
 
 puts "Seeding parameters"

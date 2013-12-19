@@ -17,6 +17,11 @@
 #
 
 class Landscape < ActiveRecord::Base
+
+### before filter
+  before_create :set_code
+  before_create :set_hierarchy
+
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
@@ -30,4 +35,22 @@ class Landscape < ActiveRecord::Base
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	has_many :scopes, dependent: :destroy
 	belongs_to :playground
+
+### private functions definitions
+  private
+
+  ### before filters
+    def set_code 
+      self.code = self.playground.code + '-' + code
+    end 
+
+    def set_hierarchy
+      if Landscape.count == 0 
+        self.hierarchy = self.playground.hierarchy + '.001'
+      else 
+        last_one = Landscape.maximum("hierarchy")
+        self.hierarchy = last_one.next
+      end
+    end
+
 end
