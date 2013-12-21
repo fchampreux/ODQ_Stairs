@@ -20,7 +20,13 @@ end
 puts "Seeding landscape"
 if Landscape.count == 0
   puts "Creating first Landscape"
-  Landscape.create(playground_id: 1, name: 'Test landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
+  Landscape.create(playground_id: 1, name: 'Audit landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
+end
+
+puts "Seeding organisation"
+if Landscape.count == 0
+  puts "Creating main Organisation"
+  Organisation.create(playground_id: 1, name: 'Global organisation', description: 'This organisation is created when initialising ODQ application as the root for organisations hierarchy', code: 'GLOBAL', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
 end
 
 puts "Seeding parameters"

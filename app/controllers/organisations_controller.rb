@@ -48,7 +48,7 @@ class OrganisationsController < ApplicationController
     @organisation.updated_by = current_user.login
     @organisation.created_by = current_user.login
     @organisation.playground_id = current_user.current_playground_id
-#    @organisation.owner_id = current_user.id
+    @organisation.owner_id = current_user.id
 
     respond_to do |format|
       if @organisation.save
@@ -96,8 +96,7 @@ class OrganisationsController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_organisation
-      @organisation = Organisation.find(params[:id]) 
-#      @organisation = Organisation.includes(:owner, :status).find(params[:id]) 
+      @organisation = Organisation.includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters
@@ -108,7 +107,7 @@ class OrganisationsController < ApplicationController
 
   ### strong parameters
   def organisation_params
-    params.require(:organisation).permit(:code, :name, :description, :parent_organisation_id, :organisation_level)
+    params.require(:organisation).permit(:code, :name, :description, :organisation_level, :status_id)
   end
 
 end

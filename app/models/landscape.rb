@@ -25,7 +25,6 @@ class Landscape < ActiveRecord::Base
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
-	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true

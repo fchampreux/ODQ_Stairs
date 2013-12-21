@@ -28,6 +28,7 @@ class LandscapesController < ApplicationController
   # GET /landscapes/new
   # GET /landscapes/new.json
   def new
+    @playground = Playground.find(params[:playground_id])
     @landscape = Landscape.new
   end
 
@@ -105,7 +106,7 @@ class LandscapesController < ApplicationController
 
   ### strong parameters
   def landscape_params
-    params.require(:landscape).permit(:code, :name, :hierarchy, :status_id, :description)
+    params.require(:landscape).permit(:code, :name, :status_id, :description)
   end  
   
 end

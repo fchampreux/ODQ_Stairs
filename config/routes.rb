@@ -51,7 +51,7 @@ ODQStep1::Application.routes.draw do
   end
 
   resources :landscapes do
-      resources :scopes, :only=>[:new, :create]
+    resources :scopes, :only=>[:new, :create]
   end
 
   resources :playgrounds do

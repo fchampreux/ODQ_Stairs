@@ -1,4 +1,4 @@
-<%= form_for(@scope) do |f| %>
+<%= form_for [@landscape, @scope] do |f| %>
   <% if @scope.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@scope.errors.count, "error") %> prohibited this scope from being saved:</h2>
@@ -14,10 +14,7 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Metrics</a></li>
       <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Solving</a></li>
-      <li><a href="#tab5" data-toggle="tab">Exceptions list</a></li>    
     </ul>
     <div class="tab-content">
 
@@ -44,10 +41,6 @@
         </div>
         <div class="span2 field"><%= f.text_field :hierarchy, :readonly => true %>
         </div>
-         <div class="span2 text-right"> Rule type:
-         </div>
-         <div class="span2 field"><%=  f.collection_select :rule_type_id, @rule_types_list, :id, :name  %>
-         </div>
       </div>
 
       <div class="row">
@@ -57,54 +50,16 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="span2 text-right">Business value:
-        </div>
-        <div class="span10 field"><%= f.text_field :business_value%>
-        </div>
-      </div>
-
 <!-- Tab content -->
     </div>
 
-    <div class="tab-pane" id="tab2">
-<!-- Tab content for Metrics -->
-      
-        <div class="row">
-          <div class="span2 text-right" Complexity:
-          </div>
-          <div class="span2 field"><%= f.text_field :complexity %>
-          </div>
-          <div class="span2 text-right">Added value:
-          </div>
-          <div class="span2 field"><%= f.text_field :added_value %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span2 text-right">Severity:
-          </div>
-          <div class="span2 field"><%= f.text_field :severity %>
-          </div>
-          <div class="span2 text-right">Maintenance cost:
-          </div>
-          <div class="span2 field"><%= f.text_field :maintenance_cost %>
-          </div>
-          <div class="span2 text-right">Maintenance workload:
-          </div>
-          <div class="span2 field"><%= f.text_field :maintenance_duration %>
-          </div>
-        </div>
-
-<!-- Tab content -->
-    </div>
- 
     <div class="tab-pane" id="tab3">
 <!-- Tab content for Implementation -->
       
         <div class="row">
           <div class="span2 text-right">Object:
           </div>
-          <div class="span2 field"><%= @business_object.name%>
+          <div class="span2 field"><%= %>
           </div>
           <div class="span2 text-right">Business process:
           </div>
@@ -115,67 +70,24 @@
         <div class="row">
           <div class="span2 text-right">Check description:
           </div>
-          <div class="span10 field"><%= f.text_field :check_description %>
+          <div class="span10 field"><%= %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Check script:
           </div>
-          <div class="span10 field"><%= f.text_field :check_script %>
+          <div class="span10 field"><%= %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Generated condition:
           </div>
-          <div class="span10 field"><%= f.text_field :condition %>
+          <div class="span10 field"><%= %>
           </div>
         </div>
 
-List of scopes ?
-
-      
-<!-- Tab content -->
-    </div>
-
-    <div class="tab-pane" id="tab4">
-<!-- Tab content for Solving -->
-      
-        <div class="row">
-          <div class="span2 text-right" width="200">Correction method:
-          </div>
-          <div class="span2 field"><%= f.text_field :correction_method %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span2 text-right">Correction script:
-          </div>
-          <div class="span2 field"><%= f.text_field :correction_batch %>
-          </div>
-        </div>
-      
-        <div class="row">
-          <div class="span2 text-right">Correction batch:
-          </div>
-          <div class="span2 field"><%= f.text_field :correction_batch %>
-          </div>
-        </div>
-      
-<!-- Tab content -->
-    </div>
-
-    
-    <div class="tab-pane" id="tab5">
-<!-- Tab content for Exceptions -->
-      
-        <div class="row">
-          <div class="span2 text-right" width="200">Exceptions:
-          </div>
-          <div class="span10 field"><%= f.text_field :white_list %>
-          </div>
-        </div>
       
 <!-- Tab content -->
     </div>
@@ -183,4 +95,7 @@ List of scopes ?
     </div>
   </div>
 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

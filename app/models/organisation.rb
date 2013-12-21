@@ -34,7 +34,7 @@ class Organisation < ActiveRecord::Base
 	validates :playground_id, presence: true
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-        belongs_to :organisation, :class_name => "Organisation", :foreign_key => "parent_organisation_id"	# helps retrieving the status name
+        belongs_to :parent_org, :class_name => "Organisation", :foreign_key => "parent_id"	# helps retrieving the parent name
         has_many :organisations
 
 
@@ -44,7 +44,8 @@ class Organisation < ActiveRecord::Base
   ### before filters
     def set_code
       if Organisation.count > 0 
-        self.code = self.organisation.code + '-' + code
+        self.code = self.parent_org.code + '-' + code
+        self.organisation_level = self.parent_org.organisation_level + 1
       end
     end 
 

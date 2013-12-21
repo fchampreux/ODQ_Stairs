@@ -28,6 +28,7 @@ class ScopesController < ApplicationController
   # GET /scopes/new
   # GET /scopes/new.json
   def new
+    @landscape = Landscape.find(params[:landscape_id])
     @scope = Scope.new
   end
 
@@ -105,7 +106,7 @@ class ScopesController < ApplicationController
 
   ### strong parameters
   def scope_params
-    params.require(:scope).permit(:code, :name, :hierarchy, :status_id, :description)
+    params.require(:scope).permit(:code, :name, :status_id, :description)
   end
 
   

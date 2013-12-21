@@ -41,15 +41,12 @@ class PlaygroundsController < ApplicationController
     @playground = Playground.new(playground_params)
     @playground.updated_by = current_user.login
     @playground.created_by = current_user.login
-    @playground.playground_id = current_user.current_playground_id
     @playground.owner_id = current_user.id
 
     respond_to do |format|
       if @playground.save
         format.html { redirect_to @playground, notice: 'Playground was successfully created.' }
         format.json { render json: @playground, status: :created, location: @playground }
-      # Automatically create the Global Landscape for each PlayGround 
-	@playground.landscapes.create(code: "#{@playground.id} - GLOBAL", name: "Global Landscape - #{@playground.code}")
       else
         format.html { render action: "new" }
         format.json { render json: @playground.errors, status: :unprocessable_entity }
@@ -105,7 +102,7 @@ class PlaygroundsController < ApplicationController
 
   ### strong parameters
   def playground_params
-    params.require(:playground).permit(:code, :name, :hierarchy, :status_id, :description)
+    params.require(:playground).permit(:code, :name, :status_id, :description)
   end
 
   

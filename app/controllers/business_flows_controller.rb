@@ -105,7 +105,7 @@ class BusinessFlowsController < ApplicationController
 
   ### strong parameters
   def business_flow_params
-    params.require(:business_flow).permit(:code, :name, :hierarchy, :status_id, :PCF_index, :PCF_reference, :description)
+    params.require(:business_flow).permit(:code, :name, :status_id, :PCF_index, :PCF_reference, :description)
   end
 
 end
