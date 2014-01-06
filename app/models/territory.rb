@@ -32,10 +32,11 @@ class Territory < ActiveRecord::Base
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
+	belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-        belongs_to :territory
-        has_many :territories
+        belongs_to :parent_territory, :class_name => "Territory", :foreign_key => "parent_id"	# helps retrieving the parent name
+        has_many :child_territories, :class_name => "Territory" , :foreign_key => "parent_id"	# link to the child territories
 
 
 ### private functions definitions
@@ -49,8 +50,8 @@ class Territory < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if Territory.count == 0 
-        self.hierarchy = current_playground.to_s + '001'
+      if Territory.where("playground_id = ?", self.playground_id).count == 0 
+        self.hierarchy = self.playground.hierarchy + '.001'
       else 
         last_one = Territory.maximum("hierarchy")
         self.hierarchy = last_one.next

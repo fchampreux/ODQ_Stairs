@@ -44,7 +44,7 @@ class Landscape < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if Landscape.count == 0 
+      if Landscape.where("playground_id = ?", self.playground_id).count == 0 
         self.hierarchy = self.playground.hierarchy + '.001'
       else 
         last_one = Landscape.maximum("hierarchy")

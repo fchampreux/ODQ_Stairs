@@ -59,7 +59,7 @@ class BusinessObject < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if BusinessObject.count == 0 
+      if BusinessObject.where("business_area_id = ?", self.business_area_id).count == 0 
         self.hierarchy = self.business_area.hierarchy + '.001'
       else 
         last_one = BusinessObject.maximum("hierarchy")

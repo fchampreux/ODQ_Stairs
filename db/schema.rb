@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20131219112050) do
   end
 
   add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true
-  add_index "business_areas", ["hierarchy"], name: "index_business_areas_on_hierarchy", unique: true
+#  add_index "business_areas", ["hierarchy"], name: "index_business_areas_on_hierarchy", unique: true
   add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true
 
   create_table "business_flows", force: true do |t|

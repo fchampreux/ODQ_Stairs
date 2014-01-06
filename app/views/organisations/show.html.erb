@@ -1,6 +1,6 @@
 <% provide(:title, 'Managing organisations') %>
 
-  <h1>Business Flow: <%= @organisation.name %></h1>
+  <h1>Organisation: <%= @organisation.name %></h1>
       
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_organisation_path(@organisation) %> |</li>
@@ -118,13 +118,13 @@
           <th> Updated by </th>
           <th> Updated at </th>
         </tr>
-        <%@organisation.organisations.each do |organisation| %>
+        <%@organisation.child_orgs.each do |child_org| %>
         <tr align="left">
-          <td valign="top"> <%=link_to organisation.code, organisations%> </td>
-          <td valign="top"> <%=organisation.name%> </td>
-          <td class="col_wide"> <%=organisation.description%> </td>
-          <td valign="top"> <%=organisation.updated_by%> </td>
-          <td valign="top"> <%=organisation.updated_at%> </td>
+          <td valign="top"> <%=link_to child_org.code, child_org%> </td>
+          <td valign="top"> <%=child_org.name%> </td>
+          <td class="col_wide"> <%=child_org.description%> </td>
+          <td valign="top"> <%=child_org.updated_by%> </td>
+          <td valign="top"> <%=child_org.updated_at%> </td>
         </tr>
         <% end%>
       </table>

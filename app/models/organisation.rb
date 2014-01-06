@@ -26,16 +26,16 @@ class Organisation < ActiveRecord::Base
 
 	validates :code, presence: true, uniqueness: true
 	validates :name, presence: true, uniqueness: true
-	validates :organisation_level, presence: true
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
-	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
-	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
+	belongs_to :playground
+	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
+	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name
         belongs_to :parent_org, :class_name => "Organisation", :foreign_key => "parent_id"	# helps retrieving the parent name
-        has_many :organisations
+        has_many :child_orgs, :class_name => "Organisation" , :foreign_key => "parent_id"	# link to the child oreganisation
 
 
 ### private functions definitions
@@ -50,8 +50,8 @@ class Organisation < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if Organisation.count == 0 
-        self.hierarchy = self.playground_id.to_s + '.001'
+      if Organisation.where("playground_id = ?", self.playground_id).count == 0 
+        self.hierarchy = self.playground.hierarchy + '.001'
       else 
         last_one = Organisation.maximum("hierarchy")
         self.hierarchy = last_one.next

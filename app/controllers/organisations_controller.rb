@@ -28,7 +28,8 @@ class OrganisationsController < ApplicationController
   # GET /organisations/new
   # GET /organisations/new.json
   def new
-    @organisation = Organisation.new
+ #   @parent_org = Organisation.find(params[:organisation_id])
+    @organisation = Organisation.new(:parent_id => params[:organisation_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +45,8 @@ class OrganisationsController < ApplicationController
   # POST /organisations
   # POST /organisations.json
   def create
+#    @parent_org = Organisation.find(params[:organisation_id])
+#    @organisation = @parent_org.organisations.build(organisation_params)
     @organisation = Organisation.new(organisation_params)
     @organisation.updated_by = current_user.login
     @organisation.created_by = current_user.login
@@ -96,7 +99,7 @@ class OrganisationsController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_organisation
-      @organisation = Organisation.includes(:owner, :status).find(params[:id]) 
+      @organisation = Organisation.includes(:owner, :status, :parent_org).find(params[:id]) 
     end
     
   ### before filters
@@ -107,7 +110,7 @@ class OrganisationsController < ApplicationController
 
   ### strong parameters
   def organisation_params
-    params.require(:organisation).permit(:code, :name, :description, :organisation_level, :status_id)
+    params.require(:organisation).permit(:code, :name, :description, :parent_id, :status_id)
   end
 
 end

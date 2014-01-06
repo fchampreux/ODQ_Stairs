@@ -33,6 +33,7 @@ class BusinessArea < ActiveRecord::Base
 	validates :playground_id, presence: true
 	validates :PCF_index, length: { maximum: 30 }
 	validates :PCF_reference, length: { maximum: 30 }
+	belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	has_many :business_flows
@@ -43,8 +44,8 @@ class BusinessArea < ActiveRecord::Base
 
   ### before filters
     def set_hierarchy
-      if BusinessArea.count == 0 
-        self.hierarchy = '001'
+      if BusinessArea.where("playground_id = ?", self.playground_id).count == 0 
+        self.hierarchy = self.playground.hierarchy + '.001'
       else 
         last_one = BusinessArea.maximum("hierarchy")
         self.hierarchy = last_one.next

@@ -32,15 +32,20 @@ ODQStep1::Application.routes.draw do
   resources :business_objects
 
   resources :business_rules
-  resources :check_types
-  resources :users
 
+  resources :users
 
   resources :user_accesses
 
   resources :roles
 
-  resources :organisations
+  resources :territories do
+       resources :territories, :only=>[:new, :create]
+  end
+
+  resources :organisations do
+       resources :organisations, :only=>[:new, :create]
+  end
 
   resources :time_scales
 

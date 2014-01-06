@@ -50,7 +50,7 @@ class BusinessFlow < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if BusinessFlow.count == 0 
+      if BusinessFlow.where("business_area_id = ?", self.business_area_id).count == 0 
         self.hierarchy = self.business_area.hierarchy + '.001'
       else 
         last_one = BusinessFlow.maximum("hierarchy")

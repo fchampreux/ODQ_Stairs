@@ -66,7 +66,7 @@ class BusinessRule < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if BusinessRule.count == 0 
+      if BusinessRule.where("business_process_id = ?", self.business_process_id).count == 0 
         self.hierarchy = self.business_process.hierarchy + '.001'
       else 
         last_one = BusinessRule.maximum("hierarchy")

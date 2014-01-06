@@ -53,7 +53,7 @@ class Scope < ActiveRecord::Base
     end 
 
     def set_hierarchy
-      if Scope.count == 0 
+      if Scope.where("landscape_id = ?", self.landscape_id).count == 0 
         self.hierarchy = self.landscape.hierarchy + '.001'
       else 
         last_one = Scope.maximum("hierarchy")

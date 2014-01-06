@@ -37,7 +37,7 @@ class Playground < ActiveRecord::Base
   ### before filters
     def set_hierarchy
       if Playground.count == 0 
-        self.hierarchy = '001'
+        self.hierarchy = '1'
       else 
         last_one = Playground.maximum("hierarchy")
         self.hierarchy = last_one.next
