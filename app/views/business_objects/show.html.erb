@@ -13,7 +13,8 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Ownership</a></li>
+      <li><a href="#tab2" data-toggle="tab">Implementation</a></li>
+      <li><a href="#tab3" data-toggle="tab">Ownership</a></li>
     </ul>
     <div class="tab-content">
 
@@ -49,22 +50,46 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="span2 text-right">PCF index:
-        </div>
-        <div class="span2"><%= @business_object.PCF_index%>
-        </div>
-        <div class="span2 text-right">PCF reference:
-        </div>
-        <div class="span2"><%= @business_object.PCF_reference%>
-        </div>
-      </div>
-
 
 <!-- Tab content -->
     </div>    
 
+
     <div class="tab-pane" id="tab2">
+<!-- Tab content for Implementation -->
+
+      <div class="row">
+        <div class="span2 text-right">Technology:
+        </div>
+        <div class="span2"><%= @business_object.db_technology%>
+        </div>
+        <div class="span2 text-right">Connection:
+        </div>
+        <div class="span2"><%= @business_object.db_connection%>
+        </div>
+        <div class="span2 text-right">Owner schema:
+        </div>
+        <div class="span2"><%= @business_object.db_owner_schema%>
+        </div>
+      </div>
+       <div class="row">
+        <div class="span2 text-right">Structure name:
+        </div>
+        <div class="span2"><%= @business_object.structure_name%>
+        </div>
+        <div class="span2 text-right">Key columns:
+        </div>
+        <div class="span2"><%= @business_object.key_columns%>
+        </div>
+        <div class="span2 text-right">Published columns:
+        </div>
+        <div class="span2"><%= @business_object.published_columns%>
+        </div>
+      </div>
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane" id="tab3">
 <!-- Tab content for Ownership -->
 
       <div class="row">
@@ -100,7 +125,7 @@
       <div class="row">
         <div class="span2 text-right">Parent:
         </div>
-        <div class="span2"><%= link_to @business_object.business_area.name, @business_object.business_area %>
+        <div class="span2"><%= link_to @business_object.business_area.name, @business_object.business_area%>
         </div>
         <div class="span2 text-right">updated at:
         </div>
@@ -110,39 +135,11 @@
 
 <!-- Tab content -->
     </div>
+
     
     </div>
   </div>
 
-<table width=100%>
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>Linked business rules</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>
-      <table class="table table-striped table-condensed">
-        <tr align="left">
-          <th> Code </th>
-          <th> Name </th>
-          <th> Description </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-        </tr>
-        <%@business_object.business_rules.each do |business_rule| %>
-        <tr align="left">
-          <td valign="top"> <%=link_to business_rule.code, business_rule%> </td>
-          <td valign="top"> <%=business_rule.name%> </td>
-          <td class="col_wide"> <%=business_rule.description%> </td>
-          <td valign="top"> <%=business_rule.updated_by%> </td>
-          <td valign="top"> <%=business_rule.updated_at%> </td>
-        </tr>
-        <% end%>
-      </table>
-    </td>
-  </tr>
-</table>
 
 
 

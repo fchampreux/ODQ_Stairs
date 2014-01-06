@@ -11,6 +11,16 @@
     </div>
   <% end %>
 
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
+      <li><a href="#tab2" data-toggle="tab">Implementation</a></li>
+    </ul>
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="tab1">
+<!-- Tab content for Definition -->
+
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
@@ -42,16 +52,47 @@
         </div>
       </div>
 
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane" id="tab2">
+<!-- Tab content for Implementation -->
+
       <div class="row">
-        <div class="span2 text-right">PCF index:
+        <div class="span2 text-right">Technology:
         </div>
-        <div class="span2 field"><%= f.text_field :PCF_index %>
+        <div class="span2 field"><%= f.text_field :db_technology%>
         </div>
-        <div class="span2 text-right">PCF reference:
+        <div class="span2 text-right">Connection:
         </div>
-        <div class="span2 field"><%= f.text_field :PCF_reference %>
+        <div class="span2 field"><%= f.text_field :db_connection%>
+        </div>
+        <div class="span2 text-right">Owner schema:
+        </div>
+        <div class="span2 field"><%= f.text_field :db_owner_schema%>
         </div>
       </div>
+       <div class="row">
+        <div class="span2 text-right">Structure name:
+        </div>
+        <div class="span2 field"><%= f.text_field :structure_name%>
+        </div>
+        <div class="span2 text-right">Key columns:
+        </div>
+        <div class="span2 field"><%= f.text_area :key_columns%>
+        </div>
+        <div class="span2 text-right">Published columns:
+        </div>
+        <div class="span2 field"><%= f.text_area :published_columns%>
+        </div>
+      </div>
+
+
+<!-- Tab content -->
+    </div>
+
+    </div>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

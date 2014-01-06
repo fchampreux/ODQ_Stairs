@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219112050) do
+ActiveRecord::Schema.define(version: 20140106212139) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20131219112050) do
   end
 
   add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true
-#  add_index "business_areas", ["hierarchy"], name: "index_business_areas_on_hierarchy", unique: true
   add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true
 
   create_table "business_flows", force: true do |t|
@@ -58,8 +57,6 @@ ActiveRecord::Schema.define(version: 20131219112050) do
     t.integer  "organisation_level"
     t.integer  "territory_level"
     t.string   "hierarchy"
-    t.string   "PCF_index"
-    t.string   "PCF_reference"
     t.integer  "status_id"
     t.integer  "owner_id"
     t.string   "db_technology"

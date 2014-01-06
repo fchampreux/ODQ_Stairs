@@ -29,7 +29,7 @@ if Organisation.count == 0
   Organisation.create(playground_id: 1, name: 'Global organisation', description: 'This organisation is created when initialising ODQ application as the root for organisations hierarchy', code: 'GLOBAL', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5, parent_id: 1 )
 end
 
-puts "Seeding territories"
+puts "Seeding territory"
 if Territory.count == 0
   puts "Creating main Territory"
   Territory.create(playground_id: 1, name: 'World', description: 'This territory is created when initialising ODQ application as the root for geography hierarchy', code: 'WORLD', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5, parent_id: 1 )

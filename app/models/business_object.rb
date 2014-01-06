@@ -10,8 +10,6 @@
 #  organisation_level :integer
 #  territory_level    :integer
 #  hierarchy          :string(255)
-#  PCF_index          :string(255)
-#  PCF_reference      :string(255)
 #  status_id          :integer
 #  owner_id           :integer
 #  db_technology      :string(255)
@@ -42,8 +40,6 @@ class BusinessObject < ActiveRecord::Base
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
 	validates :business_area_id, presence: true
-	validates :PCF_index, length: { maximum: 30 }
-	validates :PCF_reference, length: { maximum: 30 }
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_area

@@ -1,0 +1,48 @@
+<%= form_for [@parent_org, @organisation] do |f| %>
+  <% if @organisation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+      <ul>
+      <% @organisation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span10 field"><%= f.text_field :name, :class => "span8" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Code:
+        </div>
+        <div class="span2 field"><%= f.text_field :code %>
+        </div>
+        <div class="span2 text-right">Status:
+        </div>
+        <div class="span2 field"><%= f.collection_select :status_id, @statuses_list, :id, :name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Hierarchy:
+        </div>
+        <div class="span2 field"><%= f.text_field :hierarchy, :readonly => true %>
+        </div>
+      </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

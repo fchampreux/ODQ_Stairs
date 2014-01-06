@@ -10,8 +10,6 @@
 #  organisation_level :integer
 #  territory_level    :integer
 #  hierarchy          :string(255)
-#  PCF_index          :string(255)
-#  PCF_reference      :string(255)
 #  status_id          :integer
 #  owner_id           :integer
 #  db_technology      :string(255)
