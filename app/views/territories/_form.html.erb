@@ -1,10 +1,10 @@
-<%= form_for [@parent_org, @organisation] do |f| %>
-  <% if @organisation.errors.any? %>
+<%= form_for [@parent_territory, @territory] do |f| %>
+  <% if @territory.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+      <h2><%= pluralize(@territory.errors.count, "error") %> prohibited this territory from being saved:</h2>
 
       <ul>
-      <% @organisation.errors.full_messages.each do |msg| %>
+      <% @territory.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

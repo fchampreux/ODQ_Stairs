@@ -26,7 +26,6 @@ class Territory < ActiveRecord::Base
 
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :territory_level, presence: true
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
@@ -45,7 +44,7 @@ class Territory < ActiveRecord::Base
   ### before filters
     def set_code
       if Territory.count > 0 
-        self.code = self.territory.code + '-' + code
+        self.code = self.parent_territory.code + '-' + self.code
       end
     end 
 
