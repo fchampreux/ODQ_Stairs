@@ -4,7 +4,7 @@
      
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_object_path(@business_object) %> |</li>
-    <li><%= link_to 'Back to list', business_objects_path %> |</li>
+    <li><%= link_to 'Back', @business_object.business_area %> |</li>
     <li><%= link_to 'Destroy', @business_object, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span6"><%= @business_object.description%>
+        <div class="span6"><pre><%= @business_object.description%></pre>
         </div>
       </div>
 
@@ -79,11 +79,11 @@
         </div>
         <div class="span2 text-right">Key columns:
         </div>
-        <div class="span2"><%= @business_object.key_columns%>
+        <div class="span2"><pre><%= @business_object.key_columns%></pre>
         </div>
         <div class="span2 text-right">Published columns:
         </div>
-        <div class="span2"><%= @business_object.published_columns%>
+        <div class="span2"><pre><%= @business_object.published_columns%></pre>
         </div>
       </div>
 <!-- Tab content -->

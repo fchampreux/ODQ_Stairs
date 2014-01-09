@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+# Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current business flow
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -13,7 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    ### Retrieved by Callback function
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,13 +40,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    ### Retrieved by Callback function
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -56,10 +62,10 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    ### Retrieved by Callback function
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,7 +78,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    ### Retrieved by Callback function
     @user.destroy
 
     respond_to do |format|
@@ -80,4 +86,25 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+### private functions
+  private
+
+  ### Use callbacks to share common setup or constraints between actions.
+    # Retrieve current user
+    def set_user
+      @user = User.find(params[:id]) 
+    end
+    
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
+    end
+
+  ### strong parameters
+  def user_params
+    params.require(:user).permit(:login, :first_name, :last_name, :directory, :active_from, :active_to, :is_admin, :description, :password, :password_confirmation)
+  end
+
 end

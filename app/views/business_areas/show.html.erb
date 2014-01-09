@@ -4,7 +4,7 @@
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_area_path(@business_area) %> |</li>
-    <li><%= link_to 'Back to list', business_areas_path %> |</li>
+    <li><%= link_to 'Back', business_areas_path %> |</li>
     <li><%= link_to 'Destroy', @business_area, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
@@ -38,7 +38,7 @@
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span6"><%= @business_area.description%>
+        <div class="span6"><pre><%= @business_area.description%></pre>
         </div>
       </div>
 

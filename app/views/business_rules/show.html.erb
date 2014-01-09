@@ -4,7 +4,7 @@
    
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_rule_path(@business_rule) %> |</li>
-    <li><%= link_to 'Back to list', business_rules_path %> |</li>
+    <li><%= link_to 'Back', @business_rule.business_process %> |</li>
     <li><%= link_to 'Destroy', @business_rule, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
@@ -57,14 +57,14 @@
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span6"><%= @business_rule.description %>
+        <div class="span6"><pre><%= @business_rule.description %></pre>
         </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">Business value:
         </div>
-        <div class="span6"><%= @business_rule.business_value %>
+        <div class="span6"><pre><%= @business_rule.business_value %></pre>
         </div>
       </div>
 
@@ -129,21 +129,21 @@
         <div class="row">
           <div class="span2 text-right">Check description:
           </div>
-          <div class="span6"><%= @business_rule.check_description %>
+          <div class="span6"><pre><%= @business_rule.check_description %></pre>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Check script:
           </div>
-          <div class="span6"><%= @business_rule.check_script %>
+          <div class="span6"><pre><%= @business_rule.check_script %></pre>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Generated condition:
           </div>
-          <div class="span6"><%= @business_rule.condition %>
+          <div class="span6"><pre><%= @business_rule.condition %></pre>
           </div>
         </div>
 
@@ -156,14 +156,14 @@
         <div class="row">
           <div class="span2 text-right" width="200">Correction method:
           </div>
-          <div class="span2"><%= @business_rule.correction_method %>
+          <div class="span6"><pre><%= @business_rule.correction_method %></pre>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Correction script:
           </div>
-          <div class="span2"><%= @business_rule.correction_script %>
+          <div class="span6"><pre><%= @business_rule.correction_script %></pre>
           </div>
         </div>
       
@@ -184,7 +184,7 @@
         <div class="row">
           <div class="span2 text-right" width="200">Exceptions:
           </div>
-          <div class="span6"><%= @business_rule.white_list %>
+          <div class="span6"><pre><%= @business_rule.white_list %></pre>
           </div>
         </div>
       
@@ -228,7 +228,7 @@
       <div class="row">
         <div class="span2 text-right">Parent:
         </div>
-        <div class="span2"><%= link_to @business_rule.business_process.name, @business_rule.business_process%>
+        <div class="span2"><%= link_to @business_rule.business_process.name, @business_rule.business_process %>
         </div>
         <div class="span2 text-right">updated at:
         </div>

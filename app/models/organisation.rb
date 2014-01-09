@@ -51,10 +51,13 @@ class Organisation < ActiveRecord::Base
 
     def set_hierarchy
       if Organisation.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.001'
+        self.hierarchy = self.playground.hierarchy + '.001' 
+      else if Organisation.where("parent_id = ?", self.parent_id).count == 0 
+        self.hierarchy = self.parent_org.hierarchy + '.001'
       else 
-        last_one = Organisation.maximum("hierarchy")
+        last_one = Organisation.where("parent_id = ?", self.parent_id).maximum("hierarchy")
         self.hierarchy = last_one.next
+      end
       end
     end
 

@@ -4,7 +4,7 @@
       
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_territory_path(@territory) %> |</li>
-    <li><%= link_to 'Back to list', territories_path %> |</li>
+    <li><%= link_to 'Back', @territory.parent_territory %> |</li>
     <li><%= link_to 'Destroy', @territory, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 

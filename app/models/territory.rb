@@ -50,10 +50,13 @@ class Territory < ActiveRecord::Base
 
     def set_hierarchy
       if Territory.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.001'
+        self.hierarchy = self.playground.hierarchy + '.001' 
+      else if Territory.where("parent_id = ?", self.parent_id).count == 0 
+        self.hierarchy = self.parent_territory.hierarchy + '.001'
       else 
-        last_one = Territory.maximum("hierarchy")
+        last_one = Territory.where("parent_id = ?", self.parent_id).maximum("hierarchy")
         self.hierarchy = last_one.next
+      end
       end
     end
 

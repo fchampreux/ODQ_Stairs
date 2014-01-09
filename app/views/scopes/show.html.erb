@@ -4,7 +4,7 @@
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_scope_path(@scope) %> |</li>
-    <li><%= link_to 'Back to list', scope_path %> | </li>
+    <li><%= link_to 'Back', @scope.landscape %> | </li>
     <li><%= link_to 'Destroy', @scope, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
@@ -13,9 +13,8 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Query</a></li>    
-      <li><a href="#tab3" data-toggle="tab">Connection</a></li>
-      <li><a href="#tab4" data-toggle="tab">Ownership</a></li>
+      <li><a href="#tab2" data-toggle="tab">Query</a></li> 
+      <li><a href="#tab3" data-toggle="tab">Ownership</a></li>
 
       <!-- li class="inactive"><a href="#tab5" data-toggle="tab">Sample data</a></li -->    
     </ul>
@@ -42,7 +41,7 @@
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span6"><%= @scope.description%>
+        <div class="span6"><pre><%= @scope.description%></pre>
         </div>
       </div>
 
@@ -56,7 +55,26 @@
 <!-- Tab content -->
     </div>    
 
-    <div class="tab-pane" id="tab4">
+    <div class="tab-pane" id="tab2">
+<!-- Tab content for Query -->
+
+      <div class="row">
+        <div class="span2 text-right">Load interface:
+        </div>
+        <div class="span2"><%= @scope.load_inferface%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">SQL Query:
+        </div>
+        <div class="span6"><pre><%= @scope.SQL_query%></pre>
+        </div>
+      </div>
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane" id="tab3">
 <!-- Tab content for Ownership -->
 
       <div class="row">

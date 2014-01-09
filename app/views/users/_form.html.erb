@@ -11,58 +11,61 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :playground_id %><br />
-    <%= f.number_field :playground_id %>
-  </div>
-  <div class="field">
-    <%= f.label :directory_id %><br />
-    <%= f.text_field :directory_id %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :active_from %><br />
-    <%= f.datetime_select :active_from %>
-  </div>
-  <div class="field">
-    <%= f.label :active_to %><br />
-    <%= f.datetime_select :active_to %>
-  </div>
-  <div class="field">
-    <%= f.label :is_admin %><br />
-    <%= f.check_box :is_admin %>
-  </div>
-  <div class="field">
-    <%= f.label :session_number %><br />
-    <%= f.number_field :session_number %>
-  </div>
-  <div class="field">
-    <%= f.label :session_name %><br />
-    <%= f.text_field :session_name %>
-  </div>
-  <div class="field">
-    <%= f.label :created_by %><br />
-    <%= f.text_field :created_by %>
-  </div>
-  <div class="field">
-    <%= f.label :updated_by %><br />
-    <%= f.text_field :updated_by %>
-  </div>
+    <div class="row">
+      <div class="span2 text-right">Login:
+      </div>
+      <div class="span1 field"><%= f.text_field :login %>
+      </div>
+      <div class="span2 text-right">Password:
+      </div>
+      <div class="span1 field"><%= f.text_field :password %>
+      </div>
+      <div class="span2 text-right">Password confirmation:
+      </div>
+      <div class="span1 field"><%= f.text_field :password_confirmation  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2 text-right">First name:
+      </div>
+      <div class="span1 field"><%= f.text_field :first_name %>
+      </div>
+      <div class="span2 text-right">Last name:
+      </div>
+      <div class="span1 field"><%= f.text_field :last_name  %>
+      </div>
+      <div class="span2 text-right">Directory id:
+      </div>
+      <div class="span1 field"><%= f.text_field :directory_id %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2 text-right">Description:
+      </div>
+      <div class="span8 field"><%= f.text_area :description, :rows => 5, :class => "span7" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2 text-right">Is administator:
+      </div>
+      <div class="span1"> <%= f.check_box :is_admin %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2 text-right">Validity period:
+      </div>
+      <div class="span4"> 
+      <div class="input-daterange" data-behaviour="datepicker" id="datepicker" data-date-format="dd/mm/yyyy">
+   <%= f.text_field :active_from, :class => "input-small" %>  
+   <span class="add-on">to</span>
+   <%= f.text_field :active_to, :class => "input-small" %> 
+</div>
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker();
+</script>
+      </div>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

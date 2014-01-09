@@ -29,6 +29,10 @@
     <%= f.text_area :description %>
   </div>
 
+Validity period: 
+</br>
+</br>
+
 <div class="input-daterange" data-behaviour="datepicker" id="datepicker" data-date-format="dd/mm/yyyy">
    <%= f.text_field :active_from, :class => "input-small" %>  
    <span class="add-on">to</span>
@@ -37,6 +41,8 @@
 <script type="text/javascript">
   $('[data-behaviour~=datepicker]').datepicker();
 </script>
+
+</br>
 
   <div class="actions">
     <%= f.submit %>
