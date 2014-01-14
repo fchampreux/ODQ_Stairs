@@ -14,7 +14,7 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
+      <li><a href="#tab2" data-toggle="tab">Implementation</a></li>    
     </ul>
     <div class="tab-content">
 
@@ -24,11 +24,14 @@
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
-        <div class="span6 field"><%= f.text_field :name%>
+        <div class="span10 field"><%= f.text_field :name, :class => "span8" %>
         </div>
-        <div class="span1 text-right">Code:
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Code:
         </div>
-        <div class="span1 field"><%= f.text_field :code%>
+        <div class="span2 field"><%= f.text_field :code%>
         </div>
         <div class="span1 text-right">Status:
         </div>
@@ -46,47 +49,28 @@
       <div class="row">
         <div class="span2 text-right">Description:
         </div>
-        <div class="span10 field"><%= f.text_field :description%>
+        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
         </div>
       </div>
 
 <!-- Tab content -->
     </div>
 
-    <div class="tab-pane" id="tab3">
+    <div class="tab-pane" id="tab2">
 <!-- Tab content for Implementation -->
       
-        <div class="row">
-          <div class="span2 text-right">Object:
-          </div>
-          <div class="span2 field"><%= %>
-          </div>
-          <div class="span2 text-right">Business process:
-          </div>
-          <div class="span2 field"><%= %>
-          </div>
+      <div class="row">
+        <div class="span2 text-right">Load interface:
         </div>
-      
-        <div class="row">
-          <div class="span2 text-right">Check description:
-          </div>
-          <div class="span10 field"><%= %>
-          </div>
+        <div class="span10 field"><%= f.text_field :load_interface, :class => "span4" %>
         </div>
-
-        <div class="row">
-          <div class="span2 text-right">Check script:
-          </div>
-          <div class="span10 field"><%= %>
-          </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">SQL Query:
         </div>
-
-        <div class="row">
-          <div class="span2 text-right">Generated condition:
-          </div>
-          <div class="span10 field"><%= %>
-          </div>
+        <div class="span10 field"><%= f.text_area :SQL_query, :rows => 5, :class => "span4" %>
         </div>
+      </div>
 
       
 <!-- Tab content -->

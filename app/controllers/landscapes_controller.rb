@@ -11,7 +11,7 @@ class LandscapesController < ApplicationController
   # GET /landscapes
   # GET /landscapes.json
   def index
-    @landscapes = Landscape.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @landscapes = Landscape.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -65,7 +65,7 @@ class LandscapesController < ApplicationController
     @landscape.updated_by = current_user.login    
 
     respond_to do |format|
-      if @landscape.update_attributes(params[:landscape])
+      if @landscape.update_attributes(landscape_params)
         format.html { redirect_to @landscape, notice: 'Landscape was successfully updated.' }
         format.json { head :no_content }
       else

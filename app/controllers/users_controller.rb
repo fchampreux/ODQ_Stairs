@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-# Check for active session 
+# Check for active session as administrator
   before_action :signed_in_user
+  before_action :signed_as_admin
 
 # Retrieve current business flow
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -47,6 +48,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.playground_id = current_user.current_playground_id
+    @user.current_playground_id = current_user.current_playground_id
+    @user.default_playground_id = current_user.current_playground_id
 
     respond_to do |format|
       if @user.save
@@ -102,9 +106,14 @@ class UsersController < ApplicationController
       redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
     end
 
+    # Check for admin access
+    def signed_as_admin
+      redirect_to root_url, notice: "You must be administrator to access this page." unless user_is_admin?
+    end
+
   ### strong parameters
   def user_params
-    params.require(:user).permit(:login, :first_name, :last_name, :directory, :active_from, :active_to, :is_admin, :description, :password, :password_confirmation)
+    params.require(:user).permit(:login, :first_name, :last_name, :directory, :active_from, :active_to, :is_admin, :email, :description, :password, :password_confirmation)
   end
 
 end

@@ -11,7 +11,7 @@ class TerritoriesController < ApplicationController
   # GET /Territories
   # GET /Territories.json
   def index
-    @territories = Territory.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @territories = Territory.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

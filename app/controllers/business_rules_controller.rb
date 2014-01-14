@@ -17,7 +17,7 @@ class BusinessRulesController < ApplicationController
   # GET /business_rules
   # GET /business_rules.json
   def index
-    @business_rules = BusinessRule.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @business_rules = BusinessRule.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -117,7 +117,7 @@ class BusinessRulesController < ApplicationController
 
   ### strong parameters
   def business_rule_params
-    params.require(:business_rule).permit(:code, :name, :status_id, :description, :check_description, :check_script, :correction_method, :correction_script, 
+    params.require(:business_rule).permit(:code, :name, :status_id, :description, :business_value, :check_description, :check_script, :correction_method, :correction_script, 
 				:correction_batch, :white_list, :rule_type_id, :condition, :complexity, :added_value, :severity, :maintenance_cost, :maintenance_duration, 
 				:version, :approver_id, :approved_at, :business_object_id)
   end

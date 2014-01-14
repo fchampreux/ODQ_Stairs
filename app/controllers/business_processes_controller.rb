@@ -11,7 +11,7 @@ class BusinessProcessesController < ApplicationController
   # GET /business_processes
   # GET /business_processes.json
   def index
-    @business_processes = BusinessProcess.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @business_processes = BusinessProcess.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

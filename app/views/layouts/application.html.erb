@@ -29,22 +29,26 @@
               <li><%= link_to "Playgrounds", playgrounds_path %></li>
               <li><%= link_to "Landscapes", landscapes_path %></li>
               <li><%= link_to "Scopes", scopes_path %></li>
+              <% if display_assessment? %>
+                <li class="nav-header">Quality Assessment</li>
+                <li><%= link_to "Data Policies", "#" %></li>
+                <li><%= link_to "Key Performance Indicators", "#" %></li>
+                <li><%= link_to "Objectives", "#" %></li>
+                
+                <li class="nav-header">Analysis axis</li>
+                <li><%= link_to "Organisations", organisations_path %></li>
+                <li><%= link_to "Geopgraphy", territories_path %></li>
+                <li><%= link_to "Times scales", "#" %></li>
+              <% end %>
 
-              <li class="nav-header">Quality Assessment</li>
-              <li><%= link_to "Data Policies", "#" %></li>
-              <li><%= link_to "Key Performance Indicators", "#" %></li>
-              <li><%= link_to "Objectives", "#" %></li>
-              
-              <li class="nav-header">Analysis axis</li>
-              <li><%= link_to "Organisations", organisations_path %></li>
-              <li><%= link_to "Geopgraphy", territories_path %></li>
-              <li><%= link_to "Times scales", time_scales_path %></li>
+                <li class="nav-header">Configuration</li>
+                <li><%= link_to "Lists of parameters", parameters_path %></li>
 
-              <li class="nav-header">Configuration</li>
-              <li><%= link_to "Lists of parameters", parameters_path %></li>
-              
-              <li class="nav-header">Security</li>
-              <li><%= link_to "Users", users_path %></li>
+              <% if user_is_admin? %>              
+                <li class="nav-header">Security</li>
+                <li><%= link_to "Users", users_path %></li>
+              <% end %>
+
             </ul>
           </nav>
         <% end %>

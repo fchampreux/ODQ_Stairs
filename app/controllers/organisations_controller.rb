@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @organisations = Organisation.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

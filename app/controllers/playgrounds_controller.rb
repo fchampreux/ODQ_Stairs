@@ -10,7 +10,7 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds
   # GET /playgrounds.json
   def index
-    @playgrounds = Playground.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @playgrounds = Playground.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +61,7 @@ class PlaygroundsController < ApplicationController
     @playground.updated_by = current_user.login    
 
     respond_to do |format|
-      if @playground.update_attributes(params[:playground])
+      if @playground.update_attributes(playground_params)
         format.html { redirect_to @playground, notice: 'Playground was successfully updated.' }
         format.json { head :no_content }
       else

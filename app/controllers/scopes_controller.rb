@@ -11,7 +11,7 @@ class ScopesController < ApplicationController
   # GET /scopes
   # GET /scopes.json
   def index
-    @scopes = Scope.order("hierarchy ASC").paginate(page: params[:page], :per_page => 20)
+    @scopes = Scope.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -65,7 +65,7 @@ class ScopesController < ApplicationController
     @scope.updated_by = current_user.login    
 
     respond_to do |format|
-      if @scope.update_attributes(params[:scope])
+      if @scope.update_attributes(scope_params)
         format.html { redirect_to @scope, notice: 'Scope was successfully updated.' }
         format.json { head :no_content }
       else
@@ -106,7 +106,7 @@ class ScopesController < ApplicationController
 
   ### strong parameters
   def scope_params
-    params.require(:scope).permit(:code, :name, :status_id, :description)
+    params.require(:scope).permit(:code, :name, :status_id, :description, :load_interface, :SQL_query)
   end
 
   

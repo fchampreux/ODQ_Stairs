@@ -20,9 +20,18 @@ end
 
 puts "Seeding landscape"
 if Landscape.count == 0
-  puts "Creating first Landscape"
+  puts "Creating first Landscapes"
   Landscape.create(playground_id: 1, name: 'Audit landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
   Landscape.create(playground_id: 1, name: 'Item landscape', description: 'This landscape is dedicated to the audit of all processes impacting Item Master Data', code: 'ITEM', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
+end
+
+puts "Seeding scope"
+if Scope.count == 0
+  puts "Creating first Scope"
+  Scope.create(playground_id: 1, landscape_id: 2, name: 'Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+from APPS.XX_INVENTORY_ITEM_MASTER_V
+where ITEM_TYPE = "FP"
+and IS_ACTIVE = 1' ,created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 5 )
 end
 
 puts "Seeding organisation"
@@ -81,6 +90,9 @@ if Parameter.count==0
   Parameter.create(playground_id: 1, is_list: false, name: 'Non-obsolescence', description: 'Rule type is Non-obsolescence: attribute is valid regarding the period', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'List of rules types')
   Parameter.create(playground_id: 1, is_list: false, name: 'Uniqueness', description: 'Rule type is Uniqueness:  instance of an object is present only once', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'List of rules types')
   Parameter.create(playground_id: 1, is_list: false, name: 'Security', description: 'Rule type is Security: object is accessible to granted users only', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'List of rules types')
+  Parameter.create(playground_id: 1, is_list: true, name: 'Display parameters', description: 'This list contains varoius parameters relted to user experience', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'Lists of parameters')
+  Parameter.create(playground_id: 1, is_list: false, name: 'Show assessment', description: 'Allows the display of assessment features', param_value: 'Yes', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'Display parameters')
+  Parameter.create(playground_id: 1, is_list: false, name: 'Nb of Lines', description: 'Number of lines to display in lists', param_value: '10', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parent_list: 'Display parameters')
 end
 
 puts "Seeding business areas"

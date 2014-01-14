@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106212139) do
+ActiveRecord::Schema.define(version: 20140113221048) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20140106212139) do
     t.datetime "updated_at"
     t.string   "parent_list"
     t.string   "code"
+    t.string   "param_value"
   end
 
   add_index "parameters", ["name"], name: "index_parameters_on_name"
