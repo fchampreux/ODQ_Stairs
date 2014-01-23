@@ -4,7 +4,7 @@
    
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_rule_path(@business_rule) %> |</li>
-    <li><%= link_to 'Back', @business_rule.business_process %> |</li>
+    <li><%= link_to 'Up', @business_rule.business_process %> |</li>
     <li><%= link_to 'Destroy', @business_rule, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
@@ -77,35 +77,35 @@
         <div class="row">
           <div class="span2 text-right"> Complexity:
           </div>
-          <div class="span2"><%= @business_rule.complexity %>
+          <div class="span2"><%= @business_rule.complexity.name %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Added value:
           </div>
-          <div class="span2"><%= @business_rule.added_value %>
+          <div class="span2"><%= @business_rule.added_value %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Severity:
           </div>
-          <div class="span2"><%= @business_rule.severity %>
+          <div class="span2"><%= @business_rule.severity.name %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Maintenance cost:
           </div>
-          <div class="span2"><%= @business_rule.maintenance_cost %>
+          <div class="span2"><%= @business_rule.maintenance_cost %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Maintenance workload:
           </div>
-          <div class="span2"><%= @business_rule.maintenance_duration %>
+          <div class="span2"><%= @business_rule.maintenance_duration %> <%= display_duration%>
           </div>
         </div>
 

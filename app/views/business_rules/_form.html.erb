@@ -76,35 +76,35 @@
         <div class="row">
           <div class="span2 text-right">Complexity:
           </div>
-          <div class="span2 field"><%= f.text_field :complexity %>
+          <div class="span2 field"><%= f.collection_select :complexity_id, @complexity_list, :id, :name  %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Severity:
           </div>
-          <div class="span2 field"><%= f.text_field :severity %>
+          <div class="span2 field"><%= f.collection_select :severity_id, @severity_list, :id, :name  %>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Added value:
           </div>
-          <div class="span2 field"><%= f.text_field :added_value %>
+          <div class="span2 field"><%= f.text_field :added_value %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Maintenance cost:
           </div>
-          <div class="span2 field"><%= f.text_field :maintenance_cost %>
+          <div class="span2 field"><%= f.text_field :maintenance_cost %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
           <div class="span2 text-right">Maintenance workload:
           </div>
-          <div class="span2 field"><%= f.text_field :maintenance_duration %>
+          <div class="span3 field"><%= f.text_field :maintenance_duration %> <%= display_duration%>
           </div>
         </div>
 

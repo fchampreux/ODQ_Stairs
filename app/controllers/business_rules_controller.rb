@@ -14,6 +14,12 @@ class BusinessRulesController < ApplicationController
 # Create the list of business objects to be used in the form
   before_action :set_business_objects_list, only: [:new, :edit, :update, :create]
 
+# Create the list of severity to be used in the form
+  before_action :set_severity_list, only: [:new, :edit, :update, :create]
+
+# Create the list of complexity to be used in the form
+  before_action :set_complexity_list, only: [:new, :edit, :update, :create]
+
   # GET /business_rules
   # GET /business_rules.json
   def index
@@ -118,7 +124,7 @@ class BusinessRulesController < ApplicationController
   ### strong parameters
   def business_rule_params
     params.require(:business_rule).permit(:code, :name, :status_id, :description, :business_value, :check_description, :check_script, :correction_method, :correction_script, 
-				:correction_batch, :white_list, :rule_type_id, :condition, :complexity, :added_value, :severity, :maintenance_cost, :maintenance_duration, 
+				:correction_batch, :white_list, :rule_type_id, :condition, :complexity_id, :added_value, :severity_id, :maintenance_cost, :maintenance_duration, 
 				:version, :approver_id, :approved_at, :business_object_id)
   end
 
