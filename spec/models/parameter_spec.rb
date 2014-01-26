@@ -15,6 +15,7 @@
 #  updated_at    :datetime
 #  parent_list   :string(255)
 #  code          :string(255)
+#  param_value   :string(255)
 #
 
 require 'spec_helper'

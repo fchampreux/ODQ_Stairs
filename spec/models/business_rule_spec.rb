@@ -18,9 +18,7 @@
 #  correction_batch     :string(255)
 #  white_list           :text
 #  condition            :text
-#  complexity           :decimal(, )
 #  added_value          :decimal(, )
-#  severity             :decimal(, )
 #  maintenance_cost     :decimal(, )
 #  maintenance_duration :decimal(, )
 #  version              :string(255)
@@ -33,6 +31,8 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  rule_type_id         :integer
+#  severity_id          :integer
+#  complexity_id        :integer
 #
 
 					

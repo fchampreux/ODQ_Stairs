@@ -10,6 +10,7 @@ ODQStep1::Application.routes.draw do
 #root definition
   root to: "static_pages#home"
 
+#routes
   resources :sessions, only: [:new, :create, :destroy]  
   get '/signin',  to: 'sessions#new'	, via: :get
   match '/signout', to: 'sessions#destroy', via: :delete

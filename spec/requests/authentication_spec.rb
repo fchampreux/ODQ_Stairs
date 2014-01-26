@@ -8,7 +8,7 @@ describe "Authentication : " do
   describe "signin page" do
     before { visit signin_path }
 
-    it { should have_selector('h2', text: 'sign in') }
+    it { should have_selector('h2', text: 'Please sign in') }
     it { should have_title('Sign in') }
   
 ###LOG-IN2
