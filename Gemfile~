@@ -28,6 +28,13 @@ group :development, :test do
   gem 'factory_girl_rails', '4.2.0'
 end
 
+# gem for production
+group :production
+  gem 'rails_12factor'
+  gem 'pg'
+end
+
+
 
 
 
