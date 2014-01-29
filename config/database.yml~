@@ -8,10 +8,17 @@ development:
 
 # TEST environment
 # SQLite3
-development:
+test:
   adapter: sqlite3
   database: db/ODQ_TEST.sqlite3
   pool: 5
   timeout: 5000
+
+# PostgreSQL
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: ODQ_WEB
+  pool: 5
 
 

@@ -14,4 +14,11 @@ test:
   pool: 5
   timeout: 5000
 
+# PostgreSQL
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: ODQ_STEP1
+  pool: 5
+
 
