@@ -29,9 +29,9 @@ group :development, :test do
 end
 
 # gem for production
-group :production
-  gem 'rails_12factor'
-  gem 'pg'
+group :production do
+#  gem 'rails_12factor'
+#  gem 'pg'
 end
 
 
