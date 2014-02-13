@@ -2,20 +2,20 @@
 #
 # Table name: parameters
 #
-#  id            :integer          not null, primary key
-#  playground_id :integer
-#  is_list       :boolean
-#  name          :string(255)
-#  description   :text
-#  active_from   :datetime
-#  active_to     :datetime
-#  created_by    :string(255)
-#  updated_by    :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  parent_list   :string(255)
-#  code          :string(255)
-#  param_value   :string(255)
+#  id                 :integer          not null, primary key
+#  playground_id      :integer
+#  name               :string(255)
+#  description        :text
+#  active_from        :datetime
+#  active_to          :datetime
+#  created_by         :string(255)
+#  updated_by         :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  parent_list        :string(255)
+#  param_value        :string(255)
+#  parameters_list_id :integer
+#  param_code         :string(255)
 #
 
 class Parameter < ActiveRecord::Base
@@ -33,6 +33,7 @@ class Parameter < ActiveRecord::Base
 	validates :active_from, presence: true
 	validates :active_to, presence: true
 	validates :playground_id, presence: true
+        belongs_to :parameters_list
 
 ### private functions definitions
   private

@@ -1,0 +1,35 @@
+<% provide(:title, 'Managing parameters') %>
+
+<h1>Parameters lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>User specific</th>
+      <th>Owner</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parameters_list.each do |parameters_list| %>
+      <tr>
+        <td><%= link_to parameters_list.name, parameters_list %></td>
+        <td><%= parameters_list.description %></td>
+        <td><%= parameters_list.code %></td>
+        <td><%= parameters_list.is_user_specific %></td>
+        <td><%= parameters_list.owner.login %></td>
+        <td><%= parameters_list.created_by %></td>
+        <td><%= parameters_list.updated_by %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New List of parameters', new_parameters_list_path %>

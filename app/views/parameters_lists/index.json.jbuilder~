@@ -1,0 +1,4 @@
+json.array!(@lists_of_parameters) do |lists_of_parameter|
+  json.extract! lists_of_parameter, 
+  json.url lists_of_parameter_url(lists_of_parameter, format: :json)
+end

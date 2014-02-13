@@ -1,0 +1,67 @@
+<% provide(:title, 'Managing parameters') %>
+
+  <h1>List of parameters: <%= @parameters_list.name %></h1>
+
+  <ul class="mid_menu">
+    <li><%= link_to 'Edit', edit_parameters_list_path(@parameters_list) %> |</li>
+    <li><%= link_to 'Back', parameters_lists_path %> |</li>
+    <li><%= link_to 'Destroy', @parameters_list, confirm: 'Are you sure?', method: :delete %></li>
+  </ul>
+
+<!-- <p id="notice"><%= notice %></p> -->
+
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span3"><%= @parameters_list.name%>
+        </div>
+        <div class="span1 text-right">Code:
+        </div>
+        <div class="span2"><%= @parameters_list.code%>
+        </div>
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span1"><%= @parameters_list.id%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span6"><pre><%= @parameters_list.description%></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @parameters_list.owner.login%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @parameters_list.created_by%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @parameters_list.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @parameters_list.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @parameters_list.created_at%>
+        </div>
+        <div class="span2 text-right">Updated at:
+        </div>
+        <div class="span2"><%= @parameters_list.updated_at%>
+        </div>
+      </div>
+
+
+

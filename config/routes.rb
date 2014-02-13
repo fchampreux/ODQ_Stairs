@@ -1,6 +1,8 @@
 ODQStep1::Application.routes.draw do
 
 
+  resources :lists_of_parameters
+
 #static pages
   get '/help', 		to: "static_pages#help"
   get '/about', 	to: "static_pages#about"
@@ -15,7 +17,9 @@ ODQStep1::Application.routes.draw do
   get '/signin',  to: 'sessions#new'	, via: :get
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  resources :parameters
+  resources :parameters_lists do
+      resources :parameters
+  end
 
   resources :business_areas do
       resources :business_flows, :only=>[:new, :create]
