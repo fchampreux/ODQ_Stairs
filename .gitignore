@@ -19,4 +19,6 @@
 *.rb~
 *.erb~
 /.gitignore~
-/.Gemfile~
+/Gemfile~
+*.lock
+

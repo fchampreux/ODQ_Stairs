@@ -1,58 +1,83 @@
 <% provide(:title, 'Managing parameters') %>
 
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Configuration parameter</h1>
 
-<p>
-  <strong>Playground:</strong>
-  <%= @parameter.playground_id %>
-</p>
+  <ul class="mid_menu">
+    <li><%= link_to 'Edit', edit_parameter_path(@parameter) %> |</li>
+    <li><%= link_to 'Up', @parameter.parameters_list %> |</li>
+    <li><%= link_to 'Destroy', @parameter, confirm: 'Are you sure?', method: :delete %></li>
+  </ul>
 
-<p>
-  <strong>Is list:</strong>
-  <%= @parameter.is_list %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span2"><%= @parameter.name%>
+        </div>
+        <div class="span2 text-right">Code:
+        </div>
+        <div class="span1"><%= @parameter.param_code%>
+        </div>
+        <div class="span1 text-right">Value:
+        </div>
+        <div class="span1"><%= @parameter.param_value%>
+        </div>
+      </div>
 
-<p>
-  <strong>Parent list:</strong>
-  <%= @parameter.parent_list %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span6"><pre><%= @parameter.description%></pre>
+        </div>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @parameter.name %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Active from:
+        </div>
+        <div class="span2"><%= @parameter.active_from %>
+        </div>
+        <div class="span2 text-right">Active to:
+        </div>
+        <div class="span2"><%= @parameter.active_to %>
+        </div>
+      </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @parameter.description %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Playground:
+        </div>
+        <div class="span1"><%= @parameter.playground_id%>
+        </div>
+        <div class="span1 text-right">Id:
+        </div>
+        <div class="span1"><%= @parameter.id%>
+        </div>
+        <div class="span1 text-right">Parent list:
+        </div>
+        <div class="span2"><%= link_to @parameter.parameters_list.name, @parameter.parameters_list %>
+        </div>
+      </div>
 
-<p>
-  <strong>Value:</strong>
-  <%= @parameter.param_value %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @parameter.created_by %>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @parameter.updated_by%>
+        </div>
+      </div>
 
-<p>
-  <strong>Active from:</strong>
-  <%= @parameter.active_from %>
-</p>
+      <div class="row">
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @parameter.created_at %>
+        </div>
+        <div class="span2 text-right">Updated at:
+        </div>
+        <div class="span2"><%= @parameter.updated_at%>
+        </div>
+      </div>
 
-<p>
-  <strong>Active to:</strong>
-  <%= @parameter.active_to %>
-</p>
 
-<p>
-  <strong>Created by:</strong>
-  <%= @parameter.created_by %>
-</p>
-
-<p>
-  <strong>Updated by:</strong>
-  <%= @parameter.updated_by %>
-</p>
-
-<%= link_to 'Edit', edit_parameter_path(@parameter) %> |
-<%= link_to 'Back', parameters_path %>

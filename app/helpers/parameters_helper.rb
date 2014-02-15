@@ -2,53 +2,62 @@ module ParametersHelper
 
 # retrieve the list of statuses
   def set_statuses_list
-    @statuses_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_STATUSES' , false, Time.now ) 
+    list_id = ParametersList.where("code=?", 'LIST_OF_STATUSES').take!
+    @statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
   end 
 
 # retrieve the list of business rules types
   def set_rule_types_list
-    @rule_types_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_RULES_TYPES' , false, Time.now ) 
+    list_id = ParametersList.where("code=?", 'LIST_OF_RULES_TYPES').take!
+    @rule_types_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
   end 
 
+# retrieve the list of business severity
+  def set_severity_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_RULES_SEVERITY').take!
+    @severity_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
+  end 
+
+# retrieve the list of business complexity
+  def set_complexity_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_RULES_COMPLEXITY').take!
+    @complexity_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
+  end 
+
+### Ajouter le filtre owner=current_user pour les listes 'user specific'
 # retrieve the assessment feature option
   def display_assessment?
-    @myparam = Parameter.where("name=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'Show assessment', false, Time.now ).take!
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Show assessment', Time.now ).take!
     @myparam.param_value == 'Yes'
   end
 
 # retrieve the will_paginate number of lines per page
   def paginate_lines
-    @myparam = Parameter.where("name=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'Nb of lines', false, Time.now ).take!
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Nb of lines', Time.now ).take!
     @myparam.param_value.to_i
   end
 
 # retrieve the currency
   def display_currency
-    @myparam = Parameter.where("name=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'Currency', false, Time.now ).take!
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Currency', Time.now ).take!
     @myparam.param_value
   end
 
 # retrieve the currency
   def display_duration
-    @myparam = Parameter.where("name=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'Duration unit', false, Time.now ).take!
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Duration unit', Time.now ).take!
     @myparam.param_value
   end
-
 
 # retrieve the logo filename
   def display_logo
-    @myparam = Parameter.where("name=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'Logo filename', false, Time.now ).take!
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=? AND ? BETWEEN active_from AND active_to", list_id, 'Logo filename', Time.now ).take!
     @myparam.param_value
   end
-
-# retrieve the list of business severity
-  def set_severity_list
-    @severity_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_RULES_SEVERITY' , false, Time.now ) 
-  end 
-
-# retrieve the list of business complexity
-  def set_complexity_list
-    @complexity_list = Parameter.where("code=? AND is_list=? AND ? BETWEEN active_from AND active_to", 'LIST_OF_RULES_COMPLEXITY' , false, Time.now ) 
-  end 
 
 end

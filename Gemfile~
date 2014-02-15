@@ -29,7 +29,7 @@ group :development, :test do
 end
 
 # gem for production
-group :production
+group :production do
   gem 'rails_12factor'
   gem 'pg'
 end
