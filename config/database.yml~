@@ -1,24 +1,31 @@
-# DEV environment
-# SQLite3
+# ODQ environments
+# PostgreSQL
 development:
-  adapter: sqlite3
-  database: db/ODQ_DEV.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: odq
+  username: ODQ_APP
+  password: Application
   pool: 5
-  timeout: 5000
 
 # TEST environment
-# SQLite3
+# PostgreSQL
 test:
-  adapter: sqlite3
-  database: db/ODQ_TEST.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: odq
+  username: ODQ_APP
+  password: Application
   pool: 5
-  timeout: 5000
 
 # PostgreSQL
 production:
   adapter: postgresql
   encoding: unicode
-  database: ODQ_WEB
+  database: ODQ_STEP1
   pool: 5
 
-
+#  adapter: sqlite3
+#  database: db/ODQ_DEV.sqlite3
+#  pool: 5
+#  timeout: 5000

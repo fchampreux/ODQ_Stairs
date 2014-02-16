@@ -20,7 +20,8 @@ end
 
 # gem for dev and test only
 group :development, :test do
-  gem 'sqlite3', :require => 'sqlite3'
+#  gem 'sqlite3', :require => 'sqlite3'
+  gem 'pg'
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
   gem 'selenium-webdriver', '2.33.0'
@@ -30,8 +31,8 @@ end
 
 # gem for production
 group :production do
-#  gem 'rails_12factor'
-#  gem 'pg'
+  gem 'rails_12factor'
+  gem 'pg'
 end
 
 
