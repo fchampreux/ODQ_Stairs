@@ -11,7 +11,7 @@ class BusinessProcessesController < ApplicationController
   # GET /business_processes
   # GET /business_processes.json
   def index
-    @business_processes = BusinessProcess.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @business_processes = BusinessProcess.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -94,7 +94,7 @@ class BusinessProcessesController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_business_process
-      @business_process = BusinessProcess.includes(:owner, :status).find(params[:id]) 
+      @business_process = BusinessProcess.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters

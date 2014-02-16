@@ -11,7 +11,7 @@ class BusinessAreasController < ApplicationController
   # GET /business_areas
   # GET /business_areas.json
   def index
-    @business_areas = BusinessArea.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @business_areas = BusinessArea.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +42,7 @@ class BusinessAreasController < ApplicationController
     @business_area = BusinessArea.new(business_area_params)
     @business_area.updated_by = current_user.login
     @business_area.created_by = current_user.login
-    @business_area.playground_id = current_user.current_playground_id
+    @business_area.playground_id = current_playground
     @business_area.owner_id = current_user.id
 
     respond_to do |format|
@@ -92,7 +92,7 @@ class BusinessAreasController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business area
     def set_business_area
-      @business_area = BusinessArea.includes(:owner, :status).find(params[:id]) 
+      @business_area = BusinessArea.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters

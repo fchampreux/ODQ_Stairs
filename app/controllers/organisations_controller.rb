@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @organisations = Organisation.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,7 +84,7 @@ class OrganisationsController < ApplicationController
   # DELETE /organisations/1
   # DELETE /organisations/1.json
   def destroy
-    @organisation = Organisation.find(params[:id])
+    ### Retrieved by Callback function
     @organisation.destroy
 
     respond_to do |format|
@@ -99,7 +99,7 @@ class OrganisationsController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_organisation
-      @organisation = Organisation.includes(:owner, :status, :parent_org).find(params[:id]) 
+      @organisation = Organisation.pgnd(current_playground).includes(:owner, :status, :parent_org).find(params[:id]) 
     end
     
   ### before filters

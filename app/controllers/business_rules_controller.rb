@@ -23,7 +23,7 @@ class BusinessRulesController < ApplicationController
   # GET /business_rules
   # GET /business_rules.json
   def index
-    @business_rules = BusinessRule.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @business_rules = BusinessRule.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -107,7 +107,7 @@ class BusinessRulesController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_business_rule
-      @business_rule = BusinessRule.includes(:owner, :status).find(params[:id]) 
+      @business_rule = BusinessRule.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
 
     # Retrieve business objects list

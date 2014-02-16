@@ -11,7 +11,7 @@ class ScopesController < ApplicationController
   # GET /scopes
   # GET /scopes.json
   def index
-    @scopes = Scope.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @scopes = Scope.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,7 +95,7 @@ class ScopesController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current scope
     def set_scope
-      @scope = Scope.includes(:owner, :status).find(params[:id]) 
+      @scope = Scope.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters

@@ -8,7 +8,7 @@ class ParametersController < ApplicationController
   # GET /parameters
   # GET /parameters.json
   def index
-    @parameters = Parameter.all
+    @parameters = Parameter.pgnd(current_playground).all
   end
 
   # GET /parameters/1
@@ -80,7 +80,7 @@ class ParametersController < ApplicationController
 
     # retrieve current parameter for edit or destroy actions
     def set_parameter
-      @parameter = Parameter.find(params[:id])
+      @parameter = Parameter.pgnd(current_playground).find(params[:id])
     end
 
   ### before filters

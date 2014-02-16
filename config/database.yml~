@@ -1,21 +1,25 @@
 # ODQ environments
 # PostgreSQL
 development:
+  host: localhost 
   adapter: postgresql
   encoding: unicode
   database: odq
-  username: ODQ_APP
-  password: Application
+  username: odq_app
+  password: odq_app
+  schema_search_path: "odq_info"
   pool: 5
 
 # TEST environment
 # PostgreSQL
 test:
+  host: localhost 
   adapter: postgresql
   encoding: unicode
-  database: odq
-  username: ODQ_APP
-  password: Application
+  database: odq_test
+  username: odq_app
+  password: odq_app
+  schema_search_path: "odq_info"
   pool: 5
 
 # PostgreSQL

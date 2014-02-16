@@ -22,13 +22,16 @@
               <li><%= link_to "Business Areas", business_areas_path %></li>
               <li><%= link_to "Business Flows", business_flows_path %></li>
               <li><%= link_to "Business Processes", business_processes_path %></li>
-              <li><%= link_to "Business Objects", business_objects_path %></li>
               <li><%= link_to "Business Rules", business_rules_path %></li>
+              <li><%= link_to "Business Objects", business_objects_path %></li>
 
               <li class="nav-header">Project Hierarchy</li>
-              <li><%= link_to "Playgrounds", playgrounds_path %></li>
+              <% if user_is_admin? %>
+                <li><%= link_to "Playgrounds", playgrounds_path %></li>
+              <% end %>
               <li><%= link_to "Landscapes", landscapes_path %></li>
               <li><%= link_to "Scopes", scopes_path %></li>
+
               <% if display_assessment? %>
                 <li class="nav-header">Quality Assessment</li>
                 <li><%= link_to "Data Policies", "#" %></li>
@@ -41,10 +44,10 @@
                 <li><%= link_to "Times scales", "#" %></li>
               <% end %>
 
-              <% if user_is_admin? %>
                 <li class="nav-header">Configuration</li>
                 <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
-              
+
+              <% if user_is_admin? %>              
                 <li class="nav-header">Security</li>
                 <li><%= link_to "Users", users_path %></li>
               <% end %>

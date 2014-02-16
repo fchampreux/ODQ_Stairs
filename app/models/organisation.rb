@@ -20,6 +20,9 @@
 
 class Organisation < ActiveRecord::Base
 
+### scope
+  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+
 ### before filter
   before_create :set_code
   before_create :set_hierarchy

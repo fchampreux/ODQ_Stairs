@@ -11,7 +11,7 @@ class TerritoriesController < ApplicationController
   # GET /Territories
   # GET /Territories.json
   def index
-    @territories = Territory.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @territories = Territory.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,7 +84,7 @@ class TerritoriesController < ApplicationController
   # DELETE /Territories/1
   # DELETE /Territories/1.json
   def destroy
-    @territory = Territory.find(params[:id])
+    ### Retrieved by Callback function
     @territory.destroy
 
     respond_to do |format|
@@ -99,7 +99,7 @@ class TerritoriesController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
     def set_territory
-      @territory = Territory.includes(:owner, :status, :parent_territory).find(params[:id]) 
+      @territory = Territory.pgnd(current_playground).includes(:owner, :status, :parent_territory).find(params[:id]) 
     end
     
   ### before filters

@@ -11,7 +11,7 @@ class LandscapesController < ApplicationController
   # GET /landscapes
   # GET /landscapes.json
   def index
-    @landscapes = Landscape.order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @landscapes = Landscape.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,7 +95,7 @@ class LandscapesController < ApplicationController
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current landscape
     def set_landscape
-      @landscape= Landscape.includes(:owner, :status).find(params[:id]) 
+      @landscape= Landscape.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
     
   ### before filters

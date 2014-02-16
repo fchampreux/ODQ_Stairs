@@ -20,8 +20,10 @@
 
 class Parameter < ActiveRecord::Base
 
+### scope
+  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+
 ### before filter
-#  before_save :set_code
 
 ### validation
 	validates :param_code, length: { maximum: 100 }
