@@ -112,9 +112,11 @@ class BusinessRulesController < ApplicationController
 
     # Retrieve business objects list
     def set_business_objects_list
-      @business_objects_list = BusinessObject.order("hierarchy ASC")
+      my_business_area = @business_rule.business_process.business_flow.business_area_id
+#      @business_objects_list = BusinessObject.order("hierarchy ASC")
+     @business_objects_list = BusinessObject.where("business_area_id = ?", my_business_area)
     end
-    
+
   ### before filters
     # Check for active session
     def signed_in_user

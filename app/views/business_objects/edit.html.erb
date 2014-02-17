@@ -1,5 +1,10 @@
 <% provide(:title, 'Managing business objects') %>
 
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @business_object.business_area.name, @business_object.business_area %> > </li>
+    <li><%= @business_object.name %> </li>
+  </ul>
+
 <h1>Editing a business object</h1>
 
 <%= render 'form' %>

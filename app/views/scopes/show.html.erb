@@ -1,5 +1,11 @@
 <% provide(:title, 'Managing scopes') %>
 
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @scope.landscape.playground.name, @scope.landscape.playground %> > </li>
+    <li> <%= link_to @scope.landscape.name, @scope.landscape %> > </li>
+    <li><%= @scope.name %> </li>
+  </ul>
+
   <h1>Scope: <%= @scope.name %></h1>
 
   <ul class="mid_menu">

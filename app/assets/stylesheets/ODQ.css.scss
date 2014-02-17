@@ -93,6 +93,12 @@ p {
   }
 }
 
+.breadcrumbs {
+  li {
+    display:inline;
+  }
+}
+
 #main_menu {
   a {
     &:hover {

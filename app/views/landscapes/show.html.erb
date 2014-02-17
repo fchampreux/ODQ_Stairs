@@ -1,5 +1,10 @@
 <% provide(:title, 'Managing landscapes') %>
 
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @landscape.playground.name, @landscape.playground %> > </li>
+    <li><%= @landscape.name %> </li>
+  </ul>
+
   <h1>Landscape: <%= @landscape.name %></h1>
   
   <ul class="mid_menu">

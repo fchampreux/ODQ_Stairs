@@ -1,5 +1,11 @@
 <% provide(:title, 'Managing business processes') %>
 
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @business_process.business_flow.business_area.name, @business_process.business_flow.business_area %> > </li>
+    <li><%= link_to @business_process.business_flow.name, @business_process.business_flow %> > </li>
+    <li><%= @business_process.name %> </li>
+  </ul>
+
 <h1>Editing a business process</h1>
 
 <%= render 'form' %>

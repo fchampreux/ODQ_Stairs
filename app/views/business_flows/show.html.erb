@@ -1,5 +1,10 @@
 <% provide(:title, 'Managing business flows') %>
 
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @business_flow.business_area.name, @business_flow.business_area %> > </li>
+    <li><%= @business_flow.name %> </li>
+  </ul>
+
   <h1>Business Flow: <%= @business_flow.name %></h1>
       
   <ul class="mid_menu">
