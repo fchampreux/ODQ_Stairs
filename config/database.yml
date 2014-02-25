@@ -27,6 +27,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: ODQ_STEP1
+  schema_search_path: "odq_info"
   pool: 5
 
 #  adapter: sqlite3
