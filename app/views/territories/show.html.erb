@@ -118,7 +118,7 @@
           <th> Updated by </th>
           <th> Updated at </th>
         </tr>
-        <%@territory.child_territories.each do |child_territory| %>
+        <%@territory.child_territories.order("code ASC").each do |child_territory| %>
         <tr align="left">
           <td valign="top"> <%=link_to child_territory.code, child_territory%> </td>
           <td valign="top"> <%=child_territory.name%> </td>

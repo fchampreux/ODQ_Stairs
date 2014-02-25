@@ -71,7 +71,7 @@ class TerritoriesController < ApplicationController
     @territory.updated_by = current_user.login
 
     respond_to do |format|
-      if @territory.update_attributes(params[:Territory])
+      if @territory.update_attributes(territory_params)
         format.html { redirect_to @territory, notice: 'Territory was successfully updated.' }
         format.json { head :no_content }
       else

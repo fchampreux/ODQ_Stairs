@@ -135,7 +135,7 @@
           <th> Updated by </th>
           <th> Updated at </th>
         </tr>
-        <%@business_flow.business_processes.each do |business_process| %>
+        <%@business_flow.business_processes.order("code ASC").each do |business_process| %>
         <tr align="left">
           <td valign="top"> <%=link_to business_process.code, business_process%> </td>
           <td valign="top"> <%=business_process.name%> </td>

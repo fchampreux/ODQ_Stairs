@@ -71,7 +71,7 @@ class OrganisationsController < ApplicationController
     @organisation.updated_by = current_user.login
 
     respond_to do |format|
-      if @organisation.update_attributes(params[:organisation])
+      if @organisation.update_attributes(organisation_params)
         format.html { redirect_to @organisation, notice: 'Organisation was successfully updated.' }
         format.json { head :no_content }
       else
