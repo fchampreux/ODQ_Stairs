@@ -1,0 +1,41 @@
+<% provide(:title, 'Managing values') %>
+
+<h1>Lists of Values</h1>
+
+<table  class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>Value</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @values.each do |value| %>
+      <tr>
+        <td><%= value.id %></td>
+        <td><%= value.name %></td>
+        <td><%= value.description %></td>
+        <td><%= value.value_code %></td>
+        <td><%= value.value_caption %></td>
+        <td><%= value.created_by %></td>
+        <td><%= value.updated_by %></td>
+        <td><%= link_to 'Show', value %></td>
+        <td><%= link_to 'Edit', edit_value_path(value) %></td>
+        <td><%= link_to 'Destroy', value, method: :delete, data: { confirm: 'Value will be deleted. Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

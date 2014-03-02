@@ -1,0 +1,33 @@
+<%= form_for(@values_list) do |f| %>
+  <% if @values_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@values_list.errors.count, "error") %> prohibited this values_list from being saved:</h2>
+
+      <ul>
+      <% @values_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6 field"><%= f.text_field :name, :class => "span6" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        </div>
+      </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

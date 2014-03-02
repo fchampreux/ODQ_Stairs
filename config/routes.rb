@@ -17,7 +17,15 @@ ODQStep1::Application.routes.draw do
   resources :parameters_lists do
       resources :parameters
   end
+
   resources :parameters
+
+  resources :values_lists do
+      resources :values
+  end
+
+  resources :values
+
 
   resources :business_areas do
       resources :business_flows, :only=>[:new, :create]

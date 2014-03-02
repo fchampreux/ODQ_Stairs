@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213074611) do
+ActiveRecord::Schema.define(version: 20140302150319) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20140213074611) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true
-  add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true
+  add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true, using: :btree
+  add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true, using: :btree
 
   create_table "business_flows", force: true do |t|
     t.integer  "playground_id"
@@ -161,6 +161,39 @@ ActiveRecord::Schema.define(version: 20140213074611) do
     t.integer  "owner_id"
   end
 
+  create_table "mappings", force: true do |t|
+    t.integer  "playground_id"
+    t.integer  "mappings_list_id"
+    t.string   "source_software"
+    t.string   "source_table"
+    t.string   "source_value_id"
+    t.string   "source_code"
+    t.string   "source_catpion"
+    t.string   "target_software"
+    t.string   "target_table"
+    t.string   "target_value_id"
+    t.string   "target_code"
+    t.string   "target_catpion"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mappings_lists", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.integer  "owner_id"
+    t.integer  "source_list_id"
+    t.integer  "target_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "organisations", force: true do |t|
     t.integer  "playground_id"
     t.string   "code"
@@ -193,7 +226,7 @@ ActiveRecord::Schema.define(version: 20140213074611) do
     t.string   "param_code"
   end
 
-  add_index "parameters", ["name"], name: "index_parameters_on_name"
+  add_index "parameters", ["name"], name: "index_parameters_on_name", using: :btree
 
   create_table "parameters_lists", force: true do |t|
     t.integer  "playground_id"
@@ -348,8 +381,36 @@ ActiveRecord::Schema.define(version: 20140213074611) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["login"], name: "index_users_on_login", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "values", force: true do |t|
+    t.integer  "playground_id"
+    t.integer  "values_list_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "value_code"
+    t.string   "value_caption"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "values_lists", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.integer  "owner_id"
+    t.string   "table_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "software_id"
+    t.string   "software_name"
+  end
 
 end

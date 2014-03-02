@@ -38,7 +38,7 @@ class ParametersListsController < ApplicationController
 
     respond_to do |format|
       if @parameters_list.save
-        format.html { redirect_to @parameters_list, notice: 'Lists of parameter was successfully created.' }
+        format.html { redirect_to @parameters_list, notice: 'List of parameters was successfully created.' }
         format.json { render action: 'show', status: :created, location: @parameters_list }
       else
         format.html { render action: 'new' }
@@ -54,7 +54,7 @@ class ParametersListsController < ApplicationController
     @parameters_list.updated_by = current_user.login
     respond_to do |format|
       if @parameters_list.update(parameters_list_params)
-        format.html { redirect_to @parameters_list, notice: 'Lists of parameter was successfully updated.' }
+        format.html { redirect_to @parameters_list, notice: 'List of parameters was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
