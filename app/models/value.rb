@@ -28,7 +28,7 @@ class Value < ActiveRecord::Base
 	validates :value_code, length: { maximum: 100 }
 	validates :value_caption, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :description, length: { maximum: 1000 }
+	validates :description, presence:true, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true

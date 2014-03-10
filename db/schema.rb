@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302150319) do
+ActiveRecord::Schema.define(version: 20140302152949) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -168,16 +168,17 @@ ActiveRecord::Schema.define(version: 20140302150319) do
     t.string   "source_table"
     t.string   "source_value_id"
     t.string   "source_code"
-    t.string   "source_catpion"
     t.string   "target_software"
     t.string   "target_table"
     t.string   "target_value_id"
     t.string   "target_code"
-    t.string   "target_catpion"
     t.string   "created_by"
     t.string   "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source_caption"
+    t.string   "target_caption"
+    t.integer  "owner_id"
   end
 
   create_table "mappings_lists", force: true do |t|

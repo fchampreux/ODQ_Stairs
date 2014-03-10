@@ -39,6 +39,7 @@ class ValuesList < ActiveRecord::Base
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"	# helps retrieving the status name
         has_many :values
+        has_many :mappings_lists
 
 ### private functions definitions
   private

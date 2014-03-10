@@ -74,13 +74,14 @@ if Territory.count == 0
 end
 
 puts "Seeding parameters lists"
-if Parameter.count==0
+if ParametersList.count==0
   puts "Initialising parameters lists"
   ParametersList.create(playground_id: 1, name: 'List of statuses', description: 'This list contains statuses allowed values', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of rules types', description: 'This list contains allowed rules types', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of display parameters', description: 'This list contains display settings for users', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: true, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of rules complexity', description: 'This list contains allowed values for rules complexity', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of rules severity', description: 'This list contains allowed values for rules severity', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
+  ParametersList.create(playground_id: 1, name: 'List of managed softwares', description: 'This list contains softwares whom business rules are monitored', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
 end
 
 puts "Seeding parameters"
@@ -111,6 +112,30 @@ if Parameter.count==0
   Parameter.create(playground_id: 1,  name: '1-Enhancement required', param_value: 1, description: 'Enhancement must to be planned', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 5)
   Parameter.create(playground_id: 1,  name: '2-Correction mandatory', param_value: 2, description: 'Urgent correction is expected', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 5)
   Parameter.create(playground_id: 1,  name: '3-Blocking', param_value: 3, description: 'Fix before continuing', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 5)
+  Parameter.create(playground_id: 1,  name: 'Oracle Applications', param_value: 1, description: 'Oracle Applications ERP version 12.3', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
+  Parameter.create(playground_id: 1,  name: 'Siebel CRM', param_value: 2, description: 'Oracle Siebel CRM Application', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
+  Parameter.create(playground_id: 1,  name: 'Global logistics', param_value: 3, description: 'Cloud logistic provider', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
+end
+
+puts "Seeding values lists"
+if ValuesList.count==0
+  puts "Initialising values lists"
+  ValuesList.create(playground_id: 1, name: 'Source drop down', description: 'This list contains source values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
+  ValuesList.create(playground_id: 1, name: 'Target drop down', description: 'This list contains target values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
+end
+
+puts "Seeding values"
+if Value.count==0
+  puts "Initialising values"
+  Value.create(playground_id: 1, values_list_id: 1, name: 'Source test 1', value_code: '1', value_caption: 'SRC TEST 1', description: 'Test value 1', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 1, name: 'Source test 2', value_code: '2', value_caption: 'SRC TEST 2', description: 'Test value 2', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 1, name: 'Source test 3', value_code: '3', value_caption: 'SRC TEST 3', description: 'Test value 3', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 1, name: 'Source test 4', value_code: '4', value_caption: 'SRC TEST 4', description: 'Test value 4', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 2, name: 'Target test A', value_code: 'A', value_caption: 'TRG TEST A', description: 'Test value A', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 2, name: 'Target test B', value_code: 'B', value_caption: 'TRG TEST B', description: 'Test value B', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 2, name: 'Target test C', value_code: 'C', value_caption: 'TRG TEST C', description: 'Test value C', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 2, name: 'Target test D', value_code: 'D', value_caption: 'TRG TEST D', description: 'Test value D', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  Value.create(playground_id: 1, values_list_id: 2, name: 'Target test E', value_code: 'E', value_caption: 'TRG TEST E', description: 'Test value E', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
 end
 
 puts "Seeding business areas"

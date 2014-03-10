@@ -39,7 +39,7 @@ class ValuesController < ApplicationController
 
     respond_to do |format|
       if @value.save
-        format.html { redirect_to @value , notice: 'Value was successfully created.' }
+        format.html { redirect_to @value.values_list , notice: 'Value was successfully created.' }
         format.json { render action: 'show', status: :created, location: @value }
       else
         format.html { render action: 'new' }
@@ -56,7 +56,7 @@ class ValuesController < ApplicationController
 
     respond_to do |format|
       if @value.update(value_params)
-        format.html { redirect_to @value , notice: 'Value was successfully updated.' }
+        format.html { redirect_to @value.values_list , notice: 'Value was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -68,9 +68,8 @@ class ValuesController < ApplicationController
   # DELETE /values/1
   # DELETE /values/1.json
   def destroy
-      @value.active_to = DateTime.now
-      @value.save
-      redirect_to values_path
+      redirect_to @value.values_list, notice: 'Value was deleted.'
+      @value.destroy
   end
 
 ### private functions definitions

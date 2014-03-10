@@ -7,7 +7,7 @@
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_value_path(@value) %> |</li>
     <li><%= link_to 'Up', @value.values_list %> |</li>
-    <li><%= link_to 'Destroy', @value, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to 'Destroy', @value, confirm: 'Value will be deleted. Are you sure?', method: :delete %></li>
   </ul>
 
       <div class="row">

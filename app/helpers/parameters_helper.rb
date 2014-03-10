@@ -60,4 +60,10 @@ module ParametersHelper
     @myparam.param_value
   end
 
+# retrieve the list of managed softwares
+  def set_softwares_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_MANAGED_SOFTWARES').take!
+    @softwares_list = Parameter.where("parameters_list_id=? AND ? BETWEEN active_from AND active_to", list_id, Time.now )
+  end
+
 end

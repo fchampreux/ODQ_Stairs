@@ -1,0 +1,33 @@
+<% provide(:title, 'Managing mappings lists') %>
+
+<h1>Lists mappings lists</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>Owner</th>
+      <th>Source list</th>
+      <th>Target list</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mappings_list.each do |mappings_list| %>
+      <tr>
+        <td><%= link_to mappings_list.name, mappings_list %></td>
+        <td><%= mappings_list.description %></td>
+        <td><%= mappings_list.code %></td>
+        <td><%= mappings_list.owner.login %></td>
+        <td><%= link_to @mappings_list.source_list.name, @mappings_list.source_list>
+        <td><%= link_to @mappings_list.target_list.name, @mappings_list.target_list>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New List of mappings', new_mappings_list_path %>

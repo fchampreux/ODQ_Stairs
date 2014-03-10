@@ -29,7 +29,7 @@ class Parameter < ActiveRecord::Base
 	validates :param_code, length: { maximum: 100 }
 	validates :param_value, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :description, length: { maximum: 1000 }
+	validates :description, presence: true, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :active_from, presence: true

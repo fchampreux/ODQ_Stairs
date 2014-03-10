@@ -7,7 +7,7 @@
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_parameter_path(@parameter) %> |</li>
     <li><%= link_to 'Up', @parameter.parameters_list %> |</li>
-    <li><%= link_to 'Destroy', @parameter, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to 'Destroy', @parameter, confirm: 'Parameter will be inactivated. Are you sure?', method: :delete %></li>
   </ul>
 
       <div class="row">

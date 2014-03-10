@@ -39,7 +39,7 @@ class ParametersController < ApplicationController
 
     respond_to do |format|
       if @parameter.save
-        format.html { redirect_to @parameter , notice: 'Parameter was successfully created.' }
+        format.html { redirect_to @parameter.parameters_list , notice: 'Parameter was successfully created.' }
         format.json { render action: 'show', status: :created, location: @parameter }
       else
         format.html { render action: 'new' }
@@ -56,7 +56,7 @@ class ParametersController < ApplicationController
 
     respond_to do |format|
       if @parameter.update(parameter_params)
-        format.html { redirect_to @parameter , notice: 'Parameter was successfully updated.' }
+        format.html { redirect_to @parameter.parameters_list , notice: 'Parameter was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,7 +70,7 @@ class ParametersController < ApplicationController
   def destroy
       @parameter.active_to = DateTime.now
       @parameter.save
-      redirect_to parameters_path
+      redirect_to @parameter.parameters_list, notice: 'Parameter was successfully inactivated.' 
   end
 
 ### private functions definitions

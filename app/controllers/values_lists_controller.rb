@@ -5,6 +5,9 @@ class ValuesListsController < ApplicationController
 # Retrieve current list
   before_action :set_values_list, only: [:show, :edit, :update, :destroy]
 
+# Retrieve the list of managed softwares
+  before_action :set_softwares_list
+
   # GET /values_list
   # GET /values_list.json
   def index
@@ -84,7 +87,6 @@ class ValuesListsController < ApplicationController
     def set_values_list
       @values_list = ValuesList.pgnd(current_playground).find(params[:id])
     end
-
 
     # Never trust values from the scary internet, only allow the white list through.
     def values_list_params
