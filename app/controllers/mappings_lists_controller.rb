@@ -2,8 +2,11 @@ class MappingsListsController < ApplicationController
 # Check for active session  
   before_action :signed_in_user
 
-# Retrieve current list
+# Retrieve current current mapping
   before_action :set_mappings_list, only: [:show, :edit, :update, :destroy]
+  
+# Retrieve all lists of values
+  before_action :set_values_lists
 
   # GET /mappings_list
   # GET /mappings_list.json
@@ -85,6 +88,10 @@ class MappingsListsController < ApplicationController
       @mappings_list = MappingsList.pgnd(current_playground).find(params[:id])
     end
 
+    # retrieve the list of values lists
+    def set_values_lists
+      @lists_of_values = ValuesList.all
+    end 
 
     # Never trust mappings from the scary internet, only allow the white list through.
     def mappings_list_params

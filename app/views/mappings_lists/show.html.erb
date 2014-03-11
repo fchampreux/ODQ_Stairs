@@ -10,20 +10,6 @@
 
 <!-- <p id="notice"><%= notice %></p> -->
 
-#  id             :integer          not null, primary key
-#  playground_id  :integer
-#  code           :string(255)
-#  name           :string(255)
-#  description    :text
-#  created_by     :string(255)
-#  updated_by     :string(255)
-#  owner_id       :integer
-#  source_list_id :integer
-#  target_list_id :integer
-#  created_at     :datetime
-#  updated_at     :datetime
-#
-
       <div class="row">
         <div class="span2 text-right">Name:
         </div>
@@ -47,13 +33,13 @@
       </div>
 
       <div class="row">
-        <div class="span2"> Source list:
+        <div class="span2 text-right"> Source list:
         </div>
-        <div class="span3"> <%= link_to @mappings_list.source_list.name, @mappings_list.source_list>
+        <div class="span2"> <%= link_to @mappings_list.source_list.name, @mappings_list.source_list %>
         </div>
-        <div class="span2"> Target list:
+        <div class="span2 text-right"> Target list:
         </div>
-        <div class="span3"> <%= link_to @mappings_list.target_list.name, @mappings_list.target_list>
+        <div class="span2"> <%= link_to @mappings_list.target_list.name, @mappings_list.target_list %>
         </div>
       </div>
 
@@ -99,12 +85,12 @@
       <th>Code</th>
       <th>Table</th>
       <th>Software</th>
-      <th>Created by</th>
       <th>Updated by</th>
+      <th>Updated at</th>
         </tr>
         <% @mappings_list.mappings.each do |mapping| %>
         <tr align="left">
-        <td><%= link_to mapping.source_software, mapping %></td>
+        <td><%= mapping.source_software %></td>
         <td><%= mapping.source_table %></td>
         <td><%= mapping.source_code %></td>
         <td><%= mapping.source_caption %></td>
@@ -112,8 +98,8 @@
         <td><%= mapping.target_code %></td>
         <td><%= mapping.target_table %></td>
         <td><%= mapping.target_software %></td>
-        <td><%= mapping.created_by %></td>
         <td><%= mapping.updated_by %></td>
+        <td><%= mapping.updated_at %></td>
         </tr>
         <% end%>
       </table>

@@ -25,8 +25,12 @@ class MappingsList < ActiveRecord::Base
 ### before filter
   before_create :set_code
 
+### after filter
+  after_create :set_mappings
+
 ### validation
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+#	validates :code, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
@@ -34,7 +38,6 @@ class MappingsList < ActiveRecord::Base
         belongs_to :playground
 	validates :playground, presence: true							# validates that the playground exists
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
-	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"		# helps retrieving the status name
         belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
         belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name
         has_many :mappings
@@ -44,7 +47,14 @@ class MappingsList < ActiveRecord::Base
 
   ### before filters
     def set_code 
-      self.code = "#{source_list_id.code}_TO_#{target_list_id.code}"
+      self.code = "#{source_list.code}_TO_#{target_list.code}"
     end 
 
+  ### after filters
+    def set_mappings
+      self.source_list.values.each do |mapping_value|
+        self.mappings.build(:playground_id => self.playground_id, :source_software => mapping_value.values_list.software_name, :source_table => mapping_value.values_list.table_name, :source_code => mapping_value.value_code, :source_caption => mapping_value.value_caption, :target_software => self.target_list.software_name, :target_table => self.target_list.table_name, :created_by => self.created_by, :updated_by => self.updated_by)
+      end
+    end
+   
 end

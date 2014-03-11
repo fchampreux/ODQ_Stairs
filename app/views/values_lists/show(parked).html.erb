@@ -74,7 +74,15 @@
         </div>
       </div>
 
-<!-- Linked Values -->
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Values</a></li>
+      <li><a href="#tab2" data-toggle="tab">Mappings</a></li>
+    </ul>
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="tab1">
+<!-- Tab content for Values -->
 
       <table class="table table-striped table-condensed">
         <tr align="left">
@@ -99,4 +107,37 @@
 
       <%= link_to "Add value", new_values_list_value_path(@values_list) %>
 
+    </div>
+    <div class="tab-pane" id="tab2">
+<!-- Tab content for Mappings -->
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>Owner</th>
+      <th>Source list</th>
+      <th>Target list</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @values_list.mappings_lists.each do |mappings_list| %>
+      <tr>
+        <td><%= link_to mappings_list.name, mappings_list %></td>
+        <td><%= mappings_list.description %></td>
+        <td><%= mappings_list.code %></td>
+        <td><%= mappings_list.owner.login %></td>
+        <td><%= link_to @mappings_list.source_list.name, @mappings_list.source_list%>
+        <td><%= link_to @mappings_list.target_list.name, @mappings_list.target_list%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+</div>
 

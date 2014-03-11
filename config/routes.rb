@@ -22,10 +22,16 @@ ODQStep1::Application.routes.draw do
 
   resources :values_lists do
       resources :values
+      resources :mappings_lists
   end
 
   resources :values
 
+  resources :mappings_lists do
+      resources :mappings
+  end
+
+  resources :mappings
 
   resources :business_areas do
       resources :business_flows, :only=>[:new, :create]

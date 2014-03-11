@@ -37,7 +37,7 @@ class ValuesList < ActiveRecord::Base
         belongs_to :playground
 	validates :playground, presence: true						# validates that the playground exists
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
-	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"	# helps retrieving the status name
+	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"	# helps retrieving the software name
         has_many :values
         has_many :mappings_lists
 
@@ -47,6 +47,7 @@ class ValuesList < ActiveRecord::Base
   ### before filters
     def set_code 
       self.code = name.gsub(/[^0-9A-Za-z]/, '_').upcase
+      self.software_name = self.software.name
     end 
 
 end
