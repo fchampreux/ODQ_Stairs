@@ -90,7 +90,7 @@
         </tr>
         <% @mappings_list.mappings.each do |mapping| %>
         <tr align="left">
-        <td><%= mapping.source_software %></td>
+        <td><%= link_to mapping.source_software, mapping %></td>
         <td><%= mapping.source_table %></td>
         <td><%= mapping.source_code %></td>
         <td><%= mapping.source_caption %></td>

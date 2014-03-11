@@ -39,7 +39,7 @@ class MappingsController < ApplicationController
 
     respond_to do |format|
       if @mapping.save
-        format.html { redirect_to @mapping , notice: 'Mapping was successfully created.' }
+        format.html { redirect_to @mapping.mappings_list , notice: 'Mapping was successfully created.' }
         format.json { render action: 'show', status: :created, location: @mapping }
       else
         format.html { render action: 'new' }
@@ -56,7 +56,7 @@ class MappingsController < ApplicationController
 
     respond_to do |format|
       if @mapping.update(mapping_params)
-        format.html { redirect_to @mapping , notice: 'Mapping was successfully updated.' }
+        format.html { redirect_to @mapping.mappings_list , notice: 'Mapping was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -68,9 +68,9 @@ class MappingsController < ApplicationController
   # DELETE /mappings/1
   # DELETE /mappings/1.json
   def destroy
-      @mapping.active_to = DateTime.now
-      @mapping.save
-      redirect_to mappings_path
+      redirect_to @mapping.mappings_list, notice: 'Mapping was deleted.'
+      @mapping.destroy
+
   end
 
 ### private functions definitions
