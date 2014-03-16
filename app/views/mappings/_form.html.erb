@@ -1,19 +1,9 @@
-<%= form_for [@mappings_list, @mapping] do |f| %>
-  <% if @mapping.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mapping.errors.count, "error") %> prohibited this mapping from being saved:</h2>
+<%= form_for (@mappings_list) do |f| %>
 
-      <ul>
-      <% @mapping.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<!-- Layout with master mappings_list data heading -->
 
       <div class="row">
-        <div class="span6 text-center"> <h3> SOURCE </h3> 
+        <div class="span4 text-center"> <h3> SOURCE </h3> 
         </div>
         <div class="span2 text-center"> <h3> TARGET </h3> 
         </div>
@@ -22,35 +12,49 @@
       <div class="row">
         <div class="span2 text-center"> Software  
         </div>
-        <div class="span3 field"> <%= f.text_field :source_software %>
-        </div>
-        <div class="span3 offset1 field"> <%= f.text_field :target_software %>
-        </div>   
-      </div>
-
-      <div class="row">
         <div class="span2 text-center"> Table  
         </div>
-        <div class="span3 field"> <%= f.text_field :source_table %>
+        <div class="span2 text-center"> Table  
         </div>
-        <div class="span3 offset1 field"> <%= f.text_field :target_table %>
-        </div>   
+        <div class="span2 text-center"> Software  
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-center"> <%= @mappings_list.source_list.software_name %>  
+        </div>
+        <div class="span2 text-center"> <%= @mappings_list.source_list.table_name %>     
+        </div>
+        <div class="span2 text-center"> <%= @mappings_list.target_list.table_name %>    
+        </div>
+        <div class="span2 text-center"> <%= @mappings_list.target_list.software_name %>     
+        </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-center"> Code and value  
+        <div class="span2 text-center"> Code  
         </div>
-        <div class="span2 field"> <%= f.text_field :source_code %>
+        <div class="span2 text-center"> Value  
         </div>
-        <div class="span2 field"> <%= f.text_field :source_caption %>
-        </div>   
-        <div class="span2 field"> <%= f.text_field :target_caption %>
+        <div class="span2 text-center"> Value  
         </div>
-        <div class="span2 field"> <%= f.text_field :target_code  %>
-        </div> 
+        <div class="span2 text-center"> Code  
+        </div>
       </div>
 
-      <hr/>
+<!-- Loop with details mappings data to update -->
+
+        <% fields_for :mappings do |m| %>
+          <div class="row">
+            <div class="span2 field"> <%= m.text_field :source_code, :disabled => true %>
+            </div>
+            <div class="span2 field"> <%= m.text_field :source_caption, :disabled => true %>
+            </div>   
+            <div class="span2 field"> <%= m.collection_select :target_caption, @target_values, :value_caption, :value_caption %>
+            </div>
+          </div>
+          <hr/>
+        <% end %>
+
 
   <div class="actions">
     <%= f.submit %>

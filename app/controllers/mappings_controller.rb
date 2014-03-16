@@ -3,7 +3,13 @@ class MappingsController < ApplicationController
   before_action :signed_in_user
 
 # Retrieve current mapping
-  before_action :set_mapping, only: [:show, :edit, :update, :destroy]
+# before_action :set_mapping, only: [:show, :edit, :update, :destroy]
+
+# Retrieve current mappings batch
+#  before_action :set_mappings_batch, only: [:edit, :update]
+
+# Retrieve target values list
+  before_action :set_target_values, only: [:edit, :update]
 
   # GET /mappings
   # GET /mappings.json
@@ -25,7 +31,9 @@ class MappingsController < ApplicationController
 
   # GET /mappings/1/edit
   def edit
-    ### Retrieved by Callback function
+    @mappings_list = MappingsList.find(params[:id])
+    @mappings_batch = Array(@mappings_list.mappings.each)
+
   end
 
   # POST /mappings
@@ -81,6 +89,18 @@ class MappingsController < ApplicationController
     # retrieve current mapping for edit or destroy actions
     def set_mapping
       @mapping = Mapping.pgnd(current_playground).find(params[:id])
+    end
+=begin
+    # Retrieve current mappings batch
+    def set_mappings_batch
+      @mappings_list = MappingsList.find(params[:id])
+      @mappings = @mappings_list.mappings
+    end
+=end
+    # Retrieve target values list
+    def set_target_values
+      @mappings_list = MappingsList.find(params[:id])
+      @target_values = @mappings_list.target_list.values
     end
 
   ### before filters

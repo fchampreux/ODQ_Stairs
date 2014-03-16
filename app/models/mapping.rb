@@ -31,7 +31,7 @@ class Mapping < ActiveRecord::Base
 ### before filter
 
 ### validation
-=begin
+
 	validates :source_software  , presence: true, length: { maximum: 100 }
 	validates :source_table     , presence: true, length: { maximum: 100 }
 	validates :source_code      , presence: true, length: { maximum: 100 }
@@ -42,7 +42,7 @@ class Mapping < ActiveRecord::Base
 	validates :target_caption   , presence: true, length: { maximum: 100 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
-=end
+
 	validates :playground_id, presence: true
         belongs_to :playground
 	validates :playground, presence: true						# validates that the playground exists

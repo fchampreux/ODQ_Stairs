@@ -26,7 +26,7 @@ class MappingsList < ActiveRecord::Base
   before_create :set_code
 
 ### after filter
-  after_create :set_mappings
+  after_create :build_mappings
 
 ### validation
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
@@ -41,6 +41,7 @@ class MappingsList < ActiveRecord::Base
         belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
         belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name
         has_many :mappings
+        accepts_nested_attributes_for :mappings
 
 ### private functions definitions
   private
@@ -51,7 +52,7 @@ class MappingsList < ActiveRecord::Base
     end 
 
   ### after filters
-    def set_mappings
+    def build_mappings
       self.source_list.values.each do |mapping_value|
         self.mappings.build(:playground_id => self.playground_id, :source_software => mapping_value.values_list.software_name, :source_table => mapping_value.values_list.table_name, :source_code => mapping_value.value_code, :source_caption => mapping_value.value_caption, :target_software => self.target_list.software_name, :target_table => self.target_list.table_name, :created_by => self.created_by, :updated_by => self.updated_by)
       end
