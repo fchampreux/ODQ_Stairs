@@ -1,0 +1,56 @@
+<%= form_for (@mappings_list) do |f| %>
+
+  <% if @mappings_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mappings_list.errors.count, "error") %> prohibited this mappings_list from being saved:</h2>
+
+      <ul>
+      <% @mappings_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span6 field"><%= f.text_field :name, :class => "span6" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Description:
+        </div>
+        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        </div>
+      </div>
+
+<!-- Loop with details mappings data to update -->
+
+      <table class="table table-striped table-condensed">
+        <tr align="left">
+      <th>Software</th>
+      <th>Table</th>
+      <th>Value</th>
+      <th>Value</th>
+      <th>Table</th>
+      <th>Software</th>
+        </tr>
+        <%= f.fields_for :mappings do |m| %>
+        <tr align="left">
+        <td><%= m.text_field :source_software, :readonly => true %></td>
+        <td><%= m.text_field :source_table, :readonly => true %></td>
+        <td><%= m.text_field :source_caption, :readonly => true %></td>
+        <td><%= m.collection_select :target_caption, @target_values, :value_caption, :value_caption %></td>
+        <td><%= m.text_field :target_table, :readonly => true %></td>
+        <td><%= m.text_field :target_software, :readonly => true %></td>
+        </tr>
+        <% end%>
+      </table>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

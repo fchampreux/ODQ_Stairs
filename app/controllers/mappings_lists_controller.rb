@@ -8,6 +8,9 @@ class MappingsListsController < ApplicationController
 # Retrieve all lists of values
   before_action :set_values_lists
 
+# Retrieve target values list
+  before_action :set_target_values, only: [:edit, :update]
+
   # GET /mappings_list
   # GET /mappings_list.json
   def index
@@ -92,6 +95,12 @@ class MappingsListsController < ApplicationController
     def set_values_lists
       @lists_of_values = ValuesList.all
     end 
+
+    # Retrieve target values list
+    def set_target_values
+      @mappings_list = MappingsList.find(params[:id])
+      @target_values = @mappings_list.target_list.values
+    end
 
     # Never trust mappings from the scary internet, only allow the white list through.
     def mappings_list_params
