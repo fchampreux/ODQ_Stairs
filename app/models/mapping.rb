@@ -29,6 +29,7 @@ class Mapping < ActiveRecord::Base
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
 ### before filter
+before_save :retrieve_target_caption
 
 ### validation
 
@@ -39,7 +40,7 @@ class Mapping < ActiveRecord::Base
 	validates :target_software  , presence: true, length: { maximum: 100 }
 	validates :target_table     , presence: true, length: { maximum: 100 }
 	validates :target_code      , presence: true, length: { maximum: 100 }
-	validates :target_caption   , presence: true, length: { maximum: 100 }
+#	validates :target_caption   , presence: true, length: { maximum: 100 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 
@@ -51,7 +52,12 @@ class Mapping < ActiveRecord::Base
 
 ### private functions definitions
   private
-
+  
+  def retrieve_target_caption
+  current_list = self.mappings_list.target_list
+  current_value = current_list.values.where("value_code = ?", self.target_code).take!
+  self.target_caption = current_value.value_caption
+  end
 
 end
 

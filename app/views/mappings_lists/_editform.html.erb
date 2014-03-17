@@ -42,7 +42,7 @@
         <td><%= m.text_field :source_software, :readonly => true %></td>
         <td><%= m.text_field :source_table, :readonly => true %></td>
         <td><%= m.text_field :source_caption, :readonly => true %></td>
-        <td><%= m.collection_select :target_caption, @target_values, :value_caption, :value_caption %></td>
+        <td><%= m.collection_select :target_code, @target_values, :value_code, :value_caption %></td>
         <td><%= m.text_field :target_table, :readonly => true %></td>
         <td><%= m.text_field :target_software, :readonly => true %></td>
         </tr>

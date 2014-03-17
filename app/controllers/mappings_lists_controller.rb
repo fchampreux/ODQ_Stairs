@@ -58,6 +58,7 @@ class MappingsListsController < ApplicationController
   def update
     ### Retrieved by Callback function
     @mappings_list.updated_by = current_user.login
+    @mappings  = @mappings_list.mappings.all
     respond_to do |format|
       if @mappings_list.update(mappings_list_params)
         format.html { redirect_to @mappings_list, notice: 'List of mappings was successfully updated.' }
@@ -104,6 +105,6 @@ class MappingsListsController < ApplicationController
 
     # Never trust mappings from the scary internet, only allow the white list through.
     def mappings_list_params
-      params.require(:mappings_list).permit(:name, :description, :source_list_id, :target_list_id)
+      params.require(:mappings_list).permit(:name, :description, :source_list_id, :target_list_id, mappings_attributes: [:target_code, :target_caption, :id])
     end
 end
