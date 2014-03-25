@@ -40,7 +40,7 @@ class MappingsList < ActiveRecord::Base
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
         belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
         belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name
-        has_many :mappings
+        has_many :mappings, :dependent => :destroy
         accepts_nested_attributes_for :mappings
 
 ### private functions definitions

@@ -31,7 +31,7 @@ class ParametersList < ActiveRecord::Base
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
-        has_many :parameters
+        has_many :parameters, :dependent => :destroy 
 
 ### private functions definitions
   private

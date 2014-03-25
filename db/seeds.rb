@@ -120,8 +120,8 @@ end
 puts "Seeding values lists"
 if ValuesList.count==0
   puts "Initialising values lists"
-  ValuesList.create(playground_id: 1, name: 'Source drop down', description: 'This list contains source values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, software_id: 27)
-  ValuesList.create(playground_id: 1, name: 'Target drop down', description: 'This list contains target values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, software_id: 28)
+  ValuesList.create(playground_id: 1, name: 'Source drop down', description: 'This list contains source values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, software_id: 27, table_name: 'SOURCE_OPTIONS')
+  ValuesList.create(playground_id: 1, name: 'Target drop down', description: 'This list contains target values for testing purposes', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, software_id: 28, table_name: 'TARGET_OPTIONS')
 end
 
 puts "Seeding values"
