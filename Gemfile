@@ -20,8 +20,18 @@ end
 
 # gem for dev and test only
 group :development, :test do
-#  gem 'sqlite3', :require => 'sqlite3'
   gem 'pg'
+  gem 'annotate', '2.5.0'
+  gem 'rspec-rails', '2.14.0'
+  gem 'selenium-webdriver', '2.33.0'
+  gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '4.2.0'
+end
+
+# gem for SQLServer POC
+group :POC_SQLServer do
+  gem 'tiny_tds'
+  gem 'activerecord-sqlserver-adapter', git: 'git@github.com:nextgearcapital/activerecord-sqlserver-adapter.git', :branch => "rails-4"
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
   gem 'selenium-webdriver', '2.33.0'

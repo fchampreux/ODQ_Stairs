@@ -30,4 +30,14 @@ production:
 #  schema_search_path: "odq_info"
   pool: 5
 
+# Ms SQL
+POC_SQLServer:
+  host: localhost 
+  adapter: sqlserver
+  encoding: unicode
+  mode: :dblib
+  database: odq
+  username: odq_app
+  password: odq_app
+
 
