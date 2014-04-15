@@ -30,8 +30,8 @@ end
 
 # gem for SQLServer POC
 group :POC_SQLServer do
-  gem 'tiny_tds'
-  gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => "git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git"
+#  gem 'tiny_tds'
+#  gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => "git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git"
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
   gem 'selenium-webdriver', '2.33.0'

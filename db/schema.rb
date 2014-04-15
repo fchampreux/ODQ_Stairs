@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302152949) do
+ActiveRecord::Schema.define(version: 20140414083349) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -193,6 +193,42 @@ ActiveRecord::Schema.define(version: 20140302152949) do
     t.integer  "target_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "odq_facts", force: true do |t|
+    t.integer  "playground_id"
+    t.integer  "business_object_id"
+    t.integer  "organisation_id"
+    t.integer  "territory_id"
+    t.decimal  "scope_number"
+    t.decimal  "rule_number"
+    t.decimal  "error_number"
+    t.decimal  "whitelist_number"
+    t.integer  "period_id"
+    t.string   "pk_values"
+    t.string   "record_created_by"
+    t.datetime "record_created_at"
+    t.string   "record_updated_by"
+    t.datetime "record_updated_at"
+    t.datetime "first_time_right"
+    t.string   "first_user_right"
+    t.datetime "last_time_wrong"
+    t.string   "last_user_wrong"
+    t.string   "data_values"
+    t.string   "updated_values"
+    t.text     "observation"
+    t.integer  "editor_id"
+    t.datetime "edited_at"
+    t.integer  "approver_id"
+    t.datetime "approved_at"
+    t.integer  "corrector_id"
+    t.datetime "corrected_at"
+    t.string   "record_status"
+    t.string   "created_by"
+    t.datetime "created_at"
+    t.string   "updated_by"
+    t.datetime "updated_at"
+    t.integer  "process_id"
   end
 
   create_table "organisations", force: true do |t|
