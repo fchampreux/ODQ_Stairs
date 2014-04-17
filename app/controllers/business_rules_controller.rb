@@ -2,7 +2,7 @@ class BusinessRulesController < ApplicationController
 # Check for active session 
   before_action :signed_in_user
 
-# Retrieve current business object
+# Retrieve current business rule
   before_action :set_business_rule, only: [:show, :edit, :update, :destroy]
 
 # Create the list of statuses to be used in the form
@@ -12,7 +12,7 @@ class BusinessRulesController < ApplicationController
   before_action :set_rule_types_list, only: [:new, :edit, :update, :create]
 
 # Create the list of business objects to be used in the form
-  before_action :set_business_objects_list, only: [:new, :edit, :update, :create]
+  before_action :set_business_objects_list, only: [:new, :edit]
 
 # Create the list of severity to be used in the form
   before_action :set_severity_list, only: [:new, :edit, :update, :create]
@@ -105,14 +105,18 @@ class BusinessRulesController < ApplicationController
   private
 
   ### Use callbacks to share common setup or constraints between actions.
-    # Retrieve current business flow
+    # Retrieve current business rule
     def set_business_rule
       @business_rule = BusinessRule.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
 
     # Retrieve business objects list
     def set_business_objects_list
-      my_business_area = BusinessProcess.find(params[:business_process_id]).business_flow.business_area_id
+      if action_name == 'edit'
+        my_business_area = @business_rule.business_process.business_flow.business_area_id
+      else
+        my_business_area = BusinessProcess.find(params[:business_process_id]).business_flow.business_area_id
+      end
       @business_objects_list = BusinessObject.where("business_area_id = ?", my_business_area)
     end
 
