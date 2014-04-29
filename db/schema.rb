@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414083349) do
+ActiveRecord::Schema.define(version: 20140429082835) do
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -196,6 +196,8 @@ ActiveRecord::Schema.define(version: 20140414083349) do
   end
 
   create_table "odq_facts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "playground_id"
     t.integer  "business_object_id"
     t.integer  "organisation_id"
@@ -225,9 +227,7 @@ ActiveRecord::Schema.define(version: 20140414083349) do
     t.datetime "corrected_at"
     t.string   "record_status"
     t.string   "created_by"
-    t.datetime "created_at"
     t.string   "updated_by"
-    t.datetime "updated_at"
     t.integer  "process_id"
   end
 
@@ -289,6 +289,29 @@ ActiveRecord::Schema.define(version: 20140414083349) do
     t.datetime "updated_at",  null: false
     t.integer  "status_id"
     t.integer  "owner_id"
+  end
+
+  create_table "requests", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "current_values"
+    t.text     "proposed_values"
+    t.integer  "business_rule_id"
+    t.integer  "record_id"
+    t.integer  "object_type_id"
+    t.integer  "object_id"
+    t.integer  "status_id"
+    t.integer  "requested_by_id"
+    t.integer  "requested_to_id"
+    t.date     "opened_at"
+    t.date     "expected_at"
+    t.date     "closed_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requests_type_id"
   end
 
   create_table "roles", force: true do |t|
