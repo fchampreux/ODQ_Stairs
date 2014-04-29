@@ -60,8 +60,14 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :severity, :class_name => "Parameter", :foreign_key => "severity_id"		# helps retrieving the severity grade
 	belongs_to :complexity, :class_name => "Parameter", :foreign_key => "complexity_id"	# helps retrieving the complexity grade
 	belongs_to :business_object								# helps retrieving the target business object
-
 	belongs_to :business_process
+	has_many :odq_facts
+
+    # Retrieve records list from odq_facts
+    def bad_records
+      OdqFact.where("id = ?", self )
+    end
+
 
 ### private functions definitions
   private
