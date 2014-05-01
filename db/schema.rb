@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501074519) do
+ActiveRecord::Schema.define(version: 20140501155355) do
 
   create_table "breaches", force: true do |t|
     t.integer  "playground_id"
@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 20140501074519) do
     t.integer  "territory_id"
     t.integer  "status_id"
     t.boolean  "is_whitelisted"
-    t.integer  "requested_by_id"
-    t.integer  "requested_to_id"
     t.date     "opened_at"
     t.date     "expected_at"
     t.date     "closed_at"
@@ -37,6 +35,16 @@ ActiveRecord::Schema.define(version: 20140501074519) do
     t.datetime "updated_at"
     t.text     "pk_values"
     t.integer  "business_object_id"
+    t.integer  "responsible_id"
+    t.integer  "requestor_id"
+    t.integer  "approver_id"
+    t.datetime "approved_at"
+    t.integer  "breach_type_id"
+    t.string   "message_source"
+    t.integer  "application_id"
+    t.string   "object_name"
+    t.text     "observation"
+    t.text     "error_message"
   end
 
   create_table "business_areas", force: true do |t|

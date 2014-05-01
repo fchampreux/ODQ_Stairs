@@ -6,6 +6,12 @@ module ParametersHelper
     @statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
   end 
 
+# retrieve the list of breach statuses
+  def set_statuses_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_BREACH_STATUSES').take!
+    @breach_statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
+  end 
+
 # retrieve the list of business rules types
   def set_rule_types_list
     list_id = ParametersList.where("code=?", 'LIST_OF_RULES_TYPES').take!

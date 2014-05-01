@@ -5,19 +5,11 @@ class BusinessRulesController < ApplicationController
 # Retrieve current business rule
   before_action :set_business_rule, only: [:show, :edit, :update, :destroy]
 
-# Create the list of statuses to be used in the form
+# Create the selection lists be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
-
-# Create the list of rule types to be used in the form
   before_action :set_rule_types_list, only: [:new, :edit, :update, :create]
-
-# Create the list of business objects to be used in the form
   before_action :set_business_objects_list, only: [:new, :edit]
-
-# Create the list of severity to be used in the form
   before_action :set_severity_list, only: [:new, :edit, :update, :create]
-
-# Create the list of complexity to be used in the form
   before_action :set_complexity_list, only: [:new, :edit, :update, :create]
 
   # GET /business_rules

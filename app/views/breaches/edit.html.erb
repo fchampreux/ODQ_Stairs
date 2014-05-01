@@ -1,6 +1,15 @@
-<h1>Editing breach</h1>
+<% provide(:title, 'Managing breaches') %>
+
+  <ul class="breadcrumbs">
+    <li>> <%= link_to @breach.business_rule.business_process.business_flow.business_area.name, @breach.business_rule.business_process.business_flow.business_area %> > </li>
+    <li><%= link_to @breach.business_rule.business_process.business_flow.name, @business_rule.business_process.business_flow %> > </li>
+    <li><%= link_to @breach.business_rule.business_process.name, @business_rule.business_process %> > </li>
+    <li><%= @breach.business_rule.name %> </li>
+    <li><%= @breach.name %> </li>
+  </ul>
+
+<h1>Proposing a correction</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @breach %> |
-<%= link_to 'Back', breaches_path %>
+<%= link_to 'Back', @breach.business_rule %>

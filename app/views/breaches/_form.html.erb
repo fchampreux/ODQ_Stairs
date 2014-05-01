@@ -11,6 +11,19 @@
     </div>
   <% end %>
 
+      <div class="row">
+        <div class="span2 text-right">Name:
+        </div>
+        <div class="span2 field"><%= @breach.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Error message:
+        </div>
+        <div class="span2 field"><%= @breach.error_message %>
+        </div>
+      </div>
+
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Breach</a></li>
@@ -29,15 +42,9 @@
       <hr />
 
       <div class="row">
-        <div class="span2 text-right">Error message:
+        <div class="span2 text-right">Condition:
         </div>
-        <div class="span2 field"><%= @business_rule.description %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Test:
-        </div>
-        <div class="span2 field"><%= @business_rule.check_description %>
+        <div class="span2 field"><%= @breach.business_rule.check_description %>
         </div>
       </div>
 
@@ -45,7 +52,19 @@
       <hr />
 
       <div class="row">
+        <div class="span2 text-right">Business object:
+        </div>
+        <div class="span2 field"><%= @breach.business_object.name %>
+        </div>
+      </div>
+      <div class="row">
         <div class="span2 text-right">Primary key:
+        </div>
+        <div class="span2 field"><%= @breach.business_object.key_columns %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">
         </div>
         <div class="span2 field"><%= @breach.pk_values %>
         </div>
@@ -53,6 +72,12 @@
 
       <div class="row">
         <div class="span2 text-right">Published data:
+        </div>
+        <div class="span2 field"><%= @breach.business_object.published_columns %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Current values:
         </div>
         <div class="span2 field"><%= @breach.current_values %>
         </div>
@@ -87,12 +112,6 @@
         <div class="span2 field"><%= @breach.territory.name %>
         </div>
       </div>
-
-      <div class="row">
-        <div class="span2 text-right">Business Object:
-        </div>
-        <div class="span2 field"><%= @breach.business_object.name %>
-        </div>
 
         <div class="span2 text-right">Period:
         </div>

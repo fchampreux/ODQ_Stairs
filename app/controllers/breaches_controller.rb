@@ -1,5 +1,14 @@
 class BreachesController < ApplicationController
+# Check for active session 
+  before_action :signed_in_user
+
+# Retrieve current breach
   before_action :set_breach, only: [:show, :edit, :update, :destroy]
+
+# Create the selection lists be used in the form
+  before_action :set_responsibles_list, only: [:new, :edit, :update, :create]
+  before_action :set_approvers_list, only: [:new, :edit, :update, :create]
+  before_action :set_breach_statuses_list, only: [:new, :edit, :update, :create]
 
   # GET /breaches
   # GET /breaches.json
@@ -71,6 +80,6 @@ class BreachesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def breach_params
-      params.require(:breach).permit(:breach_type_id, :desctiption)
+      params.require(:breach).permit(:breach_type_id, :description)
     end
 end
