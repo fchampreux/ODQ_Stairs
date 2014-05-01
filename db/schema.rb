@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429082835) do
+ActiveRecord::Schema.define(version: 20140501074519) do
+
+  create_table "breaches", force: true do |t|
+    t.integer  "playground_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "current_values"
+    t.text     "proposed_values"
+    t.integer  "business_rule_id"
+    t.integer  "record_id"
+    t.integer  "period_id"
+    t.integer  "organisation_id"
+    t.integer  "territory_id"
+    t.integer  "status_id"
+    t.boolean  "is_whitelisted"
+    t.integer  "requested_by_id"
+    t.integer  "requested_to_id"
+    t.date     "opened_at"
+    t.date     "expected_at"
+    t.date     "closed_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "pk_values"
+    t.integer  "business_object_id"
+  end
 
   create_table "business_areas", force: true do |t|
     t.integer  "playground_id"
@@ -195,42 +221,6 @@ ActiveRecord::Schema.define(version: 20140429082835) do
     t.datetime "updated_at"
   end
 
-  create_table "odq_facts", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "playground_id"
-    t.integer  "business_object_id"
-    t.integer  "organisation_id"
-    t.integer  "territory_id"
-    t.decimal  "scope_number"
-    t.decimal  "rule_number"
-    t.decimal  "error_number"
-    t.decimal  "whitelist_number"
-    t.integer  "period_id"
-    t.string   "pk_values"
-    t.string   "record_created_by"
-    t.datetime "record_created_at"
-    t.string   "record_updated_by"
-    t.datetime "record_updated_at"
-    t.datetime "first_time_right"
-    t.string   "first_user_right"
-    t.datetime "last_time_wrong"
-    t.string   "last_user_wrong"
-    t.string   "data_values"
-    t.string   "updated_values"
-    t.text     "observation"
-    t.integer  "editor_id"
-    t.datetime "edited_at"
-    t.integer  "approver_id"
-    t.datetime "approved_at"
-    t.integer  "corrector_id"
-    t.datetime "corrected_at"
-    t.string   "record_status"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.integer  "process_id"
-  end
-
   create_table "organisations", force: true do |t|
     t.integer  "playground_id"
     t.string   "code"
@@ -289,29 +279,6 @@ ActiveRecord::Schema.define(version: 20140429082835) do
     t.datetime "updated_at",  null: false
     t.integer  "status_id"
     t.integer  "owner_id"
-  end
-
-  create_table "requests", force: true do |t|
-    t.integer  "playground_id"
-    t.string   "name"
-    t.text     "description"
-    t.text     "current_values"
-    t.text     "proposed_values"
-    t.integer  "business_rule_id"
-    t.integer  "record_id"
-    t.integer  "object_type_id"
-    t.integer  "object_id"
-    t.integer  "status_id"
-    t.integer  "requested_by_id"
-    t.integer  "requested_to_id"
-    t.date     "opened_at"
-    t.date     "expected_at"
-    t.date     "closed_at"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "requests_type_id"
   end
 
   create_table "roles", force: true do |t|

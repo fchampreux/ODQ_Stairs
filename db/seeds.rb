@@ -82,8 +82,6 @@ if ParametersList.count==0
   ParametersList.create(playground_id: 1, name: 'List of rules complexity', description: 'This list contains allowed values for rules complexity', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of rules severity', description: 'This list contains allowed values for rules severity', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(playground_id: 1, name: 'List of managed softwares', description: 'This list contains softwares whom business rules are monitored', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
-  ParametersList.create(playground_id: 1, name: 'List of objects types', description: 'This list contains the types of objects that are managed in ODQ. This is used to type requests qnd notifications', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
-  ParametersList.create(playground_id: 1, name: 'List of requests types', description: 'This list identifies requests types for White List, Approval, Update', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
 end
 
 puts "Seeding parameters"
@@ -117,10 +115,6 @@ if Parameter.count==0
   Parameter.create(playground_id: 1,  name: 'Oracle Applications', param_value: 1, description: 'Oracle Applications ERP version 12.3', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
   Parameter.create(playground_id: 1,  name: 'Siebel CRM', param_value: 2, description: 'Oracle Siebel CRM Application', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
   Parameter.create(playground_id: 1,  name: 'Global logistics', param_value: 3, description: 'Cloud logistic provider', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
-  Parameter.create(playground_id: 1,  name: 'Record', param_value: 1, description: 'Record managed in correction workflow', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 7)
-  Parameter.create(playground_id: 1,  name: 'Update', param_value: 1, description: 'Request for update', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
-  Parameter.create(playground_id: 1,  name: 'White list', param_value: 2, description: 'Request for update', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
-  Parameter.create(playground_id: 1,  name: 'Approval', param_value: 3, description: 'Request for update', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
 end
 
 puts "Seeding values lists"

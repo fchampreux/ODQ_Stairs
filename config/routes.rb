@@ -50,7 +50,11 @@ ODQStep1::Application.routes.draw do
 
   resources :business_objects
 
-  resources :business_rules
+  resources :business_rules do
+      resources :breaches
+  end
+
+  resources :breaches
 
   resources :users
 
@@ -65,6 +69,11 @@ ODQStep1::Application.routes.draw do
   resources :organisations do
        resources :organisations, :only=>[:new, :create]
   end
+
+  resources :records do
+       resources :update_requests, :only=>[:new, :create]
+  end
+
 
   resources :time_scales
 

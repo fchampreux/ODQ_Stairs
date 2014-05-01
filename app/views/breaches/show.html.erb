@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name</strong>
+  <%= @breach.name %>
+</p>
+
+<p>
+  <strong>Description</strong>
+  <%= @breach.description %>
+</p>
+
+<%= link_to 'Edit', edit_breach_path(@breach) %> |
+<%= link_to 'Back', breachs_path %>

@@ -1,0 +1,164 @@
+<%= form_for [@business_rule, @breach] do |f| %>
+  <% if @breach.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@breach.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @breach.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Breach</a></li>
+      <li><a href="#tab2" data-toggle="tab">Business Rule</a></li>
+      <li><a href="#tab3" data-toggle="tab">Other Business Rules</a></li>    
+      <li><a href="#tab4" data-toggle="tab">Scopes</a></li>
+      <li><a href="#tab5" data-toggle="tab">History list</a></li>    
+    </ul>
+
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="tab1">
+<!-- Tab content for Definition -->
+
+      <h4> Requirements </h4>
+      <hr />
+
+      <div class="row">
+        <div class="span2 text-right">Error message:
+        </div>
+        <div class="span2 field"><%= @business_rule.description %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2 text-right">Test:
+        </div>
+        <div class="span2 field"><%= @business_rule.check_description %>
+        </div>
+      </div>
+
+      <h4> breach </h4>
+      <hr />
+
+      <div class="row">
+        <div class="span2 text-right">Primary key:
+        </div>
+        <div class="span2 field"><%= @breach.pk_values %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Published data:
+        </div>
+        <div class="span2 field"><%= @breach.current_values %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Proposed values:
+        </div>
+        <div class="span2 field"><%= f.text_area :proposed_values %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">White list flag key:
+        </div>
+        <div class="span2 "><%= f.check_box :is_whitelisted %>
+        </div>
+      </div>
+
+
+      <h4> Dimensions </h4>
+      <hr />
+
+      <div class="row">
+        <div class="span2 text-right">Organisation:
+        </div>
+        <div class="span2 field"><%= @breach.organisation.name %>
+        </div>
+
+        <div class="span2 text-right">Territory:
+        </div>
+        <div class="span2 field"><%= @breach.territory.name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Business Object:
+        </div>
+        <div class="span2 field"><%= @breach.business_object.name %>
+        </div>
+
+        <div class="span2 text-right">Period:
+        </div>
+        <div class="span2 field"><%= @breach.period_id %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2 field"><%= @breach.breach_updated_by %>
+        </div>
+
+        <div class="span2 text-right">Updated at:
+        </div>
+        <div class="span2 field"><%= @breach.breach_updated_at %>
+        </div>
+      </div>
+
+
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane active" id="tab2">
+<!-- Tab content for Business Rule -->
+
+      <h4> Business Rule summary </h4>
+      <hr />
+
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane active" id="tab3">
+<!-- Tab content for Other Business Rules -->
+
+      <h4> Other Business Rules applying to this breach </h4>
+      <hr />
+
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane active" id="tab4">
+<!-- Tab content for Scopes -->
+
+      <h4> Scopes providing this breach </h4>
+      <hr />
+
+
+<!-- Tab content -->
+    </div>
+
+    <div class="tab-pane active" id="tab5">
+<!-- Tab content for History -->
+
+      <h4> History of change requests </h4>
+      <hr />
+
+<!-- Tab content -->
+    </div>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
