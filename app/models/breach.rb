@@ -13,7 +13,6 @@
 #  period_id          :integer
 #  organisation_id    :integer
 #  territory_id       :integer
-#  status_id          :integer
 #  is_whitelisted     :boolean
 #  opened_at          :date
 #  expected_at        :date
@@ -34,6 +33,7 @@
 #  object_name        :string(255)
 #  observation        :text
 #  error_message      :text
+#  breach_status_id   :integer
 #
 
 
@@ -46,16 +46,16 @@ class Breach < ActiveRecord::Base
 ### before filter
 
 ### validations
-	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :name, presence: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
-	validates :status_id, presence: true
+	validates :breach_status_id, presence: true
 	validates :playground_id, presence: true
 	belongs_to :requestor, :class_name => "User", :foreign_key => "requestor_id"		# helps retrieving the requestor name
 	belongs_to :responsible, :class_name => "User", :foreign_key => "responsible_id"	# helps retrieving the responible name
 	belongs_to :approver, :class_name => "User", :foreign_key => "approver_id" 		# helps retrieving the approver name
-	belongs_to :breach_status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
+	belongs_to :breach_status, :class_name => "Parameter", :foreign_key => "breach_status_id"	# helps retrieving the status name
 	belongs_to :breach_type, :class_name => "Parameter", :foreign_key => "breach_type_id"	# helps retrieving the type name
 	belongs_to :software, :class_name => "Parameter", :foreign_key => "application_id"	# helps retrieving the software name
 	belongs_to :organisation								# helps retrieving the organisation dimension name

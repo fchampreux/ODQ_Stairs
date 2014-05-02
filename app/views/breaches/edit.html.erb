@@ -4,11 +4,11 @@
     <li>> <%= link_to @breach.business_rule.business_process.business_flow.business_area.name, @breach.business_rule.business_process.business_flow.business_area %> > </li>
     <li><%= link_to @breach.business_rule.business_process.business_flow.name, @business_rule.business_process.business_flow %> > </li>
     <li><%= link_to @breach.business_rule.business_process.name, @business_rule.business_process %> > </li>
-    <li><%= @breach.business_rule.name %> </li>
+    <li><%= @breach.business_rule.name %> > </li>
     <li><%= @breach.name %> </li>
   </ul>
 
-<h1>Proposing a correction</h1>
+<h1>Handling breach: <%= @breach.name %> </h1>
 
 <%= render 'form' %>
 

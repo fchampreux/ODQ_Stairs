@@ -1,17 +1,5 @@
-# encoding: UTF-8
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
-#
-# It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20140502104112) do
+class Basis < ActiveRecord::Migration
+  def change
 
   create_table "breaches", force: true do |t|
     t.integer  "playground_id"
@@ -45,8 +33,6 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.string   "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "record_updated_by"
-    t.datetime "record_updated_at"
   end
 
   create_table "business_areas", force: true do |t|
@@ -318,8 +304,8 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "status_id"
     t.integer  "owner_id"
   end
@@ -449,4 +435,5 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.string   "software_name"
   end
 
+  end
 end

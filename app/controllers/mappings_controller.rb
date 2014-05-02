@@ -32,7 +32,7 @@ class MappingsController < ApplicationController
   # GET /mappings/1/edit
   def edit
     @mappings_list = MappingsList.find(params[:id])
-    @mappings_batch = Array(@mappings_list.mappings.each)
+    @mappings_batch = Array(@mappings_list.mappings.order(:source_caption))
 
   end
 

@@ -75,7 +75,13 @@ class BreachesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_breach
-      @breach = Breach.find(params[:id])
+      @breach = Breach.pgnd(current_playground).find(params[:id])
+    end
+
+  ### before filters
+    # Check for active session
+    def signed_in_user
+      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
