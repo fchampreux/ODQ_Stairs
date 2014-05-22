@@ -23,18 +23,34 @@
       <li class="active"><a href="#tab1" data-toggle="tab">Breach</a></li>
       <li><a href="#tab2" data-toggle="tab">Business Rule</a></li>
       <li><a href="#tab3" data-toggle="tab">Other Business Rules</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Scopes</a></li>
-      <li><a href="#tab5" data-toggle="tab">History list</a></li>    
+<!--      <li><a href="#tab4" data-toggle="tab">Scopes</a></li> -->
+      <li><a href="#tab5" data-toggle="tab">History list</a></li>
+      <li><a href="#tab6" data-toggle="tab">Ownership</a></li>    
     </ul>
 
     <div class="tab-content">
 
     <div class="tab-pane active" id="tab1">
 <!-- Tab content for Definition -->
-      <h4> Breach </h4>
+      <h4> Breached <%= @breach.breach_type.name %> </h4>
+      <div class="row">
+        <div class="span2 text-right">Status:
+        </div>
+        <div class="span2"><%= f.collection_select :breach_status_id, @breach_statuses_list, :id, :name  %>
+        </div>
+        <div class="span2 text-right">Assigned to:
+        </div>
+        <div class="span2"><%= f.collection_select :responsible_id, @responsibles_list, :id, :login  %>
+        </div>
+      </div>
+
       <hr />
 
       <div class="row">
+        <div class="span2 text-right">Application:
+        </div>
+        <div class="span6 field"><%= @breach.software.name %>
+        </div>
         <div class="span2 text-right">Business object:
         </div>
         <div class="span6 field"><%= @breach.business_object.name %>
@@ -44,40 +60,34 @@
       <div class="row">
         <div class="span2 text-right">Primary key:
         </div>
-        <div class="span6 field"><%= @breach.business_object.key_columns %>
+        <div class="span4 field"><%= @breach.business_object.key_columns %>
+        </div>
+        <div class="span2 text-right">Published data:
+        </div>
+        <div class="span4 field"><%= @breach.business_object.published_columns %>
         </div>
       </div>
 
       <div class="row">
         <div class="span2 text-right">
         </div>
-        <div class="span6 field"><%= @breach.pk_values %>
+        <div class="span4 field"><%= @breach.pk_values %>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Published data:
-        </div>
-        <div class="span6 field"><%= @breach.business_object.published_columns %>
-        </div>
-      </div>
-
-      <div class="row">
         <div class="span2 text-right">Current values:
         </div>
-        <div class="span6 field"><%= @breach.current_values %>
+        <div class="span4 field"><%= @breach.current_values %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Proposed values:
+        <div class="span2 offset6 text-right">Proposed values:
         </div>
-        <div class="span6 field"><%= f.text_area :proposed_values %>
+        <div class="span4 field"><%= f.text_area :proposed_values %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">White list flag key:
+        <div class="span2 text-right">White list flag:
         </div>
         <div class="span2 "><%= f.check_box :is_whitelisted %>
         </div>
@@ -159,6 +169,70 @@
 
 <!-- Tab content -->
     </div>
+
+
+    <div class="tab-pane" id="tab6">
+<!-- Tab content for Ownership -->
+
+      <div class="row">
+        <div class="span2 text-right">Approver:
+        </div>
+        <div class="span2"><%= @breach.approver.name%>
+        </div>
+        <div class="span2 text-right">Approved at:
+        </div>
+        <div class="span2"><%= @breach.approved_at%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Unique id:
+        </div>
+        <div class="span2"><%= @breach.id%>
+        </div>
+        <div class="span2 text-right">Created by:
+        </div>
+        <div class="span2"><%= @breach.created_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Playground id:
+        </div>
+        <div class="span2"><%= @breach.playground_id%>
+        </div>
+        <div class="span2 text-right">Created at:
+        </div>
+        <div class="span2"><%= @breach.created_at%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Owner:
+        </div>
+        <div class="span2"><%= @breach.owner.login%>
+        </div>
+        <div class="span2 text-right">Updated by:
+        </div>
+        <div class="span2"><%= @breach.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2 text-right">Parent:
+        </div>
+        <div class="span2"><%= link_to @breach.business_rule.name, @breach.business_rule %>
+        </div>
+        <div class="span2 text-right">Updated at:
+        </div>
+        <div class="span2"><%= @breach.updated_at%>
+        </div>
+      </div>
+
+<!-- Tab content -->
+    </div>
+
+
 
   </div>
 

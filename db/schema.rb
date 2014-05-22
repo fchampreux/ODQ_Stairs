@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502104112) do
+ActiveRecord::Schema.define(version: 20140509150335) do
 
   create_table "breaches", force: true do |t|
     t.integer  "playground_id"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.integer  "breach_status_id"
     t.string   "message_source"
     t.string   "object_name"
-    t.text     "observation"
     t.text     "error_message"
     t.text     "current_values"
     t.text     "proposed_values"
@@ -38,7 +37,6 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.date     "expected_at"
     t.date     "closed_at"
     t.integer  "responsible_id"
-    t.integer  "requestor_id"
     t.integer  "approver_id"
     t.datetime "approved_at"
     t.string   "created_by"
@@ -47,6 +45,8 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.datetime "updated_at"
     t.string   "record_updated_by"
     t.datetime "record_updated_at"
+    t.integer  "owner_id"
+    t.boolean  "is_identified"
   end
 
   create_table "business_areas", force: true do |t|
@@ -415,6 +415,7 @@ ActiveRecord::Schema.define(version: 20140502104112) do
     t.string   "updated_by"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

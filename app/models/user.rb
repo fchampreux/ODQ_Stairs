@@ -22,10 +22,12 @@
 #  updated_by            :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  name                  :string(255)
 #
 
 class User < ActiveRecord::Base
   before_save :email_format
+  before_save :name_update
   before_create :create_remember_token
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -66,4 +68,7 @@ class User < ActiveRecord::Base
       self.email = email.downcase 
     end
 
+    def name_update
+      self.name = "#{first_name} #{last_name}"
+    end
 end

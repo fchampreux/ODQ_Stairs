@@ -23,11 +23,11 @@
       <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
       <li><a href="#tab2" data-toggle="tab">Metrics</a></li>
       <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Solving</a></li>    
-      <li><a href="#tab5" data-toggle="tab">Ownership</a></li>
-      <li><a href="#tab6" data-toggle="tab">Rejected records</a></li> 
-      <li><a href="#tab7" data-toggle="tab">White list</a></li> 
-      <li><a href="#tab8" data-toggle="tab">Pending updates</a></li> 
+      <li><a href="#tab4" data-toggle="tab">Solving</a></li>
+      <li><a href="#tab5" data-toggle="tab">Rejected records</a></li> 
+      <li><a href="#tab6" data-toggle="tab">White list</a></li> 
+      <li><a href="#tab7" data-toggle="tab">Pending updates</a></li> 
+      <li><a href="#tab8" data-toggle="tab">Ownership</a></li>
     </ul>
     <div class="tab-content">
  
@@ -185,8 +185,118 @@
       
 <!-- Tab content -->
     </div>
-
+    
     <div class="tab-pane" id="tab5">
+<!-- Tab content for Rejected records -->
+      
+<table width=100%>
+  <tr><td><hr /></td></tr>
+  <tr align="left">
+    <th>Rejected records</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>
+      <table class="table table-striped table-condensed">
+        <tr align="left">
+          <th> <%= @business_rule.business_object.key_columns %> </th>
+          <th> <%= @business_rule.business_object.published_columns %> </th>
+          <th> Updated by </th>
+          <th> Updated at </th>
+          <th> Observation </th>
+        </tr>
+        <%@business_rule.breaches.each do |breach| %>
+        <tr align="left">
+          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
+          <td valign="top"> <%=breach.current_values %> </td>
+          <td valign="top"> <%=breach.updated_by %> </td>
+          <td valign="top"> <%=breach.updated_at %> </td>
+          <td valign="top"> <%=breach.description %> </td>
+        </tr>
+        <% end%>
+      </table>
+    </td>
+  </tr>
+</table>
+      
+<!-- Tab content -->
+    </div>
+    
+
+    
+    <div class="tab-pane" id="tab6">
+<!-- Tab content for White list -->
+      
+<table width=100%>
+  <tr><td><hr /></td></tr>
+  <tr align="left">
+    <th>White List</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>
+      <table class="table table-striped table-condensed">
+        <tr align="left">
+          <th> <%= @business_rule.business_object.key_columns %> </th>
+          <th> <%= @business_rule.business_object.published_columns %> </th>
+          <th> Updated by </th>
+          <th> Updated at </th>
+          <th> Observation </th>
+        </tr>
+        <%@business_rule.breaches.each do |breach| %>
+        <tr align="left">
+          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
+          <td valign="top"> <%=breach.current_values %> </td>
+          <td valign="top"> <%=breach.updated_by %> </td>
+          <td valign="top"> <%=breach.updated_at %> </td>
+          <td valign="top"> <%=breach.description %> </td>
+        </tr>
+        <% end%>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Tab content -->
+    </div>
+    
+    <div class="tab-pane" id="tab7">
+<!-- Tab content for Pending updates -->
+      
+<table width=100%>
+  <tr><td><hr /></td></tr>
+  <tr align="left">
+    <th>Updates pending</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>
+      <table class="table table-striped table-condensed">
+        <tr align="left">
+          <th> <%= @business_rule.business_object.key_columns %> </th>
+          <th> <%= @business_rule.business_object.published_columns %> </th>
+          <th> Updated by </th>
+          <th> Updated at </th>
+          <th> Observation </th>
+        </tr>
+        <%@business_rule.breaches.each do |breach| %>
+        <tr align="left">
+          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
+          <td valign="top"> <%=breach.current_values %> </td>
+          <td valign="top"> <%=breach.updated_by %> </td>
+          <td valign="top"> <%=breach.updated_at %> </td>
+          <td valign="top"> <%=breach.description %> </td>
+        </tr>
+        <% end%>
+      </table>
+    </td>
+  </tr>
+</table>
+      
+<!-- Tab content -->
+    </div>
+    
+    <div class="tab-pane" id="tab8">
 <!-- Tab content for Ownership -->
 
       <div class="row">
@@ -232,120 +342,6 @@
 
 <!-- Tab content -->
     </div>
-
-    
-    <div class="tab-pane" id="tab6">
-<!-- Tab content for Rejected records -->
-      
-<table width=100%>
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>Rejected records</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>
-      <table class="table table-striped table-condensed">
-        <tr align="left">
-          <th> <%= @business_rule.business_object.key_columns %> </th>
-          <th> <%= @business_rule.business_object.published_columns %> </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-          <th> Observation </th>
-        </tr>
-        <%@business_rule.breaches.each do |breach| %>
-        <tr align="left">
-          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
-          <td valign="top"> <%=breach.current_values %> </td>
-          <td valign="top"> <%=breach.updated_by %> </td>
-          <td valign="top"> <%=breach.updated_at %> </td>
-          <td valign="top"> <%=breach.description %> </td>
-        </tr>
-        <% end%>
-      </table>
-    </td>
-  </tr>
-</table>
-      
-<!-- Tab content -->
-    </div>
-    
-
-    
-    <div class="tab-pane" id="tab7">
-<!-- Tab content for White list -->
-      
-<table width=100%>
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>White List</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>
-      <table class="table table-striped table-condensed">
-        <tr align="left">
-          <th> <%= @business_rule.business_object.key_columns %> </th>
-          <th> <%= @business_rule.business_object.published_columns %> </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-          <th> Observation </th>
-        </tr>
-        <%@business_rule.breaches.each do |breach| %>
-        <tr align="left">
-          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
-          <td valign="top"> <%=breach.current_values %> </td>
-          <td valign="top"> <%=breach.updated_by %> </td>
-          <td valign="top"> <%=breach.updated_at %> </td>
-          <td valign="top"> <%=breach.description %> </td>
-        </tr>
-        <% end%>
-      </table>
-    </td>
-  </tr>
-</table>
-
-<!-- Tab content -->
-    </div>
-    
-
-    
-    <div class="tab-pane" id="tab8">
-<!-- Tab content for Pending updates -->
-      
-<table width=100%>
-  <tr><td><hr /></td></tr>
-  <tr align="left">
-    <th>Updates pending</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>
-      <table class="table table-striped table-condensed">
-        <tr align="left">
-          <th> <%= @business_rule.business_object.key_columns %> </th>
-          <th> <%= @business_rule.business_object.published_columns %> </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-          <th> Observation </th>
-        </tr>
-        <%@business_rule.breaches.each do |breach| %>
-        <tr align="left">
-          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
-          <td valign="top"> <%=breach.current_values %> </td>
-          <td valign="top"> <%=breach.updated_by %> </td>
-          <td valign="top"> <%=breach.updated_at %> </td>
-          <td valign="top"> <%=breach.description %> </td>
-        </tr>
-        <% end%>
-      </table>
-    </td>
-  </tr>
-</table>
-      
-<!-- Tab content -->
-    </div>
-    
    
     </div>
   </div>

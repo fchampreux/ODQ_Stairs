@@ -13,10 +13,10 @@ module ParametersHelper
   end 
 
 # retrieve the list of breach types
-  def set_breach_statuses_list
-    list_id = ParametersList.where("code=?", 'LIST_OF_BREACH_TYPES').take!
-    @breach_statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
-  end 
+#  def set_breach_types_list
+#    list_id = ParametersList.where("code=?", 'LIST_OF_BREACH_TYPES').take!
+#    @breach_types_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
+#  end 
 
 # retrieve the list of business rules types
   def set_rule_types_list
