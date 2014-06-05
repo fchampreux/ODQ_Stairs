@@ -6,7 +6,7 @@
     <li><%= @scope.name %> </li>
   </ul>
 
-  <h1>Scope: <%= @scope.name %></h1>
+  <h1><%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> Scope: <%= @scope.name %></h1>
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_scope_path(@scope) %> |</li>

@@ -23,6 +23,8 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  business_area_id   :integer
+#  all_records        :integer
+#  bad_records        :integer
 #
 
 class BusinessObject < ActiveRecord::Base

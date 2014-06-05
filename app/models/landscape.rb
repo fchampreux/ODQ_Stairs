@@ -14,6 +14,8 @@
 #  updated_at    :datetime         not null
 #  status_id     :integer
 #  owner_id      :integer
+#  all_records   :integer
+#  bad_records   :integer
 #
 
 class Landscape < ActiveRecord::Base

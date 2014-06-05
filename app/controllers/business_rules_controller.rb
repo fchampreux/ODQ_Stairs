@@ -125,5 +125,4 @@ class BusinessRulesController < ApplicationController
 				:version, :approver_id, :approved_at, :business_object_id)
   end
 
-
 end

@@ -5,7 +5,7 @@
     <li><%= @landscape.name %> </li>
   </ul>
 
-  <h1>Landscape: <%= @landscape.name %></h1>
+  <h1><%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> Landscape: <%= @landscape.name %></h1>
   
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_landscape_path(@landscape) %> |</li>
@@ -116,6 +116,7 @@
     <td>
       <table class="table table-striped table-condensed">
         <tr align="left">
+          <th> </th>
           <th> Code </th>
           <th> Name </th>
           <th> Description </th>
@@ -124,6 +125,7 @@
         </tr>
         <%@landscape.scopes.order("code ASC").each do |scope| %>
         <tr align="left">
+          <td><%= image_tag(index_audit_tag_for(scope), :alt => "Quality hit") %>
           <td valign="top"> <%=link_to scope.code, scope%> </td>
           <td valign="top"> <%=scope.name%> </td>
           <td class="col_wide"> <%=scope.description%> </td>

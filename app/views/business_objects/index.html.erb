@@ -11,6 +11,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
+    <th>Audit</th>
     <th>Updated by</th>
     <th>Updated at</th>
   </tr>
@@ -22,6 +23,7 @@
     <td><%= business_object.name %></td>
     <td class="col_medium"><%= business_object.description %></td>
     <td><%= business_object.status.name %></td>
+    <td><%= image_tag(index_audit_tag_for(business_object), :alt => "Quality hit") %>
     <td><%= business_object.updated_by %></td>
     <td><%= business_object.updated_at %></td>
   </tr>

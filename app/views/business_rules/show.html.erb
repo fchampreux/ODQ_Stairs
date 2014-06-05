@@ -7,8 +7,8 @@
     <li><%= @business_rule.name %> </li>
   </ul>
 
-   <h1>Business Rule: <%= @business_rule.name %></h1>
-   
+  <h1><%= image_tag(index_audit_tag_for(@business_rule), :alt => "Quality hit") %> Business Rule: <%= @business_rule.name %></h1>
+
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_business_rule_path(@business_rule) %> |</li>
     <li><%= link_to 'Up', @business_rule.business_process %> |</li>

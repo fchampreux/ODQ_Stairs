@@ -17,6 +17,8 @@
 #  updated_by       :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  all_records      :integer
+#  bad_records      :integer
 #
 
 class BusinessFlow < ActiveRecord::Base

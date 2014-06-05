@@ -33,6 +33,8 @@
 #  rule_type_id         :integer
 #  severity_id          :integer
 #  complexity_id        :integer
+#  all_records          :integer
+#  bad_records          :integer
 #
 
 					
