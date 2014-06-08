@@ -141,7 +141,7 @@
         </tr>
         <%@business_area.business_flows.order("code ASC").each do |business_flow| %>
         <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(business_flow), :alt => "Quality hit") %>
+          <td><%= image_tag(index_audit_tag_for(business_flow), :alt => "Quality hit") %></td>
           <td valign="top"> <%=link_to business_flow.code, business_flow%> </td>
           <td valign="top"> <%=business_flow.name%> </td>
           <td class="col_wide"> <%=business_flow.description%> </td>
@@ -170,7 +170,7 @@
         </tr>
         <%@business_area.business_objects.order("code ASC").each do |business_object| %>
         <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(business_object), :alt => "Quality hit") %>
+          <td><%= image_tag(index_audit_tag_for(business_object), :alt => "Quality hit") %></td>
           <td valign="top"> <%=link_to business_object.code, business_object%> </td>
           <td valign="top"> <%=business_object.name%> </td>
           <td class="col_wide"> <%=business_object.description%> </td>

@@ -139,7 +139,7 @@
         </tr>
         <%@business_process.business_rules.order("code ASC").each do |business_rule| %>
         <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(business_rule), :alt => "Quality hit") %>
+          <td><%= image_tag(index_audit_tag_for(business_rule), :alt => "Quality hit") %></td>
           <td valign="top"> <%=link_to business_rule.code, business_rule%> </td>
           <td valign="top"> <%=business_rule.name%> </td>
           <td class="col_wide"> <%=business_rule.description%> </td>

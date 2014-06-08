@@ -138,7 +138,7 @@
         </tr>
         <%@business_flow.business_processes.order("code ASC").each do |business_process| %>
         <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(business_process), :alt => "Quality hit") %>
+          <td><%= image_tag(index_audit_tag_for(business_process), :alt => "Quality hit") %></td>
           <td valign="top"> <%=link_to business_process.code, business_process%> </td>
           <td valign="top"> <%=business_process.name%> </td>
           <td class="col_wide"> <%=business_process.description%> </td>

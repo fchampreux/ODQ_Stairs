@@ -65,6 +65,7 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :business_process
         has_many :breaches
 
+
 ### private functions definitions
   private
 

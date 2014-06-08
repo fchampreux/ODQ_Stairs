@@ -125,7 +125,7 @@
         </tr>
         <%@playground.landscapes.order("code ASC").each do |landscape| %>
         <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(landscape), :alt => "Quality hit") %>
+          <td><%= image_tag(index_audit_tag_for(landscape), :alt => "Quality hit") %></td>
           <td valign="top"> <%=link_to landscape.code, landscape%> </td>
           <td valign="top"> <%=landscape.name%> </td>
           <td class="col_wide"> <%=landscape.description%> </td>
