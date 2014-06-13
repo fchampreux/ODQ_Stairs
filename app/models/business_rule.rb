@@ -65,6 +65,16 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :business_process
         has_many :breaches
 
+def self.search(search)
+  if search.present?
+    where('name like ?', "%#{search}%")
+  else
+    where('TRUE')
+  end
+end
+
+
+
 ### private functions definitions
   private
 

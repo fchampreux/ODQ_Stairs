@@ -1,0 +1,20 @@
+          <table class="table table-striped">
+            <tr>
+              <th></th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Status</th>
+            </tr>
+          
+          <% @business_rules.each do |business_rule| %>
+            <tr>
+              <td><%= image_tag(index_audit_tag_for(business_rule), :alt => "Quality hit") %></td>
+              <td class="col_narrow"><%= link_to business_rule.code, business_rule %></td>
+              <td><%= business_rule.name %></td>
+              <td class="col_medium"><%= business_rule.description %></td>
+              <td><%= business_rule.status.name %></td>
+            </tr>
+          <% end %>
+          </table>
+
+

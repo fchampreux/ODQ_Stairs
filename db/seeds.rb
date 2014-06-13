@@ -671,3 +671,6 @@ if Breach.count == 0
   Breach.create(playground_id: 1, business_rule_id: 1, business_object_id: 1, application_id: 1, pk_values: 'ITEM_MASTER;200110597;SUP-SMP', record_id: 125001, period_id: 201405, organisation_id: 12, territory_id: 6,  name: 'Sample Breach', description: 'This breach was generated for testing purposes', breach_type_id: 1, breach_status_id: 1, message_source: 'None', object_name: 'ITEM_MASTER',  error_message: 'Imported from BR error message', current_values: 'Aspirin;250mg;Injection;ASPIRIN', is_whitelisted: false, opened_at: '2014-05-01', expected_at: '2014-05-31', owner_id: 1, record_updated_by: 'FECH', record_updated_at: '2014-04-21', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
 end
 
+puts "SQL Query"
+ActiveRecord::Base.connection.execute("update business_rules set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+

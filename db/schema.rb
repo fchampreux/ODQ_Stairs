@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603151115) do
+ActiveRecord::Schema.define(version: 20140609154605) do
 
   create_table "breaches", force: true do |t|
     t.integer  "playground_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.datetime "updated_at",    null: false
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true, using: :btree
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.datetime "updated_at",       null: false
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "business_objects", force: true do |t|
@@ -112,6 +114,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.integer  "business_area_id"
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "business_processes", force: true do |t|
@@ -131,6 +134,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.datetime "updated_at",       null: false
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "business_rules", force: true do |t|
@@ -166,6 +170,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.integer  "complexity_id"
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "data_policies", force: true do |t|
@@ -207,6 +212,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "mappings", force: true do |t|
@@ -303,6 +309,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "roles", force: true do |t|
@@ -338,6 +345,7 @@ ActiveRecord::Schema.define(version: 20140603151115) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
+    t.decimal  "score"
   end
 
   create_table "territories", force: true do |t|
