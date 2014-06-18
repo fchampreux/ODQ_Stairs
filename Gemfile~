@@ -13,6 +13,7 @@ gem 'jbuilder', '1.4.2'
 gem 'bootstrap-datepicker-rails'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'selenium-webdriver', '2.42.0'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
@@ -23,18 +24,16 @@ group :development, :test do
   gem 'pg'
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
-  gem 'selenium-webdriver', '2.33.0'
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.0'
 end
 
 # gem for SQLServer POC
 group :POC_SQLServer do
-  gem 'tiny_tds'
+#  gem 'tiny_tds'
 #  gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => "git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git"
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
-  gem 'selenium-webdriver', '2.33.0'
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.0'
 end
