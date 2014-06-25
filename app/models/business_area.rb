@@ -21,6 +21,7 @@
 #
 
 class BusinessArea < ActiveRecord::Base
+extend SimpleSearch
 
 ### scope
 

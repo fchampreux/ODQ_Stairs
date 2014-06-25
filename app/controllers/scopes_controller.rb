@@ -11,7 +11,7 @@ class ScopesController < ApplicationController
   # GET /scopes
   # GET /scopes.json
   def index
-    @scopes = Scope.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @scopes = Scope.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -47,13 +47,8 @@
           </div>
 
           <div class="span4">
-          <h4>Search for Business Rules</h4>
-          <%= form_tag :root, :method => 'get' do %>
-            <p>
-              <%= text_field_tag :search, params[:search] %>
-              <%= submit_tag "Search", :name => nil %>
-            </p>
-          <% end %>
+          <%= render partial: "shared/simple_search", locals: {this_path: :root} %>
+
           <table class="table table-striped">
             <tr>
               <th></th>

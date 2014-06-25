@@ -11,7 +11,7 @@ class TerritoriesController < ApplicationController
   # GET /Territories
   # GET /Territories.json
   def index
-    @territories = Territory.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @territories = Territory.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +28,8 @@ class TerritoriesController < ApplicationController
   # GET /Territories/new
   # GET /Territories/new.json
   def new
- #   @parent_org = Territory.find(params[:Territory_id])
-    @territory = Territory.new(:parent_id => params[:Territory_id])
+    @parent_territory = Territory.find(params[:territory_id])
+    @territory = Territory.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,9 +45,8 @@ class TerritoriesController < ApplicationController
   # POST /Territories
   # POST /Territories.json
   def create
-#    @parent_org = Territory.find(params[:Territory_id])
-#    @territory = @parent_org.Territories.build(Territory_params)
-    @territory = Territory.new(territory_params)
+    @parent_territory = Territory.find(params[:territory_id])
+    @territory = @parent_territory.child_territories.build(territory_params)
     @territory.updated_by = current_user.login
     @territory.created_by = current_user.login
     @territory.playground_id = current_user.current_playground_id

@@ -11,7 +11,7 @@ class BusinessObjectsController < ApplicationController
   # GET /business_objects
   # GET /business_objects.json
   def index
-    @business_objects = BusinessObject.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @business_objects = BusinessObject.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

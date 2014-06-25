@@ -19,6 +19,7 @@
 #
 
 class Territory < ActiveRecord::Base
+extend SimpleSearch
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -47,7 +48,7 @@ class Territory < ActiveRecord::Base
   ### before filters
     def set_code
       if Territory.count > 0 
-        self.code = self.parent_territory.code + '-' + self.code
+        self.code = self.parent_territory.code + '-' + code
       end
     end 
 

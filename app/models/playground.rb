@@ -18,6 +18,7 @@
 #
 
 class Playground < ActiveRecord::Base
+extend SimpleSearch
 
 ### before filter
   before_create :set_hierarchy

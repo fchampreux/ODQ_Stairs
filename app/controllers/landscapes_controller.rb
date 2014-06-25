@@ -11,7 +11,7 @@ class LandscapesController < ApplicationController
   # GET /landscapes
   # GET /landscapes.json
   def index
-    @landscapes = Landscape.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @landscapes = Landscape.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb

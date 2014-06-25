@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.pgnd(current_playground).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
+    @organisations = Organisation.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +28,8 @@ class OrganisationsController < ApplicationController
   # GET /organisations/new
   # GET /organisations/new.json
   def new
- #   @parent_org = Organisation.find(params[:organisation_id])
-    @organisation = Organisation.new(:parent_id => params[:organisation_id])
+    @parent_org = Organisation.find(params[:organisation_id])
+    @organisation = Organisation.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,9 +45,8 @@ class OrganisationsController < ApplicationController
   # POST /organisations
   # POST /organisations.json
   def create
-#    @parent_org = Organisation.find(params[:organisation_id])
-#    @organisation = @parent_org.organisations.build(organisation_params)
-    @organisation = Organisation.new(organisation_params)
+    @parent_org = Organisation.find(params[:organisation_id])
+    @organisation = @parent_org.child_orgs.build(organisation_params)
     @organisation.updated_by = current_user.login
     @organisation.created_by = current_user.login
     @organisation.playground_id = current_user.current_playground_id

@@ -4,6 +4,14 @@
 
 <%= will_paginate %>
 
+          <h4>Search for Landscapes</h4>
+          <%= form_tag landscapes_path, :method => 'get' do %>
+            <p>
+              <%= text_field_tag :criteria, params[:criteria] %>
+              <%= submit_tag "Search", :name => nil %>
+            </p>
+          <% end %>
+
 <table class="table table-striped">
   <tr>
     <th>Hierarchy</th>

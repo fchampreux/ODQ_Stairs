@@ -38,6 +38,7 @@
 #
 
 class BusinessRule < ActiveRecord::Base
+extend SimpleSearch
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -64,16 +65,6 @@ class BusinessRule < ActiveRecord::Base
 	belongs_to :business_object								# helps retrieving the target business object
 	belongs_to :business_process
         has_many :breaches
-
-def self.search(search)
-  if search.present?
-    where('name like ?', "%#{search}%")
-  else
-    where('TRUE')
-  end
-end
-
-
 
 ### private functions definitions
   private
