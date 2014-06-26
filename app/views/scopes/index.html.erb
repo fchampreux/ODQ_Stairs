@@ -4,13 +4,7 @@
 
 <%= will_paginate %>
 
-          <h4>Search for Scopes</h4>
-          <%= form_tag scopes_path, :method => 'get' do %>
-            <p>
-              <%= text_field_tag :criteria, params[:criteria] %>
-              <%= submit_tag "Search", :name => nil %>
-            </p>
-          <% end %>
+<%= render partial: "shared/simple_search", locals: {this_path: scopes_path} %>
 
 <table class="table table-striped">
   <tr>
