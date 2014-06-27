@@ -61,15 +61,15 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "owner_id"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",         precision: 18, scale: 0
   end
 
-  add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true, using: :btree
-  add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true, using: :btree
+  add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true
+  add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true
 
   create_table "business_flows", force: true do |t|
     t.integer  "playground_id"
@@ -84,11 +84,11 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "owner_id"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",            precision: 18, scale: 0
   end
 
   create_table "business_objects", force: true do |t|
@@ -109,12 +109,12 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.text     "published_columns"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "business_area_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",              precision: 18, scale: 0
   end
 
   create_table "business_processes", force: true do |t|
@@ -130,11 +130,11 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "owner_id"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",            precision: 18, scale: 0
   end
 
   create_table "business_rules", force: true do |t|
@@ -153,9 +153,9 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "correction_batch"
     t.text     "white_list"
     t.text     "condition"
-    t.decimal  "added_value"
-    t.decimal  "maintenance_cost"
-    t.decimal  "maintenance_duration"
+    t.decimal  "added_value",          precision: 18, scale: 0
+    t.decimal  "maintenance_cost",     precision: 18, scale: 0
+    t.decimal  "maintenance_duration", precision: 18, scale: 0
     t.string   "version"
     t.integer  "approver_id"
     t.datetime "approved_at"
@@ -163,14 +163,14 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "business_object_id"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "rule_type_id"
     t.integer  "severity_id"
     t.integer  "complexity_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",                precision: 18, scale: 0
   end
 
   create_table "data_policies", force: true do |t|
@@ -206,13 +206,13 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",         precision: 18, scale: 0
   end
 
   create_table "mappings", force: true do |t|
@@ -249,42 +249,6 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.datetime "updated_at"
   end
 
-  create_table "odq_facts", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "playground_id"
-    t.integer  "business_object_id"
-    t.integer  "organisation_id"
-    t.integer  "territory_id"
-    t.decimal  "scope_number"
-    t.decimal  "rule_number"
-    t.decimal  "error_number"
-    t.decimal  "whitelist_number"
-    t.integer  "period_id"
-    t.string   "pk_values"
-    t.string   "record_created_by"
-    t.datetime "record_created_at"
-    t.string   "record_updated_by"
-    t.datetime "record_updated_at"
-    t.datetime "first_time_right"
-    t.string   "first_user_right"
-    t.datetime "last_time_wrong"
-    t.string   "last_user_wrong"
-    t.string   "data_values"
-    t.string   "updated_values"
-    t.text     "observation"
-    t.integer  "editor_id"
-    t.datetime "edited_at"
-    t.integer  "approver_id"
-    t.datetime "approved_at"
-    t.integer  "corrector_id"
-    t.datetime "corrected_at"
-    t.string   "record_status"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.integer  "process_id"
-  end
-
   create_table "organisations", force: true do |t|
     t.integer  "playground_id"
     t.string   "code"
@@ -317,7 +281,7 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "param_code"
   end
 
-  add_index "parameters", ["name"], name: "index_parameters_on_name", using: :btree
+  add_index "parameters", ["name"], name: "index_parameters_on_name"
 
   create_table "parameters_lists", force: true do |t|
     t.integer  "playground_id"
@@ -339,13 +303,13 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",       precision: 18, scale: 0
   end
 
   create_table "roles", force: true do |t|
@@ -375,13 +339,13 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.decimal  "score"
+    t.decimal  "score",               precision: 18, scale: 0
   end
 
   create_table "territories", force: true do |t|
@@ -478,9 +442,9 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["login"], name: "index_users_on_login", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "values", force: true do |t|
     t.integer  "playground_id"

@@ -3,7 +3,7 @@ module SimpleSearch
     if filter.present?
       where('name like ?', "%#{filter}%")
     else
-      where('TRUE')
+      where('1=1')
     end
   end
 end

@@ -29,9 +29,9 @@ group :development, :test do
 end
 
 # gem for SQLServer POC
-group :POC_SQLServer do
-#  gem 'tiny_tds'
-#  gem 'activerecord-sqlserver-adapter', '~> 4.0.0', :git => "git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git"
+group :MSSQL do
+  gem 'tiny_tds', '~> 0.6.2'
+  gem 'activerecord-sqlserver-adapter', '~> 4.0.0'
   gem 'annotate', '2.5.0'
   gem 'rspec-rails', '2.14.0'
   gem 'capybara', '2.1.0'
