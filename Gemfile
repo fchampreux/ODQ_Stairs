@@ -38,6 +38,16 @@ group :MSSQL do
   gem 'factory_girl_rails', '4.2.0'
 end
 
+# gem for ORACLE POC
+group :ORACLE do
+  gem 'ruby-oci8', '~> 2.1.0'
+  gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
+  gem 'annotate', '2.5.0'
+  gem 'rspec-rails', '2.14.0'
+  gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '4.2.0'
+end
+
 # gem for production
 group :production do
   gem 'rails_12factor'

@@ -39,4 +39,10 @@ MSSQL:
   database: 'ODQ'
   appname: 'ODQ'
 
+#ORACLE environment
+ORACLE:
+  adapter: oracle_enhanced
+  database: INFO
+  username: ODQ_APP
+  password: ODQ_APP
 

@@ -7,7 +7,7 @@ development:
   database: odq
   username: odq_app
   password: odq_app
-  schema_search_path: "odq_info"
+#  schema_search_path: "odq_info"
   pool: 5
 
 # TEST environment
@@ -19,7 +19,7 @@ test:
   database: odq_test
   username: odq_app
   password: odq_app
-  schema_search_path: "odq_info"
+#  schema_search_path: "odq_info"
   pool: 5
 
 # PostgreSQL
@@ -27,10 +27,22 @@ production:
   adapter: postgresql
   encoding: unicode
   database: ODQ_STEP1
-  schema_search_path: "odq_info"
+#  schema_search_path: "odq_info"
   pool: 5
 
-#  adapter: sqlite3
-#  database: db/ODQ_DEV.sqlite3
-#  pool: 5
-#  timeout: 5000
+#MSSQL environment
+MSSQL:
+  adapter: sqlserver
+  username: 'odq_app'
+  password: 'odq_app'
+  dataserver: 'W2008SERVER'
+  database: 'ODQ'
+  appname: 'ODQ'
+
+#ORACLE environment
+ORACLE:
+adapter: oracle_enhanced
+database: INFO
+username: ODQ_APP
+password: ODQ_APP
+

@@ -1,279 +1,185 @@
-CREATE TABLE "ODQ_DWH"."ODQ_FACTS"
+/* ODQ_DWH for Oracle technology */
+
+/* Fact table stores all records captured*/
+CREATE TABLE odq_app.dwh_records
 (
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   OBJECT_NAME varchar2(255) NOT NULL,
-   PK_FIELDS varchar2(1000) NOT NULL,
-   PK_VALUES varchar2(1000) NOT NULL,
-   PERIOD_ID decimal(22) NOT NULL,
-   PERIOD_DAY decimal(8),
-   SCOPE_NUMBER_MASK char(100),
-   SCOPE_NUMBER decimal(22),
-   RULE_NUMBER_MASK char(100),
-   RULE_NUMBER decimal(22),
-   ERROR_NUMBER_MASK char(100),
-   ERROR_NUMBER decimal(22),
-   ORGANISATION_ID decimal(22),
-   LOCATION_ID decimal(22),
-   FIRST_TIME_RIGHT timestamp,
-   FIRST_USER_RIGHT varchar2(255),
-   LAST_TIME_WRONG timestamp,
-   LAST_USER_WRONG varchar2(255),
-   RECORD_UPDATED_BY varchar2(255),
-   RECORD_UPDATED_AT timestamp,
-   RECORD_CREATED_BY varchar2(255),
-   RECORD_CREATED_AT timestamp,
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
+  id integer NOT NULL,
+  playground_id integer,
+  business_object_id integer,
+  organisation_id integer,
+  territory_id integer,
+  scope_mask raw(1000),
+  rule_mask raw(1000),
+  error_mask raw(1000),
+  whitelist_mask raw(1000),
+  period_id integer,
+  pk_values varchar2(1000),
+  record_created_by varchar2(255),
+  record_created_at timestamp ,
+  record_updated_by varchar2(255),
+  record_updated_at timestamp ,
+  first_time_right timestamp ,
+  first_user_right varchar2(255),
+  last_time_wrong timestamp ,
+  last_user_wrong varchar2(255),
+  data_values varchar2(1000),
+  updated_values varchar2(1000),
+  observation clob,
+  editor_id integer,
+  edited_at timestamp ,
+  approver_id integer,
+  approved_at timestamp ,
+  corrector_id integer,
+  corrected_at timestamp ,
+  record_status varchar2(255),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp ,
+  updated_at timestamp ,
+  process_id integer,
+  CONSTRAINT dwh_records_pk PRIMARY KEY (id )
+);
+
+/* DM stores basic measures for objects*/
+CREATE TABLE odq_app.dm_measures
+(
+  id integer NOT NULL,
+  playground_id integer,
+  ODQ_object_type_id integer,
+  ODQ_object_id integer,
+  period_id integer,
+  all_records number(12,2),
+  bad_records number(12,2),
+  score number(5,2),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp ,
+  updated_at timestamp ,
+  process_id integer,
+  CONSTRAINT dm_measures_pk PRIMARY KEY (id )
+);
+
+/*Territories dimension table*/
+CREATE TABLE odq_app.dim_territories
+(
+  id integer NOT NULL,
+  playground_id integer,
+  code varchar2(255),
+  name varchar2(255),
+  description clob,
+  territory_level integer,
+  hierarchy varchar2(255),
+  level_0 varchar2(255),
+  level_1 varchar2(255),
+  level_2 varchar2(255),
+  level_3 varchar2(255),
+  level_4 varchar2(255),
+  level_5 varchar2(255),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp  NOT NULL,
+  updated_at timestamp  NOT NULL,
+  process_id integer,
+  CONSTRAINT dim_territories_pk PRIMARY KEY (id )
 )
 ;
-CREATE INDEX ODQ_FACTS_IDX0 ON "ODQ_DWH"."ODQ_FACTS"
+
+/*Organisations dimension table*/
+CREATE TABLE odq_app.dim_organisations
 (
-  PLAYGROUND_ID,
-  PERIOD_ID,
-  ORGANISATION_ID
+  id integer NOT NULL,
+  playground_id integer,
+  code varchar2(255),
+  name varchar2(255),
+  description clob,
+  organisation_level integer,
+  hierarchy varchar2(255),
+  level_0 varchar2(255),
+  level_1 varchar2(255),
+  level_2 varchar2(255),
+  level_3 varchar2(255),
+  level_4 varchar2(255),
+  level_5 varchar2(255),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp  NOT NULL,
+  updated_at timestamp  NOT NULL,
+  process_id integer,
+  CONSTRAINT dim_organisations_pk PRIMARY KEY (id )
 )
 ;
-CREATE INDEX ODQ_FACTS_IDX4 ON "ODQ_DWH"."ODQ_FACTS"
+
+/*Time dimension table*/
+CREATE TABLE odq_app.dim_period
 (
-  PLAYGROUND_ID,
-  PERIOD_ID,
-  OBJECT_NAME,
-  PK_VALUES
+  period_id integer NOT NULL,
+  playground_id integer NOT NULL,
+  period char(6),
+  period_day char(8),
+  period_date date,
+  period_timestamp timestamp,
+  day_of_month integer,
+  day_of_year integer,
+  day_number integer,
+  week_of_month integer,
+  week_of_year integer,
+  week_number integer,
+  month integer,
+  month_name varchar(20),
+  month_number integer,
+  trimester_of_year integer,
+  trimester_number integer,
+  semester_of_year integer,
+  semester_number integer,
+  year integer,
+  year_number integer,
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp  NOT NULL,
+  updated_at timestamp  NOT NULL,
+  process_id integer,
+  CONSTRAINT dim_period_pk PRIMARY KEY (id )
 )
 ;
-CREATE INDEX ODQ_FACTS_IDX3 ON "ODQ_DWH"."ODQ_FACTS"
+
+/*Business Rules dimension table*/
+CREATE TABLE odq_app.dim_rules
 (
-  PLAYGROUND_ID,
-  LOCATION_ID,
-  PERIOD_ID
-)
-;
-CREATE INDEX ODQ_FACTS_IDX2 ON "ODQ_DWH"."ODQ_FACTS"
-(
-  PLAYGROUND_ID,
-  PERIOD_ID,
-  LOCATION_ID
-)
-;
-CREATE INDEX ODQ_FACTS_IDX1 ON "ODQ_DWH"."ODQ_FACTS"
-(
-  PLAYGROUND_ID,
-  ORGANISATION_ID,
-  PERIOD_ID
+  id integer NOT NULL,
+  playground_id integer,
+  code varchar2(255),
+  name varchar2(255),
+  description clob,
+  hierarchy varchar2(255),
+  business_area varchar2(255),
+  business_flow varchar2(255),
+  business_process varchar2(255),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp  NOT NULL,
+  updated_at timestamp  NOT NULL,
+  process_id integer,
+  CONSTRAINT dim_rules_pk PRIMARY KEY (id )
 )
 ;
 
 
-CREATE TABLE "ODQ_DWH"."ODQ_LOCATIONS"
+/*Scopes dimension table*/
+CREATE TABLE odq_app.dim_scopes
 (
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   LOCATION_ID decimal(22) NOT NULL,
-   LOCATION_CODE varchar2(30),
-   LOCATION_NAME varchar2(255),
-   LOCATION_LEVEL char(1),
-   LEVEL_4 varchar2(30),
-   LEVEL_3 varchar2(30),
-   LEVEL_2 varchar2(30),
-   LEVEL_1 varchar2(30),
-   LEVEL_0 varchar2(30),
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
-)
-;
-CREATE INDEX ODQ_LOC_IBX0 ON "ODQ_DWH"."ODQ_LOCATIONS"(PLAYGROUND_ID)
-;
-CREATE INDEX ODQ_LOC_IDX2 ON "ODQ_DWH"."ODQ_LOCATIONS"
-(
-  PLAYGROUND_ID,
-  LOCATION_CODE
-)
-;
-CREATE INDEX ODQ_LOC_IDX1 ON "ODQ_DWH"."ODQ_LOCATIONS"
-(
-  PLAYGROUND_ID,
-  LOCATION_LEVEL,
-  LOCATION_CODE
-)
-;
-CREATE INDEX ODQ_LOC_IDX0 ON "ODQ_DWH"."ODQ_LOCATIONS"
-(
-  PLAYGROUND_ID,
-  LOCATION_ID
-)
-;
-
-
-
-CREATE TABLE "ODQ_DWH"."ODQ_ORGANISATIONS"
-(
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   ORGANISATION_ID decimal(22) NOT NULL,
-   ORGANISATION_CODE varchar2(30),
-   ORGANISATION_NAME varchar2(255),
-   ORGANISATION_LEVEL char(1),
-   LEVEL_4 varchar2(30),
-   LEVEL_3 varchar2(30),
-   LEVEL_2 varchar2(30),
-   LEVEL_1 varchar2(30),
-   LEVEL_0 varchar2(30),
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
-)
-;
-CREATE INDEX ODQ_ORG_IDX0 ON "ODQ_DWH"."ODQ_ORGANISATIONS"
-(
-  PLAYGROUND_ID,
-  ORGANISATION_ID
-)
-;
-CREATE INDEX ODQ_ORG_IBX0 ON "ODQ_DWH"."ODQ_ORGANISATIONS"(PLAYGROUND_ID)
-;
-CREATE INDEX ODQ_ORG_IDX2 ON "ODQ_DWH"."ODQ_ORGANISATIONS"
-(
-  PLAYGROUND_ID,
-  ORGANISATION_CODE
-)
-;
-CREATE INDEX ODQ_ORG_IDX1 ON "ODQ_DWH"."ODQ_ORGANISATIONS"
-(
-  PLAYGROUND_ID,
-  ORGANISATION_LEVEL,
-  ORGANISATION_CODE
-)
-;
-
-
-
-CREATE TABLE "ODQ_DWH"."ODQ_PERIODS"
-(
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   PERIOD_ID decimal(22) NOT NULL,
-   PERIOD decimal(6),
-   PERIOD_DAY decimal(8),
-   PERIOD_DATE timestamp,
-   PERIOD_TIMESTAMP timestamp,
-   DAY_OF_MONTH decimal(2),
-   DAY_OF_YEAR decimal(3),
-   WEEK_OF_MONTH decimal(1),
-   WEEK_OF_YEAR decimal(2),
-   WEEK_NUMBER decimal(4),
-   MONTH decimal(2),
-   MONTH_NAME varchar2(20),
-   MONTH_NUMBER decimal(4),
-   TRIMESTER decimal(1),
-   SEMESTER decimal(1),
-   YEAR decimal(4),
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
-)
-;
-CREATE INDEX ODQ_PER_IBX0 ON "ODQ_DWH"."ODQ_PERIODS"(PLAYGROUND_ID)
-;
-CREATE INDEX ODQ_PER_IDX2 ON "ODQ_DWH"."ODQ_PERIODS"
-(
-  PLAYGROUND_ID,
-  PERIOD_DAY
-)
-;
-CREATE INDEX ODQ_PER_IDX1 ON "ODQ_DWH"."ODQ_PERIODS"
-(
-  PLAYGROUND_ID,
-  PERIOD
-)
-;
-CREATE INDEX ODQ_PER_IDX0 ON "ODQ_DWH"."ODQ_PERIODS"
-(
-  PLAYGROUND_ID,
-  PERIOD_ID
-)
-;
-
-
-
-CREATE TABLE "ODQ_DWH"."ODQ_RULES"
-(
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   RULE_ID decimal(22) NOT NULL,
-   RULE_CODE varchar2(30),
-   RULE_NAME varchar2(255),
-   RULE_KEY decimal(22),
-   RULE_MASK char(100),
-   COMPLEXITY_LABEL varchar2(30),
-   COMPLEXITY decimal(4),
-   SEVERITY_LABEL varchar2(30),
-   SEVERITY decimal(4),
-   RULE_TYPE_LABEL varchar2(30),
-   MAINTENANCE_COST decimal(9),
-   MAINTENANCE_DURATION decimal(9),
-   ADDED_VALUE decimal(9),
-   BUSINESS_AREA_ID decimal(22) NOT NULL,
-   BUSINESS_AREA_CODE varchar2(30),
-   BUSINESS_AREA_NAME varchar2(255),
-   BUSINESS_FLOW_ID decimal(22) NOT NULL,
-   BUSINESS_FLOW_CODE varchar2(30),
-   BUSINESS_FLOW_NAME varchar2(255),
-   BUSINESS_PROCESS_ID decimal(22) NOT NULL,
-   BUSINESS_PROCESS_CODE varchar2(30),
-   BUSINESS_PROCESS_NAME varchar2(255),
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
-)
-;
-CREATE INDEX ODQ_RULES_IBX0 ON "ODQ_DWH"."ODQ_RULES"(PLAYGROUND_ID)
-;
-CREATE INDEX ODQ_RULES_IDX0 ON "ODQ_DWH"."ODQ_RULES"
-(
-  PLAYGROUND_ID,
-  RULE_KEY
-)
-;
-
-
-CREATE TABLE "ODQ_DWH"."ODQ_SCOPES"
-(
-   PLAYGROUND_ID decimal(22) NOT NULL,
-   SCOPE_ID decimal(22) NOT NULL,
-   SCOPE_KEY decimal(22),
-   SCOPE_MASK char(100),
-   SCOPE_CODE varchar2(30),
-   SCOPE_NAME varchar2(255),
-   LANDSCAPE_ID decimal(22) NOT NULL,
-   LANDSCAPE_CODE char(5),
-   LANDSCAPE_NAME varchar2(100),
-   BUSINESS_AREA_ID decimal(22) NOT NULL,
-   BUSINESS_AREA_CODE varchar2(30),
-   BUSINESS_AREA_NAME varchar2(255),
-   BUSINESS_FLOW_ID decimal(22) NOT NULL,
-   BUSINESS_FLOW_CODE varchar2(30),
-   BUSINESS_FLOW_NAME varchar2(255),
-   DATE_CREATION timestamp,
-   DATE_UPDATE timestamp,
-   PROCESS_CREATION varchar2(255),
-   PROCESS_UPDATE varchar2(255),
-   LOAD_SESSION_ID decimal(22)
-)
-;
-CREATE INDEX ODQ_SCOPES_IBX0 ON "ODQ_DWH"."ODQ_SCOPES"(PLAYGROUND_ID)
-;
-CREATE INDEX ODQ_SCOPES_IDX0 ON "ODQ_DWH"."ODQ_SCOPES"
-(
-  PLAYGROUND_ID,
-  SCOPE_KEY
+  id integer NOT NULL,
+  playground_id integer,
+  code varchar2(255),
+  name varchar2(255),
+  description clob,
+  hierarchy varchar2(255),
+  landscape varchar2(255),
+  created_by varchar2(255),
+  updated_by varchar2(255),
+  created_at timestamp  NOT NULL,
+  updated_at timestamp  NOT NULL,
+  process_id integer,
+  CONSTRAINT dim_scopes_pk PRIMARY KEY (id )
 )
 ;
 
