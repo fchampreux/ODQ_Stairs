@@ -1,4 +1,7 @@
-create or replace function odq_dwh.bitAND2 (parm1 IN integer, parm2 IN integer) RETURN integer
+create sequence odq_app.odq_mx;
+/
+
+create or replace function odq_app.bitAND2 (parm1 IN integer, parm2 IN integer) RETURN integer
 IS
 output_value integer;
 BEGIN
@@ -7,7 +10,7 @@ return output_value;
 END bitAND2;
 /
 
-create or replace function odq_dwh.bitAND3 (parm1 IN integer, parm2 IN integer, parm3 IN integer) RETURN integer
+create or replace function odq_app.bitAND3 (parm1 IN integer, parm2 IN integer, parm3 IN integer) RETURN integer
 IS
 output_value integer;
 BEGIN
@@ -16,7 +19,7 @@ return output_value;
 END bitAND3;
 /
 
-create or replace function odq_dwh.bitOR (parm1 IN integer, parm2 IN integer) RETURN integer
+create or replace function odq_app.bitOR (parm1 IN integer, parm2 IN integer) RETURN integer
 IS
 output_value integer;
 BEGIN
@@ -25,7 +28,7 @@ return output_value;
 END bitOR;
 /
 
-CREATE OR REPLACE FUNCTION odq_dwh.to_binary
+CREATE OR REPLACE FUNCTION odq_app.to_binary
 (pin IN NUMBER)
 RETURN VARCHAR2 
 IS
@@ -42,7 +45,7 @@ RETURN v_result;
 END;
 /
 
-CREATE OR REPLACE FUNCTION odq_dwh.from_binary 
+CREATE OR REPLACE FUNCTION odq_app.from_binary 
 (pin IN VARCHAR2) 
 RETURN NUMBER
 IS

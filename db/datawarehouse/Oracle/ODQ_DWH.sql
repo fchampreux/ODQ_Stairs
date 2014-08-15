@@ -13,7 +13,7 @@ CREATE TABLE odq_app.dwh_records
   error_mask raw(1000),
   whitelist_mask raw(1000),
   period_id integer,
-  pk_values varchar2(1000),
+  record_id varchar2(1000),
   record_created_by varchar2(255),
   record_created_at timestamp ,
   record_updated_by varchar2(255),
@@ -43,10 +43,9 @@ CREATE TABLE odq_app.dwh_records
 /* DM stores basic measures for objects*/
 CREATE TABLE odq_app.dm_measures
 (
-  id integer NOT NULL,
   playground_id integer,
-  ODQ_object_type_id integer,
-  ODQ_object_id integer,
+  ODQ_object_id varchar2(30),
+  ODQ_parent_id varchar2(30),
   period_id integer,
   all_records number(12,2),
   bad_records number(12,2),
@@ -56,7 +55,7 @@ CREATE TABLE odq_app.dm_measures
   created_at timestamp ,
   updated_at timestamp ,
   process_id integer,
-  CONSTRAINT dm_measures_pk PRIMARY KEY (id )
+  CONSTRAINT dm_measures_pk PRIMARY KEY (ODQ_object_id, period_id )
 );
 
 /*Territories dimension table*/
@@ -110,7 +109,7 @@ CREATE TABLE odq_app.dim_organisations
 ;
 
 /*Time dimension table*/
-CREATE TABLE odq_app.dim_period
+CREATE TABLE odq_app.dim_time
 (
   period_id integer NOT NULL,
   playground_id integer NOT NULL,
@@ -138,7 +137,7 @@ CREATE TABLE odq_app.dim_period
   created_at timestamp  NOT NULL,
   updated_at timestamp  NOT NULL,
   process_id integer,
-  CONSTRAINT dim_period_pk PRIMARY KEY (id )
+  CONSTRAINT dim_time_pk PRIMARY KEY (period_id )
 )
 ;
 
