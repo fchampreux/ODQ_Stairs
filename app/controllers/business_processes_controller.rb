@@ -8,6 +8,9 @@ class BusinessProcessesController < ApplicationController
 # Create the list of statuses to be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
 
+# Retrieve measures for current business process
+  before_action :extract_process_measures, only: [:show]
+
   # GET /business_processes
   # GET /business_processes.json
   def index
@@ -90,6 +93,15 @@ class BusinessProcessesController < ApplicationController
 
 ### private functions
   private
+
+  ### extract values from DM_MEASURES
+  # current score
+  # last 10 scores
+  # measures of children objects (bad_records, workload, cost)
+  def extract_process_measures
+    current_period = Time.now.strftime("%Y%m%d")
+    @business_process_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period, "#{@business_process.playground_id}-BP-#{@business_process.id}").first.score
+  end
 
   ### Use callbacks to share common setup or constraints between actions.
     # Retrieve current business flow
