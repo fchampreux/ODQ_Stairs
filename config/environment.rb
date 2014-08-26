@@ -2,4 +2,11 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
-ODQStep1::Application.initialize!
+ODQStairs::Application.initialize!
+
+#Plurailsation exception
+ActiveSupport::Inflector.inflections do |inflection| 
+  inflection.irregular "time", "time"
+end
+
+

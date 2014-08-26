@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ODQStep1::Application.config.secret_key_base = '7989af78ab4ab6fc434c9246847112c2ad3019fb5af484300d6d5743108d91933bf79a7a9976b561814b3e15d01562e4d17c6bc379d94d1b5c8c3e87ee578869'
+ODQStairs::Application.config.secret_key_base = '7989af78ab4ab6fc434c9246847112c2ad3019fb5af484300d6d5743108d91933bf79a7a9976b561814b3e15d01562e4d17c6bc379d94d1b5c8c3e87ee578869'

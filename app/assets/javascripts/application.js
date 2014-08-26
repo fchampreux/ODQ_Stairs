@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require datepicker_helper
+//= require highcharts
 //= require_tree .

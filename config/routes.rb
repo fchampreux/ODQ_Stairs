@@ -1,4 +1,4 @@
-ODQStep1::Application.routes.draw do
+ODQStairs::Application.routes.draw do
 
   resources :requests
 

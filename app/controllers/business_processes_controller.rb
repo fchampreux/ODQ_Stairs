@@ -99,8 +99,12 @@ class BusinessProcessesController < ApplicationController
   # last 10 scores
   # measures of children objects (bad_records, workload, cost)
   def extract_process_measures
-    current_period = Time.now.strftime("%Y%m%d")
-    @business_process_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period, "#{@business_process.playground_id}-BP-#{@business_process.id}").first.score
+    current_period_day = Time.now.strftime("%Y%m%d")
+    current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
+    first_period_id = current_period_id - time_excursion
+    @business_process_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, "#{@business_process.playground_id}-BP-#{@business_process.id}").first.score
+    @business_process_history = DmMeasure.where("period_id between ? and ? and ODQ_object_id = ?", first_period_id, current_period_id, "#{@business_process.playground_id}-BP-#{@business_process.id}").select("period_day, score").order("period_id")
+    @business_process_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, "#{@business_process.playground_id}-BP-#{@business_process.id}").select("odq_object_id, error_count")
   end
 
   ### Use callbacks to share common setup or constraints between actions.
@@ -108,12 +112,14 @@ class BusinessProcessesController < ApplicationController
     def set_business_process
       @business_process = BusinessProcess.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
-    
+
+=begin    
   ### before filters
     # Check for active session
     def signed_in_user
       redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
     end
+=end
 
   ### strong parameters
   def business_process_params

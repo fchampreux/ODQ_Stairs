@@ -79,13 +79,15 @@ class BreachesController < ApplicationController
     end
 
   ### before filters
+=begin
     # Check for active session
     def signed_in_user
       redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
     end
+=end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def breach_params
       params.require(:breach).permit(:breach_type_id, :description)
     end
-end
+  end

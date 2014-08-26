@@ -82,7 +82,7 @@ order by 2
 /* Is it necessary ? As missing record in the DM_MEASURES table will lead to no join when queried in the front-end */
 
 insert into odq_app.dm_measures(PLAYGROUND_ID,ODQ_OBJECT_ID,ODQ_PARENT_ID,PERIOD_DAY,ALL_RECORDS,ERROR_COUNT,SCORE,PERIOD_ID,CREATED_BY,UPDATED_BY,CREATED_AT,UPDATED_AT,PROCESS_ID) 
-select DWH.PLAYGROUND_ID, DWH.ODQ_OBJECT_ID, DWH.ODQ_PARENT_ID, DWH.PERIOD_DAY, DWH.ALL_RECORDS, DWH.ERROR_COUNT,DWH.SCORE, DTIME.PERIOD_ID,'Rake','Rake',current_timestamp, current_timestamp,0 from (
+select DWH.PLAYGROUND_ID, DWH.ODQ_OBJECT_ID, DWH.ODQ_PARENT_ID, DTIME.PERIOD_DAY, DWH.ALL_RECORDS, DWH.ERROR_COUNT,DWH.SCORE, DTIME.PERIOD_ID,'Rake','Rake',current_timestamp, current_timestamp,0 from (
 
 select BR.playground_id, to_char(BR.playground_id) || '-BR-' || to_char(BR.id) ODQ_object_id, to_char(BR.playground_id) || '-BP-' || to_char(BR.business_process_id) ODQ_parent_id, to_char(current_date, 'YYYYMMDD') Period_day,  
 BR.name , 
@@ -92,10 +92,10 @@ when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
 end) error_count,
 case when count(record_id) <> 0 then 
-sum(case
+(1-sum(case
 when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
-end)/count(distinct record_id)*100 
+end)/count(distinct record_id))*100 
 else -1
 end score
 from odq_app.business_areas BA
@@ -116,10 +116,10 @@ when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
 end) error_count,
 case when count(record_id) <> 0 then 
-sum(case
+(1-sum(case
 when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
-end)/count(distinct record_id)*100 
+end)/count(distinct record_id))*100 
 else -1
 end score
 from odq_app.business_areas BA
@@ -140,10 +140,10 @@ when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
 end) error_count,
 case when count(record_id) <> 0 then 
-sum(case
+(1-sum(case
 when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
-end)/count(distinct record_id)*100 
+end)/count(distinct record_id))*100 
 else -1
 end score
 from odq_app.business_areas BA
@@ -164,10 +164,10 @@ when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
 end) error_count,
 case when count(record_id) <> 0 then 
-sum(case
+(1-sum(case
 when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
 else 0
-end)/count(distinct record_id)*100 
+end)/count(distinct record_id))*100 
 else -1
 end score
 from odq_app.business_areas BA
