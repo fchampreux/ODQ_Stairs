@@ -5,6 +5,22 @@
 #
 #   cities = City.create(id: 1, [{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(id: 1, name: 'Emanuel', city: cities.first)
+
+puts "Initialise sequences"
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE ODQ_APP.SEQUENCES")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (1,0,'Global',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (2,1,'BusinessArea',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (3,1,'BusinessFlow',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (4,1,'BusinessProcess',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (5,1,'BusinessRule',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (6,1,'BusinessObject',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (7,1,'Playground',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (8,1,'Landscape',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (9,1,'Scope',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (10,1,'Organisation',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (11,1,'Territory',1)")
+ActiveRecord::Base.connection.execute("INSERT INTO ODQ_APP.SEQUENCES (ID,PLAYGROUND_ID,CLASS_NAME,CURRENT_ID) VALUES (12,1,'Breach',1)")
+
 puts "Seeding users"
 if User.count == 0
   puts "Creating admin user"

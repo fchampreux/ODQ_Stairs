@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609154605) do
+ActiveRecord::Schema.define(version: 20140901091119) do
 
   create_table "breaches", force: true do |t|
     t.integer  "playground_id",      precision: 38, scale: 0
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.datetime "record_updated_at"
     t.integer  "owner_id",           precision: 38, scale: 0
     t.boolean  "is_identified",      precision: 1,  scale: 0
+    t.integer  "odq_unique_id",      precision: 38, scale: 0
+    t.integer  "odq_object_id",      precision: 38, scale: 0
   end
 
   create_table "business_areas", force: true do |t|
@@ -66,6 +68,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",   precision: 38, scale: 0
     t.integer  "bad_records",   precision: 38, scale: 0
     t.integer  "score",         precision: 38, scale: 0
+    t.integer  "odq_unique_id", precision: 38, scale: 0
+    t.integer  "odq_object_id", precision: 38, scale: 0
   end
 
   add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true
@@ -89,6 +93,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",      precision: 38, scale: 0
     t.integer  "bad_records",      precision: 38, scale: 0
     t.integer  "score",            precision: 38, scale: 0
+    t.integer  "odq_unique_id",    precision: 38, scale: 0
+    t.integer  "odq_object_id",    precision: 38, scale: 0
   end
 
   create_table "business_objects", force: true do |t|
@@ -115,6 +121,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",        precision: 38, scale: 0
     t.integer  "bad_records",        precision: 38, scale: 0
     t.integer  "score",              precision: 38, scale: 0
+    t.integer  "odq_unique_id",      precision: 38, scale: 0
+    t.integer  "odq_object_id",      precision: 38, scale: 0
   end
 
   create_table "business_processes", force: true do |t|
@@ -135,6 +143,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",      precision: 38, scale: 0
     t.integer  "bad_records",      precision: 38, scale: 0
     t.integer  "score",            precision: 38, scale: 0
+    t.integer  "odq_unique_id",    precision: 38, scale: 0
+    t.integer  "odq_object_id",    precision: 38, scale: 0
   end
 
   create_table "business_rules", force: true do |t|
@@ -171,6 +181,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",          precision: 38, scale: 0
     t.integer  "bad_records",          precision: 38, scale: 0
     t.integer  "score",                precision: 38, scale: 0
+    t.integer  "odq_unique_id",        precision: 38, scale: 0
+    t.integer  "odq_object_id",        precision: 38, scale: 0
   end
 
   create_table "data_policies", force: true do |t|
@@ -198,6 +210,156 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.datetime "updated_at",                                   null: false
   end
 
+  create_table "dim_organisations", force: true do |t|
+    t.integer   "playground_id",                precision: 38, scale: 0
+    t.string    "code"
+    t.string    "name"
+    t.text      "description"
+    t.integer   "organisation_level",           precision: 38, scale: 0
+    t.string    "hierarchy"
+    t.string    "level_0"
+    t.string    "level_1"
+    t.string    "level_2"
+    t.string    "level_3"
+    t.string    "level_4"
+    t.string    "level_5"
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",         limit: 6,                          null: false
+    t.timestamp "updated_at",         limit: 6,                          null: false
+    t.integer   "process_id",                   precision: 38, scale: 0
+  end
+
+  create_table "dim_rules", force: true do |t|
+    t.integer   "playground_id",              precision: 38, scale: 0
+    t.string    "code"
+    t.string    "name"
+    t.text      "description"
+    t.string    "hierarchy"
+    t.string    "business_area"
+    t.string    "business_flow"
+    t.string    "business_process"
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",       limit: 6,                          null: false
+    t.timestamp "updated_at",       limit: 6,                          null: false
+    t.integer   "process_id",                 precision: 38, scale: 0
+  end
+
+  create_table "dim_scopes", force: true do |t|
+    t.integer   "playground_id",           precision: 38, scale: 0
+    t.string    "code"
+    t.string    "name"
+    t.text      "description"
+    t.string    "hierarchy"
+    t.string    "landscape"
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",    limit: 6,                          null: false
+    t.timestamp "updated_at",    limit: 6,                          null: false
+    t.integer   "process_id",              precision: 38, scale: 0
+  end
+
+  create_table "dim_territories", force: true do |t|
+    t.integer   "playground_id",             precision: 38, scale: 0
+    t.string    "code"
+    t.string    "name"
+    t.text      "description"
+    t.integer   "territory_level",           precision: 38, scale: 0
+    t.string    "hierarchy"
+    t.string    "level_0"
+    t.string    "level_1"
+    t.string    "level_2"
+    t.string    "level_3"
+    t.string    "level_4"
+    t.string    "level_5"
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",      limit: 6,                          null: false
+    t.timestamp "updated_at",      limit: 6,                          null: false
+    t.integer   "process_id",                precision: 38, scale: 0
+  end
+
+  create_table "dim_time", primary_key: "period_id", force: true do |t|
+    t.integer   "playground_id",                precision: 38, scale: 0, null: false
+    t.string    "period",            limit: 6
+    t.string    "period_day",        limit: 8
+    t.datetime  "period_date"
+    t.timestamp "period_timestamp",  limit: 6
+    t.integer   "day_of_month",                 precision: 38, scale: 0
+    t.integer   "day_of_year",                  precision: 38, scale: 0
+    t.integer   "day_number",                   precision: 38, scale: 0
+    t.integer   "week_of_month",                precision: 38, scale: 0
+    t.integer   "week_of_year",                 precision: 38, scale: 0
+    t.integer   "week_number",                  precision: 38, scale: 0
+    t.integer   "month",                        precision: 38, scale: 0
+    t.string    "month_name",        limit: 20
+    t.integer   "month_number",                 precision: 38, scale: 0
+    t.integer   "trimester_of_year",            precision: 38, scale: 0
+    t.integer   "trimester_number",             precision: 38, scale: 0
+    t.integer   "semester_of_year",             precision: 38, scale: 0
+    t.integer   "semester_number",              precision: 38, scale: 0
+    t.integer   "year",                         precision: 38, scale: 0
+    t.integer   "year_number",                  precision: 38, scale: 0
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",        limit: 6,                           null: false
+    t.timestamp "updated_at",        limit: 6,                           null: false
+    t.integer   "process_id",                   precision: 38, scale: 0
+  end
+
+  create_table "dm_measures", id: false, force: true do |t|
+    t.integer   "playground_id",            precision: 38, scale: 0
+    t.string    "odq_object_id", limit: 30,                          null: false
+    t.string    "odq_parent_id", limit: 30
+    t.integer   "period_id",                precision: 38, scale: 0, null: false
+    t.string    "period_day",    limit: 8
+    t.decimal   "all_records",              precision: 12, scale: 2
+    t.decimal   "error_count",              precision: 12, scale: 2
+    t.decimal   "score",                    precision: 5,  scale: 2
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",    limit: 6
+    t.timestamp "updated_at",    limit: 6
+    t.integer   "process_id",               precision: 38, scale: 0
+  end
+
+  create_table "dwh_records", force: true do |t|
+    t.integer   "playground_id",                   precision: 38, scale: 0
+    t.integer   "business_object_id",              precision: 38, scale: 0
+    t.integer   "organisation_id",                 precision: 38, scale: 0
+    t.integer   "territory_id",                    precision: 38, scale: 0
+    t.raw       "scope_mask",         limit: 1000
+    t.raw       "rule_mask",          limit: 1000
+    t.raw       "error_mask",         limit: 1000
+    t.raw       "whitelist_mask",     limit: 1000
+    t.integer   "period_id",                       precision: 38, scale: 0
+    t.string    "record_id",          limit: 1000
+    t.string    "record_created_by"
+    t.timestamp "record_created_at",  limit: 6
+    t.string    "record_updated_by"
+    t.timestamp "record_updated_at",  limit: 6
+    t.timestamp "first_time_right",   limit: 6
+    t.string    "first_user_right"
+    t.timestamp "last_time_wrong",    limit: 6
+    t.string    "last_user_wrong"
+    t.string    "data_values",        limit: 1000
+    t.string    "updated_values",     limit: 1000
+    t.text      "observation"
+    t.integer   "editor_id",                       precision: 38, scale: 0
+    t.timestamp "edited_at",          limit: 6
+    t.integer   "approver_id",                     precision: 38, scale: 0
+    t.timestamp "approved_at",        limit: 6
+    t.integer   "corrector_id",                    precision: 38, scale: 0
+    t.timestamp "corrected_at",       limit: 6
+    t.string    "record_status"
+    t.string    "created_by"
+    t.string    "updated_by"
+    t.timestamp "created_at",         limit: 6
+    t.timestamp "updated_at",         limit: 6
+    t.integer   "process_id",                      precision: 38, scale: 0
+  end
+
   create_table "landscapes", force: true do |t|
     t.integer  "playground_id", precision: 38, scale: 0
     t.string   "code"
@@ -213,6 +375,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",   precision: 38, scale: 0
     t.integer  "bad_records",   precision: 38, scale: 0
     t.integer  "score",         precision: 38, scale: 0
+    t.integer  "odq_unique_id", precision: 38, scale: 0
+    t.integer  "odq_object_id", precision: 38, scale: 0
   end
 
   create_table "mappings", force: true do |t|
@@ -263,6 +427,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "status_id",          precision: 38, scale: 0
     t.integer  "owner_id",           precision: 38, scale: 0
     t.integer  "parent_id",          precision: 38, scale: 0
+    t.integer  "odq_unique_id",      precision: 38, scale: 0
+    t.integer  "odq_object_id",      precision: 38, scale: 0
   end
 
   create_table "parameters", force: true do |t|
@@ -303,13 +469,15 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.string   "hierarchy"
     t.string   "created_by"
     t.string   "updated_by"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "status_id",   precision: 38, scale: 0
-    t.integer  "owner_id",    precision: 38, scale: 0
-    t.integer  "all_records", precision: 38, scale: 0
-    t.integer  "bad_records", precision: 38, scale: 0
-    t.integer  "score",       precision: 38, scale: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "status_id",     precision: 38, scale: 0
+    t.integer  "owner_id",      precision: 38, scale: 0
+    t.integer  "all_records",   precision: 38, scale: 0
+    t.integer  "bad_records",   precision: 38, scale: 0
+    t.integer  "score",         precision: 38, scale: 0
+    t.integer  "odq_unique_id", precision: 38, scale: 0
+    t.integer  "odq_object_id", precision: 38, scale: 0
   end
 
   create_table "roles", force: true do |t|
@@ -346,6 +514,14 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "all_records",         precision: 38, scale: 0
     t.integer  "bad_records",         precision: 38, scale: 0
     t.integer  "score",               precision: 38, scale: 0
+    t.integer  "odq_unique_id",       precision: 38, scale: 0
+    t.integer  "odq_object_id",       precision: 38, scale: 0
+  end
+
+  create_table "sequences", force: true do |t|
+    t.integer "playground_id", precision: 38, scale: 0
+    t.string  "class_name"
+    t.integer "current_id",    precision: 38, scale: 0
   end
 
   create_table "territories", force: true do |t|
@@ -362,6 +538,8 @@ ActiveRecord::Schema.define(version: 20140609154605) do
     t.integer  "status_id",       precision: 38, scale: 0
     t.integer  "owner_id",        precision: 38, scale: 0
     t.integer  "parent_id",       precision: 38, scale: 0
+    t.integer  "odq_unique_id",   precision: 38, scale: 0
+    t.integer  "odq_object_id",   precision: 38, scale: 0
   end
 
   create_table "time_scales", force: true do |t|

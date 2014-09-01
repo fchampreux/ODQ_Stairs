@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ODQStep1::Application.load_tasks
+ODQStairs::Application.load_tasks

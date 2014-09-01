@@ -48,7 +48,7 @@ extend SimpleSearch
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_flow
 	has_many :business_rules
-
+    
 ### private functions definitions
   private
 
