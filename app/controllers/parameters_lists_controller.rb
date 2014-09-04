@@ -31,10 +31,7 @@ class ParametersListsController < ApplicationController
   # POST /parameters_list.json
   def create
     @parameters_list = ParametersList.new(parameters_list_params)
-    @parameters_list.updated_by = current_user.login
-    @parameters_list.created_by = current_user.login
-    @parameters_list.playground_id = current_user.current_playground_id
-    @parameters_list.owner_id = current_user.id
+    metadata_setup(@parameters_list)
 
     respond_to do |format|
       if @parameters_list.save
@@ -76,15 +73,10 @@ class ParametersListsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     def set_parameters_list
       @parameters_list = ParametersList.pgnd(current_playground).find(params[:id])
     end
-
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameters_list_params

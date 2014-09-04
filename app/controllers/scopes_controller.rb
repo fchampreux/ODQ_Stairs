@@ -42,10 +42,7 @@ class ScopesController < ApplicationController
   def create
     @landscape = Landscape.find(params[:landscape_id])
     @scope = @landscape.scopes.build(scope_params)
-    @scope.updated_by = current_user.login
-    @scope.created_by = current_user.login
-    @scope.playground_id = current_user.current_playground_id
-    @scope.owner_id = current_user.id    
+    metadata_setup(@scope)   
 
     respond_to do |format|
       if @scope.save
@@ -99,10 +96,6 @@ class ScopesController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def scope_params

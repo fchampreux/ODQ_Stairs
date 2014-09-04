@@ -41,9 +41,7 @@ class MappingsController < ApplicationController
   def create
     @mappings_list = MappingsList.find(params[:mappings_list_id])
     @mapping = @mappings_list.mappings.build(mapping_params)
-    @mapping.updated_by = current_user.login
-    @mapping.created_by = current_user.login
-    @mapping.playground_id = current_user.current_playground_id
+    metadata_setup(@mapping)
 
     respond_to do |format|
       if @mapping.save
@@ -90,13 +88,7 @@ class MappingsController < ApplicationController
     def set_mapping
       @mapping = Mapping.pgnd(current_playground).find(params[:id])
     end
-=begin
-    # Retrieve current mappings batch
-    def set_mappings_batch
-      @mappings_list = MappingsList.find(params[:id])
-      @mappings = @mappings_list.mappings
-    end
-=end
+
     # Retrieve target values list
     def set_target_values
       @mappings_list = MappingsList.find(params[:id])
@@ -104,10 +96,6 @@ class MappingsController < ApplicationController
     end
 
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     # Never trust mappings from the scary internet, only allow the white list through.
     def mapping_params

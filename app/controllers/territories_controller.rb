@@ -47,10 +47,7 @@ class TerritoriesController < ApplicationController
   def create
     @parent_territory = Territory.find(params[:territory_id])
     @territory = @parent_territory.child_territories.build(territory_params)
-    @territory.updated_by = current_user.login
-    @territory.created_by = current_user.login
-    @territory.playground_id = current_user.current_playground_id
-    @territory.owner_id = current_user.id
+    metadata_setup(@territory)
 
     respond_to do |format|
       if @territory.save
@@ -102,10 +99,6 @@ class TerritoriesController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def territory_params

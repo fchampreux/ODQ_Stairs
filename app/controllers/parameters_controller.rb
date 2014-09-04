@@ -33,9 +33,7 @@ class ParametersController < ApplicationController
   def create
     @parameters_list = ParametersList.find(params[:parameters_list_id])
     @parameter = @parameters_list.parameters.build(parameter_params)
-    @parameter.updated_by = current_user.login
-    @parameter.created_by = current_user.login
-    @parameter.playground_id = current_user.current_playground_id
+    metadata_setup(@parameter)
 
     respond_to do |format|
       if @parameter.save
@@ -84,10 +82,6 @@ class ParametersController < ApplicationController
     end
 
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameter_params

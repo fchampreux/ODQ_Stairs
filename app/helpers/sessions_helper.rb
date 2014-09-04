@@ -29,10 +29,14 @@ module SessionsHelper
     current_user.current_playground_id
   end
 
+  def current_login
+    current_user.login
+  end
+
   def user_is_admin?
     current_user.is_admin
   end
-
+  
   # Check for active session
   def signed_in_user
     redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?

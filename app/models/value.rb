@@ -13,6 +13,8 @@
 #  updated_by     :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  odq_unique_id  :integer
+#  odq_object_id  :integer
 #
 
 
@@ -32,7 +34,8 @@ class Value < ActiveRecord::Base
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-        belongs_to :playground
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	validates :playground, presence: true						# validates that the playground exists
         belongs_to :values_list
 

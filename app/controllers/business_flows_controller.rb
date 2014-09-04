@@ -42,10 +42,7 @@ class BusinessFlowsController < ApplicationController
   def create
     @business_area = BusinessArea.find(params[:business_area_id])
     @business_flow = @business_area.business_flows.build(business_flow_params)
-    @business_flow.updated_by = current_user.login
-    @business_flow.created_by = current_user.login
-    @business_flow.playground_id = current_user.current_playground_id
-    @business_flow.owner_id = current_user.id
+    metadata_setup(@business_flow)
 
     respond_to do |format|
       if @business_flow.save
@@ -98,10 +95,7 @@ class BusinessFlowsController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
+
 
   ### strong parameters
   def business_flow_params

@@ -44,8 +44,8 @@ CREATE TABLE odq_app.dwh_records
 CREATE TABLE odq_app.dm_measures
 (
   playground_id integer,
-  ODQ_object_id varchar2(30),
-  ODQ_parent_id varchar2(30),
+  ODQ_object_id integer,
+  ODQ_parent_id integer,
   period_id integer,
   period_day char(8),
   all_records number(12,2),

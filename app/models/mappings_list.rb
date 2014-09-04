@@ -14,6 +14,8 @@
 #  target_list_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  odq_unique_id  :integer
+#  odq_object_id  :integer
 #
 
 
@@ -35,7 +37,8 @@ class MappingsList < ActiveRecord::Base
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-        belongs_to :playground
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	validates :playground, presence: true							# validates that the playground exists
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
         belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name

@@ -42,10 +42,7 @@ class BusinessObjectsController < ApplicationController
   def create
     @business_area = BusinessArea.find(params[:business_area_id])
     @business_object = @business_area.business_objects.build(business_object_params)
-    @business_object.updated_by = current_user.login
-    @business_object.created_by = current_user.login
-    @business_object.playground_id = current_user.current_playground_id
-    @business_object.owner_id = current_user.id
+    metadata_setup(@business_object)
 
     respond_to do |format|
       if @business_object.save
@@ -97,10 +94,6 @@ class BusinessObjectsController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def business_object_params

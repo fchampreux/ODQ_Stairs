@@ -18,9 +18,9 @@
 #  correction_batch     :string(255)
 #  white_list           :text
 #  condition            :text
-#  added_value          :decimal(, )
-#  maintenance_cost     :decimal(, )
-#  maintenance_duration :decimal(, )
+#  added_value          :integer
+#  maintenance_cost     :integer
+#  maintenance_duration :integer
 #  version              :string(255)
 #  approver_id          :integer
 #  approved_at          :datetime
@@ -35,10 +35,15 @@
 #  complexity_id        :integer
 #  all_records          :integer
 #  bad_records          :integer
+#  score                :integer
+#  odq_unique_id        :integer
+#  odq_object_id        :integer
 #
 
 class BusinessRule < ActiveRecord::Base
 extend SimpleSearch
+
+self.sequence_name = "global_seq"
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -56,6 +61,8 @@ extend SimpleSearch
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
 	validates :business_object_id, presence: true
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
 	belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"		# helps retrieving the approver name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name
@@ -78,10 +85,10 @@ extend SimpleSearch
       if BusinessRule.where("business_process_id = ?", self.business_process_id).count == 0 
         self.hierarchy = self.business_process.hierarchy + '.001'
       else 
-        last_one = BusinessRule.maximum("hierarchy")
+        last_one = BusinessRule.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next
       end
     end
-
+      
 end
 

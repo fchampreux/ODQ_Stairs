@@ -18,6 +18,9 @@
 #  updated_at    :datetime         not null
 #  all_records   :integer
 #  bad_records   :integer
+#  score         :integer
+#  odq_unique_id :integer
+#  odq_object_id :integer
 #
 
 

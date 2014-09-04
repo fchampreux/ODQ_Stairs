@@ -14,6 +14,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'selenium-webdriver', '2.42.0'
+gem 'sequenced'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

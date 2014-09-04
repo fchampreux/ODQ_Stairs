@@ -42,10 +42,7 @@ class LandscapesController < ApplicationController
   def create
     @playground = Playground.find(params[:playground_id])
     @landscape = @playground.landscapes.build(landscape_params)
-    @landscape.updated_by = current_user.login
-    @landscape.created_by = current_user.login
-    @landscape.playground_id = current_user.current_playground_id
-    @landscape.owner_id = current_user.id
+    metadata_setup(@landscape)
     
     respond_to do |format|
       if @landscape.save
@@ -99,10 +96,6 @@ class LandscapesController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def landscape_params

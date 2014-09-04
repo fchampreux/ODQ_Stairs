@@ -15,6 +15,8 @@
 #  updated_at    :datetime
 #  software_id   :integer
 #  software_name :string(255)
+#  odq_unique_id :integer
+#  odq_object_id :integer
 #
 
 
@@ -34,7 +36,8 @@ class ValuesList < ActiveRecord::Base
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-        belongs_to :playground
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	validates :playground, presence: true						# validates that the playground exists
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"	# helps retrieving the software name

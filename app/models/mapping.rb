@@ -20,6 +20,8 @@
 #  source_caption   :string(255)
 #  target_caption   :string(255)
 #  owner_id         :integer
+#  odq_unique_id    :integer
+#  odq_object_id    :integer
 #
 
 
@@ -44,7 +46,8 @@ before_update :retrieve_target_caption
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-        belongs_to :playground
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	validates :playground, presence: true						# validates that the playground exists
         belongs_to :mappings_list
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name

@@ -37,10 +37,7 @@ class MappingsListsController < ApplicationController
   # POST /mappings_list.json
   def create
     @mappings_list = MappingsList.new(mappings_list_params)
-    @mappings_list.updated_by = current_user.login
-    @mappings_list.created_by = current_user.login
-    @mappings_list.playground_id = current_user.current_playground_id
-    @mappings_list.owner_id = current_user.id
+    metadata_setup(@mappings_list)
 
     respond_to do |format|
       if @mappings_list.save
@@ -83,10 +80,6 @@ class MappingsListsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     def set_mappings_list
       @mappings_list = MappingsList.pgnd(current_playground).find(params[:id])

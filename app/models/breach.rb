@@ -22,9 +22,9 @@
 #  current_values     :text
 #  proposed_values    :text
 #  is_whitelisted     :boolean
-#  opened_at          :date
-#  expected_at        :date
-#  closed_at          :date
+#  opened_at          :datetime
+#  expected_at        :datetime
+#  closed_at          :datetime
 #  responsible_id     :integer
 #  approver_id        :integer
 #  approved_at        :datetime
@@ -36,6 +36,8 @@
 #  record_updated_at  :datetime
 #  owner_id           :integer
 #  is_identified      :boolean
+#  odq_unique_id      :integer
+#  odq_object_id      :integer
 #
 
 
@@ -65,6 +67,8 @@ before_save :set_approver
 	belongs_to :territory									# helps retrieving the territory dimension name
 	belongs_to :business_object								# helps retrieving the business object name
         belongs_to :business_rule
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 
 ### private functions definitions
   private

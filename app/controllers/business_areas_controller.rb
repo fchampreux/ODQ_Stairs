@@ -40,10 +40,7 @@ class BusinessAreasController < ApplicationController
   # POST /business_areas.json
   def create
     @business_area = BusinessArea.new(business_area_params)
-    @business_area.updated_by = current_user.login
-    @business_area.created_by = current_user.login
-    @business_area.playground_id = current_playground
-    @business_area.owner_id = current_user.id
+    metadata_setup(@business_area)
 
     respond_to do |format|
       if @business_area.save
@@ -96,10 +93,7 @@ class BusinessAreasController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
+
 
   ### strong parameters
   def business_area_params

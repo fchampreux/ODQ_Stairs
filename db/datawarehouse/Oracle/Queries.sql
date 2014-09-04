@@ -180,4 +180,105 @@ BA.name
 )  DWH
 inner join odq_app.DIM_TIME DTIME on DWH.PERIOD_DAY = DTIME.PERIOD_DAY 
 
+/*Based id*/
+insert into odq_app.dm_measures(PLAYGROUND_ID,ODQ_OBJECT_ID,ODQ_PARENT_ID,PERIOD_DAY,ALL_RECORDS,ERROR_COUNT,SCORE,PERIOD_ID,CREATED_BY,UPDATED_BY,CREATED_AT,UPDATED_AT,PROCESS_ID) 
+select DWH.PLAYGROUND_ID, DWH.ID, DWH.PARENT_ID, DTIME.PERIOD_DAY, DWH.ALL_RECORDS, DWH.ERROR_COUNT,DWH.SCORE, DTIME.PERIOD_ID,'Rake','Rake',current_timestamp, current_timestamp,0 from (
+
+select BR.playground_id, BR.id, BR.business_process_id parent_id, to_char(current_date, 'YYYYMMDD') Period_day,  
+BR.name , 
+count(distinct record_id) all_records, 
+sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end) error_count,
+case when count(record_id) <> 0 then 
+(1-sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end)/count(distinct record_id))*100 
+else -1
+end score
+from odq_app.business_areas BA
+inner join odq_app.business_flows BF on BF.business_area_id = BA.id
+inner join odq_app.business_processes BP on BP.business_flow_id = BF.id
+inner join odq_app.business_rules BR on BR.business_process_id = BP.id
+left outer join odq_app.dwh_records DWH on odq_app.bitand2(power(2,BR.id), rawtohex(rule_mask)) <> 0
+group by BR.playground_id, BR.id, BR.business_process_id, to_char(current_date, 'YYYYMMDD'),  
+BR.name  
+
+UNION
+
+select BP.playground_id, BP.id, BP.business_flow_id parent_id, to_char(current_date, 'YYYYMMDD') Period_day,  
+BP.name , 
+count(distinct record_id) all_records, 
+sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end) error_count,
+case when count(record_id) <> 0 then 
+(1-sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end)/count(distinct record_id))*100 
+else -1
+end score
+from odq_app.business_areas BA
+inner join odq_app.business_flows BF on BF.business_area_id = BA.id
+inner join odq_app.business_processes BP on BP.business_flow_id = BF.id
+inner join odq_app.business_rules BR on BR.business_process_id = BP.id
+left outer join odq_app.dwh_records DWH on odq_app.bitand2(power(2,BR.id), rawtohex(rule_mask)) <> 0
+group by BP.playground_id,  BP.id, BP.business_flow_id, to_char(current_date, 'YYYYMMDD'),  
+BP.name
+
+UNION
+
+select BF.playground_id, BF.id, BF.business_area_id parent_id, to_char(current_date, 'YYYYMMDD') Period_day,  
+BF.name , 
+count(distinct record_id) all_records, 
+sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end) error_count,
+case when count(record_id) <> 0 then 
+(1-sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end)/count(distinct record_id))*100 
+else -1
+end score
+from odq_app.business_areas BA
+inner join odq_app.business_flows BF on BF.business_area_id = BA.id
+inner join odq_app.business_processes BP on BP.business_flow_id = BF.id
+inner join odq_app.business_rules BR on BR.business_process_id = BP.id
+left outer join odq_app.dwh_records DWH on odq_app.bitand2(power(2,BR.id), rawtohex(rule_mask)) <> 0
+group by BF.playground_id, BF.id, BF.business_area_id, to_char(current_date, 'YYYYMMDD'),  
+BF.name 
+
+UNION
+
+select BA.playground_id, BA.id, BA.playground_id parent_id, to_char(current_date, 'YYYYMMDD') Period_day,  
+BA.name , 
+count(distinct record_id) all_records, 
+sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end) error_count,
+case when count(record_id) <> 0 then 
+(1-sum(case
+when  odq_app.bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1
+else 0
+end)/count(distinct record_id))*100 
+else -1
+end score
+from odq_app.business_areas BA
+inner join odq_app.business_flows BF on BF.business_area_id = BA.id
+inner join odq_app.business_processes BP on BP.business_flow_id = BF.id
+inner join odq_app.business_rules BR on BR.business_process_id = BP.id
+left outer join odq_app.dwh_records DWH on odq_app.bitand2(power(2,BR.id), rawtohex(rule_mask)) <> 0
+group by BA.playground_id,  BA.id, BA.playground_id, to_char(current_date, 'YYYYMMDD'),  
+BA.name
+
+)  DWH
+inner join odq_app.DIM_TIME DTIME on DWH.PERIOD_DAY = DTIME.PERIOD_DAY
+
 

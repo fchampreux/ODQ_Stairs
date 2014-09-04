@@ -16,6 +16,8 @@
 #  param_value        :string(255)
 #  parameters_list_id :integer
 #  param_code         :string(255)
+#  odq_unique_id      :integer
+#  odq_object_id      :integer
 #
 
 class Parameter < ActiveRecord::Base
@@ -35,6 +37,8 @@ class Parameter < ActiveRecord::Base
 	validates :active_from, presence: true
 	validates :active_to, presence: true
 	validates :playground_id, presence: true
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
         belongs_to :parameters_list
 
 ### private functions definitions

@@ -16,6 +16,8 @@
 #  param_value        :string(255)
 #  parameters_list_id :integer
 #  param_code         :string(255)
+#  odq_unique_id      :integer
+#  odq_object_id      :integer
 #
 
 require 'spec_helper'

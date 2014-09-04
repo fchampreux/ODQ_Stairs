@@ -16,10 +16,15 @@
 #  owner_id      :integer
 #  all_records   :integer
 #  bad_records   :integer
+#  score         :integer
+#  odq_unique_id :integer
+#  odq_object_id :integer
 #
 
 class Landscape < ActiveRecord::Base
 extend SimpleSearch
+
+self.sequence_name = "global_seq"
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -39,7 +44,8 @@ extend SimpleSearch
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	has_many :scopes
-	belongs_to :playground
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 
 ### private functions definitions
   private
@@ -53,7 +59,7 @@ extend SimpleSearch
       if Landscape.where("playground_id = ?", self.playground_id).count == 0 
         self.hierarchy = self.playground.hierarchy + '.001'
       else 
-        last_one = Landscape.maximum("hierarchy")
+        last_one = Landscape.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next
       end
     end

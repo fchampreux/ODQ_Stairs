@@ -33,9 +33,7 @@ class ValuesController < ApplicationController
   def create
     @values_list = ValuesList.find(params[:values_list_id])
     @value = @values_list.values.build(value_params)
-    @value.updated_by = current_user.login
-    @value.created_by = current_user.login
-    @value.playground_id = current_user.current_playground_id
+    metadata_setup(@value)
 
     respond_to do |format|
       if @value.save
@@ -83,10 +81,6 @@ class ValuesController < ApplicationController
     end
 
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     # Never trust values from the scary internet, only allow the white list through.
     def value_params

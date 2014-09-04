@@ -18,9 +18,9 @@
 #  correction_batch     :string(255)
 #  white_list           :text
 #  condition            :text
-#  added_value          :decimal(, )
-#  maintenance_cost     :decimal(, )
-#  maintenance_duration :decimal(, )
+#  added_value          :integer
+#  maintenance_cost     :integer
+#  maintenance_duration :integer
 #  version              :string(255)
 #  approver_id          :integer
 #  approved_at          :datetime
@@ -35,6 +35,9 @@
 #  complexity_id        :integer
 #  all_records          :integer
 #  bad_records          :integer
+#  score                :integer
+#  odq_unique_id        :integer
+#  odq_object_id        :integer
 #
 
 					

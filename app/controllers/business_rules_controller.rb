@@ -46,11 +46,7 @@ class BusinessRulesController < ApplicationController
   def create
     @business_process = BusinessProcess.find(params[:business_process_id])
     @business_rule = @business_process.business_rules.build(business_rule_params)
-    @business_rule.updated_by = current_user.login
-    @business_rule.created_by = current_user.login
-    @business_rule.playground_id = current_user.current_playground_id
-    @business_rule.owner_id = current_user.id
-
+    metadata_setup(@business_rule)
 
     respond_to do |format|
       if @business_rule.save
@@ -113,16 +109,14 @@ class BusinessRulesController < ApplicationController
     end
 
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
+    
   ### strong parameters
   def business_rule_params
     params.require(:business_rule).permit(:code, :name, :status_id, :description, :business_value, :check_description, :check_script, :correction_method, :correction_script, 
 				:correction_batch, :white_list, :rule_type_id, :condition, :complexity_id, :added_value, :severity_id, :maintenance_cost, :maintenance_duration, 
 				:version, :approver_id, :approved_at, :business_object_id)
   end
+
 
 end

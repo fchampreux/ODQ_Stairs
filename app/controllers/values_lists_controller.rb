@@ -34,10 +34,7 @@ class ValuesListsController < ApplicationController
   # POST /values_list.json
   def create
     @values_list = ValuesList.new(values_list_params)
-    @values_list.updated_by = current_user.login
-    @values_list.created_by = current_user.login
-    @values_list.playground_id = current_user.current_playground_id
-    @values_list.owner_id = current_user.id
+    metadata_setup(@values_list)
 
     respond_to do |format|
       if @values_list.save
@@ -79,10 +76,6 @@ class ValuesListsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
     def set_values_list
       @values_list = ValuesList.pgnd(current_playground).find(params[:id])

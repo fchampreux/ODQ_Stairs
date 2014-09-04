@@ -36,7 +36,8 @@ class BreachesController < ApplicationController
   # POST /breaches.json
   def create
     @breach = Breach.new(breach_params)
-
+    metadata_setup(@breach)
+    
     respond_to do |format|
       if @breach.save
         format.html { redirect_to @breach, notice: 'Request was successfully created.' }
@@ -79,12 +80,7 @@ class BreachesController < ApplicationController
     end
 
   ### before filters
-=begin
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
-=end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def breach_params

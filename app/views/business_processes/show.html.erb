@@ -14,7 +14,7 @@ $(function () {
         },
        series: [{
             name: 'Business Process',
-            data: <%= raw @business_process_history.map { |bp| [ bp.score.to_f] } %>,
+            data: <%= raw scores_chart_series_for(@business_process).map { |bp| [ bp.score.to_f] } %>,
             pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
             pointInterval: 24 * 3600 * 1000 // one day
         }]
@@ -49,7 +49,7 @@ $(function () {
             }
         },
        series: [{
-            data:  <%= raw @business_process_children.map { |br| [ br.odq_object_id, br.error_count.to_f] } %> ,
+            data:  <%= raw errors_chart_series_for(@business_process).map { |br| [ br.odq_object_id, br.error_count.to_f] } %> ,
             type: 'pie',
             name: 'Business Rule'
         }]

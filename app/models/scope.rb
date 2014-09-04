@@ -23,10 +23,15 @@
 #  owner_id            :integer
 #  all_records         :integer
 #  bad_records         :integer
+#  score               :integer
+#  odq_unique_id       :integer
+#  odq_object_id       :integer
 #
 
 class Scope < ActiveRecord::Base
 extend SimpleSearch
+
+self.sequence_name = "global_seq"
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -43,6 +48,8 @@ extend SimpleSearch
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_object							# helps retrieving the target business object
@@ -61,7 +68,7 @@ extend SimpleSearch
       if Scope.where("landscape_id = ?", self.landscape_id).count == 0 
         self.hierarchy = self.landscape.hierarchy + '.001'
       else 
-        last_one = Scope.maximum("hierarchy")
+        last_one = Scope.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next
       end
     end

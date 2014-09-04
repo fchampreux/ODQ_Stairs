@@ -47,10 +47,7 @@ class OrganisationsController < ApplicationController
   def create
     @parent_org = Organisation.find(params[:organisation_id])
     @organisation = @parent_org.child_orgs.build(organisation_params)
-    @organisation.updated_by = current_user.login
-    @organisation.created_by = current_user.login
-    @organisation.playground_id = current_user.current_playground_id
-    @organisation.owner_id = current_user.id
+    metadata_setup(@organisation)
 
     respond_to do |format|
       if @organisation.save
@@ -102,10 +99,6 @@ class OrganisationsController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def organisation_params

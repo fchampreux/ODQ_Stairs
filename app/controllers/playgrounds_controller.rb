@@ -39,9 +39,7 @@ class PlaygroundsController < ApplicationController
   # POST /playgrounds.json
   def create
     @playground = Playground.new(playground_params)
-    @playground.updated_by = current_user.login
-    @playground.created_by = current_user.login
-    @playground.owner_id = current_user.id
+    metadata_setup(@playground)
 
     respond_to do |format|
       if @playground.save
@@ -95,10 +93,6 @@ class PlaygroundsController < ApplicationController
     end
     
   ### before filters
-    # Check for active session
-    def signed_in_user
-      redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
-    end
 
   ### strong parameters
   def playground_params

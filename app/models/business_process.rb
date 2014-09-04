@@ -19,12 +19,17 @@
 #  updated_at       :datetime         not null
 #  all_records      :integer
 #  bad_records      :integer
+#  score            :integer
+#  odq_unique_id    :integer
+#  odq_object_id    :integer
 #
 
 
 
 class BusinessProcess < ActiveRecord::Base
 extend SimpleSearch
+
+self.sequence_name = "global_seq"
 
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
@@ -44,6 +49,8 @@ extend SimpleSearch
 	validates :business_flow_id, presence: true
 	validates :PCF_index, length: { maximum: 30 }
 	validates :PCF_reference, length: { maximum: 30 }
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_flow

@@ -16,6 +16,9 @@
 #  owner_id      :integer
 #  all_records   :integer
 #  bad_records   :integer
+#  score         :integer
+#  odq_unique_id :integer
+#  odq_object_id :integer
 #
 
 

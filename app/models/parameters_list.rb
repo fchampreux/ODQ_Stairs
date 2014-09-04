@@ -13,6 +13,8 @@
 #  is_user_specific :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
+#  odq_unique_id    :integer
+#  odq_object_id    :integer
 #
 
 class ParametersList < ActiveRecord::Base
@@ -30,6 +32,8 @@ class ParametersList < ActiveRecord::Base
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
+        belongs_to :playground									# scopes the odq_object_id calculation
+        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
         has_many :parameters, :dependent => :destroy 
 
