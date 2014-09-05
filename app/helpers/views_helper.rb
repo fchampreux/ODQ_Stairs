@@ -33,7 +33,7 @@ module ViewsHelper
   end
 =end
 
-  ### extract object scores chart series
+  ### extract object's scores chart series
   def scores_chart_series_for(current_object)
     current_period_id = DimTime.where("period_date = ?", Time.now.to_date).take.period_id
     measured_history = DmMeasure.where("period_id between ? and ? and ODQ_object_id = ?", current_period_id - date_excursion, current_period_id, current_object.id).select("period_id, score").order("period_id")
@@ -43,11 +43,11 @@ module ViewsHelper
     end
   end
 
-  ### extract object children errors chart series
+  ### extract object's children errors chart series
   def errors_chart_series_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
     current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
-    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).select("odq_object_id, error_count")
+    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).select("odq_object_id as id, odq_object_name as name, odq_object_code as code, error_count, odq_object_url as url")
   end
 
 end

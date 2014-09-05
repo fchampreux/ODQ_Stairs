@@ -13,7 +13,7 @@ $(function () {
             title: {text: 'Score'}
         },
        series: [{
-            name: 'Business Process',
+            name: 'Quality',
             data: <%= raw scores_chart_series_for(@business_process).map { |bp| [ bp.to_f] } %>,
             pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
             pointInterval: 24 * 3600 * 1000 // one day
@@ -22,7 +22,8 @@ $(function () {
 });
 </script>
 <script>
-$(function () { 
+$(function () {
+    var $reporting = $('#reporting');
     $('#measures_children').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -30,28 +31,35 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Descendant impact on data quality'
+            text: 'Descendants impact on data quality'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {
-                allowPointSelect: true,
+                allowPointSelect: false,
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    format: '<b>{point.options.code}</b>: {point.percentage:.1f} %',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
-                }
+                },
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.options.url;
+                            }
+                    }
+                } 
             }
         },
-       series: [{
-            data:  <%= raw errors_chart_series_for(@business_process).map { |br| [ br.odq_object_id, br.error_count.to_f] } %> ,
+        series: [{
+            data:  <%= raw errors_chart_series_for(@business_process).map { |br| { name: br.name, y: br.error_count.to_f, url: br.url, code: br.code } }.to_json %> ,
             type: 'pie',
-            name: 'Business Rule'
+            name: 'Weight'
         }]
     });
 });
@@ -73,7 +81,9 @@ $(function () {
     <li><%= link_to 'Up', @business_process.business_flow %> |</li>
     <li><%= link_to 'Destroy', @business_process, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
-
+  
+ <%= raw errors_chart_series_for(@business_process).map { |br| { name: br.code, y: br.error_count.to_f, url: br.url, odq_id: br.id.to_s } }.to_json %> 
+      
 <!-- <p id="notice"><%= notice %></p> -->
 
   <div class="tabbable">
@@ -138,7 +148,7 @@ $(function () {
           <div id="measures_trend" style="width:80%; height:400px;"></div>
         </div>
         <div class="span6">
-          <div id="measures_children" style="width:80%; height:400px;"></div>
+          <div id="measures_children" style="width:100%; height:400px;"></div>
         </div>
       </div>
 
