@@ -14,7 +14,7 @@ $(function () {
         },
        series: [{
             name: 'Business Process',
-            data: <%= raw scores_chart_series_for(@business_process).map { |bp| [ bp.score.to_f] } %>,
+            data: <%= raw scores_chart_series_for(@business_process).map { |bp| [ bp.to_f] } %>,
             pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
             pointInterval: 24 * 3600 * 1000 // one day
         }]

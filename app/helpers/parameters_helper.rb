@@ -66,9 +66,9 @@ module ParametersHelper
   end
 
 # retrieve the time excursion for displaying history in objects tab
-  def time_excursion
+  def date_excursion
     list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
-    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Time excursion', Time.now ).take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Date excursion', Time.now ).take!
     @myparam.param_value.to_i
   end
 

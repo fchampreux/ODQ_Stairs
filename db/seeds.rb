@@ -163,7 +163,7 @@ if Parameter.count==0
   Parameter.create(id: 37, playground_id: 1001,  name: 'Rejected', param_value: 4, description: 'Newly reported breach', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
   Parameter.create(id: 38, playground_id: 1001,  name: 'Corrected', param_value: 5, description: 'Newly reported breach', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
   Parameter.create(id: 39, playground_id: 1001,  name: 'Closed', param_value: 6, description: 'Newly reported breach', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
-  Parameter.create(id: 40, playground_id: 1001,  name: 'Time excursion', param_value: 10, description: 'Retrieve the time excursion for displaying history in objects tab', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
+  Parameter.create(id: 40, playground_id: 1001,  name: 'Date excursion', param_value: 10, description: 'Retrieve the number of days for displaying history in objects tab', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
 end
 
 puts "Seeding values lists"
