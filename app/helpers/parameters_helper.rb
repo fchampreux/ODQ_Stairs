@@ -116,6 +116,12 @@ module ParametersHelper
     @myparam.param_code
   end
 
+  def grey_image
+    list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=? AND ? BETWEEN active_from AND active_to", list_id, 'Tag 4-Grey light', Time.now ).take!
+    @myparam.param_code
+  end
+  
 # retrieve the list of managed softwares
   def set_softwares_list
     list_id = ParametersList.where("code=?", 'LIST_OF_MANAGED_SOFTWARES').take!

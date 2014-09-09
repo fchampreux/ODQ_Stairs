@@ -14,24 +14,20 @@ module ViewsHelper
   def index_audit_tag_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
     current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
-    measured_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
-    image_file = case measured_score 
+    if DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).blank?
+      measured_score = -1
+    else  
+      measured_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
+    end
+    
+    image_file = case measured_score
+      when -1 then grey_image     
       when red_threshold..yellow_threshold then red_image 
       when yellow_threshold..green_threshold then yellow_image
       else green_image
     end
     return image_file
   end
-
-=begin
-  ### extract object scores chart series
-  def scores_chart_series_for(current_object)
-    current_period_day = Time.now.strftime("%Y%m%d")
-    current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
-    first_period_id = current_period_id - date_excursion
-    measured_history = DmMeasure.where("period_id between ? and ? and ODQ_object_id = ?", first_period_id, current_period_id, current_object.id).select("period_id, score").order("period_id")
-  end
-=end
 
   ### extract object's scores chart series
   def scores_chart_series_for(current_object)
