@@ -82,7 +82,6 @@ $(function () {
     <li><%= link_to 'Destroy', @business_process, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
   
- <%= raw errors_chart_series_for(@business_process).map { |br| { name: br.code, y: br.error_count.to_f, url: br.url, odq_id: br.id.to_s } }.to_json %> 
       
 <!-- <p id="notice"><%= notice %></p> -->
 
