@@ -45,6 +45,20 @@ module ViewsHelper
     current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
     measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).select("odq_object_id as id, odq_object_name as name, odq_object_code as code, error_count, odq_object_url as url")
   end
+  
+    ### extract object's children added value chart series
+  def added_value_chart_series_for(current_object)
+    current_period_day = Time.now.strftime("%Y%m%d")
+    current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
+    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).select("odq_object_id as id, odq_object_name as name, odq_object_code as code, added_value, odq_object_url as url")
+  end
+  
+    ### extract object's children workload chart series
+  def workload_chart_series_for(current_object)
+    current_period_day = Time.now.strftime("%Y%m%d")
+    current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
+    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).select("odq_object_id as id, odq_object_name as name, odq_object_code as code, workload, odq_object_url as url")
+  end
 
 end
 
