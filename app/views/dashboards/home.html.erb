@@ -1,7 +1,16 @@
 <% provide(:title, 'Home') %>
 
       <% if signed_in? %>
-        <h1> <%= @current_user.last_name %>'s dashboard </h1>
+
+        <h1><%= @playground_measured.name %>'s dashboard </h1>
+        <h2><%= @current_user.last_name %>' view</h2>
+
+          <div id="measures">
+            <%= render partial: "shared/render_charts", locals: {this_object: @playground_measured} %>
+          </div>  
+        <hr/>
+
+        <h3> Top 10 Business Rules activity </h3>
 
         <div class="container-fluid">
           <div class="span4">
@@ -66,7 +75,6 @@
             </tr>
           <% end %>
           </table>
-
 
           </div>
 

@@ -49,6 +49,7 @@ CREATE TABLE odq_app.dm_measures
   ODQ_object_name varchar2(255),
   ODQ_object_code varchar2(255),
   ODQ_object_url varchar2(255),
+  is_project_hierarchy char(1),
   period_id integer,
   period_day char(8),
   all_records number(12,2),
