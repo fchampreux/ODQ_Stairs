@@ -58,8 +58,8 @@ order by 1
 
 
 /* Full query with -1 assigned to rules with no record evaluated */
-/* Based on id*/
-/* Simplified and incliding Playground*/
+/* Based on id */
+/* Simplified and incliding Playground */
 
 
 insert into odq_app.dm_measures(PLAYGROUND_ID,ODQ_OBJECT_ID,ODQ_PARENT_ID,ODQ_OBJECT_NAME, ODQ_OBJECT_CODE, ODQ_OBJECT_URL, PERIOD_DAY,ALL_RECORDS,ERROR_COUNT,SCORE,WORKLOAD,ADDED_VALUE,MAINTENANCE_COST,PERIOD_ID,CREATED_BY,UPDATED_BY,CREATED_AT,UPDATED_AT,PROCESS_ID) 

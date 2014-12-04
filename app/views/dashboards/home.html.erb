@@ -3,7 +3,7 @@
       <% if signed_in? %>
 
         <h1><%= @playground_measured.name %>'s dashboard </h1>
-        <h2><%= @current_user.last_name %>' view</h2>
+        <h2><%= @current_user.last_name %>'s view</h2>
 
           <div id="measures">
             <%= render partial: "shared/render_charts", locals: {this_object: @playground_measured} %>

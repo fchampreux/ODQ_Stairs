@@ -181,6 +181,8 @@ CREATE TABLE odq_app.dim_scopes
   description clob,
   hierarchy varchar2(255),
   landscape varchar2(255),
+  business_object varchar(255),
+  business_object_id integer,
   created_by varchar2(255),
   updated_by varchar2(255),
   created_at timestamp  NOT NULL,
