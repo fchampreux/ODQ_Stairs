@@ -53,6 +53,10 @@ ODQStairs::Application.routes.draw do
       resources :breaches
   end
 
+  resources :notifications do
+      resources :breaches
+  end
+  
   resources :breaches
 
   resources :users

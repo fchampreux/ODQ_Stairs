@@ -10,6 +10,12 @@ module ParametersHelper
   def set_breach_statuses_list
     list_id = ParametersList.where("code=?", 'LIST_OF_BREACH_STATUSES').take!
     @breach_statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
+  end
+  
+  # retrieve the list of notifications statuses
+  def set_notification_statuses_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_BREACH_STATUSES').take!
+    @notification_statuses_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
   end 
 
 # retrieve the list of breach types

@@ -10,4 +10,9 @@ module UsersHelper
     @approvers_list = User.all
   end
 
+# retrieve the list of approval users
+  def set_users_list
+    @users_list = User.all
+  end
+  
 end

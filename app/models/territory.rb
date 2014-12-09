@@ -2,22 +2,23 @@
 #
 # Table name: territories
 #
-#  id              :integer          not null, primary key
-#  playground_id   :integer
-#  code            :string(255)
-#  name            :string(255)
-#  description     :text
-#  territory_level :integer
-#  hierarchy       :string(255)
-#  created_by      :string(255)
-#  updated_by      :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  status_id       :integer
-#  owner_id        :integer
-#  parent_id       :integer
-#  odq_unique_id   :integer
-#  odq_object_id   :integer
+#  id                 :integer          not null, primary key
+#  playground_id      :integer
+#  code               :string(255)
+#  name               :string(255)
+#  description        :text
+#  territory_level    :integer
+#  hierarchy          :string(255)
+#  created_by         :string(255)
+#  updated_by         :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  status_id          :integer
+#  owner_id           :integer
+#  parent_id          :integer
+#  odq_unique_id      :integer
+#  odq_object_id      :integer
+#  external_reference :string(255)
 #
 
 class Territory < ActiveRecord::Base

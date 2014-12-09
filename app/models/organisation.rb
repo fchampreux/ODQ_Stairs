@@ -18,6 +18,7 @@
 #  parent_id          :integer
 #  odq_unique_id      :integer
 #  odq_object_id      :integer
+#  external_reference :string(255)
 #
 
 class Organisation < ActiveRecord::Base

@@ -38,6 +38,7 @@
 #  is_identified      :boolean
 #  odq_unique_id      :integer
 #  odq_object_id      :integer
+#  notification_id    :integer
 #
 
 
@@ -67,6 +68,7 @@ before_save :set_approver
 	belongs_to :territory									# helps retrieving the territory dimension name
 	belongs_to :business_object								# helps retrieving the business object name
         belongs_to :business_rule
+        belongs_to :notification
         belongs_to :playground									# scopes the odq_object_id calculation
         acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 

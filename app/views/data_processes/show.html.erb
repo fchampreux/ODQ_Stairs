@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Playground:</strong>
+  <%= @data_process.playground_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @data_process.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @data_process.description %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @data_process.created_by %>
+</p>
+
+<p>
+  <strong>Updated by:</strong>
+  <%= @data_process.updated_by %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @data_process.owner_id %>
+</p>
+
+<p>
+  <strong>Scope:</strong>
+  <%= @data_process.scope_id %>
+</p>
+
+<p>
+  <strong>Business object:</strong>
+  <%= @data_process.business_object_id %>
+</p>
+
+<p>
+  <strong>Odq unique:</strong>
+  <%= @data_process.odq_unique_id %>
+</p>
+
+<p>
+  <strong>Odq object:</strong>
+  <%= @data_process.odq_object_id %>
+</p>
+
+<p>
+  <strong>Last run at:</strong>
+  <%= @data_process.last_run_at %>
+</p>
+
+<p>
+  <strong>Next run at:</strong>
+  <%= @data_process.next_run_at %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @data_process.status_id %>
+</p>
+
+<p>
+  <strong>Loaded:</strong>
+  <%= @data_process.loaded %>
+</p>
+
+<p>
+  <strong>Inserted:</strong>
+  <%= @data_process.inserted %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= @data_process.updated %>
+</p>
+
+<p>
+  <strong>Deleted:</strong>
+  <%= @data_process.deleted %>
+</p>
+
+<p>
+  <strong>Rejected:</strong>
+  <%= @data_process.rejected %>
+</p>
+
+<p>
+  <strong>Last run end:</strong>
+  <%= @data_process.last_run_end %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @data_process.duration %>
+</p>
+
+<%= link_to 'Edit', edit_data_process_path(@data_process) %> |
+<%= link_to 'Back', data_processes_path %>

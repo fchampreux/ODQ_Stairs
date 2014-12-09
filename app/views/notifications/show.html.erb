@@ -1,0 +1,120 @@
+<% provide(:title, 'Managing notifications') %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1>Notification:   <%= @notification.name %> </h1>
+</p>
+
+<div class="row">
+  <div class="span2 text-right">Description:
+  </div>
+    <div class="span6"><pre><%= @notification.description %></pre>
+  </div>
+  <div class="span1 text-right">Id:
+  </div>
+    <div class="span1"><%= @notification.odq_object_id %>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="span2 text-right"> Owner:
+  </div>
+    <div class="span2"><%= @notification.owner.name %>
+  </div>
+    <div class="span2 text-right"> Responsible:
+  </div>
+    <div class="span2"><%= @notification.responsible.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 text-right"> Business object:
+  </div>
+    <div class="span2"><%= @notification.business_object.name %>
+  </div>
+    <div class="span2 text-right"> Scope:
+  </div>
+    <div class="span2"><%= @notification.scope.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 text-right"> Severity:
+  </div>
+    <div class="span2"><%= @notification.severity.name %>
+  </div>
+    <div class="span2 text-right"> Status:
+  </div>
+    <div class="span2"><%= @notification.status.name %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="span2 text-right"> Created by:
+  </div>
+    <div class="span2"><%= @notification.created_by %>
+  </div>
+    <div class="span2 text-right"> Updated_by:
+  </div>
+    <div class="span2"><%= @notification.updated_by %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 text-right"> Created at:
+  </div>
+    <div class="span2"><%= @notification.created_at %>
+  </div>
+    <div class="span2 text-right"> Updated_at:
+  </div>
+    <div class="span2"><%= @notification.updated_at %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 text-right"> Expected at:
+  </div>
+    <div class="span2"><%= @notification.expected_at %>
+  </div>
+    <div class="span2 text-right"> Closed_at:
+  </div>
+    <div class="span2"><%= @notification.closed_at %>
+  </div>
+</div>
+
+<hr/>
+
+<table width=100%>
+  <tr><td><hr /></td></tr>
+  <tr align="left">
+    <th>Rejected records</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>
+      <table class="table table-striped table-condensed">
+        <tr align="left">
+          <th> <%= @notification.business_object.key_columns %> </th>
+          <th> <%= @notification.business_object.published_columns %> </th>
+          <th> Updated by </th>
+          <th> Updated at </th>
+          <th> Observation </th>
+        </tr>
+        <%@notification.breaches.each do |breach| %>
+        <tr align="left">
+          <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
+          <td valign="top"> <%=breach.current_values %> </td>
+          <td valign="top"> <%=breach.updated_by %> </td>
+          <td valign="top"> <%=breach.updated_at %> </td>
+          <td valign="top"> <%=breach.description %> </td>
+        </tr>
+        <% end%>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<%= link_to 'Back', notifications_path %>

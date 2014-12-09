@@ -1,0 +1,41 @@
+<% provide(:title, 'Managing notifications') %>
+
+<h1>Notifications</h1>
+
+<%= will_paginate %>
+
+<table  class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Severity</th>
+      <th>Scope</th>
+      <th>Business object</th>
+      <th>Opened at</th>
+      <th>To close at</th>
+      <th>Closed at</th>
+      <th>Responsible</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td class="col_narrow"><%= link_to notification.name, notification %></td>
+        <td class="col_narrow"><%= notification.severity.name %></td>
+        <td class="col_narrow"><%= notification.scope.name %></td>
+        <td class="col_narrow"><%= notification.business_object.name %></td>
+        <td class="col_narrow"><%= notification.created_at %></td>
+        <td class="col_narrow"><%= notification.expected_at %></td>
+        <td class="col_narrow"><%= notification.closed_at %></td>
+        <td class="col_narrow"><%= notification.responsible.login %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
+
+<br>
+
+

@@ -1,0 +1,65 @@
+<h1>Listing data_processes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Playground</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th>Owner</th>
+      <th>Scope</th>
+      <th>Business object</th>
+      <th>Odq unique</th>
+      <th>Odq object</th>
+      <th>Last run at</th>
+      <th>Next run at</th>
+      <th>Status</th>
+      <th>Loaded</th>
+      <th>Inserted</th>
+      <th>Updated</th>
+      <th>Deleted</th>
+      <th>Rejected</th>
+      <th>Last run end</th>
+      <th>Duration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @data_processes.each do |data_process| %>
+      <tr>
+        <td><%= data_process.playground_id %></td>
+        <td><%= data_process.name %></td>
+        <td><%= data_process.description %></td>
+        <td><%= data_process.created_by %></td>
+        <td><%= data_process.updated_by %></td>
+        <td><%= data_process.owner_id %></td>
+        <td><%= data_process.scope_id %></td>
+        <td><%= data_process.business_object_id %></td>
+        <td><%= data_process.odq_unique_id %></td>
+        <td><%= data_process.odq_object_id %></td>
+        <td><%= data_process.last_run_at %></td>
+        <td><%= data_process.next_run_at %></td>
+        <td><%= data_process.status_id %></td>
+        <td><%= data_process.loaded %></td>
+        <td><%= data_process.inserted %></td>
+        <td><%= data_process.updated %></td>
+        <td><%= data_process.deleted %></td>
+        <td><%= data_process.rejected %></td>
+        <td><%= data_process.last_run_end %></td>
+        <td><%= data_process.duration %></td>
+        <td><%= link_to 'Show', data_process %></td>
+        <td><%= link_to 'Edit', edit_data_process_path(data_process) %></td>
+        <td><%= link_to 'Destroy', data_process, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Data process', new_data_process_path %>

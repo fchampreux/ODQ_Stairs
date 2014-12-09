@@ -13,7 +13,7 @@ class BreachesController < ApplicationController
   # GET /breaches
   # GET /breaches.json
   def index
-    @breaches = Breach.all
+    @breaches = Breach.pgnd(current_playground).order("created_at DESC").paginate(page: params[:page], :per_page => paginate_lines)
   end
 
   # GET /breaches/1

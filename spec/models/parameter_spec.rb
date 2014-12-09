@@ -18,6 +18,7 @@
 #  param_code         :string(255)
 #  odq_unique_id      :integer
 #  odq_object_id      :integer
+#  owner_id           :integer
 #
 
 require 'spec_helper'

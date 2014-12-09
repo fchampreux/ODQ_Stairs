@@ -42,6 +42,10 @@
                 <li><%= link_to "Times scales", "#" %></li>
               <% end %>
 
+               <li class="nav-header">Notifications</li>
+               <li><%= link_to "Breaches", notifications_path, {:title => "Manage rejected records notifications"} %></li>
+               <li><%= link_to "Monitoring","#", {:title => "Monitor your processes"}%></li>
+               
                 <li class="nav-header">Configuration</li>
                 <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
                 <li><%= link_to "Lists of values", values_lists_path %></li>
