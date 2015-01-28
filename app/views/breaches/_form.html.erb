@@ -94,11 +94,6 @@
                 <td> <%= column %> </td>
               <% end %>
             </tr>
-<!--            <tr>
-              <% @breach.business_object.published_columns.split(";").each do |column| %>
-                <td> <%= f.text_field :proposed_values %> </td>
-              <% end %>
-            </tr> -->
           </table>
         </div>
       </div>
@@ -230,64 +225,7 @@
 
 
     <div class="tab-pane" id="tab6">
-<!-- Tab content for Ownership -->
-
-      <div class="row">
-        <div class="span2 text-right">Approver:
-        </div>
-        <div class="span2"><%= @breach.approver.name%>
-        </div>
-        <div class="span2 text-right">Approved at:
-        </div>
-        <div class="span2"><%= @breach.approved_at%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Unique id:
-        </div>
-        <div class="span2"><%= @breach.id%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @breach.created_by%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Playground id:
-        </div>
-        <div class="span2"><%= @breach.playground_id%>
-        </div>
-        <div class="span2 text-right">Created at:
-        </div>
-        <div class="span2"><%= @breach.created_at%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Owner:
-        </div>
-        <div class="span2"><%= @breach.owner.login%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @breach.updated_by%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Parent:
-        </div>
-        <div class="span2"><%= link_to @breach.business_rule.name, @breach.business_rule %>
-        </div>
-        <div class="span2 text-right">Updated at:
-        </div>
-        <div class="span2"><%= @breach.updated_at%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+        <%= render partial: "shared/object_ownership", locals: {this_object: @breach} %>
     </div>
 
 

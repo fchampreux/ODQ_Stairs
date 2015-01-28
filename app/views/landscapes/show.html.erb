@@ -58,50 +58,7 @@
     </div>    
 
     <div class="tab-pane" id="tab2">
-<!-- Tab content for Ownership -->
-
-      <div class="row">
-        <div class="span2 text-right">Unique id:
-        </div>
-        <div class="span2"><%= @landscape.id%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @landscape.created_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Playground id:
-        </div>
-        <div class="span2"><%= @landscape.playground_id%>
-        </div>
-        <div class="span2 text-right">Created at:
-        </div>
-        <div class="span2"><%= @landscape.created_at%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Owner:
-        </div>
-        <div class="span2"><%= @landscape.owner.login%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @landscape.updated_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Parent:
-        </div>
-        <div class="span2"><%= link_to @landscape.playground.name, @landscape.playground %>
-        </div>
-        <div class="span2 text-right">updated at:
-        </div>
-        <div class="span2"><%= @landscape.updated_at%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+      <%= render partial: "shared/object_ownership", locals: {this_object: @landscape} %>
     </div>
     
     </div>

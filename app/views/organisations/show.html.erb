@@ -53,50 +53,7 @@
     </div>    
 
     <div class="tab-pane" id="tab2">
-<!-- Tab content for Ownership -->
-
-      <div class="row">
-        <div class="span2 text-right">Unique id:
-        </div>
-        <div class="span2"><%= @organisation.id%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @organisation.created_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Playground id:
-        </div>
-        <div class="span2"><%= @organisation.playground_id%>
-        </div>
-        <div class="span2 text-right">Created at:
-        </div>
-        <div class="span2"><%= @organisation.created_at%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Owner:
-        </div>
-        <div class="span2"><%= @organisation.owner.login%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @organisation.updated_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Parent:
-        </div>
-        <div class="span2"><%= link_to @organisation.parent_org.name, @organisation.parent_org %>
-        </div>
-        <div class="span2 text-right">Updated at:
-        </div>
-        <div class="span2"><%= @organisation.updated_at%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+      <%= render partial: "shared/object_ownership", locals: {this_object: @organisation} %>
     </div>
     
     </div>

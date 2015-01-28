@@ -81,50 +81,7 @@
     </div>
 
     <div class="tab-pane" id="tab3">
-<!-- Tab content for Ownership -->
-
-      <div class="row">
-        <div class="span2 text-right">Unique id:
-        </div>
-        <div class="span2"><%= @scope.id%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @scope.created_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Playground id:
-        </div>
-        <div class="span2"><%= @scope.playground_id%>
-        </div>
-        <div class="span2 text-right">Created at:
-        </div>
-        <div class="span2"><%= @scope.created_at%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Owner:
-        </div>
-        <div class="span2"><%= @scope.owner.login%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @scope.updated_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Parent:
-        </div>
-        <div class="span2"> <%=link_to @scope.landscape.name, @scope.landscape %>
-        </div>
-        <div class="span2 text-right">updated at:
-        </div>
-        <div class="span2"><%= @scope.updated_at%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+      <%= render partial: "shared/object_ownership", locals: {this_object: @scope} %>
     </div>
     
     </div>

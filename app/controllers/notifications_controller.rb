@@ -1,10 +1,9 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
   
   # Check for active session 
   before_action :signed_in_user
 
-# Retrieve current breach
+# Retrieve current notification
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
 # Create the selection lists be used in the form
@@ -79,7 +78,7 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = Notification.pgnd(current_playground).find(params[:id])
     end
     
     # Retrieve business objects list
