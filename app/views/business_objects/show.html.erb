@@ -95,50 +95,7 @@
     </div>
 
     <div class="tab-pane" id="tab3">
-<!-- Tab content for Ownership -->
-
-      <div class="row">
-        <div class="span2 text-right">Unique id:
-        </div>
-        <div class="span2"><%= @business_object.id%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @business_object.created_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Playground id:
-        </div>
-        <div class="span2"><%= @business_object.playground_id%>
-        </div>
-        <div class="span2 text-right">Created at:
-        </div>
-        <div class="span2"><%= @business_object.created_at%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Owner:
-        </div>
-        <div class="span2"><%= @business_object.owner.login%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @business_object.updated_by%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span2 text-right">Parent:
-        </div>
-        <div class="span2"><%= link_to @business_object.business_area.name, @business_object.business_area%>
-        </div>
-        <div class="span2 text-right">updated at:
-        </div>
-        <div class="span2"><%= @business_object.updated_at%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+      <%= render partial: "shared/object_ownership", locals: {this_object: @business_object} %>
     </div>
 
     
