@@ -11,72 +11,72 @@
   </ul>
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span2"><b><%= @parameter.name%></b>
+        <div class="col-md-2"><b><%= @parameter.name%></b>
         </div>
-        <div class="span2 text-right">Code:
+        <div class="col-md-2 text-right">Code:
         </div>
-        <div class="span1"><%= @parameter.param_code%>
+        <div class="col-md-1"><%= @parameter.param_code%>
         </div>
-        <div class="span1 text-right">Value:
+        <div class="col-md-1 text-right">Value:
         </div>
-        <div class="span1"><%= @parameter.param_value%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @parameter.description%></pre>
+        <div class="col-md-1"><%= @parameter.param_value%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Active from:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @parameter.active_from %>
-        </div>
-        <div class="span2 text-right">Active to:
-        </div>
-        <div class="span2"><%= @parameter.active_to %>
+        <div class="col-md-6"><pre><%= @parameter.description%></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Playground:
+        <div class="col-md-2 text-right">Active from:
         </div>
-        <div class="span1"><%= @parameter.playground_id%>
+        <div class="col-md-2"><%= @parameter.active_from %>
         </div>
-        <div class="span1 text-right">Id:
+        <div class="col-md-2 text-right">Active to:
         </div>
-        <div class="span1"><%= @parameter.id%>
-        </div>
-        <div class="span1 text-right">Parent list:
-        </div>
-        <div class="span2"><%= link_to @parameter.parameters_list.name, @parameter.parameters_list %>
+        <div class="col-md-2"><%= @parameter.active_to %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Created by:
+        <div class="col-md-2 text-right">Playground:
         </div>
-        <div class="span2"><%= @parameter.created_by %>
+        <div class="col-md-1"><%= @parameter.playground_id%>
         </div>
-        <div class="span2 text-right">Updated by:
+        <div class="col-md-1 text-right">Id:
         </div>
-        <div class="span2"><%= @parameter.updated_by%>
+        <div class="col-md-1"><%= @parameter.id%>
+        </div>
+        <div class="col-md-1 text-right">Parent list:
+        </div>
+        <div class="col-md-2"><%= link_to @parameter.parameters_list.name, @parameter.parameters_list %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Created at:
+        <div class="col-md-2 text-right">Created by:
         </div>
-        <div class="span2"><%= @parameter.created_at %>
+        <div class="col-md-2"><%= @parameter.created_by %>
         </div>
-        <div class="span2 text-right">Updated at:
+        <div class="col-md-2 text-right">Updated by:
         </div>
-        <div class="span2"><%= @parameter.updated_at%>
+        <div class="col-md-2"><%= @parameter.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Created at:
+        </div>
+        <div class="col-md-2"><%= @parameter.created_at %>
+        </div>
+        <div class="col-md-2 text-right">Updated at:
+        </div>
+        <div class="col-md-2"><%= @parameter.updated_at%>
         </div>
       </div>
 

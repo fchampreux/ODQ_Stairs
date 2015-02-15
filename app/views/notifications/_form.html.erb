@@ -12,79 +12,79 @@
   <% end %>
 
   <div class="row">
-    <div class="span2 text-right">
+    <div class="col-md-2 text-right">
       Name: 
     </div>
-    <div class="field span6">
+    <div class="field col-md-6">
       <%= f.text_field :name %>
     </div>
   </div>
   <div class="row">
-    <div class="span2 text-right">
+    <div class="col-md-2 text-right">
       Description: 
     </div>
-    <div class="field span6">
+    <div class="field col-md-6">
       <%= f.text_area :description %>
     </div>
   </div>
   <div class="row">
-    <div class="span2 text-right">
+    <div class="col-md-2 text-right">
       Created by: 
     </div>
-    <div class="field span6">
+    <div class="field col-md-6">
       <%= f.text_field :created_by %>
     </div>
   </div>
   <div class="row">
-    <div class="span2 text-right">
+    <div class="col-md-2 text-right">
       Updated by: 
     </div>
-    <div class="field span6">
+    <div class="field col-md-6">
       <%= f.text_field :updated_by %>
     </div>
   </div>
   
   <div class="row">
-    <div class="span2 text-right">Owner:
+    <div class="col-md-2 text-right">Owner:
     </div>
-    <div class="span2"><%= f.collection_select :owner_id, @users_list, :id, :login  %>
+    <div class="col-md-2"><%= f.collection_select :owner_id, @users_list, :id, :login  %>
     </div>
-    <div class="span2 text-right">Responsible:
+    <div class="col-md-2 text-right">Responsible:
     </div>
-    <div class="span2"><%= f.collection_select :responsible_id, @users_list, :id, :login  %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="span2 text-right">Business object:
-    </div>
-    <div class="span2"><%= f.collection_select :business_object_id, @business_objects_list, :id, :name  %>
-    </div>
-    <div class="span2 text-right">Scope:
-    </div>
-    <div class="span2"><%= f.collection_select :scope_id, @scopes_list, :id, :name  %>
+    <div class="col-md-2"><%= f.collection_select :responsible_id, @users_list, :id, :login  %>
     </div>
   </div>
 
   <div class="row">
-    <div class="span2 text-right">Status:
+    <div class="col-md-2 text-right">Business object:
     </div>
-    <div class="span2"><%= f.collection_select :status_id, @notification_statuses_list, :id, :name  %>
+    <div class="col-md-2"><%= f.collection_select :business_object_id, @business_objects_list, :id, :name  %>
     </div>
-    <div class="span2 text-right">Severity:
+    <div class="col-md-2 text-right">Scope:
     </div>
-    <div class="span2"><%= f.collection_select :status_id, @severity_list, :id, :name  %>
+    <div class="col-md-2"><%= f.collection_select :scope_id, @scopes_list, :id, :name  %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 text-right">Status:
+    </div>
+    <div class="col-md-2"><%= f.collection_select :status_id, @notification_statuses_list, :id, :name  %>
+    </div>
+    <div class="col-md-2 text-right">Severity:
+    </div>
+    <div class="col-md-2"><%= f.collection_select :status_id, @severity_list, :id, :name  %>
     </div>
   </div>  
 
   <div class="row">
-    <div class="span2 text-right">Expected at:
+    <div class="col-md-2 text-right">Expected at:
     </div>
-    <div class="span2"><%= f.text_field :expected_at %>
+    <div class="col-md-2"><%= f.text_field :expected_at %>
     </div>
-    <div class="span2 text-right">Closed at:
+    <div class="col-md-2 text-right">Closed at:
     </div>
-    <div class="span2"><%= f.text_field :closed_at %>
+    <div class="col-md-2"><%= f.text_field :closed_at %>
     </div>
   </div>
 

@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">
+    <div class="col-md-2">
       <% if signed_in? %> 
           <nav id="main_menu">
             <ul class="nav nav-list">
@@ -60,7 +60,7 @@
           </nav>
         <% end %>
       </div>
-      <div class="span10">
+      <div class="col-md-10">
         <%= yield %>
       </div>
     </div>

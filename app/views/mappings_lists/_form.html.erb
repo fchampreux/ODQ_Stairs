@@ -13,27 +13,27 @@
 
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6 field"><%= f.text_field :name, :class => "span6" %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Source list:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span3 field"><%= f.collection_select :source_list_id, @lists_of_values, :id, :name %>
+        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
         </div>
-        <div class="span2 text-right">Target list:
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Source list:
         </div>
-        <div class="span3 field"><%= f.collection_select :target_list_id, @lists_of_values, :id, :name %>
+        <div class="col-md-3 field"><%= f.collection_select :source_list_id, @lists_of_values, :id, :name %>
+        </div>
+        <div class="col-md-2 text-right">Target list:
+        </div>
+        <div class="col-md-3 field"><%= f.collection_select :target_list_id, @lists_of_values, :id, :name %>
         </div>
       </div>
 

@@ -11,61 +11,61 @@
   </ul>
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span2"><b><%= @value.name%></b>
+        <div class="col-md-2"><b><%= @value.name%></b>
         </div>
-        <div class="span2 text-right">Code:
+        <div class="col-md-2 text-right">Code:
         </div>
-        <div class="span1"><%= @value.value_code%>
+        <div class="col-md-1"><%= @value.value_code%>
         </div>
-        <div class="span1 text-right">Value:
+        <div class="col-md-1 text-right">Value:
         </div>
-        <div class="span1"><%= @value.value_caption%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @value.description%></pre>
+        <div class="col-md-1"><%= @value.value_caption%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Playground:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span1"><%= @value.playground_id%>
-        </div>
-        <div class="span1 text-right">Id:
-        </div>
-        <div class="span1"><%= @value.id%>
-        </div>
-        <div class="span1 text-right">Parent list:
-        </div>
-        <div class="span2"><%= link_to @value.values_list.name, @value.values_list %>
+        <div class="col-md-6"><pre><%= @value.description%></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Created by:
+        <div class="col-md-2 text-right">Playground:
         </div>
-        <div class="span2"><%= @value.created_by %>
+        <div class="col-md-1"><%= @value.playground_id%>
         </div>
-        <div class="span2 text-right">Updated by:
+        <div class="col-md-1 text-right">Id:
         </div>
-        <div class="span2"><%= @value.updated_by%>
+        <div class="col-md-1"><%= @value.id%>
+        </div>
+        <div class="col-md-1 text-right">Parent list:
+        </div>
+        <div class="col-md-2"><%= link_to @value.values_list.name, @value.values_list %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Created at:
+        <div class="col-md-2 text-right">Created by:
         </div>
-        <div class="span2"><%= @value.created_at %>
+        <div class="col-md-2"><%= @value.created_by %>
         </div>
-        <div class="span2 text-right">Updated at:
+        <div class="col-md-2 text-right">Updated by:
         </div>
-        <div class="span2"><%= @value.updated_at%>
+        <div class="col-md-2"><%= @value.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Created at:
+        </div>
+        <div class="col-md-2"><%= @value.created_at %>
+        </div>
+        <div class="col-md-2 text-right">Updated at:
+        </div>
+        <div class="col-md-2"><%= @value.updated_at%>
         </div>
       </div>
 

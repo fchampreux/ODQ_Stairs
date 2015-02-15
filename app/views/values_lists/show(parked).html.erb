@@ -12,65 +12,65 @@
 
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span3"><%= @values_list.name%>
+        <div class="col-md-3"><%= @values_list.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span2"><%= @values_list.code%>
+        <div class="col-md-2"><%= @values_list.code%>
         </div>
-        <div class="span2 text-right">Unique id:
+        <div class="col-md-2 text-right">Unique id:
         </div>
-        <div class="span1"><%= @values_list.id%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Software:
-        </div>
-        <div class="span3"><%= @values_list.software.name%>
-        </div>
-        <div class="span1 text-right">Table name:
-        </div>
-        <div class="span2"><%= @values_list.table_name%>
+        <div class="col-md-1"><%= @values_list.id%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Description:
+        <div class="col-md-2 text-right">Software:
         </div>
-        <div class="span6"><pre><%= @values_list.description%></pre>
+        <div class="col-md-3"><%= @values_list.software.name%>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Owner:
+        <div class="col-md-1 text-right">Table name:
         </div>
-        <div class="span2"><%= @values_list.owner.login%>
-        </div>
-        <div class="span2 text-right">Created by:
-        </div>
-        <div class="span2"><%= @values_list.created_by%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @values_list.updated_by%>
+        <div class="col-md-2"><%= @values_list.table_name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Playground id:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @values_list.playground_id%>
+        <div class="col-md-6"><pre><%= @values_list.description%></pre>
         </div>
-        <div class="span2 text-right">Created at:
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Owner:
         </div>
-        <div class="span2"><%= @values_list.created_at%>
+        <div class="col-md-2"><%= @values_list.owner.login%>
         </div>
-        <div class="span2 text-right">Updated at:
+        <div class="col-md-2 text-right">Created by:
         </div>
-        <div class="span2"><%= @values_list.updated_at%>
+        <div class="col-md-2"><%= @values_list.created_by%>
+        </div>
+        <div class="col-md-2 text-right">Updated by:
+        </div>
+        <div class="col-md-2"><%= @values_list.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Playground id:
+        </div>
+        <div class="col-md-2"><%= @values_list.playground_id%>
+        </div>
+        <div class="col-md-2 text-right">Created at:
+        </div>
+        <div class="col-md-2"><%= @values_list.created_at%>
+        </div>
+        <div class="col-md-2 text-right">Updated at:
+        </div>
+        <div class="col-md-2"><%= @values_list.updated_at%>
         </div>
       </div>
 

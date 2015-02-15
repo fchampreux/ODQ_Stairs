@@ -13,20 +13,20 @@
 
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6 field"><%= f.text_field :name, :class => "span6" %>
+        <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
         </div>
-        <div class="span2 text-right">User specific:
+        <div class="col-md-2 text-right">User specific:
         </div>
-        <div class="span1 field"><%= f.check_box :is_user_specific %>
+        <div class="col-md-1 field"><%= f.check_box :is_user_specific %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Description:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
         </div>
       </div>
 

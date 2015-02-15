@@ -30,31 +30,31 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6"><%= @scope.name%>
+        <div class="col-md-6"><%= @scope.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span1"><%= @scope.code%>
+        <div class="col-md-1"><%= @scope.code%>
         </div>
-        <div class="span1 text-right">Status:
+        <div class="col-md-1 text-right">Status:
         </div>
-        <div class="span1"><%= @scope.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @scope.description%></pre>
+        <div class="col-md-1"><%= @scope.status.name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @scope.hierarchy%>
+        <div class="col-md-6"><pre><%= @scope.description%></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Hierarchy:
+        </div>
+        <div class="col-md-2"><%= @scope.hierarchy%>
         </div>
       </div>
 
@@ -65,15 +65,15 @@
 <!-- Tab content for Query -->
 
       <div class="row">
-        <div class="span2 text-right">Load interface:
+        <div class="col-md-2 text-right">Load interface:
         </div>
-        <div class="span2"><%= @scope.load_interface%>
+        <div class="col-md-2"><%= @scope.load_interface%>
         </div>
       </div>
       <div class="row">
-        <div class="span2 text-right">SQL Query:
+        <div class="col-md-2 text-right">SQL Query:
         </div>
-        <div class="span6"><pre><%= @scope.SQL_query%></pre>
+        <div class="col-md-6"><pre><%= @scope.SQL_query%></pre>
         </div>
       </div>
 

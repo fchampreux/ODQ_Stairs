@@ -35,45 +35,45 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span10"><%= @business_rule.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Code:
-        </div>
-        <div class="span2"><%= @business_rule.code%>
-        </div>
-        <div class="span1 text-right">Status:
-        </div>
-        <div class="span1"><%= @business_rule.status.name%>
+        <div class="col-md-10"><%= @business_rule.name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Code:
         </div>
-        <div class="span2"><%= @business_rule.hierarchy%>
+        <div class="col-md-2"><%= @business_rule.code%>
         </div>
-         <div class="span1 text-right"> Rule type:
+        <div class="col-md-1 text-right">Status:
+        </div>
+        <div class="col-md-1"><%= @business_rule.status.name%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Hierarchy:
+        </div>
+        <div class="col-md-2"><%= @business_rule.hierarchy%>
+        </div>
+         <div class="col-md-1 text-right"> Rule type:
          </div>
-         <div class="span2"><%= @business_rule.rule_type.name%>
+         <div class="col-md-2"><%= @business_rule.rule_type.name%>
          </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Description:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span6"><pre><%= @business_rule.description %></pre>
+        <div class="col-md-6"><pre><%= @business_rule.description %></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Business value:
+        <div class="col-md-2 text-right">Business value:
         </div>
-        <div class="span6"><pre><%= @business_rule.business_value %></pre>
+        <div class="col-md-6"><pre><%= @business_rule.business_value %></pre>
         </div>
       </div>
 
@@ -84,37 +84,37 @@
 <!-- Tab content for Metrics -->
       
         <div class="row">
-          <div class="span2 text-right"> Complexity:
+          <div class="col-md-2 text-right"> Complexity:
           </div>
-          <div class="span2"><%= @business_rule.complexity.name %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span2 text-right">Added value:
-          </div>
-          <div class="span2"><%= @business_rule.added_value %> <%= display_currency%>
+          <div class="col-md-2"><%= @business_rule.complexity.name %>
           </div>
         </div>
 
         <div class="row">
-          <div class="span2 text-right">Severity:
+          <div class="col-md-2 text-right">Added value:
           </div>
-          <div class="span2"><%= @business_rule.severity.name %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span2 text-right">Maintenance cost:
-          </div>
-          <div class="span2"><%= @business_rule.maintenance_cost %> <%= display_currency%>
+          <div class="col-md-2"><%= @business_rule.added_value %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
-          <div class="span2 text-right">Maintenance workload:
+          <div class="col-md-2 text-right">Severity:
           </div>
-          <div class="span2"><%= @business_rule.maintenance_duration %> <%= display_duration%>
+          <div class="col-md-2"><%= @business_rule.severity.name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2 text-right">Maintenance cost:
+          </div>
+          <div class="col-md-2"><%= @business_rule.maintenance_cost %> <%= display_currency%>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2 text-right">Maintenance workload:
+          </div>
+          <div class="col-md-2"><%= @business_rule.maintenance_duration %> <%= display_duration%>
           </div>
         </div>
 
@@ -125,34 +125,34 @@
 <!-- Tab content for Implementation -->
       
         <div class="row">
-          <div class="span2 text-right">Object:
+          <div class="col-md-2 text-right">Object:
           </div>
-          <div class="span2"><%= link_to @business_rule.business_object.name, @business_rule.business_object %>
+          <div class="col-md-2"><%= link_to @business_rule.business_object.name, @business_rule.business_object %>
           </div>
-          <div class="span2 text-right">Business process:
+          <div class="col-md-2 text-right">Business process:
           </div>
-          <div class="span2"><%= @business_rule.business_process.name%>
+          <div class="col-md-2"><%= @business_rule.business_process.name%>
           </div>
         </div>
       
         <div class="row">
-          <div class="span2 text-right">Check description:
+          <div class="col-md-2 text-right">Check description:
           </div>
-          <div class="span6"><pre><%= @business_rule.check_description %></pre>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span2 text-right">Check script:
-          </div>
-          <div class="span6"><pre><%= @business_rule.check_script %></pre>
+          <div class="col-md-6"><pre><%= @business_rule.check_description %></pre>
           </div>
         </div>
 
         <div class="row">
-          <div class="span2 text-right">Generated condition:
+          <div class="col-md-2 text-right">Check script:
           </div>
-          <div class="span6"><pre><%= @business_rule.condition %></pre>
+          <div class="col-md-6"><pre><%= @business_rule.check_script %></pre>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2 text-right">Generated condition:
+          </div>
+          <div class="col-md-6"><pre><%= @business_rule.condition %></pre>
           </div>
         </div>
 
@@ -163,23 +163,23 @@
 <!-- Tab content for Solving -->
       
         <div class="row">
-          <div class="span2 text-right" width="200">Correction method:
+          <div class="col-md-2 text-right" width="200">Correction method:
           </div>
-          <div class="span6"><pre><%= @business_rule.correction_method %></pre>
+          <div class="col-md-6"><pre><%= @business_rule.correction_method %></pre>
           </div>
         </div>
 
         <div class="row">
-          <div class="span2 text-right">Correction script:
+          <div class="col-md-2 text-right">Correction script:
           </div>
-          <div class="span6"><pre><%= @business_rule.correction_script %></pre>
+          <div class="col-md-6"><pre><%= @business_rule.correction_script %></pre>
           </div>
         </div>
       
         <div class="row">
-          <div class="span2 text-right">Correction batch:
+          <div class="col-md-2 text-right">Correction batch:
           </div>
-          <div class="span2"><%= @business_rule.correction_batch %>
+          <div class="col-md-2"><%= @business_rule.correction_batch %>
           </div>
         </div>
       

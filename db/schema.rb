@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "breaches", force: true do |t|
+  create_table "breaches", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "business_rule_id"
     t.integer  "application_id"
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.text     "current_values"
     t.text     "proposed_values"
     t.boolean  "is_whitelisted"
-    t.datetime "opened_at"
-    t.datetime "expected_at"
-    t.datetime "closed_at"
+    t.date     "opened_at"
+    t.date     "expected_at"
+    t.date     "closed_at"
     t.integer  "responsible_id"
     t.integer  "approver_id"
     t.datetime "approved_at"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "notification_id"
   end
 
-  create_table "business_areas", force: true do |t|
+  create_table "business_areas", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",    null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
   add_index "business_areas", ["code"], name: "index_business_areas_on_code", unique: true, using: :btree
   add_index "business_areas", ["name"], name: "index_business_areas_on_name", unique: true, using: :btree
 
-  create_table "business_flows", force: true do |t|
+  create_table "business_flows", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "business_area_id"
     t.string   "code"
@@ -96,12 +96,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",       null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "business_objects", force: true do |t|
+  create_table "business_objects", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -124,12 +124,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "business_area_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "business_processes", force: true do |t|
+  create_table "business_processes", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "business_flow_id"
     t.string   "code"
@@ -146,12 +146,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",       null: false
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "business_rules", force: true do |t|
+  create_table "business_rules", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -167,9 +167,9 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "correction_batch"
     t.text     "white_list"
     t.text     "condition"
-    t.integer  "added_value"
-    t.integer  "maintenance_cost"
-    t.integer  "maintenance_duration"
+    t.decimal  "added_value"
+    t.decimal  "maintenance_cost"
+    t.decimal  "maintenance_duration"
     t.string   "version"
     t.integer  "approver_id"
     t.datetime "approved_at"
@@ -184,12 +184,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "complexity_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "data_policies", force: true do |t|
+  create_table "data_policies", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "landscape_id"
     t.string   "code"
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",          null: false
   end
 
-  create_table "data_processes", force: true do |t|
+  create_table "data_processes", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "name"
     t.text     "description"
@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at"
   end
 
-  create_table "landscapes", force: true do |t|
+  create_table "landscapes", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -253,12 +253,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "mappings", force: true do |t|
+  create_table "mappings", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "mappings_list_id"
     t.string   "source_software"
@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "odq_object_id"
   end
 
-  create_table "mappings_lists", force: true do |t|
+  create_table "mappings_lists", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "odq_object_id"
   end
 
-  create_table "notifications", force: true do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "name"
     t.text     "description"
@@ -316,7 +316,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at"
   end
 
-  create_table "organisations", force: true do |t|
+  create_table "organisations", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "external_reference"
   end
 
-  create_table "parameters", force: true do |t|
+  create_table "parameters", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "name"
     t.text     "description"
@@ -356,7 +356,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
 
   add_index "parameters", ["name"], name: "index_parameters_on_name", using: :btree
 
-  create_table "parameters_lists", force: true do |t|
+  create_table "parameters_lists", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -371,7 +371,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "odq_object_id"
   end
 
-  create_table "playgrounds", force: true do |t|
+  create_table "playgrounds", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
     t.text     "description"
@@ -384,12 +384,12 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "code"
     t.string   "role"
@@ -401,7 +401,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "scopes", force: true do |t|
+  create_table "scopes", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "landscape_id"
     t.string   "code"
@@ -422,18 +422,18 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
-    t.integer  "score"
+    t.decimal  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 
-  create_table "sequences", force: true do |t|
+  create_table "sequences", force: :cascade do |t|
     t.integer "playground_id"
     t.string  "class_name"
     t.integer "current_id"
   end
 
-  create_table "territories", force: true do |t|
+  create_table "territories", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"
@@ -452,7 +452,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "external_reference"
   end
 
-  create_table "time_scales", force: true do |t|
+  create_table "time_scales", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "day_number"
     t.integer  "day_of_week"
@@ -475,7 +475,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "user_accesses", force: true do |t|
+  create_table "user_accesses", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "user_id"
     t.integer  "organisation_id"
@@ -495,7 +495,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",          null: false
   end
 
-  create_table "user_roles", force: true do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "user_id"
     t.string   "role_id"
@@ -507,7 +507,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "default_playground_id"
     t.integer  "current_playground_id"
@@ -534,7 +534,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
-  create_table "values", force: true do |t|
+  create_table "values", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "values_list_id"
     t.string   "name"
@@ -549,7 +549,7 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.integer  "odq_object_id"
   end
 
-  create_table "values_lists", force: true do |t|
+  create_table "values_lists", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code"
     t.string   "name"

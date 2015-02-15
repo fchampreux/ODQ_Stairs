@@ -7,6 +7,8 @@
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$grayLight: #f0f0f0;
+$grayDarker: #d0d0d0;
 $menu_color:rgb(33, 120, 103);
 $menu_bright:rgb(44, 160, 136);
 
@@ -54,7 +56,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $grayDarker;
 }
 
 p {

@@ -22,34 +22,34 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span10 field"><%= f.text_field :name, :class => "span8" %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Code:
-        </div>
-        <div class="span2 field"><%= f.text_field :code%>
-        </div>
-        <div class="span1 text-right">Status:
-        </div>
-        <div class="span1 field"><%=  f.collection_select :status_id, @statuses_list, :id, :name %>
+        <div class="col-md-10 field"><%= f.text_field :name, :class => "col-md-8" %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Code:
         </div>
-        <div class="span2 field"><%= f.text_field :hierarchy, :readonly => true %>
+        <div class="col-md-2 field"><%= f.text_field :code%>
+        </div>
+        <div class="col-md-1 text-right">Status:
+        </div>
+        <div class="col-md-1 field"><%=  f.collection_select :status_id, @statuses_list, :id, :name %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Description:
+        <div class="col-md-2 text-right">Hierarchy:
         </div>
-        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        <div class="col-md-2 field"><%= f.text_field :hierarchy, :readonly => true %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Description:
+        </div>
+        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
         </div>
       </div>
 
@@ -60,15 +60,15 @@
 <!-- Tab content for Implementation -->
       
       <div class="row">
-        <div class="span2 text-right">Load interface:
+        <div class="col-md-2 text-right">Load interface:
         </div>
-        <div class="span10 field"><%= f.text_field :load_interface, :class => "span4" %>
+        <div class="col-md-10 field"><%= f.text_field :load_interface, :class => "col-md-4" %>
         </div>
       </div>
       <div class="row">
-        <div class="span2 text-right">SQL Query:
+        <div class="col-md-2 text-right">SQL Query:
         </div>
-        <div class="span10 field"><%= f.text_area :SQL_query, :rows => 5, :class => "span4" %>
+        <div class="col-md-10 field"><%= f.text_area :SQL_query, :rows => 5, :class => "col-md-4" %>
         </div>
       </div>
 

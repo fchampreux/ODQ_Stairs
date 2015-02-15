@@ -26,31 +26,31 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6"><%= @landscape.name%>
+        <div class="col-md-6"><%= @landscape.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span1"><%= @landscape.code%>
+        <div class="col-md-1"><%= @landscape.code%>
         </div>
-        <div class="span1 text-right">Status:
+        <div class="col-md-1 text-right">Status:
         </div>
-        <div class="span1"><%= @landscape.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @landscape.description%></pre>
+        <div class="col-md-1"><%= @landscape.status.name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @landscape.hierarchy%>
+        <div class="col-md-6"><pre><%= @landscape.description%></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Hierarchy:
+        </div>
+        <div class="col-md-2"><%= @landscape.hierarchy%>
         </div>
       </div>
 

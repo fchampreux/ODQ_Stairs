@@ -13,27 +13,27 @@
 
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6 field"><%= f.text_field :name, :class => "span6" %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span10 field"><%= f.text_area :description, :rows => 5, :class => "span8" %>
+        <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Managed software:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2 field"><%= f.collection_select :software_id, @softwares_list, :id, :name  %>
+        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
         </div>
-        <div class="span2 text-right">Table:
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Managed software:
         </div>
-        <div class="span2 field"><%= f.text_field :table_name %>
+        <div class="col-md-2 field"><%= f.collection_select :software_id, @softwares_list, :id, :name  %>
+        </div>
+        <div class="col-md-2 text-right">Table:
+        </div>
+        <div class="col-md-2 field"><%= f.text_field :table_name %>
         </div>
       </div>
 

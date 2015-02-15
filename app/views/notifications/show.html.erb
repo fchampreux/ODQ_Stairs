@@ -7,81 +7,81 @@
 </p>
 
 <div class="row">
-  <div class="span2 text-right">Description:
+  <div class="col-md-2 text-right">Description:
   </div>
-    <div class="span6"><pre><%= @notification.description %></pre>
+    <div class="col-md-6"><pre><%= @notification.description %></pre>
   </div>
-  <div class="span1 text-right">Id:
+  <div class="col-md-1 text-right">Id:
   </div>
-    <div class="span1"><%= @notification.odq_object_id %>
+    <div class="col-md-1"><%= @notification.odq_object_id %>
   </div>
 
 </div>
 
 <div class="row">
-  <div class="span2 text-right"> Owner:
+  <div class="col-md-2 text-right"> Owner:
   </div>
-    <div class="span2"><%= @notification.owner.name %>
+    <div class="col-md-2"><%= @notification.owner.name %>
   </div>
-    <div class="span2 text-right"> Responsible:
+    <div class="col-md-2 text-right"> Responsible:
   </div>
-    <div class="span2"><%= @notification.responsible.name %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="span2 text-right"> Business object:
-  </div>
-    <div class="span2"><%= @notification.business_object.name %>
-  </div>
-    <div class="span2 text-right"> Scope:
-  </div>
-    <div class="span2"><%= @notification.scope.name %>
+    <div class="col-md-2"><%= @notification.responsible.name %>
   </div>
 </div>
 
 <div class="row">
-  <div class="span2 text-right"> Severity:
+  <div class="col-md-2 text-right"> Business object:
   </div>
-    <div class="span2"><%= @notification.severity.name %>
+    <div class="col-md-2"><%= @notification.business_object.name %>
   </div>
-    <div class="span2 text-right"> Status:
+    <div class="col-md-2 text-right"> Scope:
   </div>
-    <div class="span2"><%= @notification.status.name %>
+    <div class="col-md-2"><%= @notification.scope.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 text-right"> Severity:
+  </div>
+    <div class="col-md-2"><%= @notification.severity.name %>
+  </div>
+    <div class="col-md-2 text-right"> Status:
+  </div>
+    <div class="col-md-2"><%= @notification.status.name %>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="span2 text-right"> Created by:
+  <div class="col-md-2 text-right"> Created by:
   </div>
-    <div class="span2"><%= @notification.created_by %>
+    <div class="col-md-2"><%= @notification.created_by %>
   </div>
-    <div class="span2 text-right"> Updated_by:
+    <div class="col-md-2 text-right"> Updated_by:
   </div>
-    <div class="span2"><%= @notification.updated_by %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="span2 text-right"> Created at:
-  </div>
-    <div class="span2"><%= @notification.created_at %>
-  </div>
-    <div class="span2 text-right"> Updated_at:
-  </div>
-    <div class="span2"><%= @notification.updated_at %>
+    <div class="col-md-2"><%= @notification.updated_by %>
   </div>
 </div>
 
 <div class="row">
-  <div class="span2 text-right"> Expected at:
+  <div class="col-md-2 text-right"> Created at:
   </div>
-    <div class="span2"><%= @notification.expected_at %>
+    <div class="col-md-2"><%= @notification.created_at %>
   </div>
-    <div class="span2 text-right"> Closed_at:
+    <div class="col-md-2 text-right"> Updated_at:
   </div>
-    <div class="span2"><%= @notification.closed_at %>
+    <div class="col-md-2"><%= @notification.updated_at %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 text-right"> Expected at:
+  </div>
+    <div class="col-md-2"><%= @notification.expected_at %>
+  </div>
+    <div class="col-md-2 text-right"> Closed_at:
+  </div>
+    <div class="col-md-2"><%= @notification.closed_at %>
   </div>
 </div>
 

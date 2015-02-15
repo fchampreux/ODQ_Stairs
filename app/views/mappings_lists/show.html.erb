@@ -11,65 +11,65 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span3"><%= @mappings_list.name%>
+        <div class="col-md-3"><%= @mappings_list.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span2"><%= @mappings_list.code%>
+        <div class="col-md-2"><%= @mappings_list.code%>
         </div>
-        <div class="span2 text-right">Unique id:
+        <div class="col-md-2 text-right">Unique id:
         </div>
-        <div class="span1"><%= @mappings_list.id%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @mappings_list.description%></pre>
+        <div class="col-md-1"><%= @mappings_list.id%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right"> Source list:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"> <%= link_to @mappings_list.source_list.name, @mappings_list.source_list %>
-        </div>
-        <div class="span2 text-right"> Target list:
-        </div>
-        <div class="span2"> <%= link_to @mappings_list.target_list.name, @mappings_list.target_list %>
+        <div class="col-md-6"><pre><%= @mappings_list.description%></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Owner:
+        <div class="col-md-2 text-right"> Source list:
         </div>
-        <div class="span2"><%= @mappings_list.owner.login%>
+        <div class="col-md-2"> <%= link_to @mappings_list.source_list.name, @mappings_list.source_list %>
         </div>
-        <div class="span2 text-right">Created by:
+        <div class="col-md-2 text-right"> Target list:
         </div>
-        <div class="span2"><%= @mappings_list.created_by%>
-        </div>
-        <div class="span2 text-right">Updated by:
-        </div>
-        <div class="span2"><%= @mappings_list.updated_by%>
+        <div class="col-md-2"> <%= link_to @mappings_list.target_list.name, @mappings_list.target_list %>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Playground id:
+        <div class="col-md-2 text-right">Owner:
         </div>
-        <div class="span2"><%= @mappings_list.playground_id%>
+        <div class="col-md-2"><%= @mappings_list.owner.login%>
         </div>
-        <div class="span2 text-right">Created at:
+        <div class="col-md-2 text-right">Created by:
         </div>
-        <div class="span2"><%= @mappings_list.created_at%>
+        <div class="col-md-2"><%= @mappings_list.created_by%>
         </div>
-        <div class="span2 text-right">Updated at:
+        <div class="col-md-2 text-right">Updated by:
         </div>
-        <div class="span2"><%= @mappings_list.updated_at%>
+        <div class="col-md-2"><%= @mappings_list.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Playground id:
+        </div>
+        <div class="col-md-2"><%= @mappings_list.playground_id%>
+        </div>
+        <div class="col-md-2 text-right">Created at:
+        </div>
+        <div class="col-md-2"><%= @mappings_list.created_at%>
+        </div>
+        <div class="col-md-2 text-right">Updated at:
+        </div>
+        <div class="col-md-2"><%= @mappings_list.updated_at%>
         </div>
       </div>
 

@@ -21,31 +21,31 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6"><%= @territory.name%>
+        <div class="col-md-6"><%= @territory.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span1"><%= @territory.code%>
+        <div class="col-md-1"><%= @territory.code%>
         </div>
-        <div class="span1 text-right">Status:
+        <div class="col-md-1 text-right">Status:
         </div>
-        <div class="span1"><%= @territory.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><%= @territory.description%>
+        <div class="col-md-1"><%= @territory.status.name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @territory.hierarchy%>
+        <div class="col-md-6"><%= @territory.description%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Hierarchy:
+        </div>
+        <div class="col-md-2"><%= @territory.hierarchy%>
         </div>
       </div>
 

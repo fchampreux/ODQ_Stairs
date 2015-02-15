@@ -27,31 +27,31 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="span2 text-right">Name:
+        <div class="col-md-2 text-right">Name:
         </div>
-        <div class="span6"><%= @business_object.name%>
+        <div class="col-md-6"><%= @business_object.name%>
         </div>
-        <div class="span1 text-right">Code:
+        <div class="col-md-1 text-right">Code:
         </div>
-        <div class="span1"><%= @business_object.code%>
+        <div class="col-md-1"><%= @business_object.code%>
         </div>
-        <div class="span1 text-right">Status:
+        <div class="col-md-1 text-right">Status:
         </div>
-        <div class="span1"><%= @business_object.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span2 text-right">Description:
-        </div>
-        <div class="span6"><pre><%= @business_object.description%></pre>
+        <div class="col-md-1"><%= @business_object.status.name%>
         </div>
       </div>
 
       <div class="row">
-        <div class="span2 text-right">Hierarchy:
+        <div class="col-md-2 text-right">Description:
         </div>
-        <div class="span2"><%= @business_object.hierarchy%>
+        <div class="col-md-6"><pre><%= @business_object.description%></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">Hierarchy:
+        </div>
+        <div class="col-md-2"><%= @business_object.hierarchy%>
         </div>
       </div>
 
@@ -64,31 +64,31 @@
 <!-- Tab content for Implementation -->
 
       <div class="row">
-        <div class="span2 text-right">Technology:
+        <div class="col-md-2 text-right">Technology:
         </div>
-        <div class="span2"><%= @business_object.db_technology%>
+        <div class="col-md-2"><%= @business_object.db_technology%>
         </div>
-        <div class="span2 text-right">Connection:
+        <div class="col-md-2 text-right">Connection:
         </div>
-        <div class="span2"><%= @business_object.db_connection%>
+        <div class="col-md-2"><%= @business_object.db_connection%>
         </div>
-        <div class="span2 text-right">Owner schema:
+        <div class="col-md-2 text-right">Owner schema:
         </div>
-        <div class="span2"><%= @business_object.db_owner_schema%>
+        <div class="col-md-2"><%= @business_object.db_owner_schema%>
         </div>
       </div>
        <div class="row">
-        <div class="span2 text-right">Structure name:
+        <div class="col-md-2 text-right">Structure name:
         </div>
-        <div class="span2"><%= @business_object.structure_name%>
+        <div class="col-md-2"><%= @business_object.structure_name%>
         </div>
-        <div class="span2 text-right">Key columns:
+        <div class="col-md-2 text-right">Key columns:
         </div>
-        <div class="span2"><pre><%= @business_object.key_columns%></pre>
+        <div class="col-md-2"><pre><%= @business_object.key_columns%></pre>
         </div>
-        <div class="span2 text-right">Published columns:
+        <div class="col-md-2 text-right">Published columns:
         </div>
-        <div class="span2"><pre><%= @business_object.published_columns%></pre>
+        <div class="col-md-2"><pre><%= @business_object.published_columns%></pre>
         </div>
       </div>
 <!-- Tab content -->
