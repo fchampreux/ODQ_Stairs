@@ -4,7 +4,7 @@ development:
   host: localhost 
   adapter: postgresql
   encoding: unicode
-  database: odq
+  database: odq_app
   username: odq_app
   password: odq_app
 #  schema_search_path: "odq_info"
@@ -41,8 +41,8 @@ MSSQL:
 
 #ORACLE environment
 ORACLE:
-adapter: oracle_enhanced
-database: INFO
-username: ODQ_APP
-password: ODQ_APP
+  adapter: oracle_enhanced
+  database: INFO
+  username: ODQ_APP
+  password: ODQ_APP
 

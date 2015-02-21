@@ -13,11 +13,11 @@
   <%= render "layouts/header" %>
 
 <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="col-md-2">
+  <div class="row">
+    <div class="col-md-2 sidebar">
       <% if signed_in? %> 
           <nav id="main_menu">
-            <ul class="nav nav-list">
+            <ul class="nav nav-sidebar">
               <li class="nav-header">Business Hierarchy</li>
               <li><%= link_to "Business Areas", business_areas_path %></li>
               <li><%= link_to "Business Flows", business_flows_path %></li>
@@ -42,14 +42,14 @@
                 <li><%= link_to "Times scales", "#" %></li>
               <% end %>
 
-               <li class="nav-header">Notifications</li>
-               <li><%= link_to "Breaches", notifications_path, {:title => "Manage rejected records notifications"} %></li>
-               <li><%= link_to "Monitoring","#", {:title => "Monitor your processes"}%></li>
+              <li class="nav-header">Notifications</li>
+              <li><%= link_to "Breaches", notifications_path, {:title => "Manage rejected records notifications"} %></li>
+              <li><%= link_to "Monitoring","#", {:title => "Monitor your processes"}%></li>
                
-                <li class="nav-header">Configuration</li>
-                <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
-                <li><%= link_to "Lists of values", values_lists_path %></li>
-                <li><%= link_to "Mappings of values", mappings_lists_path %></li>
+              <li class="nav-header">Configuration</li>
+              <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
+              <li><%= link_to "Lists of values", values_lists_path %></li>
+              <li><%= link_to "Mappings of values", mappings_lists_path %></li>
 
               <% if user_is_admin? %>              
                 <li class="nav-header">Security</li>
@@ -58,18 +58,18 @@
 
             </ul>
           </nav>
-        <% end %>
-      </div>
-      <div class="col-md-10">
+      <% end %>
+    </div>
+    <div class="col-md-10">
         <%= yield %>
-      </div>
     </div>
   </div>
+</div>
 
 
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
  
   <%= render "layouts/footer" %>
   <%= debug(params) if Rails.env.development? %>

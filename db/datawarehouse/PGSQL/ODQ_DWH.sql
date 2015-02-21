@@ -3,17 +3,16 @@
 /* Fact table stores all records captured*/
 CREATE TABLE dwh_records
 (
-  id serial NOT NULL,
   playground_id integer,
   business_object_id integer,
   organisation_id integer,
   territory_id integer,
-  scope_number bytea,
-  rule_number bytea,
-  error_number bytea,
-  whitelist_number bytea,
+  scope_mask bytea,
+  rule_mask bytea,
+  error_mask bytea,
+  whitelist_mask bytea,
   period_id integer,
-  pk_values character varying(255),
+  record_id character varying(255),
   record_created_by character varying(255),
   record_created_at timestamp without time zone,
   record_updated_by character varying(255),
@@ -23,40 +22,40 @@ CREATE TABLE dwh_records
   last_time_wrong timestamp without time zone,
   last_user_wrong character varying(255),
   data_values character varying(255),
-  updated_values character varying(255),
   observation text,
-  editor_id integer,
-  edited_at timestamp without time zone,
-  approver_id integer,
-  approved_at timestamp without time zone,
-  corrector_id integer,
-  corrected_at timestamp without time zone,
   record_status character varying(255),
   created_by character varying(255),
   updated_by character varying(255),
   created_at timestamp without time zone,
   updated_at timestamp without time zone,
   process_id integer,
-  CONSTRAINT dwh_records_pk PRIMARY KEY (id )
+  CONSTRAINT dwh_records_pk PRIMARY KEY (playground_id, period_id, record_id)
 );
 
 /* DM stores basic measures for objects*/
 CREATE TABLE dm_measures
 (
-  id serial NOT NULL,
   playground_id integer,
-  ODQ_object_type_id integer,
   ODQ_object_id integer,
+  ODQ_parent_id integer,
+  ODQ_object_name character varying(255),
+  ODQ_object_code character varying(255),
+  ODQ_object_url character varying(255),
+  is_project_hierarchy boolean,
   period_id integer,
+  period_day char(8),
   all_records integer,
-  bad_records integer,
+  error_count integer,
   score numeric(5,2),
+  workload numeric(10,2),
+  added_value numeric(10,2),
+  maintenance_cost numeric(10,2),
   created_by character varying(255),
   updated_by character varying(255),
   created_at timestamp without time zone,
   updated_at timestamp without time zone,
   process_id integer,
-  CONSTRAINT dm_measures_pk PRIMARY KEY (id )
+  CONSTRAINT dm_measures_pk PRIMARY KEY (ODQ_object_id, period_id )
 );
 
 /*Territories dimension table*/
@@ -79,7 +78,8 @@ CREATE TABLE dim_territories
   updated_by character varying(255),
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL,
-  process_id integer
+  process_id integer,
+  CONSTRAINT dim_territories_pk PRIMARY KEY (id)
 )
 ;
 
@@ -103,12 +103,13 @@ CREATE TABLE dim_organisations
   updated_by character varying(255),
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL,
-  process_id integer
+  process_id integer,
+  CONSTRAINT dim_organisations_pk PRIMARY KEY (id)
 )
 ;
 
 /*Time dimension table*/
-CREATE TABLE dim_period
+CREATE TABLE dim_time
 (
   period_id integer NOT NULL,
   playground_id integer NOT NULL,
@@ -123,7 +124,7 @@ CREATE TABLE dim_period
   week_of_year integer,
   week_number integer,
   month integer,
-  month_name varchar(20),
+  month_name character varying(20),
   month_number integer,
   trimester_of_year integer,
   trimester_number integer,
@@ -135,7 +136,8 @@ CREATE TABLE dim_period
   updated_by character varying(255),
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL,
-  process_id integer
+  process_id integer,
+  CONSTRAINT dim_time_pk PRIMARY KEY (period_id )
 )
 ;
 
@@ -155,7 +157,8 @@ CREATE TABLE dim_rules
   updated_by character varying(255),
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL,
-  process_id integer
+  process_id integer,
+  CONSTRAINT dim_rules_pk PRIMARY KEY (id)
 )
 ;
 
@@ -170,11 +173,14 @@ CREATE TABLE dim_scopes
   description text,
   hierarchy character varying(255),
   landscape character varying(255),
+  business_object character varying(255),
+  business_object_id integer,
   created_by character varying(255),
   updated_by character varying(255),
   created_at timestamp without time zone NOT NULL,
   updated_at timestamp without time zone NOT NULL,
-  process_id integer
+  process_id integer,
+  CONSTRAINT dim_scopes_pk PRIMARY KEY (id)
 )
 ;
 

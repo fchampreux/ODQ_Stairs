@@ -43,6 +43,6 @@ MSSQL:
 ORACLE:
   adapter: oracle_enhanced
   database: INFO
-  username: ODQ_APP
-  password: ODQ_APP
+  username: ODQ_DEV
+  password: ODQ_DEV
 

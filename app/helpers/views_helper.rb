@@ -2,7 +2,7 @@ module ViewsHelper
 
   ### provide full title of a page
   def full_title(page_title)
-    base_title = "Open Data Quality Stairs"
+    base_title = "Data Quality Stairs"
     if page_title.empty?
       base_title
     else
