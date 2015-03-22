@@ -1,11 +1,13 @@
 <% provide(:title, 'Managing business objects') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@business_object), :alt => "Quality hit") %> Business object: <%= @business_object.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @business_object.business_area.name, @business_object.business_area %> > </li>
     <li><%= @business_object.name %> </li>
   </ul>
-
-<h1>Editing a business object</h1>
+<% end %>
 
 <%= render 'form' %>
 

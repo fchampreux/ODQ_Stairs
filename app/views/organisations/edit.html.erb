@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing organisations') %>
-
-<h1>Editing an organisation</h1>
+<% content_for :page_heading do %>
+  Organisation: <%= @organisation.name %>
+<% end %>
 
 <%= render 'form' %>
 

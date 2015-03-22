@@ -1,11 +1,13 @@
 <% provide(:title, 'Managing business flows') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@business_flow), :alt => "Quality hit") %> Business Flow: <%= @business_flow.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @business_flow.business_area.name, @business_flow.business_area %> > </li>
     <li><%= @business_flow.name %> </li>
   </ul>
-
-<h1>Editing a business flow</h1>
+<% end %>
 
 <%= render 'form' %>
 

@@ -1,5 +1,8 @@
 <% provide(:title, 'Managing breaches') %>
-
+<% content_for :page_heading do %>
+  Handling breach: <%= @breach.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @breach.business_rule.business_process.business_flow.business_area.name, @breach.business_rule.business_process.business_flow.business_area %> > </li>
     <li><%= link_to @breach.business_rule.business_process.business_flow.name, @business_rule.business_process.business_flow %> > </li>
@@ -7,8 +10,7 @@
     <li><%= link_to @breach.business_rule.name, @breach.business_rule %> > </li>
     <li><%= @breach.name %> </li>
   </ul>
-
-<h1>Handling breach: <%= @breach.name %> </h1>
+<% end %>
 
 <%= render 'form' %>
 

@@ -6,6 +6,31 @@
 
 /* mixins, variables, etc. */
 
+/* Navbar */
+$bgDefault      : #227867; 
+$bgHighlight    : #00aa88;
+$colDefault     : #d7f4e3;
+$colHighlight   : #afe9c6;
+
+/* Header Fonts */
+$headerFont           : helvetica;
+$headerFontColor      : #227867; 
+$headerFontHighlight  : #00aa88;
+
+/* Body Fonts */
+$bodyFont             : arial;
+$bodyFontColor      : #227867; 
+$bodyFontHighlight  : #00aa88;
+
+/* Footer Fonts */
+$footerFont           : helvetica;
+$footerFontColor      : #f0ff0; 
+$footerFontHighlight  : #00aa88;
+
+/* Links */
+$linkBackground: #f0f0f0;
+
+
 $grayMediumLight: #eaeaea;
 $grayLight: #f0f0f0;
 $grayDarker: #d0d0d0;
@@ -15,7 +40,6 @@ $menu_bright:rgb(44, 160, 136);
 /* universal */
 
 html {
-  overflow-y: scroll;
 }
 
 body {
@@ -47,7 +71,8 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
+  margin-left: 30px;
+  text-align: left;
 }
 
 h2 {
@@ -67,25 +92,54 @@ p {
 
 /* header */
 
-#logo {
+.logo {
+  img{
   float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
+  max-width:150%;
+  max-height:150%;
+  padding:10px 5px 10px 10px;
+  }
 }
 
 .top_menu {
   float: right;
-  li {
-    display:inline;
+  font-weight: bold;
+  color: $headerFontColor;
+  margin-right: 20px;
+  li {list-style-type: none;
   }
-  
+  a {
+    color: $headerFontColor;
+    &:hover {
+      color: $headerFontHighlight;
+      background-color: $linkBackground;
+    }
+  }
 }
+
+.side_menu {
+  border: 2px solid;
+  border-radius: 25px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: $headerFontColor;
+  li {list-style-type: none;
+  }
+  a {
+    color: $headerFontColor;
+    &:hover {
+      color: $headerFontHighlight;
+      background-color: $linkBackground;
+    }
+  }
+  b { 
+    padding: 10px 10px 10px 10px;
+    color: $headerFontColor;
+    font-size: 1.2em;
+  }
+}
+
+
 
 /* body */
 
@@ -101,39 +155,33 @@ p {
   }
 }
 
-#main_menu {
-  a {
-    &:hover {
-      color: $menu_color;
-    }
+.splash {
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover { 
-      color: $grayDarker;
-    }
-  }  
-  small { 
-    float: left; 
+  padding: 20px 20px 20px 20px;
+  font-weight: bold;
+  color: $footerFontColor;
+  li {
+    display:inline;
   }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
+  a {
+    color: $footerFontColor;
+    &:hover {
+      color: $footerFontHighlight;
+      background-color: $linkBackground;
     }
   }
 }
+
+
 
 /* tables */
 td.col_narrow {
@@ -149,5 +197,56 @@ td.col_medium{
 td.col_wide{
     width:50%;
     }
+    
+/*Navigation */
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus { 
+      color: $colHighlight; }}
+  .navbar-text {
+    font-size: 1.7em;
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      font-size: 1.7em;
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
 
 

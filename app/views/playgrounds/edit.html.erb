@@ -1,10 +1,12 @@
 <% provide(:title, 'Managing playgrounds') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@playground), :alt => "Quality hit") %> Playground: <%= @playground.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= @playground.name %> </li>
   </ul>
-
-<h1>Editing a playground</h1>
+<% end %>
 
 <%= render 'form' %>
 

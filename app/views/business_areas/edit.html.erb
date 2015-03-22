@@ -1,10 +1,12 @@
 <% provide(:title, 'Managing business areas') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@business_area), :alt => "Quality hit") %> Business area: <%= @business_area.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= @business_area.name %> </li>
   </ul>
-
-<h1>Editing a business area</h1>
+<% end %>
 
 <%= render 'form' %>
 

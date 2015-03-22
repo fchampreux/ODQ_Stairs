@@ -1,12 +1,14 @@
 <% provide(:title, 'Managing scopes') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> Scope: <%= @scope.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @scope.landscape.playground.name, @scope.landscape.playground %> > </li>
     <li> <%= link_to @scope.landscape.name, @scope.landscape %> > </li>
     <li><%= @scope.name %> </li>
   </ul>
-
-  <h1><%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> Scope: <%= @scope.name %></h1>
+<% end %>
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_scope_path(@scope) %> |</li>

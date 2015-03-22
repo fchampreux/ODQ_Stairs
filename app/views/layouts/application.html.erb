@@ -12,54 +12,65 @@
 
   <%= render "layouts/header" %>
 
+
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 sidebar">
-      <% if signed_in? %> 
-          <nav id="main_menu">
-            <ul class="nav nav-sidebar">
-              <li class="nav-header">Business Hierarchy</li>
-              <li><%= link_to "Business Areas", business_areas_path %></li>
-              <li><%= link_to "Business Flows", business_flows_path %></li>
-              <li><%= link_to "Business Processes", business_processes_path %></li>
-              <li><%= link_to "Business Rules", business_rules_path %></li>
-              <li><%= link_to "Business Objects", business_objects_path %></li>
-
-              <li class="nav-header">Project Hierarchy</li>
-              <li><%= link_to "Playgrounds", playgrounds_path %></li>
-              <li><%= link_to "Landscapes", landscapes_path %></li>
-              <li><%= link_to "Scopes", scopes_path %></li>
-
-              <% if display_assessment? %>
-                <li class="nav-header">Quality Assessment</li>
-                <li><%= link_to "Data Policies", "#" %></li>
-                <li><%= link_to "Key Performance Indicators", "#" %></li>
-                <li><%= link_to "Objectives", "#" %></li>
-                
-                <li class="nav-header">Analysis axis</li>
-                <li><%= link_to "Organisations", organisations_path %></li>
-                <li><%= link_to "Geopgraphy", territories_path %></li>
-                <li><%= link_to "Times scales", "#" %></li>
-              <% end %>
-
-              <li class="nav-header">Notifications</li>
-              <li><%= link_to "Breaches", notifications_path, {:title => "Manage rejected records notifications"} %></li>
-              <li><%= link_to "Monitoring","#", {:title => "Monitor your processes"}%></li>
-               
-              <li class="nav-header">Configuration</li>
-              <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
-              <li><%= link_to "Lists of values", values_lists_path %></li>
-              <li><%= link_to "Mappings of values", mappings_lists_path %></li>
-
-              <% if user_is_admin? %>              
-                <li class="nav-header">Security</li>
-                <li><%= link_to "Users", users_path %></li>
-              <% end %>
-
-            </ul>
-          </nav>
-      <% end %>
+    <% if signed_in? %>
+    <div class="col-md-1 side_menu">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="menu_title"><b>Customisation</b></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rules <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Business Areas", business_areas_path %></li>
+            <li><%= link_to "Business Flows", business_flows_path %></li>
+            <li><%= link_to "Business Processes", business_processes_path %></li>
+            <li><%= link_to "Business Rules", business_rules_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Business Objects", business_objects_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Playgrounds", playgrounds_path %></li>
+            <li><%= link_to "Lanscapes", landscapes_path %></li>
+            <li><%= link_to "Scopes", scopes_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assessment <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Data policies", "#" %></li>
+            <li><%= link_to "Objectives", "#" %></li>
+            <li><%= link_to "Key Peformance Indicators", "#" %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-header">Parameters</li>
+            <li><%= link_to "Lists of parameters", parameters_lists_path %></li>
+            <li><%= link_to "Lists of values", values_lists_path %></li>
+            <li><%= link_to "Mappings of values", mappings_lists_path %></li>
+            <li role="presentation" class="dropdown-header">Dimensions</li>
+            <li><%= link_to "Organisations", organisations_path %></li>
+            <li><%= link_to "Geopgraphy", territories_path %></li>
+            <li><%= link_to "Times scales", "#" %></li>
+          </ul>
+        </li>
+        <% if user_is_admin? %> 
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Security <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Roles", "#" %></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
     </div>
+    <% end %>
     <div class="col-md-10">
         <%= yield %>
     </div>

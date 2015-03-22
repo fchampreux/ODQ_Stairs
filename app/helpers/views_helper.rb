@@ -28,7 +28,7 @@ module ViewsHelper
     end
     return image_file
   end
-
+  
   ### extract object's scores chart series
   def scores_chart_series_for(current_object)
     current_period_id = DimTime.where("period_date = ?", Time.now.to_date).take.period_id

@@ -1,8 +1,9 @@
 <% provide(:title, 'Home') %>
-
+<% content_for :page_heading do %>
+  <%= @playground_measured.name %>'s dashboard
+<% end %>
       <% if signed_in? %>
 
-        <h1><%= @playground_measured.name %>'s dashboard </h1>
         <h2><%= @current_user.last_name %>'s view</h2>
 
           <div id="measures">
@@ -85,13 +86,8 @@
         <h1>Welcome to Open Data Quality Stairs</h1>
         <!-- User info -->
         <div class="row">
-          <div class="col-md-8">
-            <%= link_to "Please login here : Sign in", signin_path %>
-          </div>
-        </div>
-        <div class="row">
           <!-- Articles -->
-          <div class="col-md-8">
+          <div class="col-md-12 splash">
             <img src="assets/ODQ_Stairs.png" alt="Pragmatic & progressive">
           </div>
         </div>

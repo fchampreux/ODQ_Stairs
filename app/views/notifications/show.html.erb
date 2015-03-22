@@ -1,10 +1,7 @@
 <% provide(:title, 'Managing notifications') %>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <h1>Notification:   <%= @notification.name %> </h1>
-</p>
+<% content_for :page_heading do %>
+  Notification: <%= @notification.name %>
+<% end %>
 
 <div class="row">
   <div class="col-md-2 text-right">Description:

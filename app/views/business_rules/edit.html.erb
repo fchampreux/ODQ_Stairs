@@ -1,13 +1,15 @@
 <% provide(:title, 'Managing business rules') %>
-
+<% content_for :page_heading do %>
+    <%= image_tag(index_audit_tag_for(@business_rule), :alt => "Quality hit") %> Business Rule: <%= @business_rule.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @business_rule.business_process.business_flow.business_area.name, @business_rule.business_process.business_flow.business_area %> > </li>
     <li><%= link_to @business_rule.business_process.business_flow.name, @business_rule.business_process.business_flow %> > </li>
     <li><%= link_to @business_rule.business_process.name, @business_rule.business_process %> > </li>
     <li><%= @business_rule.name %> </li>
   </ul>
-
-<h1>Editing a business rule</h1>
+<% end %>
 
 <%= render 'form' %>
 

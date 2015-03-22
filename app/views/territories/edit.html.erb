@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing territories') %>
-
-<h1>Editing a territory </h1>
+<% content_for :page_heading do %>
+  Territory: <%= @territory.name %>
+<% end %>
 
 <%= render 'form' %>
 

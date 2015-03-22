@@ -1,11 +1,13 @@
 <% provide(:title, 'Managing landscapes') %>
-
+<% content_for :page_heading do %>
+  <%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> Landscape: <%= @landscape.name %>
+<% end %>
+<% content_for :breadcrums do %>
   <ul class="breadcrumbs">
     <li>> <%= link_to @landscape.playground.name, @landscape.playground %> > </li>
     <li><%= @landscape.name %> </li>
   </ul>
-
-  <h1><%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> Landscape: <%= @landscape.name %></h1>
+<% end %>
   
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_landscape_path(@landscape) %> |</li>
