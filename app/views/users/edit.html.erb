@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing users') %>
-
-<h1>Editing user</h1>
+<% content_for :page_heading do %>
+    User: <%= @user.login %>
+<% end %>
 
 <%= render 'form' %>
 

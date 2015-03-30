@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing values') %>
-
-<h1>Editing a value</h1>
+<% content_for :page_heading do %>
+    Configuration value: <%= @values.name%>
+<% end %>
 
 <%= render 'form' %>
 

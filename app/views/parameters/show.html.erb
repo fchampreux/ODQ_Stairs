@@ -1,8 +1,7 @@
 <% provide(:title, 'Managing parameters') %>
-
-<!-- <p id="notice"><%= notice %></p> -->
-
-<h1>Configuration parameter</h1>
+<% content_for :page_heading do %>
+    Configuration parameter: <%= @parameter.name %>
+<% end %> 
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_parameter_path(@parameter) %> |</li>

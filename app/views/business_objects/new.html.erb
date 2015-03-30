@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing business objects') %>
-
-<h1>New business object</h1>
+<% content_for :page_heading do %>
+    New business object
+<% end %>
 
 <%= render 'form' %>
 

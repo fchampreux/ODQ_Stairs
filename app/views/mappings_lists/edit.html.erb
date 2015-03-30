@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing mappings lists') %>
-
-<h1>Editing a mappings list</h1>
+<% content_for :page_heading do %>
+    Configuration parameter: <%= @mappings_list.name %>
+<% end %> 
 
 <%= render 'editform' %>
 

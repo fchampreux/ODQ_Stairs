@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing values') %>
-
-<h1>New value</h1>
+<% content_for :page_heading do %>
+    New value
+<% end %>
 
 <%= render 'form' %>
 

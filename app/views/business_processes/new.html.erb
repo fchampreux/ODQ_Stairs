@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing business processes') %>
-
-<h1>New business process</h1>
+<% content_for :page_heading do %>
+    New business process
+<% end %>
 
 <%= render 'form' %>
 

@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing lists of values') %>
-
-<h1>Editing list of values</h1>
+<% content_for :page_heading do %>
+    List of values: <%= @values_list.name%>
+<% end %> 
 
 <%= render 'form' %>
 

@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing business areas') %>
-
-<h1>New business area</h1>
+<% content_for :page_heading do %>
+    New business area
+<% end %>
 
 <%= render 'form' %>
 

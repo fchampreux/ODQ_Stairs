@@ -1,6 +1,7 @@
 <% provide(:title, 'Managing parameters') %>
-
-  <h1><%= @parameters_list.name %></h1>
+<% content_for :page_heading do %>
+    List: <%= @parameters_list.name %>
+<% end %> 
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_parameters_list_path(@parameters_list) %> |</li>

@@ -1,8 +1,7 @@
 <% provide(:title, 'Managing values') %>
-
-<!-- <p id="notice"><%= notice %></p> -->
-
-<h1>Configuration value</h1>
+<% content_for :page_heading do %>
+    Configuration value: <%= @values.name%>
+<% end %> 
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_value_path(@value) %> |</li>
