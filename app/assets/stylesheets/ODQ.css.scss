@@ -123,6 +123,7 @@ p {
   margin-left: 20px;
   font-weight: bold;
   color: $headerFontColor;
+    padding: 10px 10px 10px 10px;
   li {list-style-type: none;
   }
   a {
@@ -133,7 +134,7 @@ p {
     }
   }
   b { 
-    padding: 10px 10px 10px 10px;
+
     color: $headerFontColor;
     font-size: 1.2em;
   }
