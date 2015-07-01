@@ -39,8 +39,7 @@ end
 # gem for ORACLE POC
 group :ORACLE do
   gem 'ruby-oci8', '~> 2.1.7'
- gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails42'
-#  gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.5'
+  gem 'activerecord-oracle_enhanced-adapter', github: 'rsim/oracle-enhanced', branch: 'rails42'
 end
 
 # gem for production
