@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "name"
     t.text     "description"
     t.string   "hierarchy"
-    t.string   "PCF_index"
-    t.string   "PCF_reference"
+    t.string   "pcf_index"
+    t.string   "pcf_reference"
     t.integer  "status_id",     limit: nil, precision: 38
     t.integer  "owner_id",      limit: nil, precision: 38
     t.string   "created_by"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "name"
     t.text     "description"
     t.string   "hierarchy"
-    t.string   "PCF_index"
-    t.string   "PCF_reference"
+    t.string   "pcf_index"
+    t.string   "pcf_reference"
     t.integer  "status_id",        limit: nil, precision: 38
     t.integer  "owner_id",         limit: nil, precision: 38
     t.string   "created_by"
@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.string   "name"
     t.text     "description"
     t.string   "hierarchy"
-    t.string   "PCF_index"
-    t.string   "PCF_reference"
+    t.string   "pcf_index"
+    t.string   "pcf_reference"
     t.integer  "status_id",        limit: nil, precision: 38
     t.integer  "owner_id",         limit: nil, precision: 38
     t.string   "created_by"
@@ -357,35 +357,6 @@ ActiveRecord::Schema.define(version: 20141207133633) do
     t.datetime "created_at",           limit: 6
     t.datetime "updated_at",           limit: 6
     t.integer  "process_id",           limit: nil, precision: 38
-  end
-
-  create_table "dwh_records", id: false, force: true do |t|
-    t.integer  "playground_id",      limit: nil,  precision: 38, null: false
-    t.integer  "business_object_id", limit: nil,  precision: 38
-    t.integer  "organisation_id",    limit: nil,  precision: 38
-    t.integer  "territory_id",       limit: nil,  precision: 38
-    t.raw      "scope_mask",         limit: 1000
-    t.raw      "rule_mask",          limit: 1000
-    t.raw      "error_mask",         limit: 1000
-    t.raw      "whitelist_mask",     limit: 1000
-    t.integer  "period_id",          limit: nil,  precision: 38, null: false
-    t.string   "record_id",                                      null: false
-    t.string   "record_created_by"
-    t.datetime "record_created_at",  limit: 6
-    t.string   "record_updated_by"
-    t.datetime "record_updated_at",  limit: 6
-    t.datetime "first_time_right",   limit: 6
-    t.string   "first_user_right"
-    t.datetime "last_time_wrong",    limit: 6
-    t.string   "last_user_wrong"
-    t.string   "data_values",        limit: 1000
-    t.text     "observation"
-    t.string   "record_status"
-    t.string   "created_by"
-    t.string   "updated_by"
-    t.datetime "created_at",         limit: 6
-    t.datetime "updated_at",         limit: 6
-    t.integer  "process_id",         limit: nil,  precision: 38
   end
 
   create_table "landscapes", force: true do |t|

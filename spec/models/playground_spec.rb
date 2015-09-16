@@ -92,12 +92,12 @@ describe "Playground model validation: " do
     before { @playground.hierarchy = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_index is longer than 30" do
-    before { @playground.PCF_index = "a" * 31 }
+  describe "when pcf_index is longer than 30" do
+    before { @playground.pcf_index = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_reference is longer than 30" do
-    before { @playground.PCF_reference = "a" * 31 }
+  describe "when pcf_reference is longer than 30" do
+    before { @playground.pcf_reference = "a" * 31 }
     it { should_not be_valid }
   end
 

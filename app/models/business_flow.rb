@@ -9,8 +9,8 @@
 #  name             :string(255)
 #  description      :text
 #  hierarchy        :string(255)
-#  PCF_index        :string(255)
-#  PCF_reference    :string(255)
+#  pcf_index        :string(255)
+#  pcf_reference    :string(255)
 #  status_id        :integer
 #  owner_id         :integer
 #  created_by       :string(255)
@@ -45,8 +45,8 @@ self.sequence_name = "global_seq"
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
 	validates :business_area_id, presence: true
-	validates :PCF_index, length: { maximum: 30 }
-	validates :PCF_reference, length: { maximum: 30 }
+	validates :pcf_index, length: { maximum: 30 }
+	validates :pcf_reference, length: { maximum: 30 }
         belongs_to :playground									# scopes the odq_object_id calculation
         acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name

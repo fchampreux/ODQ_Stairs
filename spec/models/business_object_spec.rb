@@ -37,7 +37,7 @@ require 'spec_helper'
 describe "Business Object model validation: " do
 
   before do
-    @business_object = BusinessObject.new(business_process_id: 1, playground_id: 0, name: "TEST BUSINESS OBJECT", description: "Example of Business Object", code: "BO-1", hierarchy: "1-1-0", PCF_index: "1.1.0", PCF_reference: "O-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
+    @business_object = BusinessObject.new(business_process_id: 1, playground_id: 0, name: "TEST BUSINESS OBJECT", description: "Example of Business Object", code: "BO-1", hierarchy: "1-1-0", pcf_index: "1.1.0", pcf_reference: "O-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
   end
 
   subject { @business_object }
@@ -107,12 +107,12 @@ describe "Business Object model validation: " do
     before { @business_object.hierarchy = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_index is longer than 30" do
-    before { @business_object.PCF_index = "a" * 31 }
+  describe "when pcf_index is longer than 30" do
+    before { @business_object.pcf_index = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_reference is longer than 30" do
-    before { @business_object.PCF_reference = "a" * 31 }
+  describe "when pcf_reference is longer than 30" do
+    before { @business_object.pcf_reference = "a" * 31 }
     it { should_not be_valid }
   end
 

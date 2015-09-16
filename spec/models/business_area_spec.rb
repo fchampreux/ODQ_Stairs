@@ -8,8 +8,8 @@
 #  name          :string(255)
 #  description   :text
 #  hierarchy     :string(255)
-#  PCF_index     :string(255)
-#  PCF_reference :string(255)
+#  pcf_index     :string(255)
+#  pcf_reference :string(255)
 #  status_id     :integer
 #  owner_id      :integer
 #  created_by    :string(255)
@@ -32,8 +32,8 @@
 # DESCRIPTION	Description			text						
 # CODE		Organisation's codification	varchar	30		Y		Y			
 # HIERARCHY	Hierarchical index		varchar	30		Y	Y	Y			
-# PCF_INDEX	PCF Index			varchar	30			Y			
-# PCF_REFERENCE	Reference in the PCF		varchar	30			Y			
+# pcf_INDEX	PCF Index			varchar	30			Y			
+# pcf_REFERENCE	Reference in the PCF		varchar	30			Y			
 # OWNER_ID	Owner of the Business Area	integer			Y		Y		Users list	
 # STATUS_ID	Status of the Business Area	integer			Y		Y		Statuses list	
 # CREATED_AT	Creation date			timestamp		Y					
@@ -47,7 +47,7 @@ describe "Business Area model validation: " do
 
   before do
     @business_area = BusinessArea.new(playground_id: 0, name: "TEST BUSINESS AREA", description: "Example of Business Area", code: "BA-1", 
-	hierarchy: "1-1-0", PCF_index: "1.1.0", PCF_reference: "B-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
+	hierarchy: "1-1-0", pcf_index: "1.1.0", pcf_reference: "B-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
   end
 
   subject { @business_area }
@@ -112,12 +112,12 @@ describe "Business Area model validation: " do
     before { @business_area.hierarchy = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_index is longer than 30" do
-    before { @business_area.PCF_index = "a" * 31 }
+  describe "when pcf_index is longer than 30" do
+    before { @business_area.pcf_index = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_reference is longer than 30" do
-    before { @business_area.PCF_reference = "a" * 31 }
+  describe "when pcf_reference is longer than 30" do
+    before { @business_area.pcf_reference = "a" * 31 }
     it { should_not be_valid }
   end
 

@@ -9,8 +9,8 @@
 #  name             :string(255)
 #  description      :text
 #  hierarchy        :string(255)
-#  PCF_index        :string(255)
-#  PCF_reference    :string(255)
+#  pcf_index        :string(255)
+#  pcf_reference    :string(255)
 #  status_id        :integer
 #  owner_id         :integer
 #  created_by       :string(255)
@@ -34,8 +34,8 @@
 # CODE			Organisation codification	char	5					Concatenation of previous level		
 # BUSINESS_FLOW_ID	Business process foreign key	integer		Y				
 # HIERARCHY		Hierarchical index		varchar	30	Y		Y		
-# PCF_INDEX		PCF Index			varchar	30			Y		
-# PCF_REFERENCE		Reference in the PCF		varchar	30			Y		
+# pcf_INDEX		PCF Index			varchar	30			Y		
+# pcf_REFERENCE		Reference in the PCF		varchar	30			Y		
 # OWNER_ID		Owner of the Business process	integer		Y		Y		Users list
 # STATUS_ID		Status of the Business process	integer		Y		Y		Statuses list
 # CREATED_AT		Creation date			timestamp						
@@ -48,7 +48,7 @@ require 'spec_helper'
 describe "Business Process model validation: " do
 
   before do
-    @business_process = BusinessProcess.new(business_flow_id: 1, playground_id: 0, name: "TEST BUSINESS PROCESS", description: "Example of Business Process", code: "BP-1", hierarchy: "1-1-0", PCF_index: "1.1.0", PCF_reference: "B-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
+    @business_process = BusinessProcess.new(business_flow_id: 1, playground_id: 0, name: "TEST BUSINESS PROCESS", description: "Example of Business Process", code: "BP-1", hierarchy: "1-1-0", pcf_index: "1.1.0", pcf_reference: "B-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
   end
 
   subject { @business_process }
@@ -118,12 +118,12 @@ describe "Business Process model validation: " do
     before { @business_process.hierarchy = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_index is longer than 30" do
-    before { @business_process.PCF_index = "a" * 31 }
+  describe "when pcf_index is longer than 30" do
+    before { @business_process.pcf_index = "a" * 31 }
     it { should_not be_valid }
   end
-  describe "when PCF_reference is longer than 30" do
-    before { @business_process.PCF_reference = "a" * 31 }
+  describe "when pcf_reference is longer than 30" do
+    before { @business_process.pcf_reference = "a" * 31 }
     it { should_not be_valid }
   end
 
