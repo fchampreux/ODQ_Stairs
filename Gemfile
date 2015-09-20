@@ -25,7 +25,7 @@ group :doc do
 end
 
 # gem for dev and test only
-group :development, :test do
+group :development, :test, :eval do
   gem 'pg'
 
 end
