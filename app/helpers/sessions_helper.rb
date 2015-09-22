@@ -41,5 +41,9 @@ module SessionsHelper
   def signed_in_user
     redirect_to signin_url, notice: "You must log in to access this page." unless signed_in?
   end
+  
+  def set_locale
+  I18n.locale = current_user.language || I18n.default_locale
+  end
 
 end
