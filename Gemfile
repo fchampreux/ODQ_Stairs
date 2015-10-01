@@ -18,7 +18,8 @@ gem 'sequenced', '~> 2.0.0'
 gem 'annotate', '~> 2.6.5'
 gem 'rspec-rails', '~> 3.3.0'
 gem 'capybara', '~> 2.5.0'
-gem 'factory_girl_rails', '~> 4.5.0' 
+gem 'factory_girl_rails', '~> 4.5.0'
+gem 'd3_rails'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

@@ -20,4 +20,48 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 fr:
-  Customisation: "Configuration"
+  ### General terms
+  BA:             "Domaine fonctionnel"
+  BF:             "Flux"
+  BP:             "Processus métier"
+  BR:             "Règle métier"
+  BO:             "Objet métier"
+  Project:        "Projet"
+  Playground:     "Périmètre"
+  Landscape:      "Landscape"
+  Scope:          "Scope"
+  User:           "Utlisateur"
+  ### Header layout
+  Sign_out:       "Quitter"
+  Sign_in:        "Connexion"
+  Help:           "Aide"
+  Home:           "Home"
+  Display:        "Indicateurs"
+  Monitor:        "Processus"
+  Notify:         "Incidents"
+  ### Menus
+  Customisation:  "Configuration"
+  BAs:            "Domaines fonctionnels"
+  BFs:            "Flux"
+  BPs:            "Processus métiers"
+  BRs:            "Règles métiers"
+  BOs:            "Objets métiers"
+  Playgrounds:    "Périmètres"
+  Landscapes:     "Landscapes"
+  Scopes:         "Scopes"
+  Policies:       "Stratégiesde données"
+  Objectives:     "Objectifs"
+  KPI:            "Indicators clefs"
+  ### Home page
+  Top10:          "Activités récentes"
+  MainRisk:       "Principaux risques"
+  RecentUpdates:  "Mises à jour récentes"
+  ### Shared fields
+  Name:           "Nom"
+  Code:           "Code"
+  Status:         "Statut"
+  UpdatedAt:      "Modifié le"
+    ### Charts
+  Percentage:     "Pourcentage"
+  Workload:       "Charge de travail"
+  AddedValue:     "Valeur ajoutée"

@@ -1,9 +1,9 @@
 
-          <h4>Search box</h4>
+          <h4> <%= t('SearchBox') %></h4>
           <%= form_tag(this_path, :method => 'get') do %>
             <p>
               <%= text_field_tag :criteria, params[:criteria] %>
-              <%= submit_tag "Search", :name => nil %>
+              <%= submit_tag t('SearchButton'), :name => nil %>
             </p>
           <% end %>
 

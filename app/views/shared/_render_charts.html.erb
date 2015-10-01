@@ -5,7 +5,7 @@
 $(function () { 
     $('#measures_trend').highcharts({
         chart: {type: 'column'},
-        title: {text: 'Data quality trend'},
+        title: {text: '<%=t('DQT')%>'},
         xAxis: { 
             type: 'datetime',
             title: {text: 'Time'}
@@ -14,7 +14,7 @@ $(function () {
             title: {text: 'Score'}
         },
        series: [{
-            name: 'Quality',
+            name: '<%= t('Quality') %>',
             data: <%= raw scores_chart_series_for(this_object).map { |bp| [ bp.to_f] } %>,
             pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
             pointInterval: 24 * 3600 * 1000 // one day
@@ -33,7 +33,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Descendants impact on data quality'
+            text: '<%= t('ImpactDQ') %>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -77,7 +77,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Descendants impact on added value'
+            text: '<%= t('ImpactAV') %>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -105,7 +105,7 @@ $(function () {
         series: [{
             data:  <%= raw added_value_chart_series_for(this_object).map { |br| { name: br.name, y: br.added_value.to_f, url: br.url, code: br.code } }.to_json %> ,
             type: 'pie',
-            name: 'Weight'
+            name: '<%=t('Weight') %>'
         }]
     });
 });
@@ -121,7 +121,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Descendants impact on workload'
+            text: '<%= t('ImpactWL') %>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -154,6 +154,15 @@ $(function () {
     });
 });
 </script>
+<script type="text/javascript">
+var theData = [ 1, 2, 3 ]
+
+var p = d3.select("body").selectAll("p")
+  .data(theData)
+  .enter()
+  .append("p")
+  .text(function (d) {return d;});
+  </script>
 
 <!-- Tab content for Measures -->
       <div class="row">
@@ -163,9 +172,9 @@ $(function () {
         <div class="col-md-6">
           <div class="tabbable tabs-left">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_percentage" data-toggle="tab">Percentage </a></li>
-              <li><a href="#tab_added_value" data-toggle="tab">Added value </a></li>
-              <li><a href="#tab_workload" data-toggle="tab">Workload </a></li>
+              <li class="active"><a href="#tab_percentage" data-toggle="tab"><%= t('Percentage') %> </a></li>
+              <li><a href="#tab_added_value" data-toggle="tab"><%= t('AddedValue') %> </a></li>
+              <li><a href="#tab_workload" data-toggle="tab"><%= t('Workload') %> </a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_percentage">
@@ -179,6 +188,15 @@ $(function () {
               </div>
             </div>  
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div id="d3test" style="width:80%; height:400px;">
+                <svg width="50" height="50">
+                  <polygon fill="yellow" stroke="blue" stroke-width="2" points="05,30 15,10  25,30" />
+                </svg>
+            </div>
         </div>
       </div>
 <!-- End of tab content -->
