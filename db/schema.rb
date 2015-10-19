@@ -359,7 +359,12 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.integer  "process_id"
   end
 
-=begin  create_table "dwh_records", id: false, force: :cascade do |t|
+  create_table "dummy_br", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string  "name", limit: 5
+  end
+
+  create_table "dwh_records", id: false, force: :cascade do |t|
     t.integer  "playground_id",                  null: false
     t.integer  "business_object_id"
     t.integer  "organisation_id"
@@ -387,7 +392,6 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.datetime "updated_at"
     t.integer  "process_id"
   end
-=end
 
   create_table "landscapes", force: :cascade do |t|
     t.integer  "playground_id"

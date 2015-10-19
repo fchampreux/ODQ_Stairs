@@ -1,6 +1,6 @@
-<% provide(:title, 'Managing business processes') %>
+<% provide(:title, (t('Managing') + ' ' + t('BPs'))) %>
 <% content_for :page_heading do %>
-    <%= image_tag(index_audit_tag_for(@business_process), :alt => "Quality hit") %> Business Process: <%= @business_process.name %>
+    <%= image_tag(index_audit_tag_for(@business_process), :alt => "Quality hit") %> <%= t('BP') %>: <%= @business_process.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">
@@ -21,15 +21,25 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li><a href="#definition" data-toggle="tab">Definition</a></li>
-      <li class="active"><a href="#measures" data-toggle="tab">Measures</a></li>
-      <li><a href="#ownership" data-toggle="tab">Ownership</a></li>
+      <li><a href="#definition" data-toggle="tab"> <%= t('Definition') %> </a></li>
+      <li class="active"><a href="#measures" data-toggle="tab"> <%= t('Measures') %> </a></li>
+      <li><a href="#ownership" data-toggle="tab"> <%= t('Ownership') %> </a></li>
     </ul>
     
     <div class="tab-content">
 
       <div class="tab-pane" id="definition"> 
         <%= render partial: "shared/object_definition", locals: {this_object: @business_process} %>
+        <div class="row">
+          <div class="col-md-2 text-right"> <%= t('PCFindex') %>:
+          </div>
+          <div class="col-md-2"><%= @business_process.pcf_index%>
+          </div>
+          <div class="col-md-2 text-right"> <%= t('PCFreference') %>:
+          </div>
+          <div class="col-md-2"><%= @business_process.pcf_reference%>
+          </div>
+        </div>
       </div>
     
       <div class="tab-pane active" id="measures">
@@ -46,31 +56,12 @@
 <table width=100%>
   <tr><td><hr /></td></tr>
   <tr align="left">
-    <th>Linked business rules</th>
+    <th> <%= t('BRs') %> </th>
     <th></th>
   </tr>
   <tr>
     <td>
-      <table class="table table-striped table-condensed">
-        <tr align="left">
-          <th> </th>
-          <th> Code </th>
-          <th> Name </th>
-          <th> Description </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-        </tr>
-        <%@business_process.business_rules.order("code ASC").each do |business_rule| %>
-        <tr align="left">
-          <td><%= image_tag(index_audit_tag_for(business_rule), :alt => "Quality hit") %></td>
-          <td valign="top"> <%=link_to business_rule.code, business_rule%> </td>
-          <td valign="top"> <%=business_rule.name%> </td>
-          <td class="col_wide"> <%=business_rule.description%> </td>
-          <td valign="top"> <%=business_rule.updated_by%> </td>
-          <td valign="top"> <%=business_rule.updated_at%> </td>
-        </tr>
-        <% end%>
-      </table>
+      <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_process.business_rules} %>
     </td>
   </tr>
   <tr>

@@ -1,6 +1,6 @@
 <% provide(:title, 'Managing business rules') %>
 <% content_for :page_heading do %>
-    <%= image_tag(index_audit_tag_for(@business_rule), :alt => "Quality hit") %> Business Rule: <%= @business_rule.name %>
+    <%= image_tag(index_audit_tag_for(@business_rule), :alt => "Quality hit") %> <%= t('BR') %>: <%= @business_rule.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">
@@ -22,58 +22,31 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Metrics</a></li>
-      <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Solving</a></li>
-      <li><a href="#tab5" data-toggle="tab">Rejected records</a></li> 
-      <li><a href="#tab6" data-toggle="tab">White list</a></li> 
-      <li><a href="#tab7" data-toggle="tab">Pending updates</a></li> 
-      <li><a href="#tab8" data-toggle="tab">Ownership</a></li>
+      <li class="active"><a href="#definition" data-toggle="tab"> <%= t('Definition') %> </a></li>
+      <li><a href="#tab2" data-toggle="tab"> <%= t('Metrics') %> </a></li>
+      <li><a href="#tab3" data-toggle="tab"> <%= t('Implementation') %> </a></li>    
+      <li><a href="#tab4" data-toggle="tab"> <%= t('Solving') %> </a></li>
+      <li><a href="#tab5" data-toggle="tab"> <%= t('Rejected') %> </a></li> 
+      <li><a href="#tab6" data-toggle="tab"> <%= t('WhiteList') %> </a></li> 
+      <li><a href="#tab7" data-toggle="tab"> <%= t('PendingUpd') %> </a></li> 
+      <li><a href="#ownership" data-toggle="tab"> <%= t('Ownership') %> </a></li>
     </ul>
     <div class="tab-content">
  
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane active" id="definition">
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="col-md-2 text-right">Name:
-        </div>
-        <div class="col-md-8"><%= @business_rule.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Code:
-        </div>
-        <div class="col-md-2"><%= @business_rule.code%>
-        </div>
-        <div class="col-md-1 text-right">Status:
-        </div>
-        <div class="col-md-1"><%= @business_rule.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Hierarchy:
-        </div>
-        <div class="col-md-2"><%= @business_rule.hierarchy%>
-        </div>
-         <div class="col-md-1 text-right"> Rule type:
+         <div class="col-md-2 text-right"> <%= t('RuleType') %>:
          </div>
          <div class="col-md-2"><%= @business_rule.rule_type.name%>
          </div>
       </div>
+      
+        <%= render partial: "shared/object_definition", locals: {this_object: @business_rule} %>
 
       <div class="row">
-        <div class="col-md-2 text-right">Description:
-        </div>
-        <div class="col-md-6"><pre><%= @business_rule.description %></pre>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Business value:
+        <div class="col-md-2 text-right"><%= t('BValue') %>:
         </div>
         <div class="col-md-6"><pre><%= @business_rule.business_value %></pre>
         </div>
@@ -86,35 +59,35 @@
 <!-- Tab content for Metrics -->
       
         <div class="row">
-          <div class="col-md-2 text-right"> Complexity:
+          <div class="col-md-2 text-right"> <%= t('Complexity') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.complexity.name %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Added value:
+          <div class="col-md-2 text-right"> <%= t('AValue') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.added_value %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Severity:
+          <div class="col-md-2 text-right"> <%= t('Severity') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.severity.name %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Maintenance cost:
+          <div class="col-md-2 text-right"> <%= t('MCost') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.maintenance_cost %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Maintenance workload:
+          <div class="col-md-2 text-right"> <%= t('MWorkload') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.maintenance_duration %> <%= display_duration%>
           </div>
@@ -127,32 +100,32 @@
 <!-- Tab content for Implementation -->
       
         <div class="row">
-          <div class="col-md-2 text-right">Object:
+          <div class="col-md-2 text-right"> <%= t('Object') %>:
           </div>
           <div class="col-md-2"><%= link_to @business_rule.business_object.name, @business_rule.business_object %>
           </div>
-          <div class="col-md-2 text-right">Business process:
+          <div class="col-md-2 text-right"> <%= t('BP') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.business_process.name%>
           </div>
         </div>
       
         <div class="row">
-          <div class="col-md-2 text-right">Check description:
+          <div class="col-md-2 text-right"> <%= t('ChkDescription') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.check_description %></pre>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Check script:
+          <div class="col-md-2 text-right"> <%= t('ChkScript') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.check_script %></pre>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Generated condition:
+          <div class="col-md-2 text-right"> <%= t('GCondition') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.condition %></pre>
           </div>
@@ -165,21 +138,21 @@
 <!-- Tab content for Solving -->
       
         <div class="row">
-          <div class="col-md-2 text-right" width="200">Correction method:
+          <div class="col-md-2 text-right" width="200"> <%= t('CorMethod') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.correction_method %></pre>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Correction script:
+          <div class="col-md-2 text-right"> <%= t('CorScript') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.correction_script %></pre>
           </div>
         </div>
       
         <div class="row">
-          <div class="col-md-2 text-right">Correction batch:
+          <div class="col-md-2 text-right"> <%= t('CorBatch') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.correction_batch %>
           </div>
@@ -200,7 +173,7 @@
 <table width=100%>
   <tr><td><hr /></td></tr>
   <tr align="left">
-    <th>White List</th>
+    <th> <%= t('WhiteList') %></th>
     <th></th>
   </tr>
   <tr>
@@ -209,10 +182,11 @@
         <tr align="left">
           <th> <%= @business_rule.business_object.key_columns %> </th>
           <th> <%= @business_rule.business_object.published_columns %> </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-          <th> Observation </th>
+          <th>  <%= t('UpdatedBy') %> </th>
+          <th>  <%= t('UpdatedAt')%> </th>
+          <th>  <%= t('Observation') %> </th>
         </tr>
+        <!--
         <%@business_rule.breaches.each do |breach| %>
         <tr align="left">
           <td valign="top"> <%=link_to breach.pk_values, edit_breach_path(breach) %> </td>
@@ -222,6 +196,7 @@
           <td valign="top"> <%=breach.description %> </td>
         </tr>
         <% end%>
+        -->
       </table>
     </td>
   </tr>
@@ -236,7 +211,7 @@
 <table width=100%>
   <tr><td><hr /></td></tr>
   <tr align="left">
-    <th>Updates pending</th>
+    <th> <%= t('PendingUpd') %></th>
     <th></th>
   </tr>
   <tr>
@@ -245,9 +220,9 @@
         <tr align="left">
           <th> <%= @business_rule.business_object.key_columns %> </th>
           <th> <%= @business_rule.business_object.published_columns %> </th>
-          <th> Updated by </th>
-          <th> Updated at </th>
-          <th> Observation </th>
+          <th>  <%= t('UpdatedBy') %> </th>
+          <th>  <%= t('UpdatedAt')%> </th>
+          <th>  <%= t('Observation') %> </th>
         </tr>
         <%@business_rule.breaches.each do |breach| %>
         <tr align="left">
@@ -266,7 +241,7 @@
 <!-- Tab content -->
     </div>
     
-    <div class="tab-pane" id="tab8">
+    <div class="tab-pane" id="ownership">
       <%= render partial: "shared/object_ownership", locals: {this_object: @business_rule} %>
     </div>
    

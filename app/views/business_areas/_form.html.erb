@@ -11,43 +11,14 @@
     </div>
   <% end %>
 
+      <%= render partial: "shared/object_definition_form", locals: {f: f} %>
+ 
       <div class="row">
-        <div class="col-md-2 text-right">Name:
-        </div>
-        <div class="col-md-10 field"><%= f.text_field :name, :class => "col-md-8" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2 text-right">Code:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :code %>
-        </div>
-        <div class="col-md-2 text-right">Status:
-        </div>
-        <div class="col-md-2 field"><%= f.collection_select :status_id, @statuses_list, :id, :name %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Description:
-        </div>
-        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Hierarchy:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :hierarchy, :readonly => true %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">PCF index:
+        <div class="col-md-2 text-right"> <%=t('PCFindex')%>:
         </div>
         <div class="col-md-2 field"><%= f.text_field :pcf_index %>
         </div>
-        <div class="col-md-2 text-right">PCF reference:
+        <div class="col-md-2 text-right"> <%=t('PCFreference')%>:
         </div>
         <div class="col-md-2 field"><%= f.text_field :pcf_reference %>
         </div>

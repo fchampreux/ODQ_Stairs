@@ -1,44 +1,35 @@
 <!-- Tab content for Definition -->
 
-      <div class="row">
-        <div class="col-md-2 text-right">Name:
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('Code') %>:
         </div>
-        <div class="col-md-6"><%= this_object.name%>
-        </div>
-        <div class="col-md-1 text-right">Code:
-        </div>
-        <div class="col-md-1"><%= this_object.code%>
-        </div>
-        <div class="col-md-1 text-right">Status:
+        <div class="col-md-2"><%= this_object.code%>
+        </div>        
+        <div class="col-md-4 text-right"> <%= t('Status') %>:
         </div>
         <div class="col-md-1"><%= this_object.status.name%>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-2 text-right"> <%= t('Name') %>:
+        </div>
+        <div class="col-md-5"><%= this_object.name%>
+        </div>
+      </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Description:
+        <div class="col-md-2 text-right"> <%= t('Description') %>:
         </div>
         <div class="col-md-6"><pre><%= this_object.description%></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Hierarchy:
+        <div class="col-md-2 text-right"> <%= t('Hierarchy') %>:
         </div>
         <div class="col-md-2"><%= this_object.hierarchy%>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">PCF index:
-        </div>
-        <div class="col-md-2"><%= this_object.pcf_index%>
-        </div>
-        <div class="col-md-2 text-right">PCF reference:
-        </div>
-        <div class="col-md-2"><%= this_object.pcf_reference%>
-        </div>
-      </div>
-
 
 <!-- End of tab content -->
