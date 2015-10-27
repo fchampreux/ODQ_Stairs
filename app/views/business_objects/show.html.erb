@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing business objects') %>
+<% provide(:title, (t('Managing') + ' ' + t('BOs'))) %>
+
 <% content_for :page_heading do %>
-  <%= image_tag(index_audit_tag_for(@business_object), :alt => "Quality hit") %> Business object: <%= @business_object.name %>
+  <%= image_tag(index_audit_tag_for(@business_object), :alt => "Quality hit") %> <%= t('BO') %>: <%= @business_object.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">
@@ -10,54 +11,26 @@
 <% end %>
 
   <ul class="mid_menu">
-    <li><%= link_to 'Edit', edit_business_object_path(@business_object) %> |</li>
-    <li><%= link_to 'Up', @business_object.business_area %> |</li>
-    <li><%= link_to 'Destroy', @business_object, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Edit'), edit_business_object_path(@business_object) %> |</li>
+    <li><%= link_to t('Up'), @business_object.business_area %> |</li>
+    <li><%= link_to t('Destroy'), @business_object, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Implementation</a></li>
-      <li><a href="#tab3" data-toggle="tab">Ownership</a></li>
+      <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition') %></a></li>
+      <li><a href="#tab2" data-toggle="tab"> <%= t('Implementation') %></a></li>
+      <li><a href="#tab3" data-toggle="tab"> <%= t('Ownership') %></a></li>
     </ul>
     <div class="tab-content">
 
     <div class="tab-pane active" id="tab1">
 <!-- Tab content for Definition -->
 
-      <div class="row">
-        <div class="col-md-2 text-right">Name:
-        </div>
-        <div class="col-md-6"><%= @business_object.name%>
-        </div>
-        <div class="col-md-1 text-right">Code:
-        </div>
-        <div class="col-md-1"><%= @business_object.code%>
-        </div>
-        <div class="col-md-1 text-right">Status:
-        </div>
-        <div class="col-md-1"><%= @business_object.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Description:
-        </div>
-        <div class="col-md-6"><pre><%= @business_object.description%></pre>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Hierarchy:
-        </div>
-        <div class="col-md-2"><%= @business_object.hierarchy%>
-        </div>
-      </div>
-
-
+      <%= render partial: "shared/object_definition", locals: {this_object: @business_object} %>
+      
 <!-- Tab content -->
     </div>    
 
@@ -66,29 +39,29 @@
 <!-- Tab content for Implementation -->
 
       <div class="row">
-        <div class="col-md-2 text-right">Technology:
+        <div class="col-md-2 text-right"> <%= t('Technology') %>:
         </div>
         <div class="col-md-2"><%= @business_object.db_technology%>
         </div>
-        <div class="col-md-2 text-right">Connection:
+        <div class="col-md-2 text-right"> <%= t('Connection') %>:
         </div>
         <div class="col-md-2"><%= @business_object.db_connection%>
         </div>
-        <div class="col-md-2 text-right">Owner schema:
+        <div class="col-md-2 text-right"> <%= t('OwnerSchema') %>:
         </div>
         <div class="col-md-2"><%= @business_object.db_owner_schema%>
         </div>
       </div>
        <div class="row">
-        <div class="col-md-2 text-right">Structure name:
+        <div class="col-md-2 text-right"> <%= t('Structure') %>:
         </div>
         <div class="col-md-2"><%= @business_object.structure_name%>
         </div>
-        <div class="col-md-2 text-right">Key columns:
+        <div class="col-md-2 text-right"> <%= t('KeyCols') %>:
         </div>
         <div class="col-md-2"><pre><%= @business_object.key_columns%></pre>
         </div>
-        <div class="col-md-2 text-right">Published columns:
+        <div class="col-md-2 text-right"> <%= t('PublCols') %>:
         </div>
         <div class="col-md-2"><pre><%= @business_object.published_columns%></pre>
         </div>

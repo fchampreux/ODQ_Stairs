@@ -14,11 +14,11 @@
       <%= render partial: "shared/object_definition_form", locals: {f: f} %>
  
       <div class="row">
-        <div class="col-md-2 text-right">PCF index:
+        <div class="col-md-2 text-right"><%= t('PCFindex') %>:
         </div>
         <div class="col-md-2 field"><%= f.text_field :pcf_index %>
         </div>
-        <div class="col-md-2 text-right">PCF reference:
+        <div class="col-md-2 text-right"><%= t('PCFreference') %>:
         </div>
         <div class="col-md-2 field"><%= f.text_field :pcf_reference %>
         </div>

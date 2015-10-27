@@ -13,11 +13,11 @@
   
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Metrics</a></li>
-      <li><a href="#tab3" data-toggle="tab">Implementation</a></li>    
-      <li><a href="#tab4" data-toggle="tab">Solving</a></li>
-      <li><a href="#tab5" data-toggle="tab">Exceptions list</a></li>    
+      <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition') %></a></li>
+      <li><a href="#tab2" data-toggle="tab"> <%= t('Metrics') %></a></li>
+      <li><a href="#tab3" data-toggle="tab"> <%= t('Implementation') %></a></li>    
+      <li><a href="#tab4" data-toggle="tab"> <%= t('Solving') %></a></li>
+      <li><a href="#tab5" data-toggle="tab"> <%= t('WhiteList') %></a></li>    
     </ul>
     <div class="tab-content">
 
@@ -25,7 +25,7 @@
 <!-- Tab content for Definition -->
 
       <div class="row">
-        <div class="col-md-2 text-right"> Rule type:
+        <div class="col-md-2 text-right"><%= t('RuleType') %>:
         </div>
         <div class="col-md-2 field"><%= f.collection_select :rule_type_id, @rule_types_list, :id, :name  %>
         </div>
@@ -34,7 +34,7 @@
       <%= render partial: "shared/object_definition_form", locals: {f: f} %> 
 
       <div class="row">
-        <div class="col-md-2 text-right">Business value:
+        <div class="col-md-2 text-right"><%= t('BValue') %>:
         </div>
         <div class="col-md-10 field"><%= f.text_area :business_value, :rows => 5, :class => "col-md-8" %>
         </div>
@@ -47,35 +47,35 @@
 <!-- Tab content for Metrics -->
       
         <div class="row">
-          <div class="col-md-2 text-right">Complexity:
+          <div class="col-md-2 text-right"> <%= t('Complexity') %>:
           </div>
           <div class="col-md-2 field"><%= f.collection_select :complexity_id, @complexity_list, :id, :name  %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Severity:
+          <div class="col-md-2 text-right"> <%= t('Severity') %>:
           </div>
           <div class="col-md-2 field"><%= f.collection_select :severity_id, @severity_list, :id, :name  %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Added value:
+          <div class="col-md-2 text-right"> <%= t('AValue') %>:
           </div>
           <div class="col-md-2 field"><%= f.text_field :added_value %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Maintenance cost:
+          <div class="col-md-2 text-right"> <%= t('MCost') %>:
           </div>
           <div class="col-md-2 field"><%= f.text_field :maintenance_cost %> <%= display_currency%>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Maintenance workload:
+          <div class="col-md-2 text-right"> <%= t('MWorkload') %>:
           </div>
           <div class="col-md-3 field"><%= f.text_field :maintenance_duration %> <%= display_duration%>
           </div>
@@ -88,32 +88,32 @@
 <!-- Tab content for Implementation -->
       
         <div class="row">
-          <div class="col-md-2 text-right">Object:
+          <div class="col-md-2 text-right"> <%= t('Object') %>:
           </div>
           <div class="col-md-2 field"><%= f.collection_select :business_object_id, @business_objects_list, :id, :name  %>
           </div>
-          <div class="col-md-2 text-right">Business process:
+          <div class="col-md-2 text-right"> <%= t('BP') %>:
           </div>
           <div class="col-md-2">current
           </div>
         </div>
       
         <div class="row">
-          <div class="col-md-2 text-right">Check description:
+          <div class="col-md-2 text-right"> <%= t('ChkDescription') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :check_description, :rows => 5, :class => "col-md-8" %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Check script:
+          <div class="col-md-2 text-right"> <%= t('ChkScript') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :check_script, :rows => 5, :class => "col-md-8" %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Generated condition:
+          <div class="col-md-2 text-right"> <%= t('GCondition') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :condition, :rows => 5, :class => "col-md-8" %>
           </div>
@@ -126,21 +126,22 @@
 <!-- Tab content for Solving -->
       
         <div class="row">
-          <div class="col-md-2 text-right" width="200">Correction method:
+          <div class="col-md-2 text-right" width="200"> <%= t('CorMethod') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :correction_method, :rows => 5, :class => "col-md-8"  %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Correction script:
+          <div class="col-md-2 text-right"> <%= t('CorScript') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :correction_script, :rows => 5, :class => "col-md-8"  %>
           </div>
         </div>
       
         <div class="row">
-          <div class="col-md-2 text-right">Correction batch:
+          <div class="col-md-2 text-right"> <%= t('CorBatch') %>:
+          </div>
           </div>
           <div class="col-md-10 field"><%= f.text_field :correction_batch, :class => "col-md-8" %>
           </div>
@@ -154,7 +155,7 @@
 <!-- Tab content for Exceptions -->
       
         <div class="row">
-          <div class="col-md-2 text-right">Exceptions:
+          <div class="col-md-2 text-right"><%= t('WhiteList') %>:
           </div>
           <div class="col-md-10 field"><%= f.text_area :white_list, :rows => 5, :class => "col-md-8" %>
           </div>

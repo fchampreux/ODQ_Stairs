@@ -13,8 +13,8 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
-      <li><a href="#tab2" data-toggle="tab">Implementation</a></li>    
+      <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition') %> </a></li>
+      <li><a href="#tab2" data-toggle="tab"> <%= t('Implementation') %> </a></li>    
     </ul>
     <div class="tab-content">
 
@@ -30,13 +30,13 @@
 <!-- Tab content for Implementation -->
       
       <div class="row">
-        <div class="col-md-2 text-right">Load interface:
+        <div class="col-md-2 text-right"><%= t('LoadInt') %>:
         </div>
         <div class="col-md-10 field"><%= f.text_field :load_interface, :class => "col-md-4" %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-right">SQL Query:
+        <div class="col-md-2 text-right"><%= t('SQL') %>:
         </div>
         <div class="col-md-10 field"><%= f.text_area :SQL_query, :rows => 5, :class => "col-md-4" %>
         </div>
