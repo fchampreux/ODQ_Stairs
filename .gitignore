@@ -19,4 +19,6 @@
 *.lock
 *~
 
+# Ignore SQL data files
+*.sql
 
