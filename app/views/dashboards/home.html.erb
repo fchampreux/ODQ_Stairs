@@ -1,9 +1,10 @@
 <% provide(:title, t('Home')) %>
+
 <% content_for :page_heading do %>
-  <%= @playground_measured.name %>'s dashboard
+  <%= @playground_measured.name %>: <%= t('Dashboard')%>
 <% end %>
 
-<h2><%= @current_user.last_name %>'s view</h2>
+<h2><%= @current_user.last_name %></h2>
 
   <div id="measures">
     <%= render partial: "shared/render_charts", locals: {this_object: @playground_measured} %>

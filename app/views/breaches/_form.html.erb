@@ -12,7 +12,7 @@
   <% end %>
 
       <div class="row">
-        <div class="col-md-2 text-right">Error message:
+        <div class="col-md-2 text-right"><%= t('ErrorMsg') %>:
         </div>
         <div class="col-md-6 field"><pre><%= @breach.error_message %></pre>
         </div>
@@ -20,40 +20,40 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Breach</a></li>
-      <li><a href="#tab2" data-toggle="tab">Business Rule</a></li>
-      <li><a href="#tab3" data-toggle="tab">Other Business Rules</a></li>    
-<!--      <li><a href="#tab4" data-toggle="tab">Scopes</a></li> -->
-      <li><a href="#tab5" data-toggle="tab">History list</a></li>
-      <li><a href="#tab6" data-toggle="tab">Ownership</a></li>    
+      <li class="active"><a href="#tab1" data-toggle="tab"><%= t('Breach') %></a></li>
+      <li><a href="#tab2" data-toggle="tab"><%= t('BR') %></a></li>
+      <li><a href="#tab3" data-toggle="tab"><%= t('Other') + ' ' + t('BRs') %></a></li>    
+<!--      <li><a href="#tab4" data-toggle="tab"><%= t('Scopes')%> </a></li> -->
+      <li><a href="#tab5" data-toggle="tab"><%= t('History') %></a></li>
+      <li><a href="#tab6" data-toggle="tab"><%= t('Ownership') %></a></li>    
     </ul>
 
     <div class="tab-content">
 
     <div class="tab-pane active" id="tab1">
 <!-- Tab content for Definition -->
-      <h4> Breached <%= @breach.breach_type.name %> </h4>
+      <h4> <%= t('Category') %>:  <%= @breach.breach_type.name %> </h4>
       <div class="row">
-        <div class="col-md-2 text-right">Status:
+        <div class="col-md-2 text-right"><%= t('Status') %>:
         </div>
         <div class="col-md-2"><%= f.collection_select :breach_status_id, @breach_statuses_list, :id, :name  %>
         </div>
-        <div class="col-md-2 text-right">Assigned to:
+        <div class="col-md-2 text-right"><%= t('Assigned') %>:
         </div>
         <div class="col-md-2"><%= f.collection_select :responsible_id, @responsibles_list, :id, :login  %>
         </div>
-        <div class="col-md-2 text-right">White list flag:
+        <div class="col-md-2 text-right"><%= t('WhiteList') %>:
         </div>
         <div class="col-md-2 "><%= f.check_box :is_whitelisted %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Application:
+        <div class="col-md-2 text-right"><%= t('Application') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.software.name %>
         </div>
-        <div class="col-md-2 text-right">Business object:
+        <div class="col-md-2 text-right"><%= t('BO') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.business_object.name %>
         </div>
@@ -62,7 +62,7 @@
     <hr/>
     
       <div class="row">
-        <div class="col-md-2 text-right">Primary key:
+        <div class="col-md-2 text-right"><%= t('KeyCols') %>:
         </div>
         <div class="col-md-3">
           <table class="table table-striped table-condensed">
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="row">      
-        <div class="col-md-2 text-right">Published values:
+        <div class="col-md-2 text-right"><%= t('PubCols') %>:
         </div>
         <div class="col-md-3">
           <table class="table table-striped table-condensed">
@@ -98,41 +98,41 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-right">Annotation:
+        <div class="col-md-2 text-right"><%= t('Annotation') %>:
         </div>
         <div class="col-md-10 field"><%= f.text_area :description, :rows=>5, :class => "col-md-7" %>
         </div>
       </div>
 
-      <h4> Dimensions </h4>
+      <h4> <%= t('Dimensions') %> </h4>
       <hr />
 
       <div class="row">
-        <div class="col-md-2 text-right">Organisation:
+        <div class="col-md-2 text-right"><%= t('Organisation') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.organisation.name %>
         </div>
 
-        <div class="col-md-2 text-right">Territory:
+        <div class="col-md-2 text-right"><%= t('Territory') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.territory.name %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Period:
+        <div class="col-md-2 text-right"><%= t('Period') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.period_id %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Updated by:
+        <div class="col-md-2 text-right"><%= t('UpdatedBy') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.record_updated_by %>
         </div>
 
-        <div class="col-md-2 text-right">Updated at:
+        <div class="col-md-2 text-right"><%= t('UpdatedAt') %>:
         </div>
         <div class="col-md-2 field"><%= @breach.record_updated_at %>
         </div>
@@ -144,53 +144,53 @@
     <div class="tab-pane" id="tab2">
 <!-- Tab content for Business Rule -->
 
-      <h4> Business Rule summary </h4>
+      <h4> <%= t('BR') %> </h4>
       <hr />
       
       <div class="row">
-        <div class="col-md-2 text-right">Name:
+        <div class="col-md-2 text-right"><%= t('Name') %>:
         </div>
         <div class="col-md-10"><%= @business_rule.name%>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-right">Code:
+        <div class="col-md-2 text-right"><%= t('Code') %>:
         </div>
         <div class="col-md-2"><%= @business_rule.code%>
         </div>
-         <div class="col-md-2 text-right"> Rule type:
+         <div class="col-md-2 text-right"> <%= t('RuleType') %>:
          </div>
          <div class="col-md-2"><%= @business_rule.rule_type.name%>
          </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Description:
+        <div class="col-md-2 text-right"><%= t('Description') %>:
         </div>
         <div class="col-md-6"><pre><%= @business_rule.description %></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Business value:
+        <div class="col-md-2 text-right"><%= t('BValue') %>:
         </div>
         <div class="col-md-6"><pre><%= @business_rule.business_value %></pre>
         </div>
       </div>
 
         <div class="row">
-          <div class="col-md-2 text-right">Object:
+          <div class="col-md-2 text-right"><%= t('Object') %>:
           </div>
           <div class="col-md-2"><%= link_to @business_rule.business_object.name, @business_rule.business_object %>
           </div>
-          <div class="col-md-2 text-right">Business process:
+          <div class="col-md-2 text-right"><%= t('BP') %>:
           </div>
           <div class="col-md-2"><%= @business_rule.business_process.name%>
           </div>
         </div>
       
         <div class="row">
-          <div class="col-md-2 text-right">Check description:
+          <div class="col-md-2 text-right"><%= t('ChkDescription') %>:
           </div>
           <div class="col-md-6"><pre><%= @business_rule.check_description %></pre>
           </div>
@@ -203,7 +203,7 @@
     <div class="tab-pane" id="tab3">
 <!-- Tab content for Other Business Rules -->
 
-      <h4> Other Business Rules applying to this breach </h4>
+      <h4> <%= t('OtherBR') %> </h4>
       <hr />
 
 
@@ -213,7 +213,7 @@
     <div class="tab-pane" id="tab4">
 <!-- Tab content for Scopes -->
 
-      <h4> Scopes providing this breach </h4>
+      <h4> <%= t('BreachScopes') %>  </h4>
       <hr />
 
 
@@ -223,7 +223,7 @@
     <div class="tab-pane" id="tab5">
 <!-- Tab content for History -->
 
-      <h4> History of change requests </h4>
+      <h4> <%= t('ChgHistorys') %> </h4>
       <hr />
 
 <!-- Tab content -->

@@ -1,4 +1,5 @@
 <% provide(:title, (t('Managing') + ' ' + t('Landscapes')))  %>
+
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> <%= t('Landscape') %>: <%= @landscape.name %>
 <% end %>
