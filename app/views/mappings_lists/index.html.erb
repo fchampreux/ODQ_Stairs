@@ -1,18 +1,18 @@
-<% provide(:title, 'Managing mappings lists') %>
+<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
 
 <% content_for :page_heading do %>
-    Mappings lists
+    <%= t('Lists') + ' ' + t('Mapping') %>
 <% end %> 
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th>Owner</th>
-      <th>Source list</th>
-      <th>Target list</th>
+      <th><%= t('Name') %></th>
+      <th><%= t('Description') %></th>
+      <th><%= t('Code') %></th>
+      <th><%= t('Owner') %></th>
+      <th><%= t('Source list') %></th>
+      <th><%= t('Target list') %></th>
     </tr>
   </thead>
 
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New List of mappings', new_mappings_list_path %>
+<%= link_to t('NewF') + ' ' + t('ListOf') + ' ' +  t('Mapping'), new_mappings_list_path %>

@@ -1,9 +1,10 @@
-<% provide(:title, 'Managing notifications') %>
+<% provide(:title, (t('Managing') + ' ' + t('Notify'))) %>
+
 <% content_for :page_heading do %>
-  Notification: <%= @notification.name %>
+  <%= t('Notification'): <%= @notification.name %>
 <% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @notification %> |
-<%= link_to 'Back', notifications_path %>
+<%= link_to t('Show'), @notification %> |
+<%= link_to t('Back'), notifications_path %>

@@ -1,8 +1,9 @@
-<% provide(:title, 'Managing mappings lists') %>
+<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
+
 <% content_for :page_heading do %>
-    Configuration parameter: <%= @mappings_list.name %>
+    <%= t('Configuration') + ' ' + t('Parameter') %>: <%= @mappings_list.name %>
 <% end %> 
 
 <%= render 'editform' %>
 
-<%= link_to 'Back', @mappings_list %> 
+<%= link_to t('Back'), @mappings_list %> 

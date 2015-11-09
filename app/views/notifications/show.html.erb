@@ -1,14 +1,15 @@
-<% provide(:title, 'Managing notifications') %>
+<% provide(:title, (t('Managing') + ' ' + t('Notify'))) %>
+
 <% content_for :page_heading do %>
-  Notification: <%= @notification.name %>
+  <%= t('Notification') %>: <%= @notification.name %>
 <% end %>
 
 <div class="row">
-  <div class="col-md-2 text-right">Description:
+  <div class="col-md-2 text-right"><%= t('Description') %>:
   </div>
     <div class="col-md-6"><pre><%= @notification.description %></pre>
   </div>
-  <div class="col-md-1 text-right">Id:
+  <div class="col-md-1 text-right"><%= t('UniqueId') %>:
   </div>
     <div class="col-md-1"><%= @notification.odq_object_id %>
   </div>
@@ -16,33 +17,33 @@
 </div>
 
 <div class="row">
-  <div class="col-md-2 text-right"> Owner:
+  <div class="col-md-2 text-right"> <%= t('Owner') %>:
   </div>
     <div class="col-md-2"><%= @notification.owner.name %>
   </div>
-    <div class="col-md-2 text-right"> Responsible:
+    <div class="col-md-2 text-right"> <%= t('Responsible') %>:
   </div>
     <div class="col-md-2"><%= @notification.responsible.name %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-2 text-right"> Business object:
+  <div class="col-md-2 text-right"> <%= t('BO') %>:
   </div>
     <div class="col-md-2"><%= @notification.business_object.name %>
   </div>
-    <div class="col-md-2 text-right"> Scope:
+    <div class="col-md-2 text-right"> <%= t('Scope') %>:
   </div>
     <div class="col-md-2"><%= @notification.scope.name %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-2 text-right"> Severity:
+  <div class="col-md-2 text-right"> <%= t('Severity') %>:
   </div>
     <div class="col-md-2"><%= @notification.severity.name %>
   </div>
-    <div class="col-md-2 text-right"> Status:
+    <div class="col-md-2 text-right"> <%= t('Status') %>:
   </div>
     <div class="col-md-2"><%= @notification.status.name %>
   </div>
@@ -50,33 +51,33 @@
 
 
 <div class="row">
-  <div class="col-md-2 text-right"> Created by:
+  <div class="col-md-2 text-right"> <%= t('CCreated by') %>:
   </div>
     <div class="col-md-2"><%= @notification.created_by %>
   </div>
-    <div class="col-md-2 text-right"> Updated_by:
+    <div class="col-md-2 text-right"> <%= t('CUpdated_by') %>:
   </div>
     <div class="col-md-2"><%= @notification.updated_by %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-2 text-right"> Created at:
+  <div class="col-md-2 text-right"> <%= t('CreatedAt') %>:
   </div>
     <div class="col-md-2"><%= @notification.created_at %>
   </div>
-    <div class="col-md-2 text-right"> Updated_at:
+    <div class="col-md-2 text-right"> <%= t('UpdatedAt') %>:
   </div>
     <div class="col-md-2"><%= @notification.updated_at %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-2 text-right"> Expected at:
+  <div class="col-md-2 text-right"> <%= t('DueAt') %>:
   </div>
     <div class="col-md-2"><%= @notification.expected_at %>
   </div>
-    <div class="col-md-2 text-right"> Closed_at:
+    <div class="col-md-2 text-right"> <%= t('ClosedAt') %>:
   </div>
     <div class="col-md-2"><%= @notification.closed_at %>
   </div>
@@ -86,4 +87,4 @@
 
 <%= render partial: "shared/breaches_list", locals: {this_object: @notification} %>
 
-<%= link_to 'Back', notifications_path %>
+<%= link_to t('Back'), notifications_path %>
