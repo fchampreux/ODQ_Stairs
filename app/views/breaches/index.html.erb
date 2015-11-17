@@ -1,21 +1,21 @@
-<% provide(:title, 'Managing breaches') %>
+<% provide(:title, (t('Managing') + ' ' + t('Breaches'))) %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th><%= t('Name') %></th>
+      <th><%= t('Description') %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @breaches.each do |breach| %>
       <tr>
-        <td><%= breach.name %></td>
-        <td><%= breach.description %></td>
-        <td><%= link_to 'Show', breach %></td>
-        <td><%= link_to 'Edit', edit_breach_path(breach) %></td>
-        <td><%= link_to 'Destroy', breach, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= breach.name %> </td>
+        <td><%= breach.description %> </td>
+        <td><%= link_to t('Show'), breach %> </td>
+        <td><%= link_to t('Edit'), edit_breach_path(breach) %> </td>
+        <td><%= link_to t('Destroy'), breach, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,79 +1,80 @@
-<% provide(:title, 'Managing parameters') %>
+<% provide(:title, (t('Managing') + ' ' + t('Settings'))) %>
+
 <% content_for :page_heading do %>
-    Configuration parameter: <%= @parameter.name %>
+    <%= t('Configuration') + ' ' + t('Parameter') %>: <%= @parameter.name %>
 <% end %> 
 
   <ul class="mid_menu">
-    <li><%= link_to 'Edit', edit_parameter_path(@parameter) %> |</li>
-    <li><%= link_to 'Up', @parameter.parameters_list %> |</li>
-    <li><%= link_to 'Destroy', @parameter, confirm: 'Parameter will be inactivated. Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Edit'), edit_parameter_path(@parameter) %> |</li>
+    <li><%= link_to t('Up'), @parameter.parameters_list %> |</li>
+    <li><%= link_to t('Destroy'), @parameter, confirm: 'Parameter will be inactivated. Are you sure?', method: :delete %></li>
   </ul>
 
       <div class="row">
-        <div class="col-md-2 text-right">Name:
+        <div class="col-md-2 text-right"><%= t('Name') %>:
         </div>
         <div class="col-md-2"><b><%= @parameter.name%></b>
         </div>
-        <div class="col-md-2 text-right">Code:
+        <div class="col-md-2 text-right"><%= t('Code') %>:
         </div>
         <div class="col-md-1"><%= @parameter.param_code%>
         </div>
-        <div class="col-md-1 text-right">Value:
+        <div class="col-md-1 text-right"><%= t('Value') %>:
         </div>
         <div class="col-md-1"><%= @parameter.param_value%>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Description:
+        <div class="col-md-2 text-right"><%= t('Description') %>:
         </div>
         <div class="col-md-6"><pre><%= @parameter.description%></pre>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Active from:
+        <div class="col-md-2 text-right"><%= t('ValidFrom') %>:
         </div>
         <div class="col-md-2"><%= @parameter.active_from %>
         </div>
-        <div class="col-md-2 text-right">Active to:
+        <div class="col-md-2 text-right"><%= t('ValidTo') %>:
         </div>
         <div class="col-md-2"><%= @parameter.active_to %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Playground:
+        <div class="col-md-2 text-right"><%= t('Playground') %>:
         </div>
         <div class="col-md-1"><%= @parameter.playground_id%>
         </div>
-        <div class="col-md-1 text-right">Id:
+        <div class="col-md-1 text-right"><%= t('UniqueId') %>:
         </div>
         <div class="col-md-1"><%= @parameter.id%>
         </div>
-        <div class="col-md-1 text-right">Parent list:
+        <div class="col-md-1 text-right"><%= t('Parent') %>:
         </div>
         <div class="col-md-2"><%= link_to @parameter.parameters_list.name, @parameter.parameters_list %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Created by:
+        <div class="col-md-2 text-right"><%= t('CreatedBy') %>:
         </div>
         <div class="col-md-2"><%= @parameter.created_by %>
         </div>
-        <div class="col-md-2 text-right">Updated by:
+        <div class="col-md-2 text-right"><%= t('UpdatedBy') %>:
         </div>
         <div class="col-md-2"><%= @parameter.updated_by%>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Created at:
+        <div class="col-md-2 text-right"><%= t('CreatedAt') %>:
         </div>
         <div class="col-md-2"><%= @parameter.created_at %>
         </div>
-        <div class="col-md-2 text-right">Updated at:
+        <div class="col-md-2 text-right"><%= t('UpdatedAt') %>:
         </div>
         <div class="col-md-2"><%= @parameter.updated_at%>
         </div>

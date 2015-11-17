@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing mappings lists') %>
+<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
+
 <% content_for :page_heading do %>
-    New list of mappings
+    <%= t('New') + ' ' + t('ListOf') + ' ' +  t('Mappings') %>
 <% end %>
 
 <%= render 'createform' %>

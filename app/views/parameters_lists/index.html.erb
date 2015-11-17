@@ -1,19 +1,20 @@
-<% provide(:title, 'Managing parameters') %>
+<% provide(:title, (t('Managing') + ' ' + t('Settings'))) %>
+
 <% content_for :page_heading do %>
-    Parameters  lists
+    <%= t('Lists') + ' ' + t('Settings')%>
 <% end %> 
 
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th>User specific</th>
-      <th>Owner</th>
-      <th>Created by</th>
-      <th>Updated by</th>
+      <th><%= t('Name')%></th>
+      <th><%= t('Description')%></th>
+      <th><%= t('Code')%></th>
+      <th><%= t('User')%></th>
+      <th><%= t('Owner')%></th>
+      <th><%= t('CreatedBy')%></th>
+      <th><%= t('UpdatedBy')%></th>
     </tr>
   </thead>
 
@@ -34,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New List of parameters', new_parameters_list_path %>
+<%= link_to t('Add'), new_parameters_list_path %>

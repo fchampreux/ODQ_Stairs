@@ -1,18 +1,18 @@
-<% provide(:title, 'Managing notifications') %>
+<% provide(:title, (t('Managing') + ' ' + t('Notify'))) %>
 
 <%= will_paginate %>
 
 <table  class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Severity</th>
-      <th>Scope</th>
-      <th>Business object</th>
-      <th>Opened at</th>
-      <th>To close at</th>
-      <th>Closed at</th>
-      <th>Responsible</th>
+      <th><%= t('Name') %></th>
+      <th><%= t('Severity') %></th>
+      <th><%= t('Scope') %></th>
+      <th><%= t('BO') %></th>
+      <th><%= t('OpenedAt') %></th>
+      <th><%= t('DueAt') %></th>
+      <th><%= t('ClosedAt') %></th>
+      <th><%= t('Responsible') %></th>
     </tr>
   </thead>
 

@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing landscapes') %>
+<% provide(:title, (t('Managing') + ' ' + t('Landscapes'))) %>
+
 <% content_for :page_heading do %>
-    New landscape
+    <%= t('New') %> <%= t('Landscape') %>
 <% end %>
 
 <%= render 'form' %>

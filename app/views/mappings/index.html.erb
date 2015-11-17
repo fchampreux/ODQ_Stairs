@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing mappings') %>
+<% provide(:title, (t('Managing') + ' ' + t('Mappings'))) %>
+
 <% content_for :page_heading do %>
-    List of software values mappings
+    <%= t('ListOf') + ' ' + t('Mappings') %>
 <% end %> 
 
 <table  class="table table-striped">
@@ -8,24 +9,24 @@
     <tr>
 
       <div class="row">
-        <div class="col-md-6 text-center"> <h2> SOURCE </h2> 
+        <div class="col-md-6 text-center"> <h2> <%= t('Source') %> </h2> 
         </div>
-        <div class="col-md-6 text-center"> <h2> TARGET </h2> 
+        <div class="col-md-6 text-center"> <h2> <%= t('Target') %> </h2> 
         </div>
       </div>
 
     </tr>
     <tr>
-      <th>Software</th>
-      <th>Table</th>
-      <th>Code</th>
-      <th>Value</th>
-      <th>Value</th>
-      <th>Code</th>
-      <th>Table</th>
-      <th>Software</th>
-      <th>Created by</th>
-      <th>Updated by</th>
+      <th> <%= t('Software') %> </th>
+      <th> <%= t('Table') %> </th>
+      <th> <%= t('Code') %> </th>
+      <th> <%= t('Value') %> </th>
+      <th> <%= t('Value') %> </th>
+      <th> <%= t('Code') %> </th>
+      <th> <%= t('Table') %> </th>
+      <th> <%= t('Software') %> </th>
+      <th> <%= t('Created B') %> </th>
+      <th> <%= t('UpdatedBy') %> </th>
       <th></th>
       <th></th>
       <th></th>
