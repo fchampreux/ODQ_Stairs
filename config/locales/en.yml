@@ -169,7 +169,10 @@ en:
   OpenedAt:       "Opened at"
   ClosedAt:       "Closed at"
   DueAt:          "Due date"
-  Responsible:    "Responsible" 
+  Responsible:    "Responsible"
+  ValidFrom:      "Active from"
+  ValidTo:        "to"
+  ValidRange:     "Validity range"
   ### Shared layouts
   SearchBox:      "Search box"
   SearchButton:   "Search"

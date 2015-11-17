@@ -1,19 +1,20 @@
-<% provide(:title, 'Managing parameters') %>
+<% provide(:title, (t('Managing') + ' ' + t('Settings'))) %>
+
 <% content_for :page_heading do %>
-    Configuration parameters
+    <%= t('Configuration') + ' ' + t('Settings') %>
 <% end %> 
 
 <table  class="table table-striped">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Active from</th>
-      <th>Active to</th>
-      <th>Created by</th>
-      <th>Updated by</th>
+      <th><%= t('Id') %></th>
+      <th><%= t('Name') %></th>
+      <th><%= t('Description') %></th>
+      <th><%= t('Value') %></th>
+      <th><%= t('ValidFrom') %></th>
+      <th><%= t('ValidTo') %></th>
+      <th><%= t('CreatedBy') %></th>
+      <th><%= t('UpdatedBy') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -31,9 +32,9 @@
         <td><%= parameter.active_to %></td>
         <td><%= parameter.created_by %></td>
         <td><%= parameter.updated_by %></td>
-        <td><%= link_to 'Show', parameter %></td>
-        <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
-        <td><%= link_to 'Destroy', parameter, method: :delete, data: { confirm: 'Parameter will be invalidated. Are you sure?' } %></td>
+        <td><%= link_to t('Show'), parameter %></td>
+        <td><%= link_to t('Edit'), edit_parameter_path(parameter) %></td>
+        <td><%= link_to t('Destroy'), parameter, method: :delete, data: { confirm: 'Parameter will be invalidated. Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

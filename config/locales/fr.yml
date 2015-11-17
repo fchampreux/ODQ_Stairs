@@ -74,7 +74,7 @@ fr:
   Back:           "Retour"
   Up:             "Parent"
   Destroy:        "Supprimer"
-  Add:            "Ajouter un"
+  Add:            "Ajouter"
   Lists:          "Listes de"
   ### Home page
   Top10:          "Activités récentes"
@@ -171,6 +171,9 @@ fr:
   ClosedAt:       "Fermé le"
   DueAt:          "Dû le"
   Responsible:    "Responsable" 
+  ValidFrom:      "Valide de"
+  ValidTo:        "à"
+  ValidRange:     "Période de validité"
   ### Shared layouts
   SearchBox:      "Recherche"
   SearchButton:   "Chercher"

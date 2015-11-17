@@ -1,18 +1,19 @@
-<% provide(:title, 'Managing values') %>
+<% provide(:title, (t('Managing') + ' ' + t('Values'))) %>
+
 <% content_for :page_heading do %>
-    List of values
+    <%= t('ListOf' + ' ' + t('Values') %>
 <% end %>
 
 <table  class="table table-striped">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th>Value</th>
-      <th>Created by</th>
-      <th>Updated by</th>
+      <th><%= t('Id') %></th>
+      <th><%= t('Name') %></th>
+      <th><%= t('Description') %></th>
+      <th><%= t('Code') %></th>
+      <th><%= t('Value') %></th>
+      <th><%= t('CreatedBy') %></th>
+      <th><%= t('UpdatedBy') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -29,9 +30,9 @@
         <td><%= value.value_caption %></td>
         <td><%= value.created_by %></td>
         <td><%= value.updated_by %></td>
-        <td><%= link_to 'Show', value %></td>
-        <td><%= link_to 'Edit', edit_value_path(value) %></td>
-        <td><%= link_to 'Destroy', value, method: :delete, data: { confirm: 'Value will be deleted. Are you sure?' } %></td>
+        <td><%= link_to t('Show'), value %></td>
+        <td><%= link_to t('Edit'), edit_value_path(value) %></td>
+        <td><%= link_to t('Destroy'), value, method: :delete, data: { confirm: 'Value will be deleted. Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
