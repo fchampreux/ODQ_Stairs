@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150921192946) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "breaches", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "business_rule_id"
@@ -48,11 +45,11 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.datetime "updated_at"
     t.string   "record_updated_by",  limit: 255
     t.datetime "record_updated_at"
-    t.integer  "owner_id"
+    t.integer  "owner_id",           limit: 4
     t.boolean  "is_identified"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
-    t.integer  "notification_id"
+    t.integer  "odq_unique_id",      limit: 4
+    t.integer  "odq_object_id",      limit: 4
+    t.integer  "notification_id",    limit: 4
   end
 
   create_table "business_areas", force: :cascade do |t|
@@ -201,9 +198,9 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.string   "owner_id",            limit: 255
     t.datetime "active_from"
     t.datetime "active_to"
-    t.integer  "scope_id"
-    t.integer  "business_process_id"
-    t.integer  "approver_id"
+    t.integer  "scope_id",            limit: 4
+    t.integer  "business_process_id", limit: 4
+    t.integer  "approver_id",         limit: 4
     t.datetime "approved_at"
     t.string   "created_by",          limit: 255
     t.string   "updated_by",          limit: 255
@@ -412,8 +409,8 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.integer  "target_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
+    t.integer  "odq_unique_id",  limit: 4
+    t.integer  "odq_object_id",  limit: 4
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -485,8 +482,8 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.boolean  "is_user_specific"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
+    t.integer  "odq_unique_id",    limit: 4
+    t.integer  "odq_object_id",    limit: 4
   end
 
   create_table "playgrounds", force: :cascade do |t|
@@ -594,17 +591,17 @@ ActiveRecord::Schema.define(version: 20150921192946) do
   end
 
   create_table "user_accesses", force: :cascade do |t|
-    t.integer  "playground_id"
-    t.integer  "user_id"
-    t.integer  "organisation_id"
-    t.integer  "territory_id"
-    t.integer  "business_area_id"
-    t.integer  "business_flow_id"
-    t.integer  "business_process_id"
-    t.integer  "business_object_id"
-    t.text     "description"
-    t.integer  "organisation_level"
-    t.integer  "territory_level"
+    t.integer  "playground_id",       limit: 4
+    t.integer  "user_id",             limit: 4
+    t.integer  "organisation_id",     limit: 4
+    t.integer  "territory_id",        limit: 4
+    t.integer  "business_area_id",    limit: 4
+    t.integer  "business_flow_id",    limit: 4
+    t.integer  "business_process_id", limit: 4
+    t.integer  "business_object_id",  limit: 4
+    t.text     "description",         limit: 2147483647
+    t.integer  "organisation_level",  limit: 4
+    t.integer  "territory_level",     limit: 4
     t.datetime "active_from"
     t.datetime "active_to"
     t.string   "created_by",          limit: 255
@@ -660,8 +657,8 @@ ActiveRecord::Schema.define(version: 20150921192946) do
     t.string   "updated_by",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
+    t.integer  "odq_unique_id",  limit: 4
+    t.integer  "odq_object_id",  limit: 4
   end
 
   create_table "values_lists", force: :cascade do |t|
