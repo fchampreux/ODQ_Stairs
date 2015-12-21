@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+en:        
   ### General terms
   BA:             "Business area"
   BF:             "Business flow"
@@ -28,7 +28,7 @@ en:
   BO:             "Business object"
   Object:         "Object"
   Project:        "Project"
-  Playground:     "Playgroud"
+  Playground:     "Playground"
   Landscape:      "Landscape"
   Scope:          "Scope"
   User:           "User"

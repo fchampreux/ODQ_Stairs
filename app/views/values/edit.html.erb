@@ -1,7 +1,7 @@
 <% provide(:title, (t('Managing') + ' ' + t('Values'))) %>
 
 <% content_for :page_heading do %>
-        <%= t('Configuration') + ' ' + t('Value') %>: <%= @values.name%>
+        <%= t('Configuration') + ' ' + t('Value') %>: <%= @value.name%>
 <% end %>
 
 <%= render 'form' %>
