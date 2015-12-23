@@ -43,7 +43,11 @@ module SessionsHelper
   end
   
   def set_locale
-  I18n.locale = current_user.language || I18n.default_locale
+    if signed_in?
+      I18n.locale = current_user.language || I18n.default_locale
+    else
+      I18n.locale = I18n.default_locale
+    end
   end
 
 end

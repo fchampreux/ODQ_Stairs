@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing business objects') %>
+<% provide(:title, (t('Managing') + ' ' + t('BOs'))) %>
+
 <% content_for :page_heading do %>
-  <%= image_tag(index_audit_tag_for(@business_object), :alt => "Quality hit") %> Business object: <%= @business_object.name %>
+  <%= image_tag(index_audit_tag_for(@business_object), :alt => "Quality hit") %> <%= t('BO') %>: <%= @business_object.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">
@@ -11,4 +12,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', @business_object %> 
+<%= link_to t('Back'), @business_object %> 

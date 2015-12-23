@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing business flows') %>
+<% provide(:title, (t('Managing') + ' ' + t('BFs'))) %>
+
 <% content_for :page_heading do %>
-    New business flow
+    <%= t('New') %> <%= t('BF') %>
 <% end %>
 
 <%= render 'form' %>

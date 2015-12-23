@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="logo col-md-1">     
-        <%= link_to image_tag(display_logo, alt: "OpenDataQuality"), 'http://www.opendataquality.org/' %>
+        <%= link_to image_tag(display_logo, alt: "OpenDataQuality"), 'http://www.opendataquality.com/' %>
       </div>
       <div class="col-md-10">
         <div class="row">
@@ -10,12 +10,12 @@
             <nav class="top_menu">
               <ul>
                 <% if signed_in? %>
-                  <li> User: <%= current_login %> </li>
-                  <li> <%= link_to "Sign out", signout_path, method: "delete" %></li>
+                  <li> <%= t('User') %> <%= current_login %> </li>
+                  <li> <%= link_to t('Sign_out'), signout_path, method: "delete" %></li>
                 <% else %>
-                  <li> <%= link_to "Sign in", signin_path %></li>
+                  <li> <%= link_to t('Sign_in'), signin_path %></li>
                 <% end %>
-                  <li> <%= link_to "Help", "#" %> </li>
+                  <li> <%= link_to t('Help'), "#" %> </li>
               </ul>
             </nav>
           </div>
@@ -38,10 +38,10 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav">
         <li class="navbar-text"> - Version 0.3 -</li>
-        <li> <%= link_to "Home", root_path %> </li>
-        <li> <%= link_to "Dashboard", root_path %> </li>
-        <li> <%= link_to "Notifications", notifications_path %> </li>
-        <li> <%= link_to "Monitoring", monitoring_path %> </li>
+        <li> <%= link_to t('Home'), root_path %> </li>
+        <li> <%= link_to t('Display'), root_path %> </li>
+        <li> <%= link_to t('Notify'), notifications_path %> </li>
+        <li> <%= link_to t('Monitor'), monitoring_path %> </li>
       </ul>
     </div>
   </div>

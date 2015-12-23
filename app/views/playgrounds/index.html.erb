@@ -1,34 +1,10 @@
-<% provide(:title, 'Managing playgrounds') %>
+<% provide(:title, (t('Managing') + ' ' + t('Playgrounds'))) %>
 
 <%= will_paginate %>
 
 <%= render partial: "shared/simple_search", locals: {this_path: playgrounds_path} %>
 
-<table class="table table-striped">
-  <tr>
-    <th>Hierarchy</th>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Audit</th>
-    <th>Updated by</th>
-    <th>Updated at</th>
-  </tr>
-
-<% @playgrounds.each do |playground| %>
-  <tr>
-    <td class="col_narrow"><%= link_to playground.hierarchy, playground %></td>
-    <td class="col_narrow"><%= link_to playground.code, playground %></td>
-    <td><%= playground.name %></td>
-    <td class="col_medium"><%= playground.description %></td>
-    <td><%= playground.status.name %></td>
-    <td><%= image_tag(index_audit_tag_for(playground), :alt => "Quality hit") %></td>
-    <td><%= playground.updated_by %></td>
-    <td><%= playground.updated_at %></td>
-  </tr>
-<% end %>
-</table>
+<%= render partial: "shared/object_index", locals: {this_index: @playgrounds} %>
 
 <%= will_paginate %>
 

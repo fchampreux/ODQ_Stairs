@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing scopes') %>
+<% provide(:title, (t('Managing') + ' ' + t('Scopes'))) %>
+
 <% content_for :page_heading do %>
-    New scope
+    <%= t('New') %> <%= t('Scope') %>
 <% end %>
 
 <%= render 'form' %>

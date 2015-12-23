@@ -1,0 +1,30 @@
+<!-- Tab content for Definition -->
+
+<table class="table table-striped">
+  <tr>
+    <th><%= t('Hierarchy') %></th>
+    <th><%= t('Code') %></th>
+    <th><%= t('Name') %></th>
+    <th><%= t('Description') %></th>
+    <th><%= t('Status') %></th>
+    <th><%= t('Audit') %></th>
+    <th><%= t('UpdatedBy') %></th>
+    <th><%= t('UpdatedAt') %></th>
+  </tr>
+
+<% this_index.each do |object| %>
+  <tr>
+    <td class="col_narrow"><%= link_to object.hierarchy, object %></td>
+    <td class="col_narrow"><%= link_to object.code, object %></td>
+    <td><%= object.name %></td>
+    <td class="col_medium"><%= object.description %></td>
+    <td><%= object.status.name %></td>
+    <td><%= image_tag(index_audit_tag_for(object), :alt => "Quality hit") %></td>
+    <td><%= object.updated_by %></td>
+    <td><%= object.updated_at %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<!-- End of tab content -->

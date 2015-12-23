@@ -1,6 +1,6 @@
 <% provide(:title, 'Managing scopes') %>
 <% content_for :page_heading do %>
-  <%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> Scope: <%= @scope.name %>
+  <%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> <%= t('Scope') %>: <%= @scope.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">
@@ -20,60 +20,29 @@
 
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Definition</a></li>
+      <li class="active"><a href="#definition" data-toggle="tab"> <%= t('Definition') %> </a></li>
       <li><a href="#tab2" data-toggle="tab">Query</a></li> 
-      <li><a href="#tab3" data-toggle="tab">Ownership</a></li>
+      <li><a href="#ownership" data-toggle="tab"> <%= t('Ownership') %> </a></li>
 
       <!-- li class="inactive"><a href="#tab5" data-toggle="tab">Sample data</a></li -->    
     </ul>
     <div class="tab-content">
   
-    <div class="tab-pane active" id="tab1">
-<!-- Tab content for Definition -->
-
-      <div class="row">
-        <div class="col-md-2 text-right">Name:
-        </div>
-        <div class="col-md-6"><%= @scope.name%>
-        </div>
-        <div class="col-md-1 text-right">Code:
-        </div>
-        <div class="col-md-1"><%= @scope.code%>
-        </div>
-        <div class="col-md-1 text-right">Status:
-        </div>
-        <div class="col-md-1"><%= @scope.status.name%>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Description:
-        </div>
-        <div class="col-md-6"><pre><%= @scope.description%></pre>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-2 text-right">Hierarchy:
-        </div>
-        <div class="col-md-2"><%= @scope.hierarchy%>
-        </div>
-      </div>
-
-<!-- Tab content -->
+    <div class="tab-pane active" id="definition">
+      <%= render partial: "shared/object_definition", locals: {this_object: @scope} %>
     </div>    
 
     <div class="tab-pane" id="tab2">
 <!-- Tab content for Query -->
 
       <div class="row">
-        <div class="col-md-2 text-right">Load interface:
+        <div class="col-md-2 text-right"><%= t('Interface') %>:
         </div>
         <div class="col-md-2"><%= @scope.load_interface%>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-right">SQL Query:
+        <div class="col-md-2 text-right"> <%= t('Query') %>:
         </div>
         <div class="col-md-6"><pre><%= @scope.SQL_query%></pre>
         </div>
@@ -82,7 +51,7 @@
 <!-- Tab content -->
     </div>
 
-    <div class="tab-pane" id="tab3">
+    <div class="tab-pane" id="ownership">
       <%= render partial: "shared/object_ownership", locals: {this_object: @scope} %>
     </div>
     
