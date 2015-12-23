@@ -1,9 +1,9 @@
 <% provide(:title, 'Managing playgrounds') %>
 <% content_for :page_heading do %>
-    New playground
+    <%= t('New') + ' ' +t('Playground') %>
 <% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', playgrounds_path %>
+<%= link_to t('Back'), playgrounds_path %>
 

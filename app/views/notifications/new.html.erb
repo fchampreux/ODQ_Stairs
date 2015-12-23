@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing notifications') %>
+<% provide(:title, (t('Managing') + ' ' + t('Notify'))) %>
+
 <% content_for :page_heading do %>
-    New notification
+    New notification (for support purpose only)
 <% end %>
 
 <%= render 'form' %>

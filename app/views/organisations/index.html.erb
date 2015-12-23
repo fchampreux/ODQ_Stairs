@@ -1,32 +1,10 @@
-<% provide(:title, 'Managing organisations') %>
+<% provide(:title, (t('Managing') + ' ' + t('Organisations'))) %>
 
 <%= will_paginate %>
 
 <%= render partial: "shared/simple_search", locals: {this_path: organisations_path} %>
 
-<table class="table table-striped">
-  <tr>
-    <th>Hierarchy</th>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Updated by</th>
-    <th>Updated at</th>
-  </tr>
-
-<% @organisations.each do |organisation| %>
-  <tr>
-    <td class="col_narrow"><%= link_to organisation.hierarchy, organisation %></td>
-    <td class="col_narrow"><%= link_to organisation.code, organisation %></td>
-    <td><%= organisation.name %></td>
-    <td class="col_medium"><%= organisation.description %></td>
-    <td><%= organisation.status.name %></td>
-    <td><%= organisation.updated_by %></td>
-    <td><%= organisation.updated_at %></td>
-  </tr>
-<% end %>
-</table>
+<%= render partial: "shared/object_index", locals: {this_index: @organisations} %>
 
 <%= will_paginate %>
 

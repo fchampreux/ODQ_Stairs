@@ -19,11 +19,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-fr:
+fr_ofs:
   ### General terms
-  BA:             "Domaine fonctionnel"
-  BF:             "Flux métier"
-  BP:             "Processus métier"
+  BA:             "Domaine"
+  BF:             "Statistique"
+  BP:             "Processus"
   BR:             "Règle métier"
   BO:             "Objet métier"
   Project:        "Projet"
@@ -53,9 +53,9 @@ fr:
   License:        "Licence"
   ### Menus
   Customisation:  "Configuration"
-  BAs:            "Domaines fonctionnels"
-  BFs:            "Flux métiers"
-  BPs:            "Processus métiers"
+  BAs:            "Domaines"
+  BFs:            "Statistiques"
+  BPs:            "Processus"
   BRs:            "Règles métiers"
   BOs:            "Objets métiers"
   Playgrounds:    "Périmètres"

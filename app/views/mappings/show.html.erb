@@ -1,36 +1,37 @@
-<% provide(:title, 'Managing mappings') %>
+<% provide(:title, (t('Managing') + ' ' + t('Mappings'))) %>
+
 <% content_for :page_heading do %>
-    Software value mapping: <%= @mapping.source_software %>
+    <%= t('Software') %>: <%= @mapping.source_software %>
 <% end %> 
 
   <ul class="mid_menu">
-    <li><%= link_to 'Edit', edit_mapping_path(@mapping) %> |</li>
-    <li><%= link_to 'Up', @mapping.mappings_list %> |</li>
-    <li><%= link_to 'Destroy', @mapping, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Edit'), edit_mapping_path(@mapping) %> |</li>
+    <li><%= link_to t('Up'), @mapping.mappings_list %> |</li>
+    <li><%= link_to t('Destroy'), @mapping, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
 
       <div class="row">
-        <div class="col-md-6 text-center"> <h3> SOURCE </h3> 
+        <div class="col-md-6 text-center"> <h3> <%= t('Source') %> </h3> 
         </div>
-        <div class="col-md-6 text-center"> <h3> TARGET </h3> 
+        <div class="col-md-6 text-center"> <h3> <%= t('Target') %> </h3> 
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-center"> Software 
+        <div class="col-md-2 text-center"> <%= t('Software') %> 
         </div>
-        <div class="col-md-2 text-center"> Table 
+        <div class="col-md-2 text-center"> <%= t('Table') %> 
         </div>
-        <div class="col-md-1 text-center"> Code  
+        <div class="col-md-1 text-center"> <%= t('Code') %>  
         </div>
-        <div class="col-md-1 text-center"> Value  
+        <div class="col-md-1 text-center"> <%= t('Value') %>  
         </div>
-        <div class="col-md-1 text-center"> Value  
+        <div class="col-md-1 text-center"> <%= t('Value') %>  
         </div>
-        <div class="col-md-1 text-center"> Code  
+        <div class="col-md-1 text-center"> <%= t('Code') %>  
         </div>
-        <div class="col-md-2 text-center"> Table  
+        <div class="col-md-2 text-center"> <%= t('Table') %>  
         </div>
-        <div class="col-md-2 text-center"> Software  
+        <div class="col-md-2 text-center"> <%= t('Software') %>  
         </div>       
       </div>
 
@@ -57,42 +58,42 @@
 
 
       <div class="row">
-        <div class="col-md-2 text-right"> <h2> Mappings list details:</h2>
+        <div class="col-md-2 text-right"> <h2> <%= t('Ownership') %>:</h2>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Playground:
+        <div class="col-md-2 text-right"><%= t('Playground') %>:
         </div>
         <div class="col-md-1"><%= @mapping.playground_id%>
         </div>
-        <div class="col-md-1 text-right">Id:
+        <div class="col-md-1 text-right"><%= t('Id') %>:
         </div>
         <div class="col-md-1"><%= @mapping.id%>
         </div>
-        <div class="col-md-1 text-right">Parent list:
+        <div class="col-md-1 text-right"><%= t('Parent') %>:
         </div>
         <div class="col-md-2"><%= link_to @mapping.mappings_list.name, @mapping.mappings_list %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Created by:
+        <div class="col-md-2 text-right"><%= t('CreatedBy') %>:
         </div>
         <div class="col-md-2"><%= @mapping.created_by %>
         </div>
-        <div class="col-md-2 text-right">Updated by:
+        <div class="col-md-2 text-right"><%= t('UpdatedBy') %>:
         </div>
         <div class="col-md-2"><%= @mapping.updated_by%>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Created at:
+        <div class="col-md-2 text-right"><%= t('CreatedAt') %>:
         </div>
         <div class="col-md-2"><%= @mapping.created_at %>
         </div>
-        <div class="col-md-2 text-right">Updated at:
+        <div class="col-md-2 text-right"><%= t('UpdatedAt') %>:
         </div>
         <div class="col-md-2"><%= @mapping.updated_at%>
         </div>

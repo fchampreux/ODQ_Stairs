@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing breaches') %>
+<% provide(:title, (t('Managing') + ' ' + t('Breaches'))) %>
+
 <% content_for :page_heading do %>
-  Handling breach: <%= @breach.name %>
+  <%= t('Breach') %>: <%= @breach.name %>
 <% end %>
 <% content_for :breadcrums do %>
   <ul class="breadcrumbs">

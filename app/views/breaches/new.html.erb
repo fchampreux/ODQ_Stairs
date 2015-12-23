@@ -1,6 +1,7 @@
-<% provide(:title, 'Managing breaches') %>
+<% provide(:title, (t('Managing') + ' ' + t('Breaches'))) %>
+
 <% content_for :page_heading do %>
-    New request
+    <%= t('NewRequest') %>
 <% end %>
 
 <%= render 'form' %>

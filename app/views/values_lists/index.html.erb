@@ -1,17 +1,18 @@
-<% provide(:title, 'Managing lists of values') %>
+<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Values'))) %>
+
 <% content_for :page_heading do %>
-    Lists of values
+    <%=t('Lists') + ' ' + t('Values')%>
 <% end %> 
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th>Owner</th>
-      <th>Updated by</th>
-      <th>Updated at</th>
+      <th><%=t('Name')%></th>
+      <th><%=t('Description')%></th>
+      <th><%=t('Code')%></th>
+      <th><%=t('Owner')%></th>
+      <th><%=t('UpdatedBy')%></th>
+      <th><%=t('UpdatedAt')%></th>
     </tr>
   </thead>
 
@@ -31,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New List of values', new_values_list_path %>
+<%= link_to t('Add'), new_values_list_path %>

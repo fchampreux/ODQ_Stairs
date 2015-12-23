@@ -1,8 +1,9 @@
-<% provide(:title, 'Managing parameters') %>
+<% provide(:title, (t('Managing') + ' ' + t('Settings'))) %>
+
 <% content_for :page_heading do %>
-    List: <%= @parameters_list.name %>
+    <%= t('Settings') %>: <%= @parameters_list.name %>
 <% end %> 
 
 <%= render 'form' %>
 
-<%= link_to 'Back', @parameters_list %> 
+<%= link_to t('Back'), @parameters_list %> 

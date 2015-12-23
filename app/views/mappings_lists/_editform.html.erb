@@ -13,14 +13,14 @@
   <% end %>
 
       <div class="row">
-        <div class="col-md-2 text-right">Name:
+        <div class="col-md-2 text-right"><%= t('Name') %>:
         </div>
         <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-2 text-right">Description:
+        <div class="col-md-2 text-right"><%= t('Description') %>:
         </div>
         <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
         </div>
@@ -30,12 +30,12 @@
 
       <table class="table table-striped table-condensed">
         <tr align="left">
-      <th>Software</th>
-      <th>Table</th>
-      <th>Value</th>
-      <th>Value</th>
-      <th>Table</th>
-      <th>Software</th>
+      <th><%= t('Software') %></th>
+      <th><%= t('Table') %></th>
+      <th><%= t('Value') %></th>
+      <th><%= t('Value') %></th>
+      <th><%= t('Table') %></th>
+      <th><%= t('Software') %></th>
         </tr>
         <%= f.fields_for :mappings do |m| %>
         <tr align="left">

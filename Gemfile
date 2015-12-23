@@ -6,7 +6,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails',   '~> 5.0.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7'
-gem 'bcrypt', '~> 3.1.10'
+gem 'bcrypt', '= 3.1.7'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'turbolinks', '2.5.3'
 gem 'jbuilder', '~> 2.3.0'
@@ -33,6 +33,7 @@ end
 
 # gem for SQLServer POC
 group :MSSQL do
+  gem 'tzinfo-data'
   gem 'tiny_tds', '~> 0.7.0'
   gem 'activerecord-sqlserver-adapter', '~> 4.2.2'
 end
