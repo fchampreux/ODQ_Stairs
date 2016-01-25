@@ -1,4 +1,10 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :column do
+    name "MyString"
+description "MyText"
+type ""
+size 1
+  end
+
   factory :user do
     playground_id 1
     default_playground_id 1

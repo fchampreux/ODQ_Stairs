@@ -15,10 +15,6 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'selenium-webdriver', '~> 2.47.0'
 gem 'sequenced', '~> 2.0.0'
-gem 'annotate', '~> 2.6.5'
-gem 'rspec-rails', '~> 3.3.0'
-gem 'capybara', '~> 2.5.0'
-gem 'factory_girl_rails', '~> 4.5.0'
 gem 'd3_rails'
 
 group :doc do
@@ -28,7 +24,12 @@ end
 # gem for dev and test only
 group :development, :test, :eval do
   gem 'pg'
-
+  gem 'annotate', '~> 2.6.5'
+  gem 'shoulda-matchers'
+  gem 'rspec-rails', '~> 3.3.0'
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 # gem for SQLServer POC

@@ -142,6 +142,7 @@ en:
   Connection:     "Connection"
   OwnerSchema:    "Owner Schema"
   Structure:      "Structure name"
+  Columns:        "Columns"
   KeyCols:        "Key columns"
   PubCols:        "Published columns"
   NewRequest:     "New request"

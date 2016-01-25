@@ -57,6 +57,7 @@ self.sequence_name = "global_seq"
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_area
 	has_many :business_rules
+	has_many :columns
 
 
 ### private functions definitions

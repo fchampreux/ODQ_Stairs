@@ -32,98 +32,41 @@
 
 					
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe "Business Object model validation: " do
-
-  before do
-    @business_object = BusinessObject.new(business_process_id: 1, playground_id: 0, name: "TEST BUSINESS OBJECT", description: "Example of Business Object", code: "BO-1", hierarchy: "1-1-0", pcf_index: "1.1.0", pcf_reference: "O-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
-  end
-
-  subject { @business_object }
+RSpec.describe BusinessObject, type: :model do
+  
+  describe 'Validations'
+  subject {FactoryGirl.build(:business_object)}
+  it {should validate_presence_of(:name)}
+  it {should validate_length_of(:name).is_at_least(2)}
 
 ###B.OBJECT2 to test that B. object mandatory fields are present in the model
   describe "Availability of mandatory fields" do
-    it { should respond_to(:playground_id) }
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:business_process_id) }
-    it { should respond_to(:status_id) }
-    it { should respond_to(:name) }
-    it { should respond_to(:code) }
-    it { should respond_to(:hierarchy) }
+    it { should validate_presence_of(:playground_id) }
+    it { should validate_presence_of(:owner_id) }
+#    it { should validate_presence_of(:business_process_id) }
+    it { should validate_presence_of(:status_id) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:code) }
+    it { should validate_presence_of(:hierarchy) }
 
-    it {should be_valid}
-
+  describe 'It can be created'
+  it 'has a valid factory' do
+    expect(build(:business_object)).to be_valid
   end
-
-###B.OBJECT3 to test that mandatory fields are tested for null values
-  describe "when business_process_id is not present" do
-    before { @business_object.business_process_id = " " }
-    it { should_not be_valid }
+  it 'is invalid without a name' do
+    expect(build(:business_object, name: nil)).to_not be_valid
   end
-  describe "when playground_id is not present" do
-    before { @business_object.playground_id = " " }
-    it { should_not be_valid }
-  end
-  describe "when name is not present" do
-    before { @business_object.name = " " }
-    it { should_not be_valid }
-  end
-  describe "when code is not present" do
-    before { @business_object.code = " " }
-    it { should_not be_valid }
-  end
-  describe "when hierarchy is not present" do
-    before { @business_object.hierarchy = " " }
-    it { should_not be_valid }
-  end
-  describe "when owner_id is not present" do
-    before { @business_object.owner_id = " "}
-    it { should_not be_valid }
-  end
-  describe "when status_id is not present" do
-    before { @business_object.status_id = " " }
-    it { should_not be_valid }
-  end
-  describe "when created_by is not present" do
-    before { @business_object.created_by = " " }
-    it { should_not be_valid }
-  end
-  describe "when updated_by is not present" do
-    before { @business_object.updated_by = " " }
-    it { should_not be_valid }
-  end
-
-###B.OBJECT4 to test that fields are tested for length
-  describe "when name is longer than 100" do
-    before { @business_object.name = "a" * 101 }
-    it { should_not be_valid }
-  end
-  describe "when code is longer than 30" do
-    before { @business_object.code = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when hierarchy is longer than 30" do
-    before { @business_object.hierarchy = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when pcf_index is longer than 30" do
-    before { @business_object.pcf_index = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when pcf_reference is longer than 30" do
-    before { @business_object.pcf_reference = "a" * 31 }
-    it { should_not be_valid }
-  end
-
+end
 ###B.OBJECT5 to test that fields are checked for unicity
-  describe "when business object is duplicated" do
-    before do
-      @business_object_duplicate = @business_object.dup
-      @business_object_duplicate.save!
-    end
-    it {should_not be_valid}
-  end
+#  describe "when business object is duplicated" do
+#    before do
+#      @business_object_duplicate = @business_object.dup
+#      @business_object_duplicate.save!
+#    end
+#    it {should_not be_valid}
+#  end
 
 
 end

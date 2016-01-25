@@ -14,7 +14,7 @@
 # Ignore all temporary files
 *.rb~
 *.erb~
-/.gitignore~
+#/.gitignore~
 /Gemfile~
 *.lock
 *~
