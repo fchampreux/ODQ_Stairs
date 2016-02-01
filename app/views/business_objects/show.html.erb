@@ -21,8 +21,7 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition') %></a></li>
-      <li><a href="#tab2" data-toggle="tab"> <%= t('Implementation') %></a></li>
-      <li><a href="#tab3" data-toggle="tab"> <%= t('Ownership') %></a></li>
+      <li><a href="#tab2" data-toggle="tab"> <%= t('Ownership') %></a></li>
     </ul>
     <div class="tab-content">
 
@@ -34,42 +33,7 @@
 <!-- Tab content -->
     </div>    
 
-
     <div class="tab-pane" id="tab2">
-<!-- Tab content for Implementation -->
-
-      <div class="row">
-        <div class="col-md-2 text-right"> <%= t('Technology') %>:
-        </div>
-        <div class="col-md-2"><%= @business_object.db_technology%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('Connection') %>:
-        </div>
-        <div class="col-md-2"><%= @business_object.db_connection%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('OwnerSchema') %>:
-        </div>
-        <div class="col-md-2"><%= @business_object.db_owner_schema%>
-        </div>
-      </div>
-       <div class="row">
-        <div class="col-md-2 text-right"> <%= t('Structure') %>:
-        </div>
-        <div class="col-md-2"><%= @business_object.structure_name%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('KeyCols') %>:
-        </div>
-        <div class="col-md-2"><pre><%= @business_object.key_columns%></pre>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('PubCols') %>:
-        </div>
-        <div class="col-md-2"><pre><%= @business_object.published_columns%></pre>
-        </div>
-      </div>
-<!-- Tab content -->
-    </div>
-
-    <div class="tab-pane" id="tab3">
       <%= render partial: "shared/object_ownership", locals: {this_object: @business_object} %>
     </div>
 
@@ -92,7 +56,7 @@
         </tr>
         <% @business_object.columns.order("name ASC").each do |column| %>
         <tr align="left">
-          <td valign="top"> <%=column.name%> </td>
+          <td class="col_narrow"> <%=column.name%> </td>
           <td class="col_narrow"> <%=column.datatype%> </td>
           <td class="col_narrow"> <%=column.size%> </td>
           <td class="col_narrow"> <%=column.is_key%> </td>

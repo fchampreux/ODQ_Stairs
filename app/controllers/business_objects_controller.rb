@@ -97,8 +97,7 @@ class BusinessObjectsController < ApplicationController
 
   ### strong parameters
   def business_object_params
-    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description,
-    :db_technology, :db_connection, :db_owner_schema, :structure_name, :key_columns, :published_columns, :organisation_level, :territory_level)
+    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level)
   end
 
 end

@@ -48,7 +48,9 @@ ODQStairs::Application.routes.draw do
       resources :business_rules, :only=>[:new, :create]
   end
 
-  resources :business_objects
+  resources :business_objects do
+    resources :columns
+  end
 
   resources :business_rules do
       resources :breaches

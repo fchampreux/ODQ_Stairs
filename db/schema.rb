@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122163001) do
+ActiveRecord::Schema.define(version: 20160126055403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 20160122163001) do
 
   create_table "business_objects", force: :cascade do |t|
     t.integer  "playground_id"
-    t.string   "code",               limit: 255
     t.string   "name",               limit: 255
     t.text     "description"
     t.integer  "organisation_level"
@@ -108,12 +107,6 @@ ActiveRecord::Schema.define(version: 20160122163001) do
     t.string   "hierarchy",          limit: 255
     t.integer  "status_id"
     t.integer  "owner_id"
-    t.string   "db_technology",      limit: 255
-    t.string   "db_connection",      limit: 255
-    t.string   "db_owner_schema",    limit: 255
-    t.string   "structure_name",     limit: 255
-    t.text     "key_columns"
-    t.text     "published_columns"
     t.string   "created_by",         limit: 255
     t.string   "updated_by",         limit: 255
     t.datetime "created_at",                     null: false
@@ -124,6 +117,8 @@ ActiveRecord::Schema.define(version: 20160122163001) do
     t.integer  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
+    t.integer  "main_scope_id"
+    t.string   "code",               limit: 255
   end
 
   create_table "business_processes", force: :cascade do |t|
@@ -189,7 +184,7 @@ ActiveRecord::Schema.define(version: 20160122163001) do
   create_table "columns", force: :cascade do |t|
     t.string   "name",               limit: 100,                 null: false
     t.text     "description"
-    t.string   "type",               limit: 20,                  null: false
+    t.string   "datatype",           limit: 20,                  null: false
     t.integer  "size",                                           null: false
     t.boolean  "is_key",                         default: false, null: false
     t.string   "created_by",         limit: 100,                 null: false
@@ -200,7 +195,6 @@ ActiveRecord::Schema.define(version: 20160122163001) do
     t.integer  "business_object_id"
     t.integer  "playground_id"
     t.boolean  "is_published"
-    t.string   "code",               limit: 30
   end
 
   create_table "data_policies", force: :cascade do |t|
@@ -539,20 +533,17 @@ ActiveRecord::Schema.define(version: 20160122163001) do
   create_table "scopes", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "landscape_id"
-    t.string   "code",                limit: 255
-    t.string   "name",                limit: 255
-    t.text     "description"
-    t.text     "SQL_query"
-    t.string   "load_interface",      limit: 255
+    t.string   "code",               limit: 255
+    t.string   "name",               limit: 255
+    t.string   "load_interface",     limit: 255
     t.integer  "organisation_level"
     t.integer  "territory_level"
     t.integer  "business_object_id"
-    t.integer  "business_process_id"
-    t.string   "hierarchy",           limit: 255
-    t.string   "created_by",          limit: 255
-    t.string   "updated_by",          limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "hierarchy",          limit: 255
+    t.string   "created_by",         limit: 255
+    t.string   "updated_by",         limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
@@ -560,6 +551,12 @@ ActiveRecord::Schema.define(version: 20160122163001) do
     t.integer  "score"
     t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
+    t.string   "db_technology",      limit: 30
+    t.string   "db_connection",      limit: 200
+    t.string   "db_owner_schema",    limit: 30
+    t.string   "structure_name",     limit: 50
+    t.text     "description"
+    t.text     "sql_query"
   end
 
   create_table "sequences", force: :cascade do |t|

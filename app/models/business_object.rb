@@ -58,6 +58,7 @@ self.sequence_name = "global_seq"
 	belongs_to :business_area
 	has_many :business_rules
 	has_many :columns
+	has_one :scope
 
 
 ### private functions definitions

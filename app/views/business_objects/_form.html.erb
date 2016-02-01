@@ -14,7 +14,6 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition')%></a></li>
-      <li><a href="#tab2" data-toggle="tab"> <%= t('Implementation')%></a></li>
     </ul>
     <div class="tab-content">
 
@@ -26,41 +25,6 @@
 <!-- Tab content -->
     </div>
 
-    <div class="tab-pane" id="tab2">
-<!-- Tab content for Implementation -->
-
-      <div class="row">
-        <div class="col-md-2 text-right"> <%= t('Technology')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :db_technology%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('Connection')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :db_connection%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('OwnerSchema')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :db_owner_schema%>
-        </div>
-      </div>
-       <div class="row">
-        <div class="col-md-2 text-right"> <%= t('Structure')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :structure_name%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('KeyCols')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_area :key_columns%>
-        </div>
-        <div class="col-md-2 text-right"> <%= t('PubCols')%>:
-        </div>
-        <div class="col-md-2 field"><%= f.text_area :published_columns%>
-        </div>
-      </div>
-
-
-<!-- Tab content -->
-    </div>
 
     </div>
   </div>

@@ -35,6 +35,28 @@
         <div class="col-md-10 field"><%= f.text_field :load_interface, :class => "col-md-4" %>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-2 text-right"> <%= t('Technology')%>:
+        </div>
+        <div class="col-md-2 field"><%= f.text_field :db_technology%>
+        </div>
+        <div class="col-md-2 text-right"> <%= t('Connection')%>:
+        </div>
+        <div class="col-md-2 field"><%= f.text_field :db_connection%>
+        </div>
+        <div class="col-md-2 text-right"> <%= t('OwnerSchema')%>:
+        </div>
+        <div class="col-md-2 field"><%= f.text_field :db_owner_schema%>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-md-2 text-right"> <%= t('Structure')%>:
+        </div>
+        <div class="col-md-2 field"><%= f.text_field :structure_name%>
+        </div>
+      </div>
+      
       <div class="row">
         <div class="col-md-2 text-right"><%= t('SQL') %>:
         </div>

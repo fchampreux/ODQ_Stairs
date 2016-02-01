@@ -41,6 +41,28 @@
         <div class="col-md-2"><%= @scope.load_interface%>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-2 text-right"> <%= t('Technology') %>:
+        </div>
+        <div class="col-md-2"><%= @scope.db_technology%>
+        </div>
+        <div class="col-md-2 text-right"> <%= t('Connection') %>:
+        </div>
+        <div class="col-md-2"><%= @scope.db_connection%>
+        </div>
+        <div class="col-md-2 text-right"> <%= t('OwnerSchema') %>:
+        </div>
+        <div class="col-md-2"><%= @scope.db_owner_schema%>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-md-2 text-right"> <%= t('Structure') %>:
+        </div>
+        <div class="col-md-2"><%= @scope.structure_name%>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-2 text-right"> <%= t('Query') %>:
         </div>
