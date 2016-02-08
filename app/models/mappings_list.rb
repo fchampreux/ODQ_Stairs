@@ -31,20 +31,20 @@ class MappingsList < ActiveRecord::Base
   after_create :build_mappings
 
 ### validation
-	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 #	validates :code, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :description, length: { maximum: 1000 }
-	validates :created_by , presence: true
-	validates :updated_by, presence: true
-	validates :playground_id, presence: true
-        belongs_to :playground									# scopes the odq_object_id calculation
-        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-	validates :playground, presence: true							# validates that the playground exists
-	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
-        belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
-        belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name
-        has_many :mappings, :dependent => :destroy
-        accepts_nested_attributes_for :mappings
+  validates :description, length: { maximum: 1000 }
+  validates :created_by , presence: true
+  validates :updated_by, presence: true
+  validates :playground_id, presence: true
+  belongs_to :playground									# scopes the odq_object_id calculation
+  acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+  validates :playground, presence: true							# validates that the playground exists
+  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
+  belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
+  belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name
+  has_many :mappings, :dependent => :destroy
+  accepts_nested_attributes_for :mappings
 
 ### private functions definitions
   private

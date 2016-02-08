@@ -4,7 +4,6 @@
 #
 #  id                 :integer          not null, primary key
 #  playground_id      :integer
-#  code               :string(255)
 #  name               :string(255)
 #  description        :text
 #  organisation_level :integer
@@ -12,12 +11,6 @@
 #  hierarchy          :string(255)
 #  status_id          :integer
 #  owner_id           :integer
-#  db_technology      :string(255)
-#  db_connection      :string(255)
-#  db_owner_schema    :string(255)
-#  structure_name     :string(255)
-#  key_columns        :text
-#  published_columns  :text
 #  created_by         :string(255)
 #  updated_by         :string(255)
 #  created_at         :datetime         not null
@@ -28,6 +21,8 @@
 #  score              :integer
 #  odq_unique_id      :integer
 #  odq_object_id      :integer
+#  main_scope_id      :integer
+#  code               :string(255)
 #
 
 					

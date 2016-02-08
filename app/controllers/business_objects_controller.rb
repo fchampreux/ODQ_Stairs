@@ -60,9 +60,10 @@ class BusinessObjectsController < ApplicationController
   def update
     ### Retrieved by Callback function
     @business_object.updated_by = current_user.login
+    @columns = @business_object.columns.all
 
     respond_to do |format|
-      if @business_object.update_attributes(business_object_params)
+      if @business_object.update(business_object_params)
         format.html { redirect_to @business_object, notice: 'Business object was successfully updated.' }
         format.json { head :no_content }
       else
@@ -97,7 +98,7 @@ class BusinessObjectsController < ApplicationController
 
   ### strong parameters
   def business_object_params
-    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level)
+    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level, columns_attributes: [:is_key, :is_published, :id])
   end
 
 end

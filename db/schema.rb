@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126055403) do
+ActiveRecord::Schema.define(version: 20160205163550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(version: 20160126055403) do
     t.integer  "business_object_id"
     t.integer  "playground_id"
     t.boolean  "is_published"
+    t.integer  "precision"
   end
 
   create_table "data_policies", force: :cascade do |t|

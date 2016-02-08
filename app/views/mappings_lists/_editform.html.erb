@@ -30,23 +30,23 @@
 
       <table class="table table-striped table-condensed">
         <tr align="left">
-      <th><%= t('Software') %></th>
-      <th><%= t('Table') %></th>
-      <th><%= t('Value') %></th>
-      <th><%= t('Value') %></th>
-      <th><%= t('Table') %></th>
-      <th><%= t('Software') %></th>
+          <th><%= t('Software') %></th>
+          <th><%= t('Table') %></th>
+          <th><%= t('Value') %></th>
+          <th><%= t('Value') %></th>
+          <th><%= t('Table') %></th>
+          <th><%= t('Software') %></th>
         </tr>
-        <%= f.fields_for :mappings do |m| %>
+      <%= f.fields_for :mappings do |m| %>
         <tr align="left">
-        <td><%= m.text_field :source_software, :readonly => true %></td>
-        <td><%= m.text_field :source_table, :readonly => true %></td>
-        <td><%= m.text_field :source_caption, :readonly => true %></td>
-        <td><%= m.collection_select( :target_code, @target_values, :value_code, :value_caption, :include_blank => "Empty") %></td>
-        <td><%= m.text_field :target_table, :readonly => true %></td>
-        <td><%= m.text_field :target_software, :readonly => true %></td>
+          <td><%= m.text_field :source_software, :readonly => true %></td>
+          <td><%= m.text_field :source_table, :readonly => true %></td>
+          <td><%= m.text_field :source_caption, :readonly => true %></td>
+          <td><%= m.collection_select( :target_code, @target_values, :value_code, :value_caption, :include_blank => "Empty") %></td>
+          <td><%= m.text_field :target_table, :readonly => true %></td>
+          <td><%= m.text_field :target_software, :readonly => true %></td>
         </tr>
-        <% end%>
+      <% end%>
       </table>
 
 

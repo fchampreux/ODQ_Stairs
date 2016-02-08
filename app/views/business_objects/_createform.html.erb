@@ -1,0 +1,35 @@
+<%= form_for [@business_area, @business_object] do |f| %>
+  <% if @business_object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@business_object.errors.count, "error") %> prohibited this business_object from being saved:</h2>
+
+      <ul>
+      <% @business_object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab"> <%= t('Definition')%></a></li>
+    </ul>
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="tab1">
+<!-- Tab content for Definition -->
+
+      <%= render partial: "shared/object_definition_form", locals: {f: f} %>
+ 
+<!-- Tab content -->
+    </div>
+
+
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -50,6 +50,7 @@
           <th> <%= t('Name') %> </th>
           <th> <%= t('Type') %> </th>
           <th> <%= t('Size') %> </th>
+          <th> <%= t('Precision') %> </th>
           <th> <%= t('KeyCols') %> </th>
           <th> <%= t('PubCols') %> </th>
           <th> <%= t('Description') %> </th>
@@ -59,6 +60,7 @@
           <td class="col_narrow"> <%=column.name%> </td>
           <td class="col_narrow"> <%=column.datatype%> </td>
           <td class="col_narrow"> <%=column.size%> </td>
+          <td class="col_narrow"> <%=column.precision%> </td>
           <td class="col_narrow"> <%=column.is_key%> </td>
           <td class="col_narrow"> <%=column.is_published%> </td>
           <td class="col_medium"> <%=column.description%> </td>
