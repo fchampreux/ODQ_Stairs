@@ -145,6 +145,7 @@ en:
   Columns:        "Columns"
   KeyCols:        "Key columns"
   PubCols:        "Published columns"
+  Precision:      "Precision"
   NewRequest:     "New request"
   Other:          "Other"
   History:        "History"

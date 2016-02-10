@@ -146,6 +146,7 @@ fr:
   Columns:        "Colonnes"
   KeyCols:        "Colonnes clefs"
   PublCols:       "Colonnes publiées"
+  Precision:      "Précision"  
   NewRequest:     "Nouvelle demande"
   Other:          "Autres"
   History:        "Historique"
