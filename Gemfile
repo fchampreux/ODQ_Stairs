@@ -16,6 +16,7 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'selenium-webdriver', '~> 2.47.0'
 gem 'sequenced', '~> 2.0.0'
 gem 'd3_rails'
+gem 'httparty'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
