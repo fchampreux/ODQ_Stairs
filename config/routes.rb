@@ -49,6 +49,7 @@ ODQStairs::Application.routes.draw do
   end
 
   resources :business_objects do
+    get 'push', on: :member
     resources :columns
   end
 

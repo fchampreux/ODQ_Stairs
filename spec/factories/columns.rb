@@ -16,6 +16,7 @@
 #  business_object_id :integer
 #  playground_id      :integer
 #  is_published       :boolean
+#  precision          :integer
 #
 
 FactoryGirl.factories.clear

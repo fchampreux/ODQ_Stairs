@@ -45,6 +45,7 @@ RSpec.describe BusinessObject, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:code) }
     it { should validate_presence_of(:hierarchy) }
+    it { should have_one(:scope)}
 
   describe 'It can be created'
   it 'has a valid factory' do

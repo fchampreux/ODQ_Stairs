@@ -16,6 +16,7 @@
 #  business_object_id :integer
 #  playground_id      :integer
 #  is_published       :boolean
+#  precision          :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

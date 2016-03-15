@@ -14,6 +14,9 @@
     <li><%= link_to t('Edit'), edit_business_object_path(@business_object) %> |</li>
     <li><%= link_to t('Up'), @business_object.business_area %> |</li>
     <li><%= link_to t('Destroy'), @business_object, confirm: 'Are you sure?', method: :delete %></li>
+    <% if user_is_admin? %>
+      <li> | <%= link_to "Push to QFire", controller: "business_objects", action: "push" %></li>
+    <% end %>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->

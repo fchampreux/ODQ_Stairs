@@ -3,7 +3,7 @@ class BusinessObjectsController < ApplicationController
   before_action :signed_in_user
 
 # Retrieve current business process
-  before_action :set_business_object, only: [:show, :edit, :update, :destroy]
+  before_action :set_business_object, only: [:show, :edit, :update, :destroy, :push]
 
 # Create the list of statuses to be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
@@ -68,6 +68,41 @@ class BusinessObjectsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.json { render json: @business_object.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  # Push to QFire
+  def push
+    #before action : check user is admin
+    response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDataset/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
+    :headers => {"Content-type" => "application/json"},
+    :body => { :"datasetName" => @business_object.name, :"datasetLabel" => @business_object.name, :"shortDescription" => "Created by Data Quality Stairs", :"longDescription" => @business_object.description }.to_json
+    )
+    puts response.body, response.message
+    http_message=JSON.parse(response.body)
+    puts http_message
+    datasetId=http_message["datasetId"]
+    datasetMessage=http_message["statusMessage"]
+    puts datasetId, datasetMessage
+    
+    @business_object.columns.each do |column|
+    response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDatasetColumn/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
+    :headers => {"Content-type" => "application/json"},
+    :body => { :"columnName" => column.name, :"columnLabel" => column.name, :"shortDescription" => "Created by Data Quality Stairs", :"longDescription" => column.description,
+    :"dataSetId" => datasetId, :"dataSetColumnType" => column.datatype, :"severity" => "Low"  }.to_json
+    )
+    puts response.body, response.message, datasetId
+    end
+    
+    
+    respond_to do |format|
+      if true
+        format.html { redirect_to @business_object, notice: datasetMessage }
+        format.json { head :no_content }
+      else
+        format.html { render action: "show" }
         format.json { render json: @business_object.errors, status: :unprocessable_entity }
       end
     end
