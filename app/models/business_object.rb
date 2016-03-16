@@ -38,7 +38,7 @@ self.sequence_name = "global_seq"
   before_create :set_hierarchy
 
   validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+  validates :name, presence: true, uniqueness: true, length: {minimum: 2, maximum: 100 }
   validates :description, length: { maximum: 1000 }
   validates :created_by , presence: true
   validates :updated_by, presence: true
@@ -46,6 +46,7 @@ self.sequence_name = "global_seq"
   validates :status_id, presence: true
   validates :playground_id, presence: true
   validates :business_area_id, presence: true
+  validates :hierarchy, presence: true
   belongs_to :playground									# scopes the odq_object_id calculation
   acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name

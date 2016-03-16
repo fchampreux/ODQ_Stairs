@@ -42,7 +42,8 @@ FactoryGirl.define do
     description         "This is a test Business object used for unit testing"
     created_by          "Fred"
     updated_by          "Fred"
-    session_id          "TestRun-01"
+    hierarchy           "1.0"
+#    session_id          "TestRun-01"
     owner_id            1
     status_id           0
     end

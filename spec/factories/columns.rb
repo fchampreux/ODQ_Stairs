@@ -19,7 +19,6 @@
 #  precision          :integer
 #
 
-FactoryGirl.factories.clear
 FactoryGirl.define do
   factory :column do
     id                  0
@@ -27,7 +26,7 @@ FactoryGirl.define do
     playground_id       1
     name                "test_column"
     description         "This is a test column used for unit testing"
-    type                "VARCHAR"
+    datatype            "VARCHAR"
     size                100
     is_key              false
     created_by          "Fred"

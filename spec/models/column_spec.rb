@@ -27,7 +27,7 @@ RSpec.describe Column, type: :model do
   subject {FactoryGirl.build(:column)}
   it {should validate_presence_of(:name)}
   it {should validate_length_of(:name).is_at_least(2)}
-  it {should validate_presence_of(:type)} 
+  it {should validate_presence_of(:datatype)} 
   it {should validate_presence_of(:size)}
 #  it {should validate_presence_of(:is_key)}
   it {should validate_presence_of(:created_by)}  
