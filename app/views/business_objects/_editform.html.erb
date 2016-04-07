@@ -42,11 +42,11 @@
       </tr>
     <%= f.fields_for :columns do |c| %>
       <tr align="left">
-        <td><%= c.text_field :name, :readonly => true %></td>
-        <td><%= c.text_field :description, :readonly => true %></td> 
-        <td><%= c.text_field :datatype, :readonly => true %></td> 
-        <td><%= c.text_field :size, :readonly => true %></td>
-        <td><%= c.text_field :precision, :readonly => true %></td>
+        <td><%= c.text_field :name, :readonly => false %></td>
+        <td><%= c.text_field :description, :readonly => false %></td> 
+        <td><%= c.text_field :column_type, :readonly => false %></td> 
+        <td><%= c.text_field :size, :readonly => false %></td>
+        <td><%= c.text_field :precision, :readonly => false %></td>
         <td><%= c.check_box :is_key %></td>
         <td><%= c.check_box :is_published %></td>
       </tr>

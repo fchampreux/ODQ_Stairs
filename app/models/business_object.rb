@@ -54,7 +54,7 @@ self.sequence_name = "global_seq"
   belongs_to :business_area
   has_many :business_rules
   has_many :columns
-  has_one :scope
+  belongs_to :main_scope, :class_name => "Scope", :foreign_key => "main_scope_id"
   accepts_nested_attributes_for :columns
 
 ### private functions definitions

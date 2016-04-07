@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  name               :string(100)      not null
 #  description        :text
-#  datatype           :string(20)       not null
 #  size               :integer          not null
 #  is_key             :boolean          default(FALSE), not null
 #  created_by         :string(100)      not null
@@ -17,6 +16,7 @@
 #  playground_id      :integer
 #  is_published       :boolean
 #  precision          :integer
+#  column_type        :string(20)
 #
 
 FactoryGirl.define do
@@ -26,7 +26,7 @@ FactoryGirl.define do
     playground_id       1
     name                "test_column"
     description         "This is a test column used for unit testing"
-    datatype            "VARCHAR"
+    column_type         "VARCHAR"
     size                100
     is_key              false
     created_by          "Fred"

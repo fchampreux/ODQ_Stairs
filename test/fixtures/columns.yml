@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  name               :string(100)      not null
 #  description        :text
-#  datatype           :string(20)       not null
 #  size               :integer          not null
 #  is_key             :boolean          default(FALSE), not null
 #  created_by         :string(100)      not null
@@ -17,6 +16,7 @@
 #  playground_id      :integer
 #  is_published       :boolean
 #  precision          :integer
+#  column_type        :string(20)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

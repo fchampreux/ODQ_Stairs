@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  name               :string(100)      not null
 #  description        :text
-#  datatype           :string(20)       not null
 #  size               :integer          not null
 #  is_key             :boolean          default(FALSE), not null
 #  created_by         :string(100)      not null
@@ -17,6 +16,7 @@
 #  playground_id      :integer
 #  is_published       :boolean
 #  precision          :integer
+#  column_type        :string(20)
 #
 
 require 'rails_helper'
@@ -27,7 +27,7 @@ RSpec.describe Column, type: :model do
   subject {FactoryGirl.build(:column)}
   it {should validate_presence_of(:name)}
   it {should validate_length_of(:name).is_at_least(2)}
-  it {should validate_presence_of(:datatype)} 
+  it {should validate_presence_of(:column_type)} 
   it {should validate_presence_of(:size)}
 #  it {should validate_presence_of(:is_key)}
   it {should validate_presence_of(:created_by)}  

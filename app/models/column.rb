@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  name               :string(100)      not null
 #  description        :text
-#  datatype           :string(20)       not null
 #  size               :integer          not null
 #  is_key             :boolean          default(FALSE), not null
 #  created_by         :string(100)      not null
@@ -17,6 +16,7 @@
 #  playground_id      :integer
 #  is_published       :boolean
 #  precision          :integer
+#  column_type        :string(20)
 #
 
 class Column < ActiveRecord::Base
@@ -29,7 +29,7 @@ class Column < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 2}
   validates :business_object_id, presence: true
   validates :playground_id, presence: true
-  validates :datatype, presence: true
+  validates :column_type, presence: true
   validates :size, presence: true
 #  validates :is_key, presence: true
   validates :created_by, presence: true

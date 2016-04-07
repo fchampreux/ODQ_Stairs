@@ -32,7 +32,11 @@
 <!-- Tab content for Definition -->
 
       <%= render partial: "shared/object_definition", locals: {this_object: @business_object} %>
-      
+      <div class="row">
+        <div class="col-md-2 text-right"> <%=t('Scope')%> :</div>
+        <div class="col-md-2 text-right"> <%= if @business_object.main_scope.nil? then 'N/A' else link_to @business_object.main_scope.name, @business_object.main_scope  end %></div>
+        
+      </div>
 <!-- Tab content -->
     </div>    
 
@@ -61,7 +65,7 @@
         <% @business_object.columns.order("name ASC").each do |column| %>
         <tr align="left">
           <td class="col_narrow"> <%=column.name%> </td>
-          <td class="col_narrow"> <%=column.datatype%> </td>
+          <td class="col_narrow"> <%=column.column_type%> </td>
           <td class="col_narrow"> <%=column.size%> </td>
           <td class="col_narrow"> <%=column.precision%> </td>
           <td class="col_narrow"> <%=column.is_key%> </td>

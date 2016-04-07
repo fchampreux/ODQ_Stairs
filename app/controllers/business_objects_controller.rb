@@ -75,25 +75,36 @@ class BusinessObjectsController < ApplicationController
   
   # Push to QFire
   def push
-    #before action : check user is admin
+    #ToDo : before action : check user is admin
+    
+    #Send request to API
     response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDataset/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
     :headers => {"Content-type" => "application/json"},
     :body => { :"datasetName" => @business_object.name, :"datasetLabel" => @business_object.name, :"shortDescription" => "Created by Data Quality Stairs", :"longDescription" => @business_object.description }.to_json
     )
-    puts response.body, response.message
-    http_message=JSON.parse(response.body)
-    puts http_message
-    datasetId=http_message["datasetId"]
-    datasetMessage=http_message["statusMessage"]
-    puts datasetId, datasetMessage
     
+    #Display feedback to console
+    puts response.body, response.message
+    
+    #Parse feddback
+    http_message=JSON.parse(response.body)
+    puts http_message                             #Display to console
+    datasetId=http_message["datasetId"]           #Assigne dataset id returned
+    datasetMessage=http_message["statusMessage"]  #Assign message in return for further testing
+    puts datasetId, datasetMessage                #Display values to console
+    
+    #Create columns
     @business_object.columns.each do |column|
-    response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDatasetColumn/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
-    :headers => {"Content-type" => "application/json"},
-    :body => { :"columnName" => column.name, :"columnLabel" => column.name, :"shortDescription" => "Created by Data Quality Stairs", :"longDescription" => column.description,
-    :"dataSetId" => datasetId, :"dataSetColumnType" => column.datatype, :"severity" => "Low"  }.to_json
-    )
-    puts response.body, response.message, datasetId
+      puts column.name, column.column_type, column.size, column.precision
+      #Send request to API
+      response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDatasetColumn/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
+      :headers => {"Content-type" => "application/json"},
+      :body => { :"columnName" => column.name, :"columnLabel" => column.name, :"shortDescription" => "Created by Data Quality Stairs", :"longDescription" => column.description,
+      :"dataSetId" => datasetId, :"dataSetColumnType" => column.column_type, :"isPrimarykey" => column.is_key, :"columnLength" => column.size,:"severity" => "Low"  }.to_json
+      )
+      
+      #Display feedback to console
+      puts response.body, response.message, datasetId
     end
     
     
@@ -133,7 +144,8 @@ class BusinessObjectsController < ApplicationController
 
   ### strong parameters
   def business_object_params
-    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level, columns_attributes: [:is_key, :is_published, :id])
+    params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level,
+      columns_attributes:[:is_key, :is_published, :column_type, :name, :description, :precision, :size, :id])
   end
 
 end
