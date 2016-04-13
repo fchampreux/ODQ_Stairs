@@ -37,4 +37,16 @@ class Column < ActiveRecord::Base
   validates :session_id, presence: true
   belongs_to :playground
   belongs_to :business_object
+
+### private functions definitions
+  private
+  
+  def self.to_csv
+    CSV.generate do |csv| #Could accept a separator option
+      csv << column_names
+      all.each do |column|
+        csv << column.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

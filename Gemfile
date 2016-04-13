@@ -17,7 +17,7 @@ gem 'selenium-webdriver', '~> 2.47.0'
 gem 'sequenced', '~> 2.0.0'
 gem 'd3_rails'
 gem 'httparty'
-
+gem 'roo'
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
