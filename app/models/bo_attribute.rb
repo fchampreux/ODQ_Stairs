@@ -19,7 +19,7 @@
 #  column_type        :string(20)
 #
 
-class Column < ActiveRecord::Base
+class BoAttribute < ActiveRecord::Base
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

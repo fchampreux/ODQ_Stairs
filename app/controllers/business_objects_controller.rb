@@ -24,7 +24,7 @@ class BusinessObjectsController < ApplicationController
   def show
     ### Retrieved by Callback function
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @business_objects }
       format.csv { send_data @business_object.columns.to_csv }
       format.xls # uses specific template to render xml

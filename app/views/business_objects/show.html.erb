@@ -53,11 +53,16 @@
 <!-- Linked columns -->
 
 
-  <p>
-    Download:
-    <%= link_to "CSV", business_object_path(@business_object, format: "csv") %> |
-    <%= link_to "Excel", business_object_path(@business_object, format: "xls") %>
-  </p>
+  <div class="row">
+    <div class="col-md-2">
+      Download:
+      <%= link_to "CSV", business_object_path(@business_object, format: "csv") %> |
+      <%= link_to "Excel", business_object_path(@business_object, format: "xls") %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Import columns", new_business_object_bo_attributes_import_path(@business_object) %>
+    </div>
+  </div>
 
   <table class="table table-striped table-condensed">
     <tr align="left">
@@ -69,7 +74,7 @@
       <th> <%= t('PubCols') %> </th>
       <th> <%= t('Description') %> </th>
     </tr>
-    <% @business_object.columns.order("name ASC").each do |column| %>
+    <% @business_object.bo_attributes.order("name ASC").each do |column| %>
     <tr align="left">
       <td class="col_narrow"> <%=column.name%> </td>
       <td class="col_narrow"> <%=column.column_type%> </td>
