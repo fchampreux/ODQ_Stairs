@@ -1,55 +1,55 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+#ruby '2.2.3'
 
-gem 'rails', '~> 4.2.0'
-gem 'bootstrap-sass', '~> 3.3.3'
-gem 'sass-rails',   '~> 5.0.1'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier', '~> 2.7'
-gem 'bcrypt', '= 3.1.7'
-gem 'jquery-rails', '~> 4.0.3'
-gem 'turbolinks', '2.5.3'
-gem 'jbuilder', '~> 2.3.0'
-gem 'bootstrap-datepicker-rails', '~> 1.4.0'
-gem 'will_paginate', '~> 3.0.7'
-gem 'bootstrap-will_paginate', '~> 0.0.10'
-gem 'selenium-webdriver', '~> 2.47.0'
-gem 'sequenced', '~> 2.0.0'
-gem 'd3_rails'
-gem 'httparty'
-gem 'roo'
+gem 'rails', '~> 5.0'
+gem 'bootstrap-sass', '~> 3.3'
+gem 'sass-rails',   '~> 5.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'uglifier', '~> 3.0'
+gem 'bcrypt', '~> 3.1'
+gem 'jquery-rails', '~> 4.1'
+gem 'turbolinks', '~> 5.0'
+gem 'jbuilder', '~> 2.6'
+gem 'bootstrap-datepicker-rails', '~> 1.6'
+gem 'will_paginate', '~> 3.1'
+gem 'bootstrap-will_paginate', '~> 0.0'
+gem 'selenium-webdriver', '~> 2.53'
+gem 'sequenced', '~> 3.1'
+gem 'd3_rails', '~> 4.1'
+gem 'httparty', '~> 0.14'
+gem 'roo', '~> 2.4'
 group :doc do
-  gem 'sdoc', '0.3.20', require: false
+  gem 'sdoc', '0.4', require: false
 end
 
 # gem for dev and test only
 group :development, :test, :eval do
-  gem 'pg'
-  gem 'annotate', '~> 2.6.5'
-  gem 'shoulda-matchers'
-  gem 'rspec-rails', '~> 3.3.0'
-  gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'capybara'
-  gem 'database_cleaner'
+  gem 'pg', '~> 0.18'
+  gem 'annotate', '~> 2.7'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.7'
+  gem 'capybara', '~> 2.7'
+  gem 'database_cleaner', '~> 1.5'
 end
 
 # gem for SQLServer POC
-group :MSSQL do
-  gem 'tzinfo-data'
-  gem 'tiny_tds', '~> 0.7.0'
-  gem 'activerecord-sqlserver-adapter', '~> 4.2.2'
-end
+# group :MSSQL do
+#  gem 'tzinfo-data', '~> 1.2'
+#  gem 'tiny_tds', '~> 1.0'
+#  gem 'activerecord-sqlserver-adapter', '~> 4.2'
+# end
 
 # gem for ORACLE POC
 group :ORACLE do
-  gem 'ruby-oci8', '~> 2.1.7'
-  gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.3'
+  gem 'ruby-oci8', '~> 2.2'
+  gem 'activerecord-oracle_enhanced-adapter', '~> 1.7'
 end
 
 # gem for production
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  gem 'rails_12factor', '~> 0.0'
+  gem 'pg', '~> 0.18'
 end
 
 

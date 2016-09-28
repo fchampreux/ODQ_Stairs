@@ -40,15 +40,15 @@
         <th><%= t('KeyCols') %></th>
         <th><%= t('PubCols') %></th>
       </tr>
-    <%= f.fields_for :columns do |c| %>
+    <%= f.fields_for :skills do |column| %>
       <tr align="left">
-        <td><%= c.text_field :name, :readonly => false %></td>
-        <td><%= c.text_field :description, :readonly => false %></td> 
-        <td><%= c.text_field :column_type, :readonly => false %></td> 
-        <td><%= c.text_field :size, :readonly => false %></td>
-        <td><%= c.text_field :precision, :readonly => false %></td>
-        <td><%= c.check_box :is_key %></td>
-        <td><%= c.check_box :is_published %></td>
+        <td><%= column.text_field :name, :readonly => false %></td>
+        <td><%= column.text_field :description, :readonly => false %></td> 
+        <td><%= column.text_field :skill_type, :readonly => false %></td> 
+        <td><%= column.text_field :size, :readonly => false %></td>
+        <td><%= column.text_field :skill_precision, :readonly => false %></td>
+        <td><%= column.check_box :is_key %></td>
+        <td><%= column.check_box :is_published %></td>
       </tr>
     <% end %>
     </table>

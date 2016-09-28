@@ -89,7 +89,7 @@ class BusinessProcessesController < ApplicationController
   private
 
   ### Use callbacks to share common setup or constraints between actions.
-    # Retrieve current business flow
+    # Retrieve current business process
     def set_business_process
       @business_process = BusinessProcess.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end

@@ -7,6 +7,9 @@ class BusinessObjectsController < ApplicationController
 
 # Create the list of statuses to be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
+  
+  # Create the list of data types to be used in the skills rows
+  before_action :set_data_types_list, only: [:new, :edit, :update, :create]
 
   # GET /business_objects
   # GET /business_objects.json
@@ -26,7 +29,7 @@ class BusinessObjectsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @business_objects }
-      format.csv { send_data @business_object.columns.to_csv }
+      format.csv { send_data @business_object.skills.to_csv }
       format.xls # uses specific template to render xml
     end
   end
@@ -36,6 +39,7 @@ class BusinessObjectsController < ApplicationController
   def new
     @business_area = BusinessArea.find(params[:business_area_id])
     @business_object = BusinessObject.new
+    @business_object.skills.build(:name => "PK", :description => "Primary Key", :skill_size => 0, :is_key => true)
   end
 
   # GET /business_objects/1/edit
@@ -66,7 +70,6 @@ class BusinessObjectsController < ApplicationController
   def update
     ### Retrieved by Callback function
     @business_object.updated_by = current_user.login
-    @columns = @business_object.columns.all
 
     respond_to do |format|
       if @business_object.update(business_object_params)
@@ -100,7 +103,7 @@ class BusinessObjectsController < ApplicationController
     puts datasetId, datasetMessage                #Display values to console
     
     #Create columns
-    @business_object.columns.each do |column|
+    @business_object.skills.each do |column|
       puts column.name, column.column_type, column.size, column.precision
       #Send request to API
       response = HTTParty.post( "http://qfire003.qfiresoftware.com/QFireDQSAPI/API/Collect/AddDatasetColumn/3f70923c-d87b-4d11-935a-a5c4008dee3b/json",
@@ -141,7 +144,7 @@ class BusinessObjectsController < ApplicationController
   private
 
   ### Use callbacks to share common setup or constraints between actions.
-    # Retrieve current business flow
+    # Retrieve current business object
     def set_business_object
       @business_object = BusinessObject.pgnd(current_playground).includes(:owner, :status).find(params[:id]) 
     end
@@ -151,7 +154,7 @@ class BusinessObjectsController < ApplicationController
   ### strong parameters
   def business_object_params
     params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level,
-      columns_attributes:[:is_key, :is_published, :column_type, :name, :description, :precision, :size, :id])
+      skills_attributes:[:name, :description, :is_key, :is_published, :skill_type_id, :skill_size, :skill_precision])
   end
 
 end

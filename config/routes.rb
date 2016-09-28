@@ -50,8 +50,8 @@ ODQStairs::Application.routes.draw do
 
   resources :business_objects do
     get 'push', on: :member             # Push to web service
-    resources :bo_attributes
-    resources :bo_attributes_imports, :only=>[:new, :create]
+    resources :skills                   # Properties of a business object
+    resources :skills_imports, :only=>[:new, :create]
   end
 
   resources :business_rules do

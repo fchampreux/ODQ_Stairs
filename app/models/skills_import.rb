@@ -1,5 +1,5 @@
-class BoAttributesImport
-  extend ActiveModel::Model
+class SkillsImport
+  include ActiveModel::Model
   attr_accessor :file
 
   def initialize(attributes = {})
@@ -11,11 +11,11 @@ class BoAttributesImport
   end
 
   def save
-    if imported_bo_attributes.map(&:valid?).all?
-      imported_bo_attributes.each(&:save!)
+    if imported_skills.map(&:valid?).all?
+      imported_skills.each(&:save!)
       true
     else
-      imported_bo_attributes.each_with_index do |column, index|
+      imported_skills.each_with_index do |column, index|
         column.errors.full_messages.each do |message|
           errors.add :base, "Row #{index+2}: #{message}"
         end
@@ -25,16 +25,16 @@ class BoAttributesImport
   end
 
   def imported_columns
-    @imported_bo_attributes ||= load_imported_bo_attributes
+    @imported_skills ||= load_imported_skills
   end
 
-  def load_imported_bo_attributes
+  def load_imported_skills
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      column = Column.find_by_id(row["id"]) || Column.new
-      column.attributes = row.to_hash.slice(*Column.accessible_attributes)
+      column = Skill.find_by_id(row["id"]) || Skill.new
+      column.attributes = row.to_hash.slice(*Skill.accessible_attributes)
       column
     end
   end

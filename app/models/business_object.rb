@@ -46,17 +46,16 @@ self.sequence_name = "global_seq"
   validates :status_id, presence: true
   validates :playground_id, presence: true
   validates :business_area_id, presence: true
-  validates :hierarchy, presence: true
   belongs_to :playground									# scopes the odq_object_id calculation
   acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
   belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
   belongs_to :business_area
   has_many :business_rules
-  has_many :bo_attributes, :dependent => :destroy
-  has_many :bo_attributes_imports
+  has_many :skills, :dependent => :destroy
+  has_many :skills_imports
   belongs_to :main_scope, :class_name => "Scope", :foreign_key => "main_scope_id"
-  accepts_nested_attributes_for :bo_attributes
+  accepts_nested_attributes_for :skills, :reject_if => :all_blank, :allow_destroy => true
 
 ### private functions definitions
   private
@@ -70,7 +69,7 @@ self.sequence_name = "global_seq"
       if BusinessObject.where("business_area_id = ?", self.business_area_id).count == 0 
         self.hierarchy = self.business_area.hierarchy + '.001'
       else 
-        last_one = BusinessObject.pgnd(self.playground_id).maximum("hierarchy")
+        last_one = BusinessObject.maximum("hierarchy")
         self.hierarchy = last_one.next
       end
     end
