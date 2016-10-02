@@ -53,7 +53,7 @@ self.sequence_name = "global_seq"
   belongs_to :business_area
   has_many :business_rules
   has_many :skills, :dependent => :destroy
-  has_many :skills_imports
+#  has_many :skills_imports
   belongs_to :main_scope, :class_name => "Scope", :foreign_key => "main_scope_id"
   accepts_nested_attributes_for :skills, :reject_if => :all_blank, :allow_destroy => true
 

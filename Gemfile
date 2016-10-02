@@ -17,7 +17,10 @@ gem 'selenium-webdriver', '~> 2.53'
 gem 'sequenced', '~> 3.1'
 gem 'd3_rails', '~> 4.1'
 gem 'httparty', '~> 0.14'
+gem 'iconv'
 gem 'roo', '~> 2.4'
+gem 'nested_form_fields'
+
 group :doc do
   gem 'sdoc', '0.4', require: false
 end

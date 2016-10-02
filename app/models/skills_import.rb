@@ -1,5 +1,9 @@
 class SkillsImport
   include ActiveModel::Model
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
+  
   attr_accessor :file
 
   def initialize(attributes = {})
@@ -24,11 +28,12 @@ class SkillsImport
     end
   end
 
-  def imported_columns
+  def imported_skills
     @imported_skills ||= load_imported_skills
   end
 
   def load_imported_skills
+    puts open_spreadsheet.nil?
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
@@ -41,9 +46,9 @@ class SkillsImport
 
   def open_spreadsheet
     case File.extname(file.original_filename)
-    when ".csv" then Csv.new(file.path, nil, :ignore)
-    when ".xls" then Excel.new(file.path, nil, :ignore)
-    when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+    when ".csv" then Roo::CSV.new(file.path, nil, :ignore)
+    when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
