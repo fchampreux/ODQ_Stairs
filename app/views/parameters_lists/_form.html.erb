@@ -30,7 +30,37 @@
         </div>
       </div>
 
-
+      <table>
+        <tr align="left">
+          <th></th>
+          <th> <%= t('Name') %> </th>
+          <th> <%= t('Code') %> </th>
+          <th> <%= t('Value') %> </th>
+          <th> <%= t('Description') %> </th>
+          <th><%= t('ValidFrom') %></th>
+          <th><%= t('ValidTo') %></th>
+        </tr>
+        <%=  f.nested_fields_for :parameters do |param| %>
+    <tr>
+      <td><%= param.remove_nested_fields_link%></td>
+      <td><%= param.text_field :name %> </td>
+      <td><%= param.text_field :param_code %> </td>
+      <td><%= param.text_field :param_value %> </td>
+      <td><%= param.text_field :description %> </td>
+      
+      <div class="input-daterange" data-behaviour="datepicker" id="datepicker" data-date-format="dd/mm/yyyy">
+         <td><%= param.text_field :active_from, :class => "input-small" %>  </td>
+         <td><%= param.text_field :active_to, :class => "input-small" %> </td>
+      </div>
+      <script type="text/javascript">
+        $('[data-behaviour~=datepicker]').datepicker();
+      </script>
+   
+    </tr>
+  <% end %>
+      </table>
+      
+      
   <div class="actions">
     <%= f.submit %>
   </div>

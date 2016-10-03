@@ -52,7 +52,7 @@ self.sequence_name = "global_seq"
   belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
   belongs_to :business_area
   has_many :business_rules
-  has_many :skills, :dependent => :destroy
+  has_many :skills, :inverse_of => :business_object, :dependent => :destroy
 #  has_many :skills_imports
   belongs_to :main_scope, :class_name => "Scope", :foreign_key => "main_scope_id"
   accepts_nested_attributes_for :skills, :reject_if => :all_blank, :allow_destroy => true

@@ -20,8 +20,6 @@ ODQStairs::Application.routes.draw do
       resources :parameters
   end
 
-  resources :parameters
-
   resources :values_lists do
       resources :values
       resources :mappings_lists
