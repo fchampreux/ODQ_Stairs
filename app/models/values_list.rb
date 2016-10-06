@@ -41,7 +41,8 @@ class ValuesList < ActiveRecord::Base
 	validates :playground, presence: true						# validates that the playground exists
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :software, :class_name => "Parameter", :foreign_key => "software_id"	# helps retrieving the software name
-        has_many :values
+  has_many :values, :inverse_of => :values_list, :dependent => :destroy 
+  accepts_nested_attributes_for :values, :reject_if => :all_blank, :allow_destroy => true
         has_many :mappings_lists
 
 ### private functions definitions

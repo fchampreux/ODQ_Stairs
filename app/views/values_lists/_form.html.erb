@@ -12,31 +12,54 @@
   <% end %>
 
 
-      <div class="row">
-        <div class="col-md-2 text-right">Name:
-        </div>
-        <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-2 text-right">Name:
+    </div>
+    <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-2 text-right">Description:
-        </div>
-        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-2 text-right">Description:
+    </div>
+    <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-2 text-right">Managed software:
-        </div>
-        <div class="col-md-2 field"><%= f.collection_select :software_id, @softwares_list, :id, :name  %>
-        </div>
-        <div class="col-md-2 text-right">Table:
-        </div>
-        <div class="col-md-2 field"><%= f.text_field :table_name %>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-2 text-right">Managed software:
+    </div>
+    <div class="col-md-2 field"><%= f.collection_select :software_id, @softwares_list, :id, :name  %>
+    </div>
+    <div class="col-md-2 text-right">Table:
+    </div>
+    <div class="col-md-2 field"><%= f.text_field :table_name %>
+    </div>
+  </div>
+  
+  
+  <table>
+    <tr align="left">
+      <th></th>
+      <th> <%= t('Name') %> </th>
+      <th> <%= t('Code') %> </th>
+      <th> <%= t('Value') %> </th>
+      <th> <%= t('Description') %> </th>
+    </tr>
+    <%=  f.nested_fields_for :values, wrapper_tag: 'tr' do |value| %>
+      <td><%= value.remove_nested_fields_link {image_tag("remove.png")} %></td>
+      <td><%= value.text_field :name %> </td>
+      <td><%= value.text_field :value_code %> </td>
+      <td><%= value.text_field :value_caption %> </td>
+      <td><%= value.text_field :description %> </td>
+    <% end %>
+  </table>      
 
+  <br/>   
+  <%= f.add_nested_fields_link :values, image_tag("add.png") %> <%= t('New') %> 
+  <br/>
+  <br/>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

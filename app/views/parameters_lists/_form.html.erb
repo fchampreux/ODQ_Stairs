@@ -11,56 +11,50 @@
     </div>
   <% end %>
 
+  <div class="row">
+    <div class="col-md-2 text-right"><%= t('Name') %>:
+    </div>
+    <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
+    </div>
+    <div class="col-md-2 text-right"><%= t('User') %>:
+    </div>
+    <div class="col-md-1 field"><%= f.check_box :is_user_specific %>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-2 text-right"><%= t('Name') %>:
-        </div>
-        <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
-        </div>
-        <div class="col-md-2 text-right"><%= t('User') %>:
-        </div>
-        <div class="col-md-1 field"><%= f.check_box :is_user_specific %>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-2 text-right"><%= t('Description') %>:
+    </div>
+    <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-2 text-right"><%= t('Description') %>:
-        </div>
-        <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
-        </div>
-      </div>
-
-      <table>
-        <tr align="left">
-          <th></th>
-          <th> <%= t('Name') %> </th>
-          <th> <%= t('Code') %> </th>
-          <th> <%= t('Value') %> </th>
-          <th> <%= t('Description') %> </th>
-          <th><%= t('ValidFrom') %></th>
-          <th><%= t('ValidTo') %></th>
-        </tr>
-        <%=  f.nested_fields_for :parameters do |param| %>
-    <tr>
-      <td><%= param.remove_nested_fields_link%></td>
+  <table>
+    <tr align="left">
+      <th></th>
+      <th> <%= t('Name') %> </th>
+      <th> <%= t('Code') %> </th>
+      <th> <%= t('Value') %> </th>
+      <th> <%= t('Description') %> </th>
+      <th><%= t('ValidFrom') %></th>
+      <th><%= t('ValidTo') %></th>
+    </tr>
+    <%=  f.nested_fields_for :parameters, wrapper_tag: 'tr' do |param| %>
+      <td><%= param.remove_nested_fields_link {image_tag("remove.png")} %></td>
       <td><%= param.text_field :name %> </td>
       <td><%= param.text_field :param_code %> </td>
       <td><%= param.text_field :param_value %> </td>
       <td><%= param.text_field :description %> </td>
-      
-      <div class="input-daterange" data-behaviour="datepicker" id="datepicker" data-date-format="dd/mm/yyyy">
-         <td><%= param.text_field :active_from, :class => "input-small" %>  </td>
-         <td><%= param.text_field :active_to, :class => "input-small" %> </td>
-      </div>
-      <script type="text/javascript">
-        $('[data-behaviour~=datepicker]').datepicker();
-      </script>
-   
-    </tr>
-  <% end %>
-      </table>
-      
-      
+      <td><%= param.text_field :active_from %>  </td>
+      <td><%= param.text_field :active_to %> </td>
+    <% end %>
+  </table>
+  
+  <br/>   
+  <%= f.add_nested_fields_link :parameters, image_tag("add.png") %> <%= t('New') %> 
+  <br/>
+  <br/>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

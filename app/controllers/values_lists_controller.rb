@@ -83,6 +83,6 @@ class ValuesListsController < ApplicationController
 
     # Never trust values from the scary internet, only allow the white list through.
     def values_list_params
-      params.require(:values_list).permit(:name, :description, :software_id, :software_name, :table_name)
+      params.require(:values_list).permit(:name, :description, :software_id, :software_name, :table_name, values_attributes: [:name, :description, :value_code, :value_caption, :id, :_destroy])
     end
 end

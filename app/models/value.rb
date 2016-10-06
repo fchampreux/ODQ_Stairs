@@ -31,16 +31,18 @@ class Value < ActiveRecord::Base
 	validates :value_caption, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, presence:true, length: { maximum: 1000 }
-	validates :created_by , presence: true
-	validates :updated_by, presence: true
-	validates :playground_id, presence: true
         belongs_to :playground									# scopes the odq_object_id calculation
         acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-	validates :playground, presence: true						# validates that the playground exists
         belongs_to :values_list
 
 ### private functions definitions
   private
+  
+	### before filters
+	def set_playground 
+		self.playground_id = self.values_list.playground_id
+	end 
+
 
 
 end

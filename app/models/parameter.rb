@@ -27,17 +27,15 @@ class Parameter < ActiveRecord::Base
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
 ### before filter
+  before_create :set_playground
 
 ### validation
 	validates :param_code, length: { maximum: 100 }
 	validates :param_value, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, presence: true, length: { maximum: 1000 }
-	validates :created_by , presence: true
-	validates :updated_by, presence: true
 	validates :active_from, presence: true
 	validates :active_to, presence: true
-	validates :playground_id, presence: true
         belongs_to :playground									# scopes the odq_object_id calculation
         acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
         belongs_to :parameters_list
@@ -46,8 +44,8 @@ class Parameter < ActiveRecord::Base
   private
 
   ### before filters
-    def set_code 
-#      self.code = parent_list.gsub(/[^0-9A-Za-z]/, '_').upcase
+    def set_playground 
+      self.playground_id = self.parameters_list.playground_id
     end 
 
 end

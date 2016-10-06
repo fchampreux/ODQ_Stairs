@@ -1,9 +1,0 @@
-<% provide(:title, (t('Managing') + ' ' + t('Values'))) %>
-
-<% content_for :page_heading do %>
-        <%= t('Configuration') + ' ' + t('Value') %>: <%= @value.name%>
-<% end %>
-
-<%= render 'form' %>
-
-<%= link_to t('Back'), @value.values_list %>
