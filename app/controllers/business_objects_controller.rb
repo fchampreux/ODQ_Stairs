@@ -154,7 +154,7 @@ class BusinessObjectsController < ApplicationController
   ### strong parameters
   def business_object_params
     params.require(:business_object).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :organisation_level, :territory_level,
-      skills_attributes:[:name, :description, :is_key, :is_published, :skill_type_id, :skill_size, :skill_precision :_destroy, :id])
+      skills_attributes:[:name, :description, :is_key, :is_published, :skill_type_id, :skill_size, :skill_precision, :_destroy, :id])
   end
 
 end

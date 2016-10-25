@@ -10,10 +10,10 @@
     <td>
       <table class="table table-striped table-condensed">
         <tr align="left">
-          <% this_object.business_object.key_columns.split(";").each do |column| %>
+          <% this_object.business_object.skills.each do |column| %> <!-- PK only -->
             <th> <%= column %> </th>
           <% end %>
-          <% this_object.business_object.published_columns.split(";").each do |column| %>
+          <% this_object.business_object.skills.each do |column| %> <!-- Published columns only -->
             <th> <%= column %> </th>
           <% end %>
           <th> <%= t('UpdatedBy') %> </th>

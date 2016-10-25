@@ -21,10 +21,10 @@
 
 require 'rails_helper'
 
-RSpec.describe Column, type: :model do
+RSpec.describe Skill, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:column)}
+  subject {FactoryGirl.build(:skill)}
   it {should validate_presence_of(:name)}
   it {should validate_length_of(:name).is_at_least(2)}
   it {should validate_presence_of(:column_type)} 
@@ -39,10 +39,10 @@ RSpec.describe Column, type: :model do
 
   describe 'It can be created'
   it 'has a valid factory' do
-    expect(build(:column)).to be_valid
+    expect(build(:skill)).to be_valid
   end
   it 'is invalid without a name' do
-    expect(build(:column, name: nil)).to_not be_valid
+    expect(build(:skill, name: nil)).to_not be_valid
   end
 
 end
