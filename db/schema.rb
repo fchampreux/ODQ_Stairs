@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
   create_table "columns", force: :cascade do |t|
     t.string   "name",               limit: 100,                 null: false
     t.text     "description"
+    t.string   "type",               limit: 20,                  null: false
     t.integer  "size",                                           null: false
     t.boolean  "is_key",                         default: false, null: false
     t.string   "created_by",         limit: 100,                 null: false
@@ -247,7 +248,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.datetime "updated_at"
   end
 
-  create_table "dim_organisations", force: :cascade do |t|
+  create_table "dim_organisations", id: :integer, force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",               limit: 255
     t.string   "name",               limit: 255
@@ -267,7 +268,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_rules", force: :cascade do |t|
+  create_table "dim_rules", id: :integer, force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",             limit: 255
     t.string   "name",             limit: 255
@@ -283,7 +284,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_scopes", force: :cascade do |t|
+  create_table "dim_scopes", id: :integer, force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",               limit: 255
     t.string   "name",               limit: 255
@@ -299,7 +300,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_territories", force: :cascade do |t|
+  create_table "dim_territories", id: :integer, force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",            limit: 255
     t.string   "name",            limit: 255
@@ -319,7 +320,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_time", primary_key: "period_id", force: :cascade do |t|
+  create_table "dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
     t.integer  "playground_id",                 null: false
     t.string   "period",            limit: 6
     t.string   "period_day",        limit: 8
@@ -347,7 +348,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dm_measures", id: false, force: :cascade do |t|
+  create_table "dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "odq_object_id",                                             null: false
     t.integer  "odq_parent_id"
@@ -365,6 +366,40 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.decimal  "maintenance_cost",                 precision: 10, scale: 2
     t.string   "created_by",           limit: 255
     t.string   "updated_by",           limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "process_id"
+  end
+
+  create_table "dummy_br", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string  "name", limit: 5
+  end
+
+  create_table "dwh_records", primary_key: ["playground_id", "period_id", "record_id"], force: :cascade do |t|
+    t.integer  "playground_id",                  null: false
+    t.integer  "business_object_id"
+    t.integer  "organisation_id"
+    t.integer  "territory_id"
+    t.binary   "scope_mask"
+    t.binary   "rule_mask"
+    t.binary   "error_mask"
+    t.binary   "whitelist_mask"
+    t.integer  "period_id",                      null: false
+    t.string   "record_id",          limit: 255, null: false
+    t.string   "record_created_by",  limit: 255
+    t.datetime "record_created_at"
+    t.string   "record_updated_by",  limit: 255
+    t.datetime "record_updated_at"
+    t.datetime "first_time_right"
+    t.string   "first_user_right",   limit: 255
+    t.datetime "last_time_wrong"
+    t.string   "last_user_wrong",    limit: 255
+    t.string   "data_values",        limit: 255
+    t.text     "observation"
+    t.string   "record_status",      limit: 255
+    t.string   "created_by",         limit: 255
+    t.string   "updated_by",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "process_id"

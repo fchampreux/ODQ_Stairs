@@ -115,8 +115,7 @@ class BusinessObjectsController < ApplicationController
       #Display feedback to console
       puts response.body, response.message, datasetId
     end
-    
-    
+        
     respond_to do |format|
       if true
         format.html { redirect_to @business_object, notice: datasetMessage }

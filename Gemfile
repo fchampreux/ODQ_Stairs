@@ -18,7 +18,8 @@ gem 'sequenced', '~> 3.1'
 gem 'd3_rails', '~> 4.1'
 gem 'httparty', '~> 0.14'
 gem 'iconv'
-gem 'roo', '~> 2.4'
+#gem 'smarter_csv', '~> 1.1'
+gem 'roo'
 gem 'nested_form_fields'
 
 group :doc do
