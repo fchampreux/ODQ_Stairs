@@ -8,7 +8,7 @@ class SkillsImportsController < ApplicationController
     @business_object = BusinessObject.find(params[:business_object_id]) 
     @skills_import = SkillsImport.new(params[:skills_import])
     if @skills_import.save
-      redirect_to root_url, notice: "Imported Business Object attributes successfully."
+      redirect_to business_object_path(@business_object), notice: "Imported Business Object attributes successfully."
     else
       render :new
     end

@@ -8,7 +8,6 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  business_object_id :integer
-#  skill_pattern      :string(100)
 #  skill_size         :integer
 #  skill_precision    :integer
 #  skill_type_id      :integer
@@ -34,7 +33,7 @@ class Skill < ActiveRecord::Base
   private
   
   def self.to_csv
-    CSV.generate do |csv| #Could accept a separator option
+    CSV.generate(:col_sep => ";") do |csv| #Could accept a separator option
       csv << column_names
       all.each do |column|
         csv << column.attributes.values_at(*column_names)

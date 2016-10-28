@@ -81,7 +81,11 @@ module ParametersHelper
 # retrieve the logo filename
   def display_logo
     list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
-    @myparam = Parameter.where("parameters_list_id=? AND name=? AND ? BETWEEN active_from AND active_to", list_id, 'Logo filename', Time.now ).take!
+    if signed_in?
+      @myparam = Parameter.where("parameters_list_id=? AND name=? AND ? BETWEEN active_from AND active_to", list_id, 'Logo filename', Time.now ).take!
+    else
+      @myparam = Parameter.where("parameters_list_id=? AND name=? AND ? BETWEEN active_from AND active_to", list_id, 'Logo splash', Time.now ).take!
+    end      
     @myparam.param_value
   end
 

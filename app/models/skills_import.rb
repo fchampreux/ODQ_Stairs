@@ -40,6 +40,8 @@ class SkillsImport
       row = Hash[[header, spreadsheet.row(i)].transpose]
       column = Skill.find_by_id(row["id"]) || Skill.new
       column.attributes = row.to_hash
+      puts "test"
+      puts column.attributes
       column
     end
   end
