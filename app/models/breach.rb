@@ -69,8 +69,8 @@ before_save :set_approver
 	belongs_to :business_object								# helps retrieving the business object name
         belongs_to :business_rule
         belongs_to :notification
-        belongs_to :playground									# scopes the odq_object_id calculation
-        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+ #       belongs_to :playground									# scopes the odq_object_id calculation
+ #       acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 
 ### private functions definitions
   private

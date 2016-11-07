@@ -23,6 +23,9 @@
 class Playground < ActiveRecord::Base
 extend SimpleSearch
 
+### id generation
+  self.sequence_name = "objects_seq"
+
 ### before filter
   before_create :set_hierarchy
 

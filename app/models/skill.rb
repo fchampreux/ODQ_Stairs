@@ -16,6 +16,9 @@
 #
 
 class Skill < ActiveRecord::Base
+  
+### id generation
+  self.sequence_name = "objects_seq"
 
 ### scope
 #  Skill is linked to a business object which belongs to the correct scope
@@ -28,6 +31,7 @@ class Skill < ActiveRecord::Base
   validates :skill_size, presence: true
   belongs_to :skill_type, :class_name => "Parameter", :foreign_key => "skill_type_id"	# helps retrieving the status name
   belongs_to :business_object
+  validates :business_object, presence: true
 
   ### private functions definitions
   private

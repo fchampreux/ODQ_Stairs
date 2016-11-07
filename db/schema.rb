@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913045556) do
+ActiveRecord::Schema.define(version: 20161107050554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.datetime "record_updated_at"
     t.integer  "owner_id"
     t.boolean  "is_identified"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.integer  "notification_id"
   end
 
@@ -71,8 +69,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "business_flows", force: :cascade do |t|
@@ -93,8 +89,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "business_objects", force: :cascade do |t|
@@ -114,8 +108,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.integer  "main_scope_id"
     t.string   "code",               limit: 255
   end
@@ -138,8 +130,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "business_rules", force: :cascade do |t|
@@ -176,26 +166,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
-  end
-
-  create_table "columns", force: :cascade do |t|
-    t.string   "name",               limit: 100,                 null: false
-    t.text     "description"
-    t.string   "type",               limit: 20,                  null: false
-    t.integer  "size",                                           null: false
-    t.boolean  "is_key",                         default: false, null: false
-    t.string   "created_by",         limit: 100,                 null: false
-    t.string   "updated_by",         limit: 100,                 null: false
-    t.string   "session_id",         limit: 100,                 null: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.integer  "business_object_id"
-    t.integer  "playground_id"
-    t.boolean  "is_published"
-    t.integer  "precision"
-    t.string   "column_type",        limit: 20
   end
 
   create_table "data_policies", force: :cascade do |t|
@@ -240,15 +210,13 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "deleted"
     t.integer  "rejected"
     t.integer  "owner_id"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.string   "created_by",         limit: 255
     t.string   "updated_by",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "dim_organisations", id: :integer, force: :cascade do |t|
+  create_table "dim_organisations", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",               limit: 255
     t.string   "name",               limit: 255
@@ -268,7 +236,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_rules", id: :integer, force: :cascade do |t|
+  create_table "dim_rules", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",             limit: 255
     t.string   "name",             limit: 255
@@ -284,7 +252,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_scopes", id: :integer, force: :cascade do |t|
+  create_table "dim_scopes", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",               limit: 255
     t.string   "name",               limit: 255
@@ -300,7 +268,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_territories", id: :integer, force: :cascade do |t|
+  create_table "dim_territories", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",            limit: 255
     t.string   "name",            limit: 255
@@ -320,7 +288,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
+  create_table "dim_time", primary_key: "period_id", force: :cascade do |t|
     t.integer  "playground_id",                 null: false
     t.string   "period",            limit: 6
     t.string   "period_day",        limit: 8
@@ -348,7 +316,7 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
+  create_table "dm_measures", id: false, force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "odq_object_id",                                             null: false
     t.integer  "odq_parent_id"
@@ -371,40 +339,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "process_id"
   end
 
-  create_table "dummy_br", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.string  "name", limit: 5
-  end
-
-  create_table "dwh_records", primary_key: ["playground_id", "period_id", "record_id"], force: :cascade do |t|
-    t.integer  "playground_id",                  null: false
-    t.integer  "business_object_id"
-    t.integer  "organisation_id"
-    t.integer  "territory_id"
-    t.binary   "scope_mask"
-    t.binary   "rule_mask"
-    t.binary   "error_mask"
-    t.binary   "whitelist_mask"
-    t.integer  "period_id",                      null: false
-    t.string   "record_id",          limit: 255, null: false
-    t.string   "record_created_by",  limit: 255
-    t.datetime "record_created_at"
-    t.string   "record_updated_by",  limit: 255
-    t.datetime "record_updated_at"
-    t.datetime "first_time_right"
-    t.string   "first_user_right",   limit: 255
-    t.datetime "last_time_wrong"
-    t.string   "last_user_wrong",    limit: 255
-    t.string   "data_values",        limit: 255
-    t.text     "observation"
-    t.string   "record_status",      limit: 255
-    t.string   "created_by",         limit: 255
-    t.string   "updated_by",         limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "process_id"
-  end
-
   create_table "landscapes", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",          limit: 255
@@ -420,8 +354,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "mappings", force: :cascade do |t|
@@ -442,8 +374,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.string   "source_caption",   limit: 255
     t.string   "target_caption",   limit: 255
     t.integer  "owner_id"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "mappings_lists", force: :cascade do |t|
@@ -458,8 +388,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "target_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -476,8 +404,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "owner_id"
     t.string   "created_by",         limit: 255
     t.string   "updated_by",         limit: 255
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -496,8 +422,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "parent_id"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.string   "external_reference", limit: 255
   end
 
@@ -515,8 +439,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.string   "param_value",        limit: 255
     t.integer  "parameters_list_id"
     t.string   "param_code",         limit: 255
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.integer  "owner_id"
   end
 
@@ -531,26 +453,22 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.boolean  "is_user_specific"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "playgrounds", force: :cascade do |t|
-    t.string   "code",          limit: 255
-    t.string   "name",          limit: 255
+    t.string   "code",        limit: 255
+    t.string   "name",        limit: 255
     t.text     "description"
-    t.string   "hierarchy",     limit: 255
-    t.string   "created_by",    limit: 255
-    t.string   "updated_by",    limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "hierarchy",   limit: 255
+    t.string   "created_by",  limit: 255
+    t.string   "updated_by",  limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -584,20 +502,12 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.string   "db_technology",      limit: 30
     t.string   "db_connection",      limit: 200
     t.string   "db_owner_schema",    limit: 30
     t.string   "structure_name",     limit: 50
     t.text     "description"
     t.text     "sql_query"
-  end
-
-  create_table "sequences", force: :cascade do |t|
-    t.integer "playground_id"
-    t.string  "class_name",    limit: 255
-    t.integer "current_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -627,8 +537,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "parent_id"
-    t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
     t.string   "external_reference", limit: 255
   end
 
@@ -723,7 +631,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "odq_unique_id"
-    t.integer  "odq_object_id"
   end
 
   create_table "values_lists", force: :cascade do |t|
@@ -739,7 +646,6 @@ ActiveRecord::Schema.define(version: 20160913045556) do
     t.datetime "updated_at"
     t.integer  "software_id"
     t.string   "software_name", limit: 255
-    t.integer  "odq_unique_id"
     t.integer  "odq_object_id"
   end
 

@@ -26,9 +26,12 @@
 
 
 class Mapping < ActiveRecord::Base
+	
+### id generation
+  self.sequence_name = "objects_seq"	
 
 ### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+#  Mapping is linked to a list which belongs to the correct scope
 
 ### before filter
 before_update :retrieve_target_caption
@@ -46,9 +49,10 @@ before_update :retrieve_target_caption
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-        belongs_to :playground									# scopes the odq_object_id calculation
-        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-	validates :playground, presence: true						# validates that the playground exists
+	validates :mapping_list, presence: true
+#        belongs_to :playground									# scopes the odq_object_id calculation
+#        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+#	validates :playground, presence: true						# validates that the playground exists
         belongs_to :mappings_list
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 

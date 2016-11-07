@@ -18,9 +18,12 @@
 #
 
 class ParametersList < ActiveRecord::Base
+	
+### id generation
+  self.sequence_name = "objects_seq"
 
 ### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+#  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
 ### before filter
   before_create :set_code
@@ -31,9 +34,10 @@ class ParametersList < ActiveRecord::Base
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
-	validates :playground_id, presence: true
-  belongs_to :playground									# scopes the odq_object_id calculation
-  acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+#	validates :playground_id, presence: true
+#	validates :playground, presence: true
+  #belongs_to :playground									# scopes the odq_object_id calculation
+  #acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
   has_many :parameters, :inverse_of => :parameters_list, :dependent => :destroy 
   accepts_nested_attributes_for :parameters, :reject_if => :all_blank, :allow_destroy => true

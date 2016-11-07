@@ -20,9 +20,12 @@
 
 
 class Value < ActiveRecord::Base
+	
+### id generation	
+  self.sequence_name = "objects_seq"
 
 ### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+#  Value is linked to a list which belongs to the correct scope
 
 ### before filter
 
@@ -31,9 +34,10 @@ class Value < ActiveRecord::Base
 	validates :value_caption, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, presence:true, length: { maximum: 1000 }
-        belongs_to :playground									# scopes the odq_object_id calculation
-        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-        belongs_to :values_list
+#        belongs_to :playground									# scopes the odq_object_id calculation
+#        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+  belongs_to :values_list
+  validates :valus_list, presence: true
 
 ### private functions definitions
   private

@@ -1,5 +1,6 @@
 module ModelsHelper
 
+=begin
   ### get playground scoped id for new objects
   def next_id(current_object)
     my_sequence=Sequence.pgnd(current_playground).where("class_name = ?", current_object.class.name).take!
@@ -25,4 +26,5 @@ module ModelsHelper
     current_object.odq_object_id = next_id(current_object)
     current_object.odq_unique_id = global_id(current_object)
   end
+=end
 end

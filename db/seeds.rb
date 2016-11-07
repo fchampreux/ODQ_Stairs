@@ -7,8 +7,8 @@
 #   Mayor.create(id: 1, name: 'Emanuel', city: cities.first)
 
 puts "Initialise global sequence"
-ActiveRecord::Base.connection.execute("DROP SEQUENCE global_seq")
-ActiveRecord::Base.connection.execute("CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 10000")
+ActiveRecord::Base.connection.execute("DROP SEQUENCE objects_seq")
+ActiveRecord::Base.connection.execute("CREATE SEQUENCE objects_seq INCREMENT BY 1 START WITH 10000")
 
 puts "Seeding users"
 if User.count == 0

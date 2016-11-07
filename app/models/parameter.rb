@@ -23,8 +23,11 @@
 
 class Parameter < ActiveRecord::Base
 
+### id generation
+  self.sequence_name = "objects_seq"
+
 ### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+#  Parameter is linked to a list which belongs to the correct scope
 
 ### before filter
   before_create :set_playground
@@ -36,8 +39,9 @@ class Parameter < ActiveRecord::Base
 	validates :description, presence: true, length: { maximum: 1000 }
 	validates :active_from, presence: true
 	validates :active_to, presence: true
-        belongs_to :playground									# scopes the odq_object_id calculation
-        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+	validates :parameters_list, presence: true
+  #      belongs_to :playground									# scopes the odq_object_id calculation
+  #      acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
         belongs_to :parameters_list
 
 ### private functions definitions
