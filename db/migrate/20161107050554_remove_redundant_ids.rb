@@ -35,6 +35,8 @@ class RemoveRedundantIds < ActiveRecord::Migration[5.0]
     remove_column :territories, :odq_object_id, :integer
     remove_column :territories, :odq_unique_id, :integer
     remove_column :values, :odq_object_id, :integer
+    remove_column :values, :odq_unique_id, :integer
     remove_column :values_lists, :odq_unique_id, :integer
+    remove_column :values_lists, :odq_object_id, :integer
   end
 end
