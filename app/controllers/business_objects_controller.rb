@@ -30,7 +30,7 @@ class BusinessObjectsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @business_objects }
       format.csv { send_data @business_object.skills.to_csv }
-      format.xlsx # uses specific template to render xml
+      format.xls # uses specific template to render xml
     end
   end
 
