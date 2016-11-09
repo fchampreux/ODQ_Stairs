@@ -45,7 +45,7 @@
     <%= f.nested_fields_for :skills, wrapper_tag: 'tr'  do |column| %>
     
       <tr align="left">
-        <td><%= column.remove_nested_fields_link %></td>
+        <td><%= column.remove_nested_fields_link {image_tag("remove.png")} %></td>
         <td><%= column.text_field :name %></td>
         <td><%= column.text_field :description %></td> 
         <td><%= column.collection_select :skill_type_id, @data_types_list, :id, :name %></td> 
@@ -61,7 +61,7 @@
     
     <br/>
     
-    <%= f.add_nested_fields_link :skills %>
+    <%= f.add_nested_fields_link :skills, image_tag("add.png") %> <%= t('New') %>
     
     <br/>
     <br/>

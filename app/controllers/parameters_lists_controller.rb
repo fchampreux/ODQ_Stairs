@@ -8,7 +8,7 @@ class ParametersListsController < ApplicationController
   # GET /parameters_list
   # GET /parameters_list.json
   def index
-    @parameters_list = ParametersList.pgnd(current_playground).order("name")
+    @parameters_list = ParametersList.order("name")
   end
 
   # GET /parameters_list/1
@@ -75,7 +75,7 @@ class ParametersListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_parameters_list
-      @parameters_list = ParametersList.pgnd(current_playground).find(params[:id])
+      @parameters_list = ParametersList.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
