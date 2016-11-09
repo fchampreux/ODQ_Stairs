@@ -4,6 +4,10 @@
 
 <%= render partial: "shared/simple_search", locals: {this_path: business_objects_path} %>
 
+Download:
+      <%= link_to "CSV", business_objects_path(format: "csv") %> |
+      <%= link_to "Excel", business_objects_path(format: "xls") %>
+
 <%= render partial: "shared/object_index", locals: {this_index: @business_objects} %>
 
 <%= will_paginate %>
