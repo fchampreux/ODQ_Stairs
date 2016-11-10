@@ -6,5 +6,5 @@
               <%= submit_tag t('SearchButton'), :name => nil %>
             </p>
           <% end %>
-
-
+      <%= link_to "CSV", url_for(format: 'csv') %> |
+      <%= link_to "Excel", url_for(format: 'xls') %>

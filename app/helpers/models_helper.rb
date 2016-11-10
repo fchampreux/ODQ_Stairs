@@ -27,4 +27,5 @@ module ModelsHelper
     current_object.odq_unique_id = global_id(current_object)
   end
 =end
+
 end
