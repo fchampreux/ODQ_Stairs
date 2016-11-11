@@ -19,7 +19,16 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:        
+en:
+  ### Page titles
+  ManagingBOs:    "Managing Business Objects"
+  ### Page heading
+  NewBO:          "New Business Object"
+  ### Alerts
+  Sure:           "Are you sure?"
+  ### Actions
+  QFire:          "Push to QFire"
+  ImportSkills:   "Import columns"
   ### General terms
   BA:             "Business area"
   BF:             "Business flow"

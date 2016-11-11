@@ -25,6 +25,7 @@
 
 class BusinessArea < ActiveRecord::Base
 extend SimpleSearch
+extend CsvHelper
 
 ### id generation
   self.sequence_name = "objects_seq"

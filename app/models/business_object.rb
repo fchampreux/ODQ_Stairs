@@ -27,6 +27,7 @@
 
 class BusinessObject < ActiveRecord::Base
 extend SimpleSearch
+extend CsvHelper
 
 ### id generation
   self.sequence_name = "objects_seq"
@@ -76,6 +77,7 @@ extend SimpleSearch
       end
     end
 
+=begin
     def self.to_csv
     CSV.generate(:col_sep => ";") do |csv| #Could accept a separator option
 				csv << column_names
@@ -84,5 +86,6 @@ extend SimpleSearch
 				end
 			end
 		end
+=end
 
 end

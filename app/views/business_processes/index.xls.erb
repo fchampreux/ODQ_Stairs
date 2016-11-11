@@ -7,11 +7,11 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-      <% BusinessObject.column_names.each do |field| %>
+      <% BusinessProcess.column_names.each do |field| %>
         <Cell><Data ss:Type="String"><%= field %></Data></Cell>
       <% end %>
       </Row>
-    <% @business_objects.each do |item| %>
+    <% @business_processes.each do |item| %>
       <Row>
       <% item.attributes.values.each do |field| %>
         <Cell><Data ss:Type="String"><%= field %></Data></Cell>

@@ -7,25 +7,15 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Column type</Data></Cell>
-        <Cell><Data ss:Type="String">Size</Data></Cell>
-        <Cell><Data ss:Type="String">Precision</Data></Cell>
-        <Cell><Data ss:Type="String">Is key</Data></Cell>
-        <Cell><Data ss:Type="String">Is published</Data></Cell>
-        <Cell><Data ss:Type="String">Description</Data></Cell>
+      <% Skill.column_names.each do |field| %>
+        <Cell><Data ss:Type="String"><%= field %></Data></Cell>
+      <% end %>
       </Row>
-    <% @business_object.skills.each do |column| %>
+    <% @business_object.skills.each do |item| %>
       <Row>
-        <Cell><Data ss:Type="Number"><%= column.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= column.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= column.skill_type.name %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= column.skill_size %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= column.skill_precision %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= column.is_key %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= column.is_published %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= column.description %></Data></Cell>
+      <% item.attributes.values.each do |field| %>
+        <Cell><Data ss:Type="String"><%= field %></Data></Cell>
+      <% end %>
       </Row>
     <% end %>
     </Table>
