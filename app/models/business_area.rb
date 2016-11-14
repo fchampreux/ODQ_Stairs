@@ -47,7 +47,7 @@ extend CsvHelper
 	validates :playground_id, presence: true
 	validates :pcf_index, length: { maximum: 30 }
 	validates :pcf_reference, length: { maximum: 30 }
-	validates :playground, presence: true
+#validates :playground, presence: true
  #       belongs_to :playground									# scopes the odq_object_id calculation
  #       acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name

@@ -1,4 +1,4 @@
-<% provide(:title, (t('Managing') + ' ' + t('BAs'))) %>
+<% provide(:title, (t('ManagingBAs'))) %>
 
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@business_area), :alt => "Quality hit") %> <%= t('BA') %>: <%= @business_area.name %>
@@ -12,7 +12,7 @@
   <ul class="mid_menu">
     <li><%= link_to t('Edit'), edit_business_area_path(@business_area) %> |</li>
     <li><%= link_to t('Back'), business_areas_path %> |</li>
-    <li><%= link_to t('Destroy'), @business_area, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Destroy'), @business_area, confirm: t('Sure'), method: :delete %></li>
   </ul>
 
 <!-- Setup the tabs -->
@@ -68,7 +68,7 @@
     
           <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_area.business_flows} %>
     
-          <%= link_to t('Add')+' '+t('BF'), new_business_area_business_flow_path(@business_area) %>
+          <%= link_to t('NewBF'), new_business_area_business_flow_path(@business_area) %>
     
     <!-- Tab content -->
         </div>
@@ -78,7 +78,7 @@
     
           <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_area.business_objects} %>
     
-          <%= link_to t('Add')+' '+t('BO'), new_business_area_business_object_path(@business_area) %>
+          <%= link_to t('NewBO'), new_business_area_business_object_path(@business_area) %>
     
     <!-- Tab content -->
         </div>

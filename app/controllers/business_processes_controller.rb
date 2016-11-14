@@ -16,6 +16,8 @@ class BusinessProcessesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @business_processes }
+      format.csv { send_data @business_processes.to_csv }
+      format.xls # uses specific template to render xml
     end
   end
 

@@ -22,10 +22,19 @@
 en:
   ### Page titles
   ManagingBOs:    "Managing Business Objects"
+  ManagingBAs:    "Managing Business Areas"
+  ManagingBFs:    "Managing Business Flows"
+  ManagingBPs:    "Managing Business Processess"
+  ManagingBRs:    "Managing Business Rules"
   ### Page heading
   NewBO:          "New Business Object"
+  NewBA:          "New Business Area"
+  NewBF:          "New Business Flow"
+  NewBP:          "New Business Process"
+  NewBR:          "New Business Rule"
   ### Alerts
   Sure:           "Are you sure?"
+  ErrorWarn:      "Validation is not possible"
   ### Actions
   QFire:          "Push to QFire"
   ImportSkills:   "Import columns"

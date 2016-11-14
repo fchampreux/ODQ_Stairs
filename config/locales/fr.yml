@@ -22,10 +22,19 @@
 fr:
   ### Page titles
   ManagingBOs:    "Gérer les Objets Métiers"
+  ManagingBAs:    "Managing Business Areas"
+  ManagingBFs:    "Managing Business Flows"
+  ManagingBPs:    "Managing Business Processess"
+  ManagingBRs:    "Managing Business Rules"
   ### Page heading
   NewBO:          "Nouvel Objet Métier"
+  NewBA:          "Nouveau Domaine Fonctionnel"
+  NewBF:          "Nouveau Flux Métier"
+  NewBP:          "Nouveau Processus Métier"
+  NewBR:          "Nouvelle Règle Métier"
   ### Alerts
-  Sure:           "Vous confirmez?"
+  Sure:           "Vous confirmez ?"
+  ErrorWarn:      "Validation impossible"
   ### Actions
   QFire:          "Publier vers QFire"
   ImportSkills:   "Importer les colonnes"

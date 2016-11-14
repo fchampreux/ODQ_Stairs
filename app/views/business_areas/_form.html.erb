@@ -1,7 +1,7 @@
 <%= form_for(@business_area) do |f| %>
   <% if @business_area.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@business_area.errors.count, "error") %> prohibited this business_area from being saved:</h2>
+      <h2><%= pluralize(@business_area.errors.count, t('error')) %>: <%= t('ErrorWarn')%></h2>
 
       <ul>
       <% @business_area.errors.full_messages.each do |msg| %>

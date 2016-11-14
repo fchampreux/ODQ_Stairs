@@ -1,4 +1,4 @@
-<% provide(:title, (t('Managing') + ' ' + t('BRs'))) %>
+<% provide(:title, (t('ManagingBRs'))) %>
 
 <% content_for :page_heading do %>
     <%= image_tag(index_audit_tag_for(@business_rule), :alt => "Quality hit") %> <%= t('BR') %>: <%= @business_rule.name %>
@@ -15,7 +15,7 @@
   <ul class="mid_menu">
     <li><%= link_to t('Edit'), edit_business_rule_path(@business_rule) %> |</li>
     <li><%= link_to t('Up'), @business_rule.business_process %> |</li>
-    <li><%= link_to t('Destroy'), @business_rule, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Destroy'), @business_rule, confirm: t('Sure'), method: :delete %></li>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->
