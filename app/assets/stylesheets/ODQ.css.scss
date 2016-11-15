@@ -125,6 +125,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 30px;
   text-align: left;
+  padding:0px 0px 0px 10px;
 }
 
 h2 {
@@ -197,7 +198,6 @@ pre {
   b { 
 
     color: $headerFontColor;
-#    font-size: 1.2em;
     font-size: 1vw;
   }
 }

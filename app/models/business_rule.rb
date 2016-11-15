@@ -74,7 +74,7 @@ extend CsvHelper
 	belongs_to :complexity, :class_name => "Parameter", :foreign_key => "complexity_id"	# helps retrieving the complexity grade
 	belongs_to :business_object								# helps retrieving the target business object
 	belongs_to :business_process
-        has_many :breaches
+  has_many :breaches
 
 ### private functions definitions
   private

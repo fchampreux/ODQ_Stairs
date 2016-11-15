@@ -1,10 +1,7 @@
-
-          <h4> <%= t('SearchBox') %></h4>
-          <%= form_tag(this_path, :method => 'get') do %>
-            <p>
-              <%= text_field_tag :criteria, params[:criteria] %>
-              <%= submit_tag t('SearchButton'), :name => nil %>
-            </p>
-          <% end %>
-      <%= link_to "CSV", url_for(format: 'csv') %> |
-      <%= link_to "Excel", url_for(format: 'xls') %>
+    <h4> <%= t('SearchBox') %></h4>
+      <%= form_tag(this_path, :method => 'get') do %>
+        <p>
+          <%= text_field_tag :criteria, params[:criteria] %>
+          <%= submit_tag t('SearchButton'), :name => nil %>
+        </p>
+      <% end %>

@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-10">
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-12">
             <nav class="top_menu">
               <ul>
                 <% if signed_in? %>
@@ -37,7 +37,7 @@
   <div class="navbar navbar-default">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-        <li class="navbar-text"> - Version 0.3 -</li>
+        <li> <%= link_to "- Version 0.3 -", "#" %></li>
         <li> <%= link_to t('Home'), root_path %> </li>
         <li> <%= link_to t('Display'), root_path %> </li>
         <li> <%= link_to t('Notifications'), notifications_path %> </li>
