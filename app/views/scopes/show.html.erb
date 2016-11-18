@@ -1,4 +1,4 @@
-<% provide(:title, 'Managing scopes') %>
+<% provide(:title, (t('ManagingScs'))) %>
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> <%= t('Scope') %>: <%= @scope.name %>
 <% end %>
@@ -11,9 +11,9 @@
 <% end %>
 
   <ul class="mid_menu">
-    <li><%= link_to 'Edit', edit_scope_path(@scope) %> |</li>
-    <li><%= link_to 'Up', @scope.landscape %> | </li>
-    <li><%= link_to 'Destroy', @scope, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to t('Edit'), edit_scope_path(@scope) %> |</li>
+    <li><%= link_to t('Up'), @scope.landscape %> | </li>
+    <li><%= link_to t('Destroy'), @scope, confirm: t('Sure'), method: :delete %></li>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->
@@ -21,7 +21,7 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#definition" data-toggle="tab"> <%= t('Definition') %> </a></li>
-      <li><a href="#tab2" data-toggle="tab">Query</a></li> 
+      <li><a href="#tab2" data-toggle="tab"><%= t('Query')%></a></li> 
       <li><a href="#ownership" data-toggle="tab"> <%= t('Ownership') %> </a></li>
 
       <!-- li class="inactive"><a href="#tab5" data-toggle="tab">Sample data</a></li -->    

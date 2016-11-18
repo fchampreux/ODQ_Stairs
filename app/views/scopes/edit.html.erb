@@ -1,4 +1,4 @@
-<% provide(:title, (t('Managing') + ' ' + t('Scopes'))) %>
+<% provide(:title, (t('ManagingScs'))) %>
 
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@scope), :alt => "Quality hit") %> <%= t('Scope') %>: <%= @scope.name %>
@@ -13,4 +13,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', @scope %>
+<%= link_to t('Back'), @scope %>

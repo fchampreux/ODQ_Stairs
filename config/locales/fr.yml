@@ -22,16 +22,25 @@
 fr:
   ### Page titles
   ManagingBOs:    "Gérer les Objets Métiers"
-  ManagingBAs:    "Managing Business Areas"
-  ManagingBFs:    "Managing Business Flows"
-  ManagingBPs:    "Managing Business Processess"
-  ManagingBRs:    "Managing Business Rules"
+  ManagingBAs:    "Gérer les Domaines Fonctionnels"
+  ManagingBFs:    "Gérer les Flux Métiers"
+  ManagingBPs:    "Gérer les Processus Métiers"
+  ManagingBRs:    "Gérer les Règles Métiers"
+  ManagingScs:    "Gérer les Scopes"
+  ManagingLSs:    "Gérer les Landcapes"
+  ManagingPgs:    "Gérer les Playgrounds"
+  ManagingPLs:    "Gérer les listes de paramètres"
+  ManagingPms:    "Gérer les paramètres"
   ### Page heading
   NewBO:          "Nouvel Objet Métier"
   NewBA:          "Nouveau Domaine Fonctionnel"
   NewBF:          "Nouveau Flux Métier"
   NewBP:          "Nouveau Processus Métier"
   NewBR:          "Nouvelle Règle Métier"
+  NewSc:          "Nouveau Scope"
+  NewLS:          "Nouveau Landcape"
+  NewPg:          "Nouveau Playground"
+  NewPL:          "Nouvelle liste de Paramètres"
   ### Alerts
   Sure:           "Vous confirmez ?"
   ErrorWarn:      "Validation impossible"
@@ -66,6 +75,7 @@ fr:
   Monitor:        "Processus"
   Notifications:  "Notifications"  
   Notification:   "Notification"
+  Query:          "Query"
   ### Footer layout
   Credits:        "Crédits"
   License:        "Licence"

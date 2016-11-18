@@ -1,4 +1,4 @@
-<% provide(:title, 'Managing landscapes') %>
+<% provide(:title, (t('ManagingLSs'))) %>
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> Landscape: <%= @landscape.name %>
 <% end %>
@@ -11,5 +11,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', @landscape %>
+<%= link_to t('Back'), @landscape %>
 

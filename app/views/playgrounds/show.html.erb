@@ -1,4 +1,4 @@
-<% provide(:title, (t('Managing') + ' ' + t('Playgrounds'))) %>
+<% provide(:title, (t('ManagingPgs'))) %>
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@playground), :alt => "Quality hit") %> <%= t('Playground') %>: <%= @playground.name %>
 <% end %>
@@ -47,7 +47,7 @@
   </tr>
   <tr>
     <td>
-      <%= link_to t('Add'), new_playground_landscape_path(@playground) %>
+      <%= link_to t('NewPg'), new_playground_landscape_path(@playground) %>
     </td>
   </tr>
 </table>

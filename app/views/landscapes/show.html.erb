@@ -1,4 +1,4 @@
-<% provide(:title, (t('Managing') + ' ' + t('Landscapes')))  %>
+<% provide(:title, (t('ManagingLSs'))) %>
 
 <% content_for :page_heading do %>
   <%= image_tag(index_audit_tag_for(@landscape), :alt => "Quality hit") %> <%= t('Landscape') %>: <%= @landscape.name %>
@@ -13,7 +13,7 @@
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_landscape_path(@landscape) %> |</li>
     <li><%= link_to 'Up', @landscape.playground %> | </li>
-    <li><%= link_to 'Destroy', @landscape, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to 'Destroy', @landscape, confirm: t('S'), method: :delete %></li>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->
@@ -48,7 +48,7 @@
   </tr>
   <tr>
     <td>
-      <%= link_to 'Add scope', new_landscape_scope_path(@landscape) %>
+      <%= link_to t('NewSc'), new_landscape_scope_path(@landscape) %>
     </td>
   </tr>
 </table>

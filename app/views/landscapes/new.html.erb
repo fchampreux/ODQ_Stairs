@@ -1,9 +1,9 @@
-<% provide(:title, (t('Managing') + ' ' + t('Landscapes'))) %>
+<% provide(:title, (t('ManagingLSs'))) %>
 
 <% content_for :page_heading do %>
-    <%= t('New') %> <%= t('Landscape') %>
+    <%= t('NewLS') %>
 <% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', landscapes_path %>
+<%= link_to t('Back'), landscapes_path %>

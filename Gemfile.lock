@@ -192,9 +192,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sequenced (3.1.1)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     sprockets (3.7.0)
@@ -251,11 +248,10 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (= 0.4)
   selenium-webdriver (~> 2.53)
-  sequenced (~> 3.1)
   shoulda-matchers (~> 3.1)
   turbolinks (~> 5.0)
   uglifier (~> 3.0)
   will_paginate (~> 3.1)
 
 BUNDLED WITH
-   1.10.6
+   1.13.0
