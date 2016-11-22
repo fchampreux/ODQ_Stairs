@@ -29,8 +29,8 @@ fr:
   ManagingScs:    "Gérer les Scopes"
   ManagingLSs:    "Gérer les Landcapes"
   ManagingPgs:    "Gérer les Playgrounds"
-  ManagingPLs:    "Gérer les listes de paramètres"
   ManagingPms:    "Gérer les paramètres"
+  ManagingVls:    "Gérer les valeurs"
   ### Page heading
   NewBO:          "Nouvel Objet Métier"
   NewBA:          "Nouveau Domaine Fonctionnel"
@@ -41,12 +41,15 @@ fr:
   NewLS:          "Nouveau Landcape"
   NewPg:          "Nouveau Playground"
   NewPL:          "Nouvelle liste de Paramètres"
+  NewVs:          "Nouvelle liste de Valeurs"
   ### Alerts
   Sure:           "Vous confirmez ?"
   ErrorWarn:      "Validation impossible"
   ### Actions
   QFire:          "Publier vers QFire"
   ImportSkills:   "Importer les colonnes"
+  ImportParams:   "Importer les paramètres"
+  ImportValues:   "Importer les valeurs"
   ### General terms
   BA:             "Domaine fonctionnel"
   BF:             "Flux métier"

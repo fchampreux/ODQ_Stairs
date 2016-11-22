@@ -1,7 +1,7 @@
-<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Values'))) %>
+<% provide(:title, (t('ManagingVs'))) %>
 
 <% content_for :page_heading do %>
-    <%=t('Lists') + ' ' + t('Values')%>
+    <%=t('Values')%>
 <% end %> 
 
 <table class="table table-striped">
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to t('Add'), new_values_list_path %>
+<%= link_to t('NewVs'), new_values_list_path %>

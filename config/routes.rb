@@ -18,6 +18,7 @@ ODQStairs::Application.routes.draw do
 
   resources :parameters_lists do
       resources :parameters
+      resources :parameters_imports, :only=>[:new, :create]
   end
 
   resources :values_lists do

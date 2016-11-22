@@ -16,6 +16,7 @@
 #
 
 class Skill < ActiveRecord::Base
+extend CsvHelper
   
 ### id generation
   self.sequence_name = "objects_seq"
@@ -35,7 +36,7 @@ class Skill < ActiveRecord::Base
 
   ### private functions definitions
   private
-  
+=begin  
   def self.to_csv
     CSV.generate(:col_sep => ";") do |csv| #Could accept a separator option
       csv << column_names
@@ -44,4 +45,5 @@ class Skill < ActiveRecord::Base
       end
     end
   end
+=end  
 end

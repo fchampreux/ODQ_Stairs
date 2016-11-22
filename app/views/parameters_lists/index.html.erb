@@ -1,9 +1,15 @@
-<% provide(:title, (t('ManagingPLs'))) %>
+<% provide(:title, (t('ManagingPms'))) %>
 
 <% content_for :page_heading do %>
     <%= t('ParametersLists')%>
 <% end %> 
 
+    <nav class="top_menu">
+      <ul>
+        <li>Export: <%= link_to "CSV", url_for(format: 'csv') %> | </li>
+        <li><%= link_to "Excel", url_for(format: 'xls') %></li>
+      </ul>
+    </nav>
 
 <table class="table table-striped">
   <thead>
@@ -19,7 +25,7 @@
   </thead>
 
   <tbody>
-    <% @parameters_list.each do |parameters_list| %>
+    <% @parameters_lists.each do |parameters_list| %>
       <tr>
         <td><%= link_to parameters_list.name, parameters_list %></td>
         <td><%= parameters_list.description %></td>
@@ -35,4 +41,4 @@
 
 <br>
 
-<%= link_to t('Add'), new_parameters_list_path %>
+<%= link_to t('NewPm'), new_parameters_list_path %>

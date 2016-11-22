@@ -1,7 +1,7 @@
 <%= form_for(@values_list) do |f| %>
   <% if @values_list.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@values_list.errors.count, "error") %> prohibited this values_list from being saved:</h2>
+      <h2><%= pluralize(@values_list.errors.count, "error") %>: <%= t('ErrorWarn')%></h2>
 
       <ul>
       <% @values_list.errors.full_messages.each do |msg| %>
@@ -13,25 +13,25 @@
 
 
   <div class="row">
-    <div class="col-md-2 text-right">Name:
+    <div class="col-md-2 text-right"><%= t('Name') %>:
     </div>
     <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-2 text-right">Description:
+    <div class="col-md-2 text-right"><%= t('Description') %>:
     </div>
     <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-2 text-right">Managed software:
+    <div class="col-md-2 text-right"><%= t('Software') %>:
     </div>
     <div class="col-md-2 field"><%= f.collection_select :software_id, @softwares_list, :id, :name  %>
     </div>
-    <div class="col-md-2 text-right">Table:
+    <div class="col-md-2 text-right"><%= t('Table') %>:
     </div>
     <div class="col-md-2 field"><%= f.text_field :table_name %>
     </div>

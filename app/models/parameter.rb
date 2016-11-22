@@ -24,7 +24,8 @@
 class Parameter < ActiveRecord::Base
 
 ### id generation
-  self.sequence_name = "objects_seq"
+self.sequence_name = "objects_seq"
+extend CsvHelper
 
 ### scope
 #  Parameter is linked to a list which belongs to the correct scope

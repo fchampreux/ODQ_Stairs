@@ -20,7 +20,8 @@
 
 
 class Value < ActiveRecord::Base
-	
+extend CsvHelper
+
 ### id generation	
   self.sequence_name = "objects_seq"
 

@@ -8,13 +8,26 @@ class ParametersListsController < ApplicationController
   # GET /parameters_list
   # GET /parameters_list.json
   def index
-    @parameters_list = ParametersList.order("name")
+    @parameters_lists = ParametersList.order("name")
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @parameters_lists }
+      format.csv { send_data @parameters_lists.to_csv }
+      format.xls # uses specific template to render xml
+    end
   end
 
   # GET /parameters_list/1
   # GET /parameters_list/1.json
   def show
     ### Retrieved by Callback function
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @parameters_list.parameters }
+      format.csv { send_data @parameters_list.parameters.to_csv }
+      format.xls # uses specific template to render xml
+    end
   end
 
   # GET /parameters_list/new

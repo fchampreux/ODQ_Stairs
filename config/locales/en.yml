@@ -30,6 +30,7 @@ en:
   ManagingLSs:    "Managing Landcapes"
   ManagingPgs:    "Managing Playgrounds"
   ManagingPms:    "Managing Parameters"
+  ManagingVs:     "Managing Values"
   ### Page heading
   NewBO:          "New Business Object"
   NewBA:          "New Business Area"
@@ -40,12 +41,15 @@ en:
   NewLS:          "New Landcape"
   NewPg:          "New Playground"
   NewPm:          "New List of Parameters"
+  NewVs:          "New List of Values"
   ### Alerts
   Sure:           "Are you sure?"
   ErrorWarn:      "Validation is not possible"
   ### Actions
   QFire:          "Push to QFire"
   ImportSkills:   "Import columns"
+  ImportParams:   "Import parameters"
+  ImportValues:   "Import values"
   ### General terms
   BA:             "Business area"
   BF:             "Business flow"
