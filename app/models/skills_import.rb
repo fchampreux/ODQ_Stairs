@@ -19,8 +19,8 @@ class SkillsImport
       imported_skills.each(&:save!)
       true
     else
-      imported_skills.each_with_index do |column, index|
-        column.errors.full_messages.each do |message|
+      imported_skills.each_with_index do |import, index|
+        import.errors.full_messages.each do |message|
           errors.add :base, "Row #{index+2}: #{message}"
         end
       end
@@ -38,11 +38,11 @@ class SkillsImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      column = Skill.find_by_id(row["id"]) || Skill.new
-      column.attributes = row.to_hash
+      import = Skill.find_by_id(row["id"]) || Skill.new
+      import.attributes = row.to_hash
       puts "test"
-      puts column.attributes
-      column
+      puts import.attributes
+      import
     end
   end
 

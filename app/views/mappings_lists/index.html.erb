@@ -1,8 +1,10 @@
-<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
+<% provide(:title, (t('ManagingMaps'))) %>
 
 <% content_for :page_heading do %>
-    <%= t('Lists') + ' ' + t('Mapping') %>
+    <%= t('MappingsList') %>
 <% end %> 
+
+<%= render partial: "shared/simple_export", locals: {this_path: mappings_lists_path, import_path: new_mappings_lists_import_path, import_message: "ImportMaps" }} %>
 
 <table class="table table-striped">
   <thead>

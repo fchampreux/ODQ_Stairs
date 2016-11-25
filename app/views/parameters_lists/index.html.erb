@@ -4,12 +4,8 @@
     <%= t('ParametersLists')%>
 <% end %> 
 
-    <nav class="top_menu">
-      <ul>
-        <li>Export: <%= link_to "CSV", url_for(format: 'csv') %> | </li>
-        <li><%= link_to "Excel", url_for(format: 'xls') %></li>
-      </ul>
-    </nav>
+<%= render partial: "shared/simple_export", locals: {this_path: parameters_lists_path, import_path: new_parameters_lists_import_path, import_message: "ImportPLs" } %>
+
 
 <table class="table table-striped">
   <thead>

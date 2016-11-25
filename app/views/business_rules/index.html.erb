@@ -2,8 +2,8 @@
 
 <%= will_paginate %>
 
-<%= render partial: "shared/simple_export", locals: {this_path: business_rules_path} %>
-
+<%= render partial: "shared/simple_export", locals: {this_path: business_rules_path, import_path: new_business_rules_import_path, import_message: "ImportBRs" } %>
+    
 <%= render partial: "shared/object_index", locals: {this_index: @business_rules} %>
 
 <%= will_paginate %>

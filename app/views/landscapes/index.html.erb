@@ -2,7 +2,7 @@
 
 <%= will_paginate %>
 
-<%= render partial: "shared/simple_export", locals: {this_path: landscapes_path} %>
+<%= render partial: "shared/simple_export", locals: {this_path: landscapes_path, import_path: new_landscapes_import_path, import_message: "ImportLSs" } %>
 
 <%= render partial: "shared/object_index", locals: {this_index: @landscapes} %>
 
