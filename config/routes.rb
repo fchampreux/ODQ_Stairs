@@ -30,7 +30,7 @@ ODQStairs::Application.routes.draw do
   resources :mappings_lists do
       resources :mappings
   end
-#  resources :mappings_lists_imports, :only=>[:new, :create]
+  resources :mappings_lists_imports, :only=>[:new, :create]
 
   resources :business_areas do
       resources :business_flows, :only=>[:new, :create]
@@ -75,12 +75,12 @@ ODQStairs::Application.routes.draw do
   resources :territories do
        resources :territories, :only=>[:new, :create]
   end
-#  resources :territories_imports, :only=>[:new, :create]
+  resources :territories_imports, :only=>[:new, :create]
 
   resources :organisations do
        resources :organisations, :only=>[:new, :create]
   end
-#  resources :organisations_imports, :only=>[:new, :create]
+  resources :organisations_imports, :only=>[:new, :create]
 
   resources :records do
        resources :update_requests, :only=>[:new, :create]

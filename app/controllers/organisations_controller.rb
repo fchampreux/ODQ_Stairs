@@ -12,10 +12,11 @@ class OrganisationsController < ApplicationController
   # GET /organisations.json
   def index
     @organisations = Organisation.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @organisations }
+      format.csv { send_data @organisations.to_csv }
+      format.xls # uses specific template to render xml
     end
   end
 

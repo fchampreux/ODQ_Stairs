@@ -1,10 +1,10 @@
 <% provide(:title, (t('ManagingVs'))) %>
 
 <% content_for :page_heading do %>
-    <%=t('Values')%>
+    <%=t('VLs')%>
 <% end %>
 
-<%= render partial: "shared/simple_export", locals: {this_path: values_lists_path, import_path: new_values_lists_import_path, import_message: "ImportVLs" }} %>
+<%= render partial: "shared/simple_export", locals: {this_path: values_lists_path, import_path: new_values_lists_import_path, import_message: "ImportVLs" } %>
 
 <table class="table table-striped">
   <thead>
@@ -19,7 +19,7 @@
   </thead>
 
   <tbody>
-    <% @values_list.each do |values_list| %>
+    <% @values_lists.each do |values_list| %>
       <tr>
         <td><%= link_to values_list.name, values_list %></td>
         <td class="col_medium"><%= values_list.description %></td>

@@ -4,7 +4,7 @@
     <%= t('MappingsList') %>
 <% end %> 
 
-<%= render partial: "shared/simple_export", locals: {this_path: mappings_lists_path, import_path: new_mappings_lists_import_path, import_message: "ImportMaps" }} %>
+<%= render partial: "shared/simple_export", locals: {this_path: mappings_lists_path, import_path: new_mappings_lists_import_path, import_message: "ImportMaps" } %>
 
 <table class="table table-striped">
   <thead>
@@ -19,7 +19,7 @@
   </thead>
 
   <tbody>
-    <% @mappings_list.each do |mappings_list| %>
+    <% @mappings_lists.each do |mappings_list| %>
       <tr>
         <td><%= link_to mappings_list.name, mappings_list %></td>
         <td><%= mappings_list.description %></td>

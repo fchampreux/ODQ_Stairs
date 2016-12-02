@@ -34,19 +34,21 @@ class BusinessAreasImport
 
   def load_imported_business_areas
     #puts open_spreadsheet.nil?
+    puts "File load"
     spreadsheet = self.open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      column = Skill.find_by_id(row["id"]) || Skill.new
+      column = BusinessArea.find_by_id(row["id"]) || BusinessArea.new
       column.attributes = row.to_hash
-      puts "test"
+
       puts column.attributes
       column
     end
   end
 
   def open_spreadsheet(file)
+    puts "File Import"
     case File.extname(file.original_filename)
     when ".csv" then Roo::CSV.new(file.path, csv_options: {col_sep: ";"})
 #    when ".xls" then Roo::Excel.new(file.path, nil, :ignore)

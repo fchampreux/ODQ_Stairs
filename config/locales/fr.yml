@@ -48,6 +48,7 @@ fr:
   ### Alerts
   Sure:           "Vous confirmez ?"
   ErrorWarn:      "Validation impossible"
+  ImportWarn:     "Importation impossible"
   ImportedBOSks:  "Attributs de l'objectmétier importés avec succès"
   ImportedBAs:    "Domaines fonctionnels importés avec succès"
   ImportedBFs:    "Flux métiers importés avec succès"
@@ -100,10 +101,15 @@ fr:
   Breaches:       "Incidents"
   Mapping:        "Correspondance"
   MappingsList:   "Table de correspondances"
+  MLs:            "Listes de Mappings"
+  Values:         "Valeurs"
+  ValuesList:     "Liste de valeurs"
+  VLs:            "Listes de Valeurs"
   Values:         "Valeurs"
   Configuration:  "Configuration"
   Parameter:      "Paramètre"
   ListOf:         "Liste de"
+  Import:         "Importer"
   ### Header layout
   Sign_out:       "Quitter"
   Sign_in:        "Connexion"

@@ -23,6 +23,7 @@
 
 class Territory < ActiveRecord::Base
 extend SimpleSearch
+extend CsvHelper
 
 ### id generation	
   self.sequence_name = "objects_seq"
@@ -41,7 +42,7 @@ extend SimpleSearch
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
-	validates :playground, presence: true
+#	validates :playground, presence: true
  #       belongs_to :playground									# scopes the odq_object_id calculation
  #       acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name

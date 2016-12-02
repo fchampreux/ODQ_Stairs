@@ -3,7 +3,7 @@ class ValuesListsController < ApplicationController
   before_action :signed_in_user
 
 # Retrieve current list
-  before_action :set_values_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_values_lists, only: [:show, :edit, :update, :destroy]
 
 # Retrieve the list of managed softwares
   before_action :set_softwares_list
@@ -11,13 +11,26 @@ class ValuesListsController < ApplicationController
   # GET /values_list
   # GET /values_list.json
   def index
-    @values_list = ValuesList.pgnd(current_playground).order("name")
+    @values_lists = ValuesList.pgnd(current_playground).order("name")
+      respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @values_lists }
+      format.csv { send_data @values_lists.to_csv }
+      format.xls # uses specific template to render xml
+    end
   end
 
   # GET /values_list/1
   # GET /values_list/1.json
   def show
     ### Retrieved by Callback function
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @values_lists }
+      format.csv { send_data @values_lists.to_csv }
+      format.xls # uses specific template to render xml
+    end
+
   end
 
   # GET /values_list/new
@@ -77,8 +90,8 @@ class ValuesListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
 
-    def set_values_list
-      @values_list = ValuesList.pgnd(current_playground).find(params[:id])
+    def set_values_lists
+      @values_lists = ValuesList.pgnd(current_playground).find(params[:id])
     end
 
     # Never trust values from the scary internet, only allow the white list through.

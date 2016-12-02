@@ -19,8 +19,6 @@
 #  odq_object_id :integer
 #
 
-
-
 class ValuesList < ActiveRecord::Base
 extend CsvHelper
 
@@ -40,7 +38,7 @@ extend CsvHelper
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-	validates :playground, presence: true
+	# validates :playground, presence: true
   #      belongs_to :playground									# scopes the odq_object_id calculation
   #      acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	#validates :playground, presence: true						# validates that the playground exists

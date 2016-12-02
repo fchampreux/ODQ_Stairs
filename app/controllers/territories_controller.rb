@@ -12,10 +12,11 @@ class TerritoriesController < ApplicationController
   # GET /Territories.json
   def index
     @territories = Territory.pgnd(current_playground).search(params[:criteria]).order("hierarchy ASC").paginate(page: params[:page], :per_page => paginate_lines)
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @Territories }
+      format.json { render json: @territories }
+      format.csv { send_data @territories.to_csv }
+      format.xls # uses specific template to render xml
     end
   end
 

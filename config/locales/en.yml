@@ -48,6 +48,7 @@ en:
   ### Alerts
   Sure:           "Are you sure?"
   ErrorWarn:      "Validation is not possible"
+  ImportWarn:     "Import is not possible"
   ImportedBOSks:  "Imported Business Object attributes successfully"
   ImportedBAs:    "Imported Business Areas successfully"
   ImportedBFs:    "Imported Business Flows successfully"
@@ -102,10 +103,14 @@ en:
   Breaches:       "Breaches"
   Mapping:        "Mapping"
   MappingsList:   "Mappings list"
+  MLs:            "Lists of Mappings"
   Values:         "Values"
+  ValuesList:     "Values List"
+  VLs:            "Lists of Values"
   Configuration:  "Configuration"
   ListOf:         "List of"
   Query:          "Query"
+  Import:         "Import"
   ### Header layout
   Sign_out:       "Sign out"
   Sign_in:        "Sign in"

@@ -1,4 +1,4 @@
-class TerritoriesImport
+class ValuesListsImport
   include ActiveModel::Model
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -15,11 +15,11 @@ class TerritoriesImport
   end
 
   def save
-    if imported_territories.map(&:valid?).all?
-      imported_territories.each(&:save!)
+    if imported_values_lists.map(&:valid?).all?
+      imported_values_lists.each(&:save!)
       true
     else
-      imported_territories.each_with_index do |column, index|
+      imported_values_lists.each_with_index do |column, index|
         column.errors.full_messages.each do |message|
           errors.add :base, "Row #{index+2}: #{message}"
         end
@@ -28,17 +28,17 @@ class TerritoriesImport
     end
   end
 
-  def imported_territories
-    @imported_territories ||= load_imported_territories
+  def imported_values_lists
+    @imported_values_lists ||= load_imported_values_lists
   end
 
-  def load_imported_territories
+  def load_imported_values_lists
     #puts open_spreadsheet.nil?
     spreadsheet = self.open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      column = Territory.find_by_id(row["id"]) || Territory.new
+      column = ValuesList.find_by_id(row["id"]) || ValuesList.new
       column.attributes = row.to_hash
       puts "test"
       puts column.attributes

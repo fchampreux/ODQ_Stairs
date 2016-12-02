@@ -20,7 +20,8 @@
 
 
 class MappingsList < ActiveRecord::Base
-  
+extend CsvHelper
+
 ### id generation
   self.sequence_name = "objects_seq"
 
@@ -40,10 +41,10 @@ class MappingsList < ActiveRecord::Base
   validates :created_by , presence: true
   validates :updated_by, presence: true
   validates :playground_id, presence: true  
-	validates :playground, presence: true
+#	validates :playground, presence: true
 #  belongs_to :playground									# scopes the odq_object_id calculation
 #  acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-  validates :playground, presence: true							# validates that the playground exists
+#  validates :playground, presence: true							# validates that the playground exists
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
   belongs_to :source_list, :class_name => "ValuesList", :foreign_key => "source_list_id"	# helps retrieving the source list name
   belongs_to :target_list, :class_name => "ValuesList", :foreign_key => "target_list_id"	# helps retrieving the target list name

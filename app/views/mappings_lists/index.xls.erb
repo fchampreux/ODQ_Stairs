@@ -7,11 +7,11 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-      <% Organisation.column_names.each do |field| %>
+      <% MappingsList.column_names.each do |field| %>
         <Cell><Data ss:Type="String"><%= field %></Data></Cell>
       <% end %>
       </Row>
-    <% @organisations.each do |item| %>
+    <% @mappings_lists.each do |item| %>
       <Row>
       <% item.attributes.values.each do |field| %>
         <Cell><Data ss:Type="String"><%= field %></Data></Cell>

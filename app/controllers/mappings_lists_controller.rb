@@ -14,7 +14,13 @@ class MappingsListsController < ApplicationController
   # GET /mappings_list
   # GET /mappings_list.json
   def index
-    @mappings_list = MappingsList.pgnd(current_playground).order("name")
+    @mappings_lists = MappingsList.pgnd(current_playground).order("name")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @mappings_lists }
+      format.csv { send_data @mappings_lists.to_csv }
+      format.xls # uses specific template to render xml
+    end
   end
 
   # GET /mappings_list/1

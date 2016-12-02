@@ -99,7 +99,7 @@ class BusinessAreasController < ApplicationController
 
   ### strong parameters
   def business_area_params
-    params.require(:business_area).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description)
+    params.require(:business_area).permit(:code, :name, :status_id, :pcf_index, :pcf_reference, :description, :id)
   end
 
 end
