@@ -26,6 +26,7 @@
 
 
 class Mapping < ActiveRecord::Base
+extend CsvHelper
 	
 ### id generation
   self.sequence_name = "objects_seq"	
@@ -49,7 +50,7 @@ before_update :retrieve_target_caption
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-	validates :mapping_list, presence: true
+	validates :mappings_list, presence: true
 #        belongs_to :playground									# scopes the odq_object_id calculation
 #        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 #	validates :playground, presence: true						# validates that the playground exists

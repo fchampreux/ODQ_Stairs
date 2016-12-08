@@ -1,13 +1,13 @@
-<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
+<% provide(:title, t('ManagingMaps')) %>
 
 <% content_for :page_heading do %>
-    <%= t('Configuration') + ' ' + t('Parameter') %>: <%= @mappings_list.name %>
+    <%= t('MappingsList') %>: <%= @mappings_list.name %>
 <% end %> 
 
   <ul class="mid_menu">
     <li><%= link_to 'Edit', edit_mappings_list_path(@mappings_list) %> |</li>
     <li><%= link_to 'Up', mappings_lists_path %> |</li>
-    <li><%= link_to 'Destroy', @mappings_list, confirm: 'Are you sure?', method: :delete %></li>
+    <li><%= link_to 'Destroy', @mappings_list, confirm: t('Sure'), method: :delete %></li>
   </ul>
 
 <!-- <p id="notice"><%= notice %></p> -->
@@ -77,6 +77,17 @@
 
 <!-- Linked Mappings -->
 
+  <div class="row">
+    <div class="col-md-2">
+      Download:
+      <%= link_to "CSV", mappings_list_path(@mappings_list, format: "csv") %> |
+      <%= link_to "Excel", mappings_list_path(@mappings_list, format: "xls") %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to t('ImportSkills'), new_mappings_list_mappings_import_path(@mappings_list) %>
+    </div>
+  </div>
+  
       <table class="table table-striped table-condensed">
         <tr align="left">
       <th>Software</th>
@@ -92,7 +103,7 @@
         </tr>
         <% @mappings_list.mappings.order("source_caption ASC").each do |mapping| %>
         <tr align="left">
-        <td><%= link_to mapping.source_software, mapping %></td>
+        <td><%= mapping.source_software %></td>
         <td><%= mapping.source_table %></td>
         <td><%= mapping.source_code %></td>
         <td><%= mapping.source_caption %></td>

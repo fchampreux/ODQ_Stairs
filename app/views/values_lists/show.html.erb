@@ -100,10 +100,10 @@
         </tr>
         <% @values_list.values.order("name ASC").each do |value| %>
         <tr align="left">
-          <td valign="top"> <%=link_to value.name, edit_value_path(value) %> </td>
+          <td valign="top"> <%=value.name %> </td>
           <td class="col_narrow"> <%=value.value_code%> </td>
           <td class="col_narrow"> <%=value.value_caption%> </td>
-          <td class="col_medium"> <%=link_to value.description, value%> </td>
+          <td class="col_medium"> <%=value.description%> </td>
           <td valign="top"> <%=value.updated_by%> </td>
           <td valign="top"> <%=value.updated_at%> </td>
         </tr>

@@ -7,7 +7,7 @@
 
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <%= form_for (this_import) do |f| %>
+      <%= form_for [parent_object, this_import ] do |f| %>
         <% if this_import.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(this_import.errors.count, t('error')) %> <%=t('ImportWarn')%></h2>

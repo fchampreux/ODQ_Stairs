@@ -38,7 +38,7 @@ extend CsvHelper
 #        belongs_to :playground									# scopes the odq_object_id calculation
 #        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
   belongs_to :values_list
-  validates :valus_list, presence: true
+  validates :values_list, presence: true
 
 ### private functions definitions
   private

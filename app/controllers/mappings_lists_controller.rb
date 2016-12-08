@@ -27,6 +27,12 @@ class MappingsListsController < ApplicationController
   # GET /mappings_list/1.json
   def show
     ### Retrieved by Callback function
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @mappings_list.mappings }
+      format.csv { send_data @mappings_list.mappings.to_csv }
+      format.xls # uses specific template to render xml
+    end
   end
 
   # GET /mappings_list/new

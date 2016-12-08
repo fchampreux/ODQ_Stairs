@@ -1,7 +1,7 @@
-<% provide(:title, (t('Managing') + ' ' + t('Lists') + ' ' + t('Mappings'))) %>
+<% provide(:title, t('ManagingMaps')) %>
 
 <% content_for :page_heading do %>
-    <%= t('Configuration') + ' ' + t('Parameter') %>: <%= @mappings_list.name %>
+    <%= t('MappingsList') %>: <%= @mappings_list.name %>
 <% end %> 
 
 <%= render 'editform' %>

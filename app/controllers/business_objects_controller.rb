@@ -30,7 +30,7 @@ class BusinessObjectsController < ApplicationController
     ### Retrieved by Callback function
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @business_objects }
+      format.json { render json: @business_objects.skills }
       format.csv { send_data @business_object.skills.to_csv }
       format.xls # uses specific template to render xml
     end

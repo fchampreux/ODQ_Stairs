@@ -18,17 +18,20 @@ ODQStairs::Application.routes.draw do
 
   resources :parameters_lists do
       resources :parameters
+      resources :parameters_imports, :only=>[:new, :create]
   end
   resources :parameters_lists_imports, :only=>[:new, :create]
 
   resources :values_lists do
-      resources :values
-      resources :mappings_lists
+      resources :values      
+      resources :values_imports, :only=>[:new, :create]
+#      resources :mappings_lists
   end
   resources :values_lists_imports, :only=>[:new, :create]
 
   resources :mappings_lists do
       resources :mappings
+      resources :mappings_imports, :only=>[:new, :create]
   end
   resources :mappings_lists_imports, :only=>[:new, :create]
 

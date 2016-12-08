@@ -38,7 +38,7 @@ class ParametersImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      column = Skill.find_by_id(row["id"]) || Skill.new
+      column = Parameter.find_by_id(row["id"]) || Parameter.new
       column.attributes = row.to_hash
       puts "test"
       puts column.attributes
