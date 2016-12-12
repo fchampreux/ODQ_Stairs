@@ -31,8 +31,8 @@ extend CsvHelper
 ### before filter
 
 ### validation
-	validates :value_code, length: { maximum: 100 }
-	validates :value_caption, length: { maximum: 100 }
+	validates :code, length: { maximum: 100 }
+	validates :caption, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, presence:true, length: { maximum: 1000 }
 #        belongs_to :playground									# scopes the odq_object_id calculation

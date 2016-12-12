@@ -42,7 +42,7 @@ extend CsvHelper
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
-#        belongs_to :playground									# scopes the odq_object_id calculation
+	belongs_to :playground								
 #        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name

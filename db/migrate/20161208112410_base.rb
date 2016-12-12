@@ -1,9 +1,6 @@
 class Base < ActiveRecord::Migration[5.0]
   def change
-  ### Setup schemas for the db
-    execute "CREATE SCHEMA odq_app AUTHORIZATION odq_app"
-    execute "CREATE SCHEMA odq_dwh AUTHORIZATION odq_app"
-    
+ 
   ### Setup tables
   
     ### Basic business objects
@@ -436,13 +433,13 @@ class Base < ActiveRecord::Migration[5.0]
   ### Tables for data warehouse
     create_table "odq_dwh.dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
       t.integer  "playground_id"
-      t.integer  "odq_object_id",                                             
+      t.integer  "odq_object_id"                                             
       t.integer  "odq_parent_id"
       t.string   "odq_object_name",      limit: 255
       t.string   "odq_object_code",      limit: 255
       t.string   "odq_object_url",       limit: 255
       t.boolean  "is_project_hierarchy"
-      t.integer  "period_id",                                                 
+      t.integer  "period_id"                                                
       t.string   "period_day",           limit: 8
       t.integer  "all_records"
       t.integer  "error_count"
@@ -458,7 +455,7 @@ class Base < ActiveRecord::Migration[5.0]
     end
     
     create_table "odq_dwh.dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
-      t.integer  "playground_id",                 
+      t.integer  "playground_id"                
       t.string   "period",            limit: 6
       t.string   "period_day",        limit: 8
       t.date     "period_date"

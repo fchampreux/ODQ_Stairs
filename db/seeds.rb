@@ -175,8 +175,9 @@ puts "Seeding business rule"
 # IDs from 1 
 if BusinessRule.count == 0
   puts "Creating Business Rules"
-  BusinessRule.create(id: -1, playground_id: -1, business_process_id: -1, business_object_id: -1, rule_type_id: -1, code: 'UNDEFINED', name: 'Undefined business rule', description: 'This business rule is assigned an undefined value' created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  BusinessRule.create(id: -1, playground_id: -1, business_process_id: -1, business_object_id: -1, rule_type_id: -1, code: 'UNDEFINED', name: 'Undefined business rule', description: 'This business rule is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
 # puts "SQL Queries"
+#ActiveRecord::Base.connection.execute("update business_rules set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
 

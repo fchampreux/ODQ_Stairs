@@ -31,7 +31,7 @@ eval:
   database: odq_app_eval
   username: odq_app
   password: odq_app
-  schema_search_path: "odq_app", "odq_dwh"
+  schema_search_path: "odq_app,odq_dwh"
   pool: 5
 
 # INTEGRATION environment
