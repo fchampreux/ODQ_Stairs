@@ -15,6 +15,9 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_objects_id_seq IN
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_processes_id_seq INCREMENT BY 1 START WITH 5000000")
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE landscapes_id_seq INCREMENT BY 1 START WITH 6000000")
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE scopes_id_seq INCREMENT BY 1 START WITH 7000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq INCREMENT BY 1 START WITH 10")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_id_seq INCREMENT BY 1 START WITH 100")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_lists_id_seq INCREMENT BY 1 START WITH 20")
 
 puts "Seeding users"
 if User.count == 0
@@ -129,6 +132,7 @@ if Parameter.count==0
   Parameter.create(id: 46, playground_id: -1,  name: 'String', param_code: 'A', param_value: '1', description: 'String values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
   Parameter.create(id: 47, playground_id: -1,  name: 'Numeric', param_code: 'N', param_value: '2', description: 'Numeric values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
   Parameter.create(id: 48, playground_id: -1,  name: 'Date', param_code: 'D', param_value: '3', description: 'Date values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
+  Parameter.create(id: 49, playground_id: -1,  name: 'Logo splash', param_code: 'D', param_value: 'ODQ_Logo_compact_144.png', description: 'Condensed logo', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
 end
 
 puts "Seeding values lists"
@@ -176,6 +180,29 @@ puts "Seeding business rule"
 if BusinessRule.count == 0
   puts "Creating Business Rules"
   BusinessRule.create(id: -1, playground_id: -1, business_process_id: -1, business_object_id: -1, rule_type_id: -1, code: 'UNDEFINED', name: 'Undefined business rule', description: 'This business rule is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+end
+
+puts "Seeding time scale"
+# IDs from 1 
+if TimeScale.count == 0
+  puts "Creating Initial Date"
+  StartDate = "01/01/2016"
+  calendar_date = StartDate.to_date
+  366.times do 
+  dow = calendar_date.cwday
+  dom = calendar_date.day
+  doy = calendar_date.yday
+  woy = calendar_date.cweek
+  moy = calendar_date.month
+  y = calendar_date.year
+  p_month = calendar_date.strftime("%Y%m")
+  p_day =  calendar_date.strftime("%Y%m%d")
+  p_timestamp = calendar_date.to_datetime
+  TimeScale.create(playground_id: -1, day_of_week: dow, day_of_month: dom, day_of_year: doy, week_of_year: woy, month_of_year: moy, year: y,
+                   period_month: p_month, period_day: p_day, period_date: calendar_date, period_timestamp: p_timestamp,
+                   created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
+  calendar_date += 1
+  end
 end
 
 # puts "SQL Queries"

@@ -252,22 +252,14 @@ class Base < ActiveRecord::Migration[5.0]
 
   ### Parameters and lists
 
-    create_table "time_scales", force: :cascade do |t|
+    create_table "time_scales", id: false, force: :cascade do |t|
       t.integer  "playground_id"
-      t.integer  "day_id"
+      t.primary_key  "period_id"
       t.integer  "day_of_week"
       t.integer  "day_of_month"
       t.integer  "day_of_year"
-      t.integer  "week_id"
-      t.integer  "week_of_month"
       t.integer  "week_of_year"
-      t.integer  "month_id"
       t.integer  "month_of_year"
-      t.integer  "quarter_id"
-      t.integer  "quarter"
-      t.integer  "semester_id"
-      t.integer  "semester"
-      t.integer  "year_id"
       t.integer  "year"
       t.string   "period_month",      limit: 6
       t.string   "period_day",        limit: 8

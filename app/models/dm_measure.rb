@@ -26,6 +26,8 @@
 
 
 class DmMeasure < ActiveRecord::Base
+  self.table_name = "odq_dwh.dm_measures"
+  
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

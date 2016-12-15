@@ -42,7 +42,6 @@ module ParametersHelper
     @complexity_list = Parameter.where("parameters_list_id=?  AND ? BETWEEN active_from AND active_to", list_id, Time.now ) 
   end 
 
-### Ajouter le filtre owner=current_user pour les listes 'user specific'
 # retrieve the assessment feature option
   def display_assessment?
     list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!

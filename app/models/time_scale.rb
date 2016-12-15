@@ -26,4 +26,5 @@
 #
 
 class TimeScale < ActiveRecord::Base
+    self.primary_key = "period_id"
 end
