@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: dim_time
+# Table name: odq_dwh.dim_time
 #
 #  period_id         :integer          not null, primary key
-#  playground_id     :integer          not null
+#  playground_id     :integer
 #  period            :string(6)
 #  period_day        :string(8)
 #  period_date       :date
@@ -29,7 +29,6 @@
 #  updated_at        :datetime         not null
 #  process_id        :integer
 #
-
 
 class DimTime < ActiveRecord::Base
   self.table_name = "odq_dwh.dim_time"

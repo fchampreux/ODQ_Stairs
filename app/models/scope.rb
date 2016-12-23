@@ -12,23 +12,21 @@
 #  territory_level    :integer
 #  business_object_id :integer
 #  hierarchy          :string(255)
-#  created_by         :string(255)
-#  updated_by         :string(255)
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
 #  status_id          :integer
 #  owner_id           :integer
 #  all_records        :integer
 #  bad_records        :integer
 #  score              :integer
-#  odq_unique_id      :integer
-#  odq_object_id      :integer
 #  db_technology      :string(30)
 #  db_connection      :string(200)
 #  db_owner_schema    :string(30)
 #  structure_name     :string(50)
 #  description        :text
 #  sql_query          :text
+#  created_by         :string(255)
+#  updated_by         :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 class Scope < ActiveRecord::Base

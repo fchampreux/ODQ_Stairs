@@ -8,17 +8,15 @@
 #  name          :string(255)
 #  description   :text
 #  hierarchy     :string(255)
-#  created_by    :string(255)
-#  updated_by    :string(255)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
 #  status_id     :integer
 #  owner_id      :integer
 #  all_records   :integer
 #  bad_records   :integer
 #  score         :integer
-#  odq_unique_id :integer
-#  odq_object_id :integer
+#  created_by    :string(255)
+#  updated_by    :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Landscape < ActiveRecord::Base

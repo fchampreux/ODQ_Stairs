@@ -28,19 +28,16 @@
 #  responsible_id     :integer
 #  approver_id        :integer
 #  approved_at        :datetime
-#  created_by         :string(255)
-#  updated_by         :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
 #  record_updated_by  :string(255)
 #  record_updated_at  :datetime
 #  owner_id           :integer
 #  is_identified      :boolean
-#  odq_unique_id      :integer
-#  odq_object_id      :integer
 #  notification_id    :integer
+#  created_by         :string(255)
+#  updated_by         :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
-
 
 #
 

@@ -8,22 +8,22 @@
 
 # Sequences create odq objects without overlap
 puts "Initialise sequences"
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE playgrounds_id_seq INCREMENT BY 1 START WITH 1000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_areas_id_seq INCREMENT BY 1 START WITH 2000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_flows_id_seq INCREMENT BY 1 START WITH 3000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_objects_id_seq INCREMENT BY 1 START WITH 4000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_processes_id_seq INCREMENT BY 1 START WITH 5000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE landscapes_id_seq INCREMENT BY 1 START WITH 6000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE scopes_id_seq INCREMENT BY 1 START WITH 7000000")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq INCREMENT BY 1 START WITH 10")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_id_seq INCREMENT BY 1 START WITH 100")
-ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_lists_id_seq INCREMENT BY 1 START WITH 20")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE playgrounds_id_seq INCREMENT BY 1 MINVALUE 1000000 RESTART WITH 1000000 START WITH 1000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_areas_id_seq INCREMENT BY 1 MINVALUE 2000000 RESTART WITH 2000000 START WITH 2000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_flows_id_seq INCREMENT BY 1 MINVALUE 3000000 RESTART WITH 3000000 START WITH 3000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_objects_id_seq INCREMENT BY 1 MINVALUE 4000000 RESTART WITH 4000000 START WITH 4000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE business_processes_id_seq INCREMENT BY 1 MINVALUE 5000000 RESTART WITH 5000000 START WITH 5000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE landscapes_id_seq INCREMENT BY 1 MINVALUE 6000000 RESTART WITH 6000000 START WITH 6000000")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE scopes_id_seq INCREMENT BY 1 MINVALUE 7000000 RESTART WITH 7000000 START WITH 7000000")
+#ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 10 RESTART WITH 10 START WITH 10")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_id_seq INCREMENT BY 1 MINVALUE 100 RESTART WITH 100 START WITH 100")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_lists_id_seq INCREMENT BY 1 MINVALUE 20 RESTART WITH 20 START WITH 20")
 
 puts "Seeding users"
 if User.count == 0
   puts "Creating first users"
-  User.create( login: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: -1, current_playground_id: -1, current_landscape_id: -1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'support@opendataquality.com')
-  User.create( login: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: -1, current_playground_id: -1, current_landscape_id: -1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'frederic.champreux@opendataquality.com')
+  User.create( login: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1000000, current_playground_id: 1000000, current_landscape_id: -1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'support@opendataquality.com')
+  User.create( login: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: 1000000, current_playground_id: 1000000, current_landscape_id: -1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'frederic.champreux@opendataquality.com')
 end
 
 puts "Seeding playgrounds"
@@ -32,7 +32,7 @@ if Playground.count == 0
   puts "Creating technical Playgrounds"
   Playground.create( id: -1, name: 'Undefined playground', description: 'This playground is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
   Playground.create( id: 0, name: 'Templates playground', description: 'This playground is assigned to templates objects', code: 'TEMPLATES', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Playground.create( id: 1, name: 'Integration playground', description: 'This playground is assigned to integration processes', code: 'INTEGRATION', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Playground.create( id: 1000000, name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 #  Playground.create( name: 'Main playground', description: 'This playground is the default Playground', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 end
 

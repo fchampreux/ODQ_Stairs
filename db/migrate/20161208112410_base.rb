@@ -135,6 +135,7 @@ class Base < ActiveRecord::Migration[5.0]
     
     ### Basic project objects
     create_table "playgrounds", force: :cascade do |t|
+      t.integer  "playground_id"
       t.string   "code",        limit: 255
       t.string   "name",        limit: 255
       t.text     "description"

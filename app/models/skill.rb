@@ -3,16 +3,16 @@
 # Table name: skills
 #
 #  id                 :integer          not null, primary key
-#  name               :string(100)      not null
+#  name               :string(100)
 #  description        :text
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
 #  business_object_id :integer
 #  skill_size         :integer
 #  skill_precision    :integer
 #  skill_type_id      :integer
 #  is_key             :boolean
 #  is_published       :boolean
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 class Skill < ActiveRecord::Base

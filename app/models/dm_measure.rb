@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: dm_measures
+# Table name: odq_dwh.dm_measures
 #
 #  playground_id        :integer
 #  odq_object_id        :integer          not null
@@ -19,11 +19,10 @@
 #  maintenance_cost     :decimal(10, 2)
 #  created_by           :string(255)
 #  updated_by           :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  process_id           :integer
 #
-
 
 class DmMeasure < ActiveRecord::Base
   self.table_name = "odq_dwh.dm_measures"

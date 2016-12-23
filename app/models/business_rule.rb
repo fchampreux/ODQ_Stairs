@@ -4,6 +4,8 @@
 #
 #  id                   :integer          not null, primary key
 #  playground_id        :integer
+#  business_process_id  :integer
+#  business_object_id   :integer
 #  code                 :string(255)
 #  name                 :string(255)
 #  description          :text
@@ -24,20 +26,16 @@
 #  version              :string(255)
 #  approver_id          :integer
 #  approved_at          :datetime
-#  business_process_id  :integer
-#  business_object_id   :integer
-#  created_by           :string(255)
-#  updated_by           :string(255)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
 #  rule_type_id         :integer
 #  severity_id          :integer
 #  complexity_id        :integer
 #  all_records          :integer
 #  bad_records          :integer
 #  score                :integer
-#  odq_unique_id        :integer
-#  odq_object_id        :integer
+#  created_by           :string(255)
+#  updated_by           :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 
 class BusinessRule < ActiveRecord::Base

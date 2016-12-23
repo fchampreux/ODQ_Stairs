@@ -15,15 +15,12 @@
 #  target_code      :string(255)
 #  created_by       :string(255)
 #  updated_by       :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
 #  source_caption   :string(255)
 #  target_caption   :string(255)
 #  owner_id         :integer
-#  odq_unique_id    :integer
-#  odq_object_id    :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
-
 
 class Mapping < ActiveRecord::Base
 extend CsvHelper

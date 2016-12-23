@@ -12,15 +12,13 @@
 #  pcf_reference :string(255)
 #  status_id     :integer
 #  owner_id      :integer
+#  all_records   :integer
+#  bad_records   :integer
+#  score         :integer
 #  created_by    :string(255)
 #  updated_by    :string(255)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  all_records   :integer
-#  bad_records   :integer
-#  score         :integer
-#  odq_unique_id :integer
-#  odq_object_id :integer
 #
 
 class BusinessArea < ActiveRecord::Base
@@ -61,7 +59,7 @@ extend CsvHelper
   ### before filters
     def set_hierarchy
       if BusinessArea.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.001'
+        self.hierarchy = self.playground.hierarchy + '.000'
       else 
         last_one = BusinessArea.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next

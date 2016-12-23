@@ -12,12 +12,9 @@
 #  owner_id       :integer
 #  source_list_id :integer
 #  target_list_id :integer
-#  created_at     :datetime
-#  updated_at     :datetime
-#  odq_unique_id  :integer
-#  odq_object_id  :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
-
 
 class MappingsList < ActiveRecord::Base
 extend CsvHelper

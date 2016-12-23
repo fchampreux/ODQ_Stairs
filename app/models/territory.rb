@@ -9,16 +9,14 @@
 #  description        :text
 #  territory_level    :integer
 #  hierarchy          :string(255)
+#  status_id          :integer
+#  owner_id           :integer
+#  parent_id          :integer
+#  external_reference :string(255)
 #  created_by         :string(255)
 #  updated_by         :string(255)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  status_id          :integer
-#  owner_id           :integer
-#  parent_id          :integer
-#  odq_unique_id      :integer
-#  odq_object_id      :integer
-#  external_reference :string(255)
 #
 
 class Territory < ActiveRecord::Base

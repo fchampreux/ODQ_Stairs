@@ -16,10 +16,8 @@
 #  owner_id           :integer
 #  created_by         :string(255)
 #  updated_by         :string(255)
-#  odq_unique_id      :integer
-#  odq_object_id      :integer
-#  created_at         :datetime
-#  updated_at         :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 require 'spec_helper'

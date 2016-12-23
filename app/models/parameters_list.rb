@@ -7,14 +7,12 @@
 #  code             :string(255)
 #  name             :string(255)
 #  description      :text
-#  created_by       :string(255)
-#  updated_by       :string(255)
 #  owner_id         :integer
 #  is_user_specific :boolean
-#  created_at       :datetime
-#  updated_at       :datetime
-#  odq_unique_id    :integer
-#  odq_object_id    :integer
+#  created_by       :string(255)
+#  updated_by       :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class ParametersList < ActiveRecord::Base

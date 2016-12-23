@@ -168,6 +168,57 @@ ActiveRecord::Schema.define(version: 20161208112410) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
+    t.integer  "playground_id"
+    t.string   "period",            limit: 6
+    t.string   "period_day",        limit: 8
+    t.date     "period_date"
+    t.datetime "period_timestamp"
+    t.integer  "day_of_month"
+    t.integer  "day_of_year"
+    t.integer  "day_number"
+    t.integer  "week_of_month"
+    t.integer  "week_of_year"
+    t.integer  "week_number"
+    t.integer  "month"
+    t.string   "month_name",        limit: 20
+    t.integer  "month_number"
+    t.integer  "trimester_of_year"
+    t.integer  "trimester_number"
+    t.integer  "semester_of_year"
+    t.integer  "semester_number"
+    t.integer  "year"
+    t.integer  "year_number"
+    t.string   "created_by",        limit: 255
+    t.string   "updated_by",        limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "process_id"
+  end
+
+  create_table "dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
+    t.integer  "playground_id"
+    t.integer  "odq_object_id",                                             null: false
+    t.integer  "odq_parent_id"
+    t.string   "odq_object_name",      limit: 255
+    t.string   "odq_object_code",      limit: 255
+    t.string   "odq_object_url",       limit: 255
+    t.boolean  "is_project_hierarchy"
+    t.integer  "period_id",                                                 null: false
+    t.string   "period_day",           limit: 8
+    t.integer  "all_records"
+    t.integer  "error_count"
+    t.decimal  "score",                            precision: 5,  scale: 2
+    t.decimal  "workload",                         precision: 10, scale: 2
+    t.decimal  "added_value",                      precision: 10, scale: 2
+    t.decimal  "maintenance_cost",                 precision: 10, scale: 2
+    t.string   "created_by",           limit: 255
+    t.string   "updated_by",           limit: 255
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.integer  "process_id"
+  end
+
   create_table "landscapes", force: :cascade do |t|
     t.integer  "playground_id"
     t.string   "code",          limit: 255
@@ -285,19 +336,20 @@ ActiveRecord::Schema.define(version: 20161208112410) do
   end
 
   create_table "playgrounds", force: :cascade do |t|
-    t.string   "code",        limit: 255
-    t.string   "name",        limit: 255
+    t.integer  "playground_id"
+    t.string   "code",          limit: 255
+    t.string   "name",          limit: 255
     t.text     "description"
-    t.string   "hierarchy",   limit: 255
+    t.string   "hierarchy",     limit: 255
     t.integer  "status_id"
     t.integer  "owner_id"
     t.integer  "all_records"
     t.integer  "bad_records"
     t.integer  "score"
-    t.string   "created_by",  limit: 255
-    t.string   "updated_by",  limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "created_by",    limit: 255
+    t.string   "updated_by",    limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "scopes", force: :cascade do |t|
