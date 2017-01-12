@@ -30,8 +30,8 @@ puts "Seeding playgrounds"
 # IDs from 1000000 
 if Playground.count == 0
   puts "Creating technical Playgrounds"
-  Playground.create( id: -1, name: 'Undefined playground', description: 'This playground is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Playground.create( id: 0, name: 'Templates playground', description: 'This playground is assigned to templates objects', code: 'TEMPLATES', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Playground.create( id: -1, hierarchy: '-1', name: 'Undefined playground', description: 'This playground is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Playground.create( id: 0, hierarchy: '0', name: 'Templates playground', description: 'This playground is assigned to templates objects', code: 'TEMPLATES', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
   Playground.create( id: 1000000, name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 #  Playground.create( name: 'Main playground', description: 'This playground is the default Playground', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 end
@@ -41,7 +41,10 @@ puts "Seeding landscape"
 if Landscape.count == 0
   puts "Creating technical Landscapes"
   Landscape.create(id: -1, playground_id: -1, name: 'Undefined landscape', description: 'This landscape is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-#  Landscape.create( playground_id: 1000000, name: 'Default landscape', description: 'This landscape is the first landscape of your project', code: 'FIRST', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+# Additional setup - Comment out for real deployment
+  Landscape.create( playground_id: 1000000, name: 'Default landscape', description: 'This landscape is the first landscape of your project', code: 'FIRST', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Landscape.create( playground_id: 1000000, name: 'Audit landscape', description: 'This landscape is created when initialising ODQ application for use as a sand boxe', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+  Landscape.create( playground_id: 1000000, name: 'Item landscape', description: 'This landscape is dedicated to the audit of all processes impacting Item Master Data', code: 'ITEM', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding scope"
@@ -49,19 +52,64 @@ puts "Seeding scope"
 if Scope.count == 0
   puts "Creating technical Scopes"
   Scope.create(id: -1, playground_id: -1, landscape_id: -1, name: 'Undefined scope', description: 'This scope is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+# Additional setup - Comment out for real deployment
 #  Scope.create( playground_id: 1000000, landscape_id: 6000000, name: 'First scope', description: 'This scope is the first scope of your assessments', code: 'FIRST', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Scope.create( playground_id: 1000000, landscape_id: 6000002, name: 'FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
+from APPS.XX_INVENTORY_ITEM_MASTER_V
+where ITEM_TYPE = "FP"
+and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+  Scope.create( playground_id: 1000000, landscape_id: 6000002, name: 'No category Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
+from APPS.XX_INVENTORY_ITEM_MASTER_V
+where ITEM_TYPE = "None"
+and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+  Scope.create( playground_id: 1000000, landscape_id: 6000002, name: 'Not FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
+from APPS.XX_INVENTORY_ITEM_MASTER_V
+where ITEM_TYPE <> "FP"
+and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding organisation"
 if Organisation.count == 0
-  puts "Creating technical Organisations"
+  puts "Creating technical Organisation"
   Organisation.create(id: -1, playground_id: -1, name: 'Undefined organisation', description: 'This organisation is assigned an undefined value', code: 'UNDEFINED', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+# Additional setup - Comment out for real deployment
+  puts "Creating Organisations hierarchy"
+  Organisation.create(id: 1, playground_id: 1000000, name: 'Global organisation', description: 'This organisation is created when initialising ODQ application as the root for organisations hierarchy', code: 'GLOBAL', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+  Organisation.create(id: 2, playground_id: 1000000, name: 'Marketing', description: 'Marketing organisations', code: 'MKT', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Organisation.create(id: 3, playground_id: 1000000, name: 'Sales', description: 'Sales divisions', code: 'SALES', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Organisation.create(id: 4, playground_id: 1000000, name: 'Production', description: 'Production and plants', code: 'PROD', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Organisation.create(id: 5, playground_id: 1000000, name: 'Legal and accounting', description: 'Administration', code: 'ACC', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Organisation.create(id: 6, playground_id: 1000000, name: 'Human resources', description: 'HR department', code: 'HR', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Organisation.create(id: 7, playground_id: 1000000, name: 'Consumer goods', description: 'End customer marketing', code: 'CUS', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 2 )
+  Organisation.create(id: 8, playground_id: 1000000, name: 'Professional', description: 'Professional customer marketing', code: 'PROF', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 2 )
+  Organisation.create(id: 9, playground_id: 1000000, name: 'Hospitals and organisations', description: 'Organisations sales', code: 'DIR', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Organisation.create(id: 10, playground_id: 1000000, name: 'Resalers', description: 'Resalers sales', code: 'RES', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Organisation.create(id: 11, playground_id: 1000000, name: 'Clinical trials', description: 'Internal reseach sales', code: 'INT', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Organisation.create(id: 12, playground_id: 1000000, name: 'Finished goods', description: 'Finished products', code: 'FP', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
+  Organisation.create(id: 13, playground_id: 1000000, name: 'Active Pharmaceuticals Ingredients', description: 'Bulk products', code: 'API', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
+  Organisation.create(id: 14, playground_id: 1000000, name: 'Packaging', description: 'Packaing activity', code: 'PACK', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
 end
 
 puts "Seeding territory"
 if Territory.count == 0
-  puts "Creating technical Territories"
+  puts "Creating technical Territory"
   Territory.create(id: -1, playground_id: -1, name: 'Undefined territory', description: 'This territory is assigned an undefined value', code: 'UNDEFINED', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+# Additional setup - Comment out for real deployment
+  puts "Creating technical Territories hierarchy"
+  Territory.create(id: 1, playground_id: 1000000, name: 'World', description: 'This territory is created when initialising ODQ application as the root for geography hierarchy', code: 'WORLD', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+  Territory.create(id: 2, playground_id: 1000000, name: 'Europe & Middle East', description: 'Europe & Middle East', code: 'EMEA', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Territory.create(id: 3, playground_id: 1000000, name: 'Americas', description: 'Americas', code: 'AME', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Territory.create(id: 4, playground_id: 1000000, name: 'Oceania', description: 'Oceania', code: 'OCEAN', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Territory.create(id: 5, playground_id: 1000000, name: 'Africa', description: 'Africa', code: 'AFRIC', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
+  Territory.create(id: 6, playground_id: 1000000, name: 'Europe', description: 'Europe', code: 'EUR', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 2 )
+  Territory.create(id: 7, playground_id: 1000000, name: 'Middle East', description: 'Middle East', code: 'MEA', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 2 )
+  Territory.create(id: 8, playground_id: 1000000, name: 'North America', description: 'North America', code: 'NAM', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Territory.create(id: 9, playground_id: 1000000, name: 'Latin America', description: 'Latin America', code: 'LAM', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Territory.create(id: 10, playground_id: 1000000, name: 'South America', description: 'South America', code: 'SAM', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 3 )
+  Territory.create(id: 11, playground_id: 1000000, name: 'Australia', description: 'Australia', code: 'AUS', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
+  Territory.create(id: 12, playground_id: 1000000, name: 'Pacific Islands', description: 'Pacific Islands', code: 'PCI', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
+  Territory.create(id: 13, playground_id: 1000000, name: 'North Africa', description: 'North Africa', code: 'NAF', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 5 )
+  Territory.create(id: 14, playground_id: 1000000, name: 'South Africa', description: 'South Africa', code: 'SAF', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 5 )
   end
 
 puts "Seeding parameters lists"
@@ -129,9 +177,9 @@ if Parameter.count==0
   Parameter.create(id: 43, playground_id: -1,  name: 'Traductions Française', param_code: 'Français', param_value: ':fr', description: 'Translation language', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
   Parameter.create(id: 44, playground_id: -1,  name: 'Traduzioni in italiano', param_code: 'Italiano', param_value: ':it', description: 'Translation language', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
   Parameter.create(id: 45, playground_id: -1,  name: 'Übersetzung auf deutsch', param_code: 'Deutsch', param_value: ':de', description: 'Translation language', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
-  Parameter.create(id: 46, playground_id: -1,  name: 'String', param_code: 'A', param_value: '1', description: 'String values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
-  Parameter.create(id: 47, playground_id: -1,  name: 'Numeric', param_code: 'N', param_value: '2', description: 'Numeric values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
-  Parameter.create(id: 48, playground_id: -1,  name: 'Date', param_code: 'D', param_value: '3', description: 'Date values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 9)
+  Parameter.create(id: 46, playground_id: -1,  name: 'String', param_code: 'A', param_value: '1', description: 'String values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
+  Parameter.create(id: 47, playground_id: -1,  name: 'Numeric', param_code: 'N', param_value: '2', description: 'Numeric values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
+  Parameter.create(id: 48, playground_id: -1,  name: 'Date', param_code: 'D', param_value: '3', description: 'Date values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
   Parameter.create(id: 49, playground_id: -1,  name: 'Logo splash', param_code: 'D', param_value: 'ODQ_Logo_compact_144.png', description: 'Condensed logo', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
 end
 
@@ -186,9 +234,9 @@ puts "Seeding time scale"
 # IDs from 1 
 if TimeScale.count == 0
   puts "Creating Initial Date"
-  StartDate = "01/01/2016"
+  StartDate = "01/01/2017"
   calendar_date = StartDate.to_date
-  366.times do 
+  1096.times do 
   dow = calendar_date.cwday
   dom = calendar_date.day
   doy = calendar_date.yday

@@ -42,11 +42,10 @@ extend CsvHelper
 	validates :playground_id, presence: true
 #	validates :playground, presence: true
   belongs_to :playground									
- #       acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-        belongs_to :parent_territory, :class_name => "Territory", :foreign_key => "parent_id"	# helps retrieving the parent name
-        has_many :child_territories, :class_name => "Territory" , :foreign_key => "parent_id"	# link to the child territories
+  belongs_to :parent_territory, :class_name => "Territory", :foreign_key => "parent_id"	# helps retrieving the parent name
+  has_many :child_territories, :class_name => "Territory" , :foreign_key => "parent_id"	# link to the child territories
 
 
 ### private functions definitions
@@ -54,7 +53,7 @@ extend CsvHelper
 
   ### before filters
     def set_code
-      if Territory.count > 0 
+      if Territory.count > 1		#Undefined territory exists, but is a parent for none 
         self.code = self.parent_territory.code + '-' + code
       end
     end 

@@ -99,7 +99,7 @@ class ScopesController < ApplicationController
 
   ### strong parameters
   def scope_params
-    params.require(:scope).permit(:code, :name, :status_id, :description, :load_interface, :SQL_query, :db_technology, :db_connection, :db_owner_schema, :structure_name,)
+    params.require(:scope).permit(:code, :name, :status_id, :description, :load_interface, :sql_query, :db_technology, :db_connection, :db_owner_schema, :structure_name,)
   end
 
   

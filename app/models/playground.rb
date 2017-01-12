@@ -2,20 +2,21 @@
 #
 # Table name: playgrounds
 #
-#  id          :integer          not null, primary key
-#  code        :string(255)
-#  name        :string(255)
-#  description :text
-#  hierarchy   :string(255)
-#  status_id   :integer
-#  owner_id    :integer
-#  all_records :integer
-#  bad_records :integer
-#  score       :integer
-#  created_by  :string(255)
-#  updated_by  :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  playground_id :integer
+#  code          :string(255)
+#  name          :string(255)
+#  description   :text
+#  hierarchy     :string(255)
+#  status_id     :integer
+#  owner_id      :integer
+#  all_records   :integer
+#  bad_records   :integer
+#  score         :integer
+#  created_by    :string(255)
+#  updated_by    :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Playground < ActiveRecord::Base
@@ -44,8 +45,8 @@ extend CsvHelper
 
   ### before filters
     def set_hierarchy
-      if Playground.count == 0 
-        self.hierarchy = '1'
+      if Playground.count == 0 or Playground.count == 1
+        self.hierarchy =  '0'
       else 
         last_one = Playground.maximum("hierarchy")
         self.hierarchy = last_one.next

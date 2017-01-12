@@ -84,6 +84,7 @@ class BusinessObjectsController < ApplicationController
     end
   end
   
+=begin
   # Push to QFire
   def push
     #ToDo : before action : check user is admin
@@ -128,6 +129,7 @@ class BusinessObjectsController < ApplicationController
       end
     end
   end
+=end
 
   # DELETE /business_objects/1
   # DELETE /business_objects/1.json

@@ -10,11 +10,8 @@
     <td>
       <table class="table table-striped table-condensed">
         <tr align="left">
-          <% this_object.business_object.skills.each do |column| %> <!-- PK only -->
-            <th> <%= column %> </th>
-          <% end %>
-          <% this_object.business_object.skills.each do |column| %> <!-- Published columns only -->
-            <th> <%= column %> </th>
+          <% this_object.business_object.skills.where("is_key = true or is_published = true").each do |column| %> <!-- PK and Published only -->
+            <th> <%= column.name %> </th>
           <% end %>
           <th> <%= t('UpdatedBy') %> </th>
           <th> <%= t('UpdatedAt') %> </th>
