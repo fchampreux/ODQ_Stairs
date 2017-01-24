@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20161208112410) do
     t.integer  "process_id"
   end
 
-  create_table "dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
+  create_table "dm_measures", force: :cascade do |t|
     t.integer  "playground_id"
     t.integer  "odq_object_id",                                             null: false
     t.integer  "odq_parent_id"

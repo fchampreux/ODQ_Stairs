@@ -1,165 +1,12 @@
 <!-- This partial renders the charts for various objects -->
 <!-- Series are built by methods available in the views helper -->
 
-<script>
-$(function () { 
-    $('#measures_trend').highcharts({
-        chart: {type: 'column'},
-        title: {text: '<%=t('DQT')%>'},
-        xAxis: { 
-            type: 'datetime',
-            title: {text: 'Time'}
-            },
-        yAxis: {
-            title: {text: 'Score'}
-        },
-       series: [{
-            name: '<%= t('Quality') %>',
-            data: <%= raw scores_chart_series_for(this_object).map { |bp| [ bp.to_f] } %>,
-            pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
-            pointInterval: 24 * 3600 * 1000 // one day
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    var $reporting = $('#reporting');
-    $('#percentage').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 1,//null,
-            plotShadow: false
-        },
-        title: {
-            text: '<%= t('ImpactDQ') %>'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: false,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.options.code}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                },
-                point: {
-                    events: {
-                        click: function () {
-                            location.href = this.options.url;
-                            }
-                    }
-                } 
-            }
-        },
-        series: [{
-            data:  <%= raw errors_chart_series_for(this_object).map { |br| { name: br.name, y: br.error_count.to_f, url: br.url, code: br.code } }.to_json %> ,
-            type: 'pie',
-            name: 'Weight'
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    var $reporting = $('#reporting');
-    $('#added_value').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 1,//null,
-            plotShadow: false
-        },
-        title: {
-            text: '<%= t('ImpactAV') %>'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: false,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.options.code}</b>: {point.y:.1f} €',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                },
-                point: {
-                    events: {
-                        click: function () {
-                            location.href = this.options.url;
-                            }
-                    }
-                } 
-            }
-        },
-        series: [{
-            data:  <%= raw added_value_chart_series_for(this_object).map { |br| { name: br.name, y: br.added_value.to_f, url: br.url, code: br.code } }.to_json %> ,
-            type: 'pie',
-            name: '<%=t('Weight') %>'
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    var $reporting = $('#reporting');
-    $('#workload').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 1,//null,
-            plotShadow: false
-        },
-        title: {
-            text: '<%= t('ImpactWL') %>'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: false,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.options.code}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                },
-                point: {
-                    events: {
-                        click: function () {
-                            location.href = this.options.url;
-                            }
-                    }
-                } 
-            }
-        },
-        series: [{
-            data:  <%= raw workload_chart_series_for(this_object).map { |br| { name: br.name, y: br.workload.to_f, url: br.url, code: br.code } }.to_json %> ,
-            type: 'pie',
-            name: 'Weight'
-        }]
-    });
-});
-</script>
-
-
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
 <!-- Tab content for Measures -->
       <div class="row">
         <div class="col-md-6">
-          <div id="measures_trend" style="width:80%; height:400px;"></div>
+          <div id="progression" style="width:80%; height:400px;"></div>
         </div>
         <div class="col-md-6">
           <div class="tabbable tabs-left">
@@ -170,7 +17,7 @@ $(function () {
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_percentage">
-                <div id="percentage" ></div>
+                <div id="impact" ></div>
               </div>  
               <div class="tab-pane" id="tab_added_value">
                 <div id="added_value" ></div>
@@ -182,42 +29,95 @@ $(function () {
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div id="progression">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div id="impact">
-          </div>
-        </div>
-      </div>
-<!-- End of tab content -->
+      <!-- End of tab content -->
+      
+      
+      <script>
+          // Progression data
+          
+         var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: measure.score}}.to_json.html_safe   %>;
+      // Returns an array of hashes
+      //       var errors = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
 
-<script type="text/javascript">
+         var x = d3.scaleTime()
+          .domain([
+              new Date(Date.parse('<%=history_date.strftime("%Y-%m-%d")%>')),
+              new Date()
+              ])
+          .range([0,500]);
+          
+          var y = d3.scaleLinear()
+          .domain([0,100])
+          .range([0,300]);
+      
+          var xAxis = d3.axisTop(x)
+          .ticks(10);
+          
+          var yAxis = d3.axisRight(y)
+          .ticks(5);
+          
+          var graph =  d3.select('#progression')
+          .append('svg')
+          .attr('width', 650)
+          .attr('height', 400);
+          
+          var bars = graph.selectAll('rect')
+          .data(errors);
+          
+          var newBars = bars.enter();
+          
+    graph.append('g')
+        .attr('class', 'x axis')
+        .attr("transform", "translate(100,50)")
+        .call(xAxis);
+        
+    graph.append('g')
+        .attr('class', 'y axis')
+        .attr("transform", "translate(600,50)")
+        .call(yAxis);
+        
+    newBars.append('rect')
+        .attr("transform", "translate(100,0)")
+        .attr('x',function(d, i) {
+          return x(Date.parse(d.index));})
+        .attr('y',y(20))
+        .attr('height', function(d,i) {
+          return y(d.count);})
+        .attr('width', 20 )
+        .attr('fill', d3.scale.category20());
+             
+      </script>
+      
+      <script>
+        var errors_impact = <%= d3_errors_chart_series_for(this_object).map { |measure| {index: measure.odq_object_id, count: measure.error_count}}.to_json.html_safe %>;
+        
+        var pie = d3.pie()
+            .value(function(d) { return d.count })
 
-var data = [4, 8, 15, 16, 23, 42];
+        var slices = pie(errors_impact);
+        
+        var arc = d3.arc()
+           .innerRadius(0)
+           .outerRadius(150);
 
-var SVGwidth = 600,
-    SVGheight = 400;
+        // helper that returns a color based on an ID
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-var x = d3.scale.linear()
-    .domain([0, d3.max(data)])
-    .range([0, width]);
-
-var chart = d3.select("#progression")
-    .selectAll("svg")
-    .enter().append("svg")
-    .attr("width", SVGwidth)
-    .attr("height", SVGheight);
-
-
-
-</script>
-
-
-<script type="text/javascript">
-
-d3.select("#impact").append("p").text("Impact");
-
-</script>
+          var graph =  d3.select('#impact')
+          .append('svg')
+          .attr('width', 650)
+          .attr('height', 400);
+          
+        var g = graph.append('g')
+        .attr('transform', 'translate(200,200)')
+        
+        g.selectAll('path.slice')
+        .data(slices)
+          .enter()
+            .append('path')
+              .attr('class', 'slice')
+              .attr('d', arc)
+              .attr('fill', function(d) {
+                return color(d.data.index);
+                });
+      </script>

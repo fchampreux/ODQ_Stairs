@@ -1,4 +1,7 @@
 class OrganisationsImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @organisations_import = OrganisationsImport.new
   end

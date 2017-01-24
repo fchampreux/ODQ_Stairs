@@ -231,7 +231,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 0.0)
   capybara (~> 2.7)
   coffee-rails (~> 4.2)
-  d3_rails (~> 4.1)
+  d3_rails
   database_cleaner (~> 1.5)
   factory_girl_rails (~> 4.7)
   httparty (~> 0.14)

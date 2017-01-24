@@ -1,4 +1,7 @@
 class ScopesImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @scopes_import = ScopesImport.new
   end

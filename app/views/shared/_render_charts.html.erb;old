@@ -1,0 +1,221 @@
+<!-- This partial renders the charts for various objects -->
+<!-- Series are built by methods available in the views helper -->
+
+<script>
+$(function () { 
+    $('#measures_trend').highcharts({
+        chart: {type: 'column'},
+        title: {text: '<%=t('DQT')%>'},
+        xAxis: { 
+            type: 'datetime',
+            title: {text: 'Time'}
+            },
+        yAxis: {
+            title: {text: 'Score'}
+        },
+       series: [{
+            name: '<%= t('Quality') %>',
+            data: <%= raw scores_chart_series_for(this_object).map { |bp| [ bp.to_f] } %>,
+            pointStart: <%= 10.days.ago.at_midnight.to_i * 1000 %>,
+            pointInterval: 24 * 3600 * 1000 // one day
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    var $reporting = $('#reporting');
+    $('#percentage').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: '<%= t('ImpactDQ') %>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: false,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.options.code}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.options.url;
+                            }
+                    }
+                } 
+            }
+        },
+        series: [{
+            data:  <%= raw errors_chart_series_for(this_object).map { |br| { name: br.name, y: br.error_count.to_f, url: br.url, code: br.code } }.to_json %> ,
+            type: 'pie',
+            name: 'Weight'
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    var $reporting = $('#reporting');
+    $('#added_value').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: '<%= t('ImpactAV') %>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: false,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.options.code}</b>: {point.y:.1f} €',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.options.url;
+                            }
+                    }
+                } 
+            }
+        },
+        series: [{
+            data:  <%= raw added_value_chart_series_for(this_object).map { |br| { name: br.name, y: br.added_value.to_f, url: br.url, code: br.code } }.to_json %> ,
+            type: 'pie',
+            name: '<%=t('Weight') %>'
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    var $reporting = $('#reporting');
+    $('#workload').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: '<%= t('ImpactWL') %>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: false,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.options.code}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.options.url;
+                            }
+                    }
+                } 
+            }
+        },
+        series: [{
+            data:  <%= raw workload_chart_series_for(this_object).map { |br| { name: br.name, y: br.workload.to_f, url: br.url, code: br.code } }.to_json %> ,
+            type: 'pie',
+            name: 'Weight'
+        }]
+    });
+});
+</script>
+
+
+<!-- Tab content for Measures -->
+      <div class="row">
+        <div class="col-md-6">
+          <div id="measures_trend" style="width:80%; height:400px;"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_percentage" data-toggle="tab"><%= t('Percentage') %> </a></li>
+              <li><a href="#tab_added_value" data-toggle="tab"><%= t('AddedValue') %> </a></li>
+              <li><a href="#tab_workload" data-toggle="tab"><%= t('Workload') %> </a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_percentage">
+                <div id="percentage" ></div>
+              </div>  
+              <div class="tab-pane" id="tab_added_value">
+                <div id="added_value" ></div>
+              </div>  
+              <div class="tab-pane" id="tab_workload">
+                <div id="workload" ></div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="progression">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="impact">
+          </div>
+        </div>
+      </div>
+<!-- End of tab content -->
+
+
+<script type="text/javascript">
+    // Drawing progression
+    var daysDisplayed = 10, maxYValue = 100;
+    var x = d3.scaleLinear()
+    .domain([-daysDisplayed,0])
+    .range([0,200]);
+    var y = d3.scaleLinear()
+    .domain([0,maxYValue])
+    .range([0,400]);
+    var xAxis = d3.axisTop(x)
+    .ticks(daysDisplayed);
+    var svg =  d3.select("#progression").append("svg")
+    .attr('width', 300) // set its dimentions
+    .attr('height', 150);
+    
+    svg.append('g')            // create a <g> element
+    .attr('class', 'x axis')   // specify classes
+    .call(xAxis); 
+   
+    d3.select("#progression").append("p").text("Progression");
+    // Drawing progression
+    d3.select("#impact").append("p").text("Impact");
+
+</script>

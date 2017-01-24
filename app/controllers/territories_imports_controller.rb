@@ -1,4 +1,7 @@
 class TerritoriesImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @territories_import = TerritoriesImport.new
   end

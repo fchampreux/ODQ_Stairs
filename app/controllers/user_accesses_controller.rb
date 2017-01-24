@@ -1,4 +1,7 @@
 class UserAccessesController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   # GET /user_accesses
   # GET /user_accesses.json
   def index

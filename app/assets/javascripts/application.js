@@ -16,7 +16,6 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require datepicker_helper
-//= require highcharts
 //= require d3
 //= require nested_form_fields
 //= require_tree .

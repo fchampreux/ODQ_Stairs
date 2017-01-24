@@ -1,4 +1,7 @@
 class BusinessAreasImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @business_areas_import = BusinessAreasImport.new
   end

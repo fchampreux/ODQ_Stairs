@@ -1,4 +1,7 @@
 class MappingsImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @mappings_list = MappingsList.find(params[:mappings_list_id]) 
     @mappings_import = MappingsImport.new

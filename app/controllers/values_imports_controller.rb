@@ -1,4 +1,7 @@
 class ValuesImportsController < ApplicationController
+  # Check for active session 
+  before_action :signed_in_user
+  
   def new
     @values_list = ValuesList.find(params[:values_list_id]) 
     @values_import = ValuesImport.new

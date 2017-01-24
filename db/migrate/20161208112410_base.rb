@@ -424,7 +424,7 @@ class Base < ActiveRecord::Migration[5.0]
 
 
   ### Tables for data warehouse
-    create_table "odq_dwh.dm_measures", primary_key: ["odq_object_id", "period_id"], force: :cascade do |t|
+    create_table "odq_dwh.dm_measures", force: :cascade do |t|
       t.integer  "playground_id"
       t.integer  "odq_object_id"                                             
       t.integer  "odq_parent_id"
@@ -442,9 +442,10 @@ class Base < ActiveRecord::Migration[5.0]
       t.decimal  "maintenance_cost",                 precision: 10, scale: 2
       t.string   "created_by",           limit: 255
       t.string   "updated_by",           limit: 255
-
-      t.timestamps null: false
       t.integer  "process_id"
+      
+      t.timestamps null: false
+
     end
     
     create_table "odq_dwh.dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
@@ -470,9 +471,9 @@ class Base < ActiveRecord::Migration[5.0]
       t.integer  "year_number"
       t.string   "created_by",        limit: 255
       t.string   "updated_by",        limit: 255
-                          
-      t.timestamps null: false                          
       t.integer  "process_id"
+      
+      t.timestamps null: false 
     end
 
 
