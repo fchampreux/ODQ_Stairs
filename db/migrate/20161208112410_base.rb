@@ -437,9 +437,9 @@ class Base < ActiveRecord::Migration[5.0]
       t.integer  "all_records"
       t.integer  "error_count"
       t.decimal  "score",                            precision: 5,  scale: 2
-      t.decimal  "workload",                         precision: 10, scale: 2
-      t.decimal  "added_value",                      precision: 10, scale: 2
-      t.decimal  "maintenance_cost",                 precision: 10, scale: 2
+      t.decimal  "workload",                         precision: 15, scale: 2
+      t.decimal  "added_value",                      precision: 15, scale: 2
+      t.decimal  "maintenance_cost",                 precision: 15, scale: 2
       t.string   "created_by",           limit: 255
       t.string   "updated_by",           limit: 255
       t.integer  "process_id"

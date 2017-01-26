@@ -22,9 +22,9 @@ module ViewsHelper
     
     image_file = case measured_score
       when -1 then grey_image     
-      when red_threshold..yellow_threshold then red_image 
-      when yellow_threshold..green_threshold then yellow_image
-      else green_image
+      when 0..green_threshold then green_image
+      when green_threshold..yellow_threshold then yellow_image 
+      else red_image
     end
     return image_file
   end
@@ -46,9 +46,12 @@ module ViewsHelper
 
   ### extract object's children errors chart series
   def d3_errors_chart_series_for(current_object)
-    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score > 0", 18,1000000).where("odq_object_id <> odq_parent_id").select("odq_object_id, odq_object_name as name, odq_object_code as code, error_count, odq_object_url as url")
+    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score > 0", current_period_id, current_object.id).
+    where("odq_object_id <> odq_parent_id").
+    select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
   end
-  
+
+=begin  
     ### extract object's children added value chart series
   def added_value_chart_series_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
@@ -62,6 +65,7 @@ module ViewsHelper
     current_period_id = TimeScale.where("period_day = ?", current_period_day).take.period_id
     measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).where("odq_object_id <> odq_parent_id").select("odq_object_id as id, odq_object_name as name, odq_object_code as code, workload, odq_object_url as url")
   end
+=end
 
 end
 

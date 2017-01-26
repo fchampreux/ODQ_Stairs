@@ -47,7 +47,7 @@
           .range([0,500]);
           
           var y = d3.scaleLinear()
-          .domain([0,100])
+          .domain([0,20])
           .range([0,300]);
       
           var xAxis = d3.axisTop(x)
@@ -66,6 +66,8 @@
           
           var newBars = bars.enter();
           
+          var color = d3.scaleOrdinal(d3.schemeCategory10);
+          
     graph.append('g')
         .attr('class', 'x axis')
         .attr("transform", "translate(100,50)")
@@ -77,19 +79,26 @@
         .call(yAxis);
         
     newBars.append('rect')
-        .attr("transform", "translate(100,0)")
+        .attr("transform", "translate(90,0)")
         .attr('x',function(d, i) {
           return x(Date.parse(d.index));})
-        .attr('y',y(20))
+        .attr('y',50)
         .attr('height', function(d,i) {
           return y(d.count);})
         .attr('width', 20 )
-        .attr('fill', d3.scale.category20());
+        .attr('fill', color());
              
       </script>
       
       <script>
-        var errors_impact = <%= d3_errors_chart_series_for(this_object).map { |measure| {index: measure.odq_object_id, count: measure.error_count}}.to_json.html_safe %>;
+        var errors_impact = <%= d3_errors_chart_series_for(this_object).
+        map { |measure| {index: measure.odq_object_id,
+            code: measure.odq_object_code,
+            name: measure.odq_object_name,
+            count: measure.error_count,
+            cost: measure.added_value,
+            workload: measure.workload,
+            url: measure.odq_object_url }}.to_json.html_safe %>;
         
         var pie = d3.pie()
             .value(function(d) { return d.count })
