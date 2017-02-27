@@ -1,29 +1,22 @@
 <!-- This partial renders the charts for various objects -->
 <!-- Series are built by methods available in the views helper -->
 
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
 <!-- Tab content for Measures -->
       <div class="row">
         <div class="col-md-6">
-          <div id="progression"></div>
+          <div id="progression" class="svg-container"></div>
         </div>
         <div class="col-md-6">
-          <div id="impact"></div>
+          <div id="impact" class="svg-container"></div>
         </div>
       </div>
       <!-- End of tab content -->
       
       
       <script> // Draws a bar graph in the progression element
-      
-      // Progression data
-          
-         var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: measure.score}}.to_json.html_safe   %>;
-      // Returns an array of hashes
-      //       var errors = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
-
-      function drawChart(){
-
-      // graph size and position
+            // graph size and position
       var posSize = document.getElementById('progression').getBoundingClientRect();
       var posX = posSize.left;
       var posY = posSize.top;
@@ -35,28 +28,35 @@
       var yRange = 300;
       var xTics = <%= date_excursion %>;
       var yTics = 5;
+      
+      // Progression data
+          
+         var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: measure.score}}.to_json.html_safe   %>;
+      // Returns an array of hashes
+      //       var errors = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
 
          var x = d3.scaleTime()
           .domain([
               new Date(Date.parse('<%=history_date.strftime("%Y-%m-%d")%>')),
               new Date()
               ])
-          .range([0, posWidth - margin * 3]);
+          .range([0,500]);
           
           var y = d3.scaleLinear()
-          .domain([0,yDomain])
+          .domain([0,20])
           .range([0,300]);
       
           var xAxis = d3.axisTop(x)
-          .ticks(xTics);
+          .ticks(10);
           
           var yAxis = d3.axisRight(y)
-          .ticks(yTics);
+          .ticks(5);
           
           var graph =  d3.select('#progression')
           .append('svg')
-          .attr('width', posWidth - margin)
-          .attr('height', 400);
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "0 0 700 400")
+          .classed("svg-content", true);
           
           var bars = graph.selectAll('rect')
           .data(errors);
@@ -67,45 +67,34 @@
           
     graph.append('g')
         .attr('class', 'x axis')
-        .attr("transform", "translate(" + margin + ",80)")
+        .attr("transform", "translate(100,80)")
         .call(xAxis);
         
     graph.append('g')
         .attr('class', 'y axis')
-        .attr("transform", "translate(" + (posWidth - margin * 2) + ",80)")
+        .attr("transform", "translate(600,80)")
         .call(yAxis);
         
     newBars.append('rect')
-        .attr("transform", "translate(" + (margin - 20) + ",30)")
+        .attr("transform", "translate(80,30)")
         .attr('x',function(d, i) {
           return x(Date.parse(d.index));})
         .attr('y',50)
         .attr('height', function(d,i) {
           return y(d.count);})
-        .attr('width', posWidth / 20 )
+        .attr('width', 40 )
         .attr('fill', color());
              
     graph.append('g')
          .attr('transform', 'translate(300,40)')
          .append('text')
          .text('Trend for the last days');
-
+         
     graph.append('g')
-         .attr('transform', 'translate(' + (posWidth - margin * 1.3) + ',300)')
+         .attr('transform', 'translate(640,300)')
          .append('text')
          .text('Incident percentage')         
-         .attr("transform", "rotate(-90)" );         
-      }
-      
-      drawChart(); // first drawing
-      
-      function redrawChart() {
-        d3.select('svg').remove();
-        drawChart();
-      }
-      
-      // Redraw based on the new size whenever the browser window is resized.
-      d3.select(window).on('resize', redrawChart);
+         .attr("transform", "rotate(-90)" );
          
       </script>
       
@@ -134,8 +123,9 @@
 
           var graph =  d3.select('#impact')
           .append('svg')
-          .attr('width', 650)
-          .attr('height', 400);
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "0 0 700 400")
+          .classed("svg-content", true);
           
         var g = graph.append('g')
         .attr('transform', 'translate(200,200)');
@@ -143,11 +133,7 @@
         g.selectAll('path.slice')
         .data(slices)
           .enter()
-              .append('a')
-              .attr("xlink:href", function(d) {
-                return ( d.data.url);
-                })
-              .append('path')
+            .append('path')
               .attr('class', 'slice')
               .attr('d', arc)
               .attr('fill', function(d) {
