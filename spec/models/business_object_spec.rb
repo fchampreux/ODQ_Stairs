@@ -44,7 +44,7 @@ RSpec.describe BusinessObject, type: :model do
     it { should validate_presence_of(:code) }
     it { should validate_presence_of(:hierarchy) }
     it { should have_one(:scope)}
-
+	end
   describe 'It can be created'
   it 'has a valid factory' do
     expect(build(:business_object)).to be_valid
@@ -52,7 +52,7 @@ RSpec.describe BusinessObject, type: :model do
   it 'is invalid without a name' do
     expect(build(:business_object, name: nil)).to_not be_valid
   end
-end
+
 ###B.OBJECT5 to test that fields are checked for unicity
 #  describe "when business object is duplicated" do
 #    before do
