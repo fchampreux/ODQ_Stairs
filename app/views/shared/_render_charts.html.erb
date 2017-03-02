@@ -7,6 +7,19 @@
           <div id="progression"></div>
         </div>
         <div class="col-md-6">
+	  <form action="#" method="post" id="MeasureForm">
+	  <fieldset id="SetMeasure">
+            <legend>Impact from hierarchy</legend>
+            <p>Select measure:
+              <label><input type="radio" name="measure" value="Percentage" checked="checked" /> Percentage</label>
+              <label><input type="radio" name="measure" value="Cost" /> Cost</label>
+              <label><input type="radio" name="measure" value="Workload" /> Workload</label>
+	    </p>
+            <p>
+              <label>Selected: <input type="text" name="Selection" value="?" readonly="readonly" /></label>
+	    </p>
+	  </fieldset>
+	  </form>
           <div id="impact"></div>
         </div>
       </div>
@@ -107,6 +120,20 @@
       // Redraw based on the new size whenever the browser window is resized.
       d3.select(window).on('resize', redrawChart);
          
+      </script>
+
+      <script>
+	// get list of radio buttons with name 'measure'
+	//var measures = document.getElementById("SetMeasure").elements["measure"];
+	var measures = document.forms["MeasureForm"].elements["measure"];
+	//console.log(measures.length);
+	
+	// loop through list
+	for (var i=0, len=measures.length; i<len; i++) {
+		measures[i].onclick = function() {// assign onclick handler function to each
+		// put clicked radio button's value in Selection field
+		document.getElementById("SetMeasure").elements.Selection.value = this.value;     };
+	       }
       </script>
       
       <script>  // Draws a pie chart in the impact element
