@@ -240,9 +240,9 @@ DEPENDENCIES
   jbuilder (~> 2.6)
   jquery-rails (~> 4.1)
   nested_form_fields
-  pg (~> 0.18)
+  pg
   rails (~> 5.0)
-  rails_12factor (~> 0.0)
+  rails_12factor
   roo
   rspec-rails (~> 3.5)
   ruby-oci8 (~> 2.2)

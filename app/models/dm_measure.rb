@@ -15,9 +15,9 @@
 #  all_records          :integer
 #  error_count          :integer
 #  score                :decimal(5, 2)
-#  workload             :decimal(10, 2)
-#  added_value          :decimal(10, 2)
-#  maintenance_cost     :decimal(10, 2)
+#  workload             :decimal(15, 2)
+#  added_value          :decimal(15, 2)
+#  maintenance_cost     :decimal(15, 2)
 #  created_by           :string(255)
 #  updated_by           :string(255)
 #  created_at           :datetime         not null

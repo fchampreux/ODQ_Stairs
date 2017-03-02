@@ -21,111 +21,36 @@
 #  updated_at    :datetime         not null
 #
 
-# Model copied from technical specifications
-# Name		Description			Type	Size	Mandatory	Unique 	Accessible	Validation		Domain
-# PLAYGROUND_ID	Playground ownership		integer			Y				Playground exists		
-# ID		Unique id			integer			Y	Y				
-# NAME		Name of the Business Area	varchar	100		Y	Y	Y			
-# DESCRIPTION	Description			text						
-# CODE		Organisation's codification	varchar	30		Y		Y			
-# HIERARCHY	Hierarchical index		varchar	30		Y	Y	Y			
-# pcf_INDEX	PCF Index			varchar	30			Y			
-# pcf_REFERENCE	Reference in the PCF		varchar	30			Y			
-# OWNER_ID	Owner of the Business Area	integer			Y		Y		Users list	
-# STATUS_ID	Status of the Business Area	integer			Y		Y		Statuses list	
-# CREATED_AT	Creation date			timestamp		Y					
-# UPDATED_AT	Update date			timestamp		Y					
-# CREATED_BY	User who created		char	30		Y					
-# UPDATED_BY	User who updated		char	30		Y					
+require 'rails_helper'
 
-require 'spec_helper'
-
-describe "Business Area model validation: " do
-
-  before do
-    @business_area = BusinessArea.new(playground_id: 0, name: "TEST BUSINESS AREA", description: "Example of Business Area", code: "BA-1", 
-	hierarchy: "1-1-0", pcf_index: "1.1.0", pcf_reference: "B-5", owner_id: 1, status_id: 1, created_by: "Fred", updated_by: "Fred")
+RSpec.describe BusinessArea, type: :model do
+	
+  describe 'Validations'
+  subject {FactoryGirl.build(:business_area)}
+    it { should validate_presence_of(:playground_id) }
+    it { should validate_presence_of(:owner_id) }
+    it { should validate_presence_of(:status_id) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:code) }
+    it { should validate_presence_of(:hierarchy) }
+		it {should validate_length_of(:name).is_at_least(2)}
+		
+  describe 'It can be created'
+  it 'has a valid factory' do
+    expect(build(:business_area)).to be_valid
   end
-
-  subject { @business_area }
-
-###B.AREA2 to test that B. Area mandatory fields are present in the model
-  describe "Availability of mandatory fields" do
-    it { should respond_to(:playground_id) }
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:status_id) }
-    it { should respond_to(:name) }
-    it { should respond_to(:code) }
-    it { should respond_to(:hierarchy) }
-
-    it {should be_valid}
-
-  end
-
-###B.AREA3 to test that mandatory fields are tested for null values
-  describe "when playground_id is not present" do
-    before { @business_area.playground_id = " " }
-    it { should_not be_valid }
-  end
-  describe "when name is not present" do
-    before { @business_area.name = " " }
-    it { should_not be_valid }
-  end
-  describe "when code is not present" do
-    before { @business_area.code = " " }
-    it { should_not be_valid }
-  end
-  describe "when hierarchy is not present" do
-    before { @business_area.hierarchy = " " }
-    it { should_not be_valid }
-  end
-  describe "when owner_id is not present" do
-    before { @business_area.owner_id = " "}
-    it { should_not be_valid }
-  end
-  describe "when status_id is not present" do
-    before { @business_area.status_id = " " }
-    it { should_not be_valid }
-  end
-  describe "when created_by is not present" do
-    before { @business_area.created_by = " " }
-    it { should_not be_valid }
-  end
-  describe "when updated_by is not present" do
-    before { @business_area.updated_by = " " }
-    it { should_not be_valid }
-  end
-
-###B.AREA4 to test that fields are tested for length
-  describe "when name is longer than 100" do
-    before { @business_area.name = "a" * 101 }
-    it { should_not be_valid }
-  end
-  describe "when code is longer than 30" do
-    before { @business_area.code = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when hierarchy is longer than 30" do
-    before { @business_area.hierarchy = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when pcf_index is longer than 30" do
-    before { @business_area.pcf_index = "a" * 31 }
-    it { should_not be_valid }
-  end
-  describe "when pcf_reference is longer than 30" do
-    before { @business_area.pcf_reference = "a" * 31 }
-    it { should_not be_valid }
+  it 'is invalid without a name' do
+    expect(build(:business_area, name: nil)).to_not be_valid
   end
 
 ###B.AREA5 to test that fields are checked for unicity
-  describe "when business Area is duplicated" do
-    before do
-      @business_area_duplicate = @business_area.dup
-      @business_area_duplicate.save!
-    end
-    it {should_not be_valid}
-  end
-
-
+#  describe "when business Area is duplicated" do
+#    before do
+#      @business_area_duplicate = @business_area.dup
+#      @business_area_duplicate.save!
+#    end
+#    it {should_not be_valid}
+#  end
 end
+
+

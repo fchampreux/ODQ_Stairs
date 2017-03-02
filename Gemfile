@@ -21,20 +21,21 @@ gem 'iconv'
 #gem 'smarter_csv', '~> 1.1'
 gem 'roo'
 gem 'nested_form_fields'
-
+gem 'pg'
+  
 group :doc do
   gem 'sdoc', '0.4', require: false
 end
 
 # gem for dev and test only
 group :development, :test, :eval do
-  gem 'pg', '~> 0.18'
   gem 'annotate', '~> 2.7'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7'
   gem 'capybara', '~> 2.7'
   gem 'database_cleaner', '~> 1.5'
+  gem 'selenium-webdriver', '~> 2.53'
 end
 
 # gem for SQLServer POC
@@ -52,8 +53,7 @@ end
 
 # gem for production
 group :production do
-  gem 'rails_12factor', '~> 0.0'
-  gem 'pg', '~> 0.18'
+  gem 'rails_12factor'
 end
 
 
