@@ -33,9 +33,6 @@ class Scope < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### id generation
-  self.sequence_name = "objects_seq"
-
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

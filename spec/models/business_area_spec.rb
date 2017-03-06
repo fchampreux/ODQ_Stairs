@@ -32,7 +32,6 @@ RSpec.describe BusinessArea, type: :model do
     it { should validate_presence_of(:status_id) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:code) }
-    it { should validate_presence_of(:hierarchy) }
 		it {should validate_length_of(:name).is_at_least(2)}
 		
   describe 'It can be created'

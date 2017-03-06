@@ -42,9 +42,6 @@ class BusinessRule < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### id generation
-  self.sequence_name = "objects_seq"
-
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
@@ -63,7 +60,6 @@ extend CsvHelper
 	validates :business_object_id, presence: true
 	validates :business_process, presence: true
   belongs_to :playground
- #       acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
 	belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"		# helps retrieving the approver name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name

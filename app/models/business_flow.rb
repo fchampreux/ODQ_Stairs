@@ -26,9 +26,6 @@ class BusinessFlow < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### id generation
-  self.sequence_name = "objects_seq"
-
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
@@ -37,7 +34,7 @@ extend CsvHelper
   before_create :set_hierarchy
 
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
-	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
@@ -49,7 +46,6 @@ extend CsvHelper
 	validates :pcf_reference, length: { maximum: 30 }
 	validates :business_area, presence: true
   belongs_to :playground								
-  #      acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_area

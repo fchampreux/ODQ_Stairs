@@ -20,9 +20,6 @@
 #
 
 class Parameter < ActiveRecord::Base
-
-### id generation
-self.sequence_name = "objects_seq"
 extend CsvHelper
 
 ### scope
@@ -39,9 +36,7 @@ extend CsvHelper
 	validates :active_from, presence: true
 	validates :active_to, presence: true
 	validates :parameters_list, presence: true
-  #      belongs_to :playground									# scopes the odq_object_id calculation
-  #      acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
-        belongs_to :parameters_list
+  belongs_to :parameters_list
 
 ### private functions definitions
   private

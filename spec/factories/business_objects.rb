@@ -26,9 +26,8 @@
 #FactoryGirl.factories.clear
 FactoryGirl.define do
   factory :business_object do
-    id                  0
-    business_area_id    1
-    playground_id       1
+    business_area_id    -1
+    playground_id       1000000
     name                "Test Business Object"
     code                "TEST_BO"
     description         "This is a test Business object used for unit testing"

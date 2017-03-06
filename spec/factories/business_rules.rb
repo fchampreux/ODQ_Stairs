@@ -38,40 +38,22 @@
 #  updated_at           :datetime         not null
 #
 
-require 'rails_helper'
 
-RSpec.describe BusinessRule, type: :model do
-  
-  describe 'Validations'
-  subject {FactoryGirl.build(:business_rule)}
-    it { should respond_to(:playground_id) }
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:business_object_id) }
-    it { should respond_to(:business_process_id) }
-    it { should respond_to(:status_id) }
-    it { should respond_to(:name) }
-    it { should respond_to(:code) }
-    it { should respond_to(:hierarchy) }
-
-
-  describe 'It can be created'
-  it 'has a valid factory' do
-    expect(build(:business_rule)).to be_valid
-  end
-  it 'is invalid without a name' do
-    expect(build(:business_rule, name: nil)).to_not be_valid
-  end
-  
-  
-=begin
-###B.PROCESS5 to test that fields are checked for unicity
-  describe "when business process is duplicated" do
-    before do
-      @business_process_duplicate = @business_process.dup
-      @business_process_duplicate.save!
+#FactoryGirl.factories.clear
+FactoryGirl.define do
+  factory :business_rule do
+    business_process_id  -1
+    business_object_id   -1
+    playground_id       1000000
+    name                "Test Business Rule"
+    code                "TEST_BP"
+    description         "This is a test Business rule used for unit testing"
+    created_by          "Fred"
+    updated_by          "Fred"
+    hierarchy           "1.0"
+#    session_id          "TestRun-01"
+    owner_id            1
+    status_id           0
     end
-    it {should_not be_valid}
-  end
-=end
 
 end

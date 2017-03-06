@@ -27,9 +27,6 @@ class BusinessObject < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### id generation
-  self.sequence_name = "objects_seq"
-
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
@@ -48,13 +45,11 @@ extend CsvHelper
   validates :business_area_id, presence: true
 	validates :business_area, presence: true
   belongs_to :playground
-#  acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
   belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
   belongs_to :business_area
   has_many :business_rules
   has_many :skills, :inverse_of => :business_object, :dependent => :destroy
-#  has_many :skills_imports
   belongs_to :main_scope, :class_name => "Scope", :foreign_key => "main_scope_id"
   accepts_nested_attributes_for :skills, :reject_if => :all_blank, :allow_destroy => true
 

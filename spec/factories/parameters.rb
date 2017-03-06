@@ -23,17 +23,13 @@
 
 FactoryGirl.define do
   factory :parameter do
-    playground_id 1
-    is_list false
-    parent_list_id 1
-    code "MyString"
-    name "MyString"
-    description "MyText"
-    parameter_index 1
-    parameter_caption "MyString"
-    active_from "2013-10-12 16:37:46"
-    active_to "2013-10-12 16:37:46"
-    created_by "MyString"
-    updated_by "MyString"
+    playground_id             -1
+    parameters_list_id        -1
+    name                      "Test Parameter"
+    description               "This is a Test Parameter for unit testing"
+    active_from               "2001-01-01"
+    active_to                 "2100-01-01"
+    created_by "Fred"
+    updated_by "Fred"
   end
 end

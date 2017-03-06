@@ -18,23 +18,18 @@
 class Value < ActiveRecord::Base
 extend CsvHelper
 
-### id generation	
-  self.sequence_name = "objects_seq"
-
 ### scope
 #  Value is linked to a list which belongs to the correct scope
 
 ### before filter
 
 ### validation
-	validates :code, length: { maximum: 100 }
-	validates :caption, length: { maximum: 100 }
-	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :description, presence:true, length: { maximum: 1000 }
-#        belongs_to :playground									# scopes the odq_object_id calculation
-#        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+  validates :code, length: { maximum: 100 }
+  validates :caption, length: { maximum: 100 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+  validates :description, presence:true, length: { maximum: 1000 }
+  validates :values_list_id, presence: true
   belongs_to :values_list
-  validates :values_list, presence: true
 
 ### private functions definitions
   private
