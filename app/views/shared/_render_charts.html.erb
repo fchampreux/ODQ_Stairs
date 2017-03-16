@@ -4,7 +4,10 @@
 <!-- Tab content for Measures -->
       <div class="row">
         <div class="col-md-6">
-          <div id="progression"></div>
+	  <fieldset>
+            <legend>Trend for the last days</legend>
+	  </fieldset>
+        <div id="progression"></div>
         </div>
         <div class="col-md-6">
 	  <form action="#" method="post" id="MeasureForm">
@@ -15,9 +18,7 @@
               <label><input type="radio" name="measure" value="Cost" /> Cost</label>
               <label><input type="radio" name="measure" value="Workload" /> Workload</label>
 	    </p>
-            <p>
-              <label>Selected: <input type="text" name="Selection" value="?" readonly="readonly" /></label>
-	    </p>
+<!--            <label>Selected: <input type="text" name="Selection" value="?" readonly="readonly" /></label> -->
 	  </fieldset>
 	  </form>
           <div id="impact"></div>
@@ -97,11 +98,6 @@
           return y(d.count);})
         .attr('width', posWidth / 20 )
         .attr('fill', color());
-             
-    graph.append('g')
-         .attr('transform', 'translate(300,40)')
-         .append('text')
-         .text('Trend for the last days');
 
     graph.append('g')
          .attr('transform', 'translate(' + (posWidth - margin * 1.3) + ',300)')
@@ -133,7 +129,7 @@
 		measures[i].onclick = function() {// assign onclick handler function to each
 		// put clicked radio button's value in Selection field
 		document.getElementById("SetMeasure").elements.Selection.value = this.value;     };
-	       }
+ 	       }
       </script>
       
       <script>  // Draws a pie chart in the impact element
@@ -192,9 +188,4 @@
                .attr('fill', function(d) { return color(d.data.index); })
                .attr('y', function(d, i) { return 20 * (i + 1); });
                
-        graph.append('g')
-         .attr('transform', 'translate(120,30)')
-         .append('text')
-         .text('Impact from hierarchy');
-
       </script>
