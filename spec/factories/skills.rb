@@ -16,18 +16,14 @@
 #
 
 FactoryGirl.define do
-  factory :column do
-    id                  0
-    business_object_id  0
-    playground_id       1
-    name                "test_column"
-    description         "This is a test column used for unit testing"
-    column_type         "VARCHAR"
-    size                100
+  factory :skill do
+    business_object_id  -1
+    name                "Test Skill"
+    description         "This is a test skill used for unit testing"
+    skill_type_id       -1
+    skill_size          100
     is_key              false
-    created_by          "Fred"
-    updated_by          "Fred"
-    session_id          "TestRun-01"
+    is_published              false
     end
 
 end

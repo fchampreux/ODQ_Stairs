@@ -29,39 +29,21 @@
 #  updated_at         :datetime         not null
 #
 
-require 'rails_helper'
 
-RSpec.describe Scope, type: :model do
-  
-  describe 'Validations'
-  subject {FactoryGirl.build(:scope)}
-    it { should respond_to(:playground_id) }
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:landscape_id) }
-    it { should respond_to(:status_id) }
-    it { should respond_to(:name) }
-    it { should respond_to(:code) }
-    it { should respond_to(:hierarchy) }
-
-
-  describe 'It can be created'
-  it 'has a valid factory' do
-    expect(build(:scope)).to be_valid
-  end
-  it 'is invalid without a name' do
-    expect(build(:scope, name: nil)).to_not be_valid
-  end
-  
-  
-=begin
-###B.PROCESS5 to test that fields are checked for unicity
-  describe "when business process is duplicated" do
-    before do
-      @business_process_duplicate = @business_process.dup
-      @business_process_duplicate.save!
+#FactoryGirl.factories.clear
+FactoryGirl.define do
+  factory :scope do
+    playground_id       1000000
+    landscape_id        -1
+    name                "Test Scope"
+    code                "TEST_SC"
+    description         "This is a test Scope used for unit testing"
+    created_by          "Fred"
+    updated_by          "Fred"
+    hierarchy           "1.0"
+#    session_id          "TestRun-01"
+    owner_id            1
+    status_id           0
     end
-    it {should_not be_valid}
-  end
-=end
 
 end

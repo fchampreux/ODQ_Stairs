@@ -22,25 +22,21 @@
 #  updated_at       :datetime         not null
 #
 
-require 'rails_helper'
 
-RSpec.describe BusinessFlow, type: :model do
-
-  describe 'Validations'
-  subject {FactoryGirl.build(:business_flow)}
-    it { should validate_presence_of(:playground_id) }
-    it { should validate_presence_of(:owner_id) }
-    it { should validate_presence_of(:status_id) }
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:code) }
-		it {should validate_length_of(:name).is_at_least(2)}
-		
-  describe 'It can be created'
-  it 'has a valid factory' do
-    expect(build(:business_flow)).to be_valid
-  end
-  it 'is invalid without a name' do
-    expect(build(:business_flow, name: nil)).to_not be_valid
-  end
-
+#FactoryGirl.factories.clear
+FactoryGirl.define do
+  factory :business_flow do
+    id                  0
+    playground_id       1000000
+    business_area_id    -1
+    name                "Test Business Flow"
+    code                "TEST_BF"
+    description         "This is a test Business Flow used for unit testing"
+    created_by          "Fred"
+    updated_by          "Fred"
+    hierarchy           "1.0"
+#    session_id          "TestRun-01"
+    owner_id            1
+    status_id           0
+    end
 end

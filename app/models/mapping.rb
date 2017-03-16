@@ -24,9 +24,6 @@
 
 class Mapping < ActiveRecord::Base
 extend CsvHelper
-	
-### id generation
-  self.sequence_name = "objects_seq"	
 
 ### scope
 #  Mapping is linked to a list which belongs to the correct scope
@@ -47,11 +44,9 @@ before_update :retrieve_target_caption
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :playground_id, presence: true
-	validates :mappings_list, presence: true
-#        belongs_to :playground									# scopes the odq_object_id calculation
-#        acts_as_sequenced scope: :playground_id, column: :odq_object_id				#
+	validates :mappings_list_id, presence: true
 #	validates :playground, presence: true						# validates that the playground exists
-        belongs_to :mappings_list
+  belongs_to :mappings_list
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 
 ### private functions definitions

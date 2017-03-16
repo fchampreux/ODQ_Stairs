@@ -31,20 +31,17 @@ RSpec.describe BusinessObject, type: :model do
   
   describe 'Validations'
   subject {FactoryGirl.build(:business_object)}
-  it {should validate_presence_of(:name)}
-  it {should validate_length_of(:name).is_at_least(2)}
-
-###B.OBJECT2 to test that B. object mandatory fields are present in the model
-  describe "Availability of mandatory fields" do
+		it {should validate_presence_of(:name)}
+		it {should validate_length_of(:name).is_at_least(2)}
     it { should validate_presence_of(:playground_id) }
     it { should validate_presence_of(:owner_id) }
 #    it { should validate_presence_of(:business_process_id) }
     it { should validate_presence_of(:status_id) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:code) }
-    it { should validate_presence_of(:hierarchy) }
-    it { should have_one(:scope)}
-	end
+#    it { should validate_presence_of(:hierarchy) }
+#    it { should have_one(:scope)}
+
   describe 'It can be created'
   it 'has a valid factory' do
     expect(build(:business_object)).to be_valid

@@ -17,9 +17,6 @@
 
 class Skill < ActiveRecord::Base
 extend CsvHelper
-  
-### id generation
-  self.sequence_name = "objects_seq"
 
 ### scope
 #  Skill is linked to a business object which belongs to the correct scope
@@ -30,9 +27,9 @@ extend CsvHelper
   validates :name, presence: true, length: {minimum: 2}
   validates :skill_type_id, presence: true
   validates :skill_size, presence: true
+  validates :business_object_id, presence: true
   belongs_to :skill_type, :class_name => "Parameter", :foreign_key => "skill_type_id"	# helps retrieving the status name
   belongs_to :business_object
-  validates :business_object, presence: true
 
   ### private functions definitions
   private

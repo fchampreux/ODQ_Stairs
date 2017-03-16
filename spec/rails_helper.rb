@@ -69,7 +69,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  #Database_cleaner gem integration (Fred 2015-11-26)
+=begin  #Database_cleaner gem integration (Fred 2015-11-26)
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -85,4 +85,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+=end
 end

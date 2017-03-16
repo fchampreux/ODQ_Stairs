@@ -23,13 +23,8 @@ RSpec.describe Skill, type: :model do
   subject {FactoryGirl.build(:skill)}
   it {should validate_presence_of(:name)}
   it {should validate_length_of(:name).is_at_least(2)}
-  it {should validate_presence_of(:column_type)} 
-  it {should validate_presence_of(:size)}
-#  it {should validate_presence_of(:is_key)}
-  it {should validate_presence_of(:created_by)}  
-  it {should validate_presence_of(:updated_by)}
-  it {should validate_presence_of(:session_id)}
-  it {should validate_presence_of(:playground_id)}
+  it {should validate_presence_of(:skill_type_id)}
+  it {should validate_presence_of(:skill_size)}
   it {should validate_presence_of(:business_object_id)}
   it {should belong_to(:business_object)}
 
