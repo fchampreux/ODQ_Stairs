@@ -74,10 +74,9 @@
           
         var bars = graph.selectAll('rect')
           .data(errors);
-
-        var labels = graph.selectAll('text')
-          .data(errors);
-					    
+          
+        var newBars = bars.enter();
+          
         var color = d3.scaleOrdinal(d3.schemeCategory10);
           
 				graph.append('g')
@@ -90,8 +89,7 @@
 					.attr("transform", "translate(" + (posWidth - margin * 2) + ",80)")
 					.call(yAxis);
 					
-				bars.enter()
-					.append('rect')
+				newBars.append('rect')
 					.attr("transform", "translate(" + (margin - 20) + ",30)")
 					.attr('x',function(d, i) {
 						return x(Date.parse(d.index));})
@@ -100,20 +98,6 @@
 						return y(d.count);})
 					.attr('width', posWidth / 20 )
 					.attr('fill', color());
-					
-				labels.enter()
-					.append('text')
-					.attr("transform", "translate(" + (margin) + ",75)")
-					.text(function(d) {
-						return d.count + '%';})
-					.attr("text-anchor", "middle")
-					.attr('x',function(d, i) {
-						return x(Date.parse(d.index));})
-					.attr('y', function(d,i) {
-						return y(d.count);})
-					.attr("font-family", "sans-serif")
-			    .attr("font-size", "11px")
-			    .attr("fill", "white");
 	
 				graph.append('g')
 					 .attr('transform', 'translate(' + (posWidth - margin * 1.3) + ',300)')
