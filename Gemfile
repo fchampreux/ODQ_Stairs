@@ -22,7 +22,8 @@ gem 'iconv'
 gem 'roo'
 gem 'nested_form_fields'
 gem 'pg'
-  
+gem 'devise'
+
 group :doc do
   gem 'sdoc', '0.4', require: false
 end

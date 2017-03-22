@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208112410) do
+ActiveRecord::Schema.define(version: 20170322132512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,59 @@ ActiveRecord::Schema.define(version: 20161208112410) do
     t.string   "updated_by",           limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "dim_time", primary_key: "period_id", id: :integer, force: :cascade do |t|
+    t.integer  "playground_id"
+    t.string   "period",            limit: 6
+    t.string   "period_day",        limit: 8
+    t.date     "period_date"
+    t.datetime "period_timestamp"
+    t.integer  "day_of_month"
+    t.integer  "day_of_year"
+    t.integer  "day_number"
+    t.integer  "week_of_month"
+    t.integer  "week_of_year"
+    t.integer  "week_number"
+    t.integer  "month"
+    t.string   "month_name",        limit: 20
+    t.integer  "month_number"
+    t.integer  "trimester_of_year"
+    t.integer  "trimester_number"
+    t.integer  "semester_of_year"
+    t.integer  "semester_number"
+    t.integer  "year"
+    t.integer  "year_number"
+    t.string   "created_by",        limit: 255
+    t.string   "updated_by",        limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "process_id"
+  end
+
+  create_table "dm_measures", id: :integer, default: -> { "nextval('dm_business_id_seq'::regclass)" }, force: :cascade do |t|
+    t.integer  "playground_id"
+    t.integer  "odq_object_id",                                             null: false
+    t.integer  "odq_parent_id"
+    t.string   "odq_object_name",      limit: 255
+    t.string   "odq_object_code",      limit: 255
+    t.string   "odq_object_url",       limit: 255
+    t.boolean  "is_project_hierarchy"
+    t.integer  "period_id",                                                 null: false
+    t.string   "period_day",           limit: 8
+    t.integer  "all_records"
+    t.integer  "error_count"
+    t.decimal  "score",                            precision: 5,  scale: 2
+    t.decimal  "workload",                         precision: 15, scale: 2
+    t.decimal  "added_value",                      precision: 15, scale: 2
+    t.decimal  "maintenance_cost",                 precision: 15, scale: 2
+    t.string   "created_by",           limit: 255
+    t.string   "updated_by",           limit: 255
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.integer  "process_id"
+    t.index ["odq_object_id", "period_id"], name: "dm_measures_akey", unique: true, using: :btree
+    t.index ["odq_parent_id", "period_id"], name: "dm_measures_ak1", using: :btree
   end
 
   create_table "landscapes", force: :cascade do |t|
@@ -381,23 +434,41 @@ ActiveRecord::Schema.define(version: 20161208112410) do
     t.integer  "default_playground_id"
     t.integer  "current_playground_id"
     t.integer  "current_landscape_id"
-    t.string   "directory_id",          limit: 255
-    t.string   "login",                 limit: 255
-    t.string   "email",                 limit: 255
-    t.string   "first_name",            limit: 255
-    t.string   "last_name",             limit: 255
-    t.string   "name",                  limit: 255
+    t.string   "directory_id",           limit: 255
+    t.string   "login",                  limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "name",                   limit: 255
     t.string   "language"
     t.text     "description"
     t.datetime "active_from"
     t.datetime "active_to"
     t.boolean  "is_admin"
-    t.string   "password_digest",       limit: 255
-    t.string   "remember_token",        limit: 255
-    t.string   "created_by",            limit: 255
-    t.string   "updated_by",            limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "password_digest",        limit: 255
+    t.string   "remember_token",         limit: 255
+    t.string   "created_by",             limit: 255
+    t.string   "updated_by",             limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                              default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",                    default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "values", force: :cascade do |t|
