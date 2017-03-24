@@ -1,6 +1,6 @@
 class BusinessRulesController < ApplicationController
 # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current business rule
   before_action :set_business_rule, only: [:show, :edit, :update, :destroy]

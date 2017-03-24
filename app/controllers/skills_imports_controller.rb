@@ -1,6 +1,6 @@
 class SkillsImportsController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   def new
     @business_object = BusinessObject.find(params[:business_object_id]) 

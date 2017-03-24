@@ -1,6 +1,6 @@
 class DataPoliciesController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   # GET /data_policies
   # GET /data_policies.json

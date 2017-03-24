@@ -1,6 +1,6 @@
 class MappingsListsController < ApplicationController
 # Check for active session  
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current current mapping
   before_action :set_mappings_list, only: [:show, :edit, :update, :destroy]

@@ -1,6 +1,6 @@
 class MappingsListsImportsController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   def new
     @mappings_lists_import = MappingsListsImport.new

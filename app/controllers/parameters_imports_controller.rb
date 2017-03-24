@@ -1,6 +1,6 @@
 class ParametersImportsController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   def new
     @parameters_list = ParametersList.find(params[:parameters_list_id]) 

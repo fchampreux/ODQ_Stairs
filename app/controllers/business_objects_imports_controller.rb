@@ -1,6 +1,6 @@
 class BusinessObjectsImportsController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   def new
     @business_objects_import = BusinessObjectsImport.new

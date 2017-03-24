@@ -1,6 +1,6 @@
 class ValuesListsController < ApplicationController
 # Check for active session  
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current list
   before_action :set_values_list, only: [:show, :edit, :update, :destroy]

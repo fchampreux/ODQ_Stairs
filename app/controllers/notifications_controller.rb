@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current notification
   before_action :set_notification, only: [:show, :edit, :update, :destroy]

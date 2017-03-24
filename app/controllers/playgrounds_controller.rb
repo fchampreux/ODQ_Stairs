@@ -1,6 +1,6 @@
 class PlaygroundsController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current playground
   before_action :set_playground, only: [:show, :edit, :update, :destroy]

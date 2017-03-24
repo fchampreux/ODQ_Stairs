@@ -1,6 +1,6 @@
 class BusinessFlowsController < ApplicationController
 # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current business flow
   before_action :set_business_flow, only: [:show, :edit, :update, :destroy]

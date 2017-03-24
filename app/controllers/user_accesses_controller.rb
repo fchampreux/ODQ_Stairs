@@ -1,6 +1,6 @@
 class UserAccessesController < ApplicationController
   # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
   
   # GET /user_accesses
   # GET /user_accesses.json

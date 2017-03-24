@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 # Check for active session as administrator
-  before_action :signed_in_user
+  before_action :authenticate_user!
   before_action :signed_as_admin
 
 # Retrieve current business flow

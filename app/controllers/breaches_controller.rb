@@ -1,6 +1,6 @@
 class BreachesController < ApplicationController
 # Check for active session 
-  before_action :signed_in_user
+  before_action :authenticate_user!
 
 # Retrieve current breach
   before_action :set_breach, only: [:show, :edit, :update, :destroy]

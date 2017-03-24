@@ -13,9 +13,9 @@ ODQStairs::Application.routes.draw do
   root to: "dashboards#home"
 
 #routes
-  resources :sessions, only: [:new, :create, :destroy]  
-  get '/signin',  to: 'sessions#new'	, via: :get
-  match '/signout', to: 'sessions#destroy', via: :delete
+  #resources :sessions, only: [:new, :create, :destroy]  
+  #get '/signin',  to: 'sessions#new'	, via: :get
+  #match '/signout', to: 'sessions#destroy', via: :delete
 
   resources :parameters_lists do
       resources :parameters

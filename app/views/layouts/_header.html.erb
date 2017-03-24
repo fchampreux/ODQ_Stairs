@@ -9,11 +9,11 @@
           <div class="col-md-12">
             <nav class="top_menu">
               <ul>
-                <% if signed_in? %>
+                <% if user_signed_in? %>
                   <li> <%= t('User') %>: <%= current_login %> | </li>
-                  <li> <%= link_to t('Sign_out'), signout_path, method: "delete" %> | </li>
+                  <li> <%= link_to t('Sign_out'), new_user_session_path, method: "delete" %> | </li>
                 <% else %>
-                  <li> <%= link_to t('Sign_in'), signin_path %> | </li>
+                  <li> <%= link_to t('Sign_in'), destroy_user_session_path %> | </li>
                 <% end %>
                   <li> <%= link_to t('Help'), "#" %> </li>
               </ul>
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <% if signed_in? %>
+  <% if user_signed_in? %>
   <div class="navbar navbar-default">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
