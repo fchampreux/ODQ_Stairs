@@ -2,28 +2,44 @@
 #
 # Table name: users
 #
-#  id                    :integer          not null, primary key
-#  playground_id         :integer
-#  default_playground_id :integer
-#  current_playground_id :integer
-#  current_landscape_id  :integer
-#  directory_id          :string(255)
-#  login                 :string(255)
-#  email                 :string(255)
-#  first_name            :string(255)
-#  last_name             :string(255)
-#  description           :text
-#  active_from           :datetime
-#  active_to             :datetime
-#  is_admin              :boolean
-#  password_digest       :string(255)
-#  remember_token        :string(255)
-#  created_by            :string(255)
-#  updated_by            :string(255)
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  name                  :string(255)
-#  language              :string
+#  id                     :integer          not null, primary key
+#  playground_id          :integer
+#  default_playground_id  :integer
+#  current_playground_id  :integer
+#  current_landscape_id   :integer
+#  directory_id           :string(255)
+#  login                  :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  name                   :string(255)
+#  language               :string
+#  description            :text
+#  active_from            :datetime
+#  active_to              :datetime
+#  is_admin               :boolean
+#  password_digest        :string(255)
+#  remember_token         :string(255)
+#  created_by             :string(255)
+#  updated_by             :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
 #
 
 class User < ActiveRecord::Base
@@ -34,7 +50,7 @@ class User < ActiveRecord::Base
   
   before_save :email_format
   before_save :name_update
-  before_create :create_remember_token
+  # before_create :create_remember_token
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :playground_id, presence: true
@@ -51,7 +67,6 @@ class User < ActiveRecord::Base
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
 
-  has_secure_password
   validates :password, length: { minimum: 6 }
   
   def User.new_remember_token

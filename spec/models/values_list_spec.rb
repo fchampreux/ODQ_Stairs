@@ -1,25 +1,20 @@
 # == Schema Information
 #
-# Table name: mappings
+# Table name: values_lists
 #
-#  id               :integer          not null, primary key
-#  playground_id    :integer
-#  mappings_list_id :integer
-#  source_software  :string(255)
-#  source_table     :string(255)
-#  source_value_id  :string(255)
-#  source_code      :string(255)
-#  target_software  :string(255)
-#  target_table     :string(255)
-#  target_value_id  :string(255)
-#  target_code      :string(255)
-#  created_by       :string(255)
-#  updated_by       :string(255)
-#  source_caption   :string(255)
-#  target_caption   :string(255)
-#  owner_id         :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id            :integer          not null, primary key
+#  playground_id :integer
+#  code          :string(255)
+#  name          :string(255)
+#  description   :text
+#  owner_id      :integer
+#  table_name    :string(255)
+#  software_id   :integer
+#  software_name :string(255)
+#  created_by    :string(255)
+#  updated_by    :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 require 'rails_helper'
