@@ -1,5 +1,6 @@
 module SessionsHelper
 
+=begin
   def sign_in(user)
     remember_token = User.new_remember_token
     cookies.permanent[:remember_token] = remember_token
@@ -24,7 +25,7 @@ module SessionsHelper
     self.current_user = nil
     cookies.delete(:remember_token)
   end
-
+=end
   def current_playground
     current_user.current_playground_id
   end

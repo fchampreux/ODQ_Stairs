@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   before_save :email_format
   before_save :name_update
   # before_create :create_remember_token
-
+=begin
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :playground_id, presence: true
   validates :default_playground_id, presence: true
@@ -62,11 +62,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
-  validates :password_digest, length: { maximum: 100 }
-  validates :remember_token, length: { maximum: 100 }
+#  validates :password_digest, length: { maximum: 100 }
+#  validates :remember_token, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
-
+=end
   validates :password, length: { minimum: 6 }
   
   def User.new_remember_token
