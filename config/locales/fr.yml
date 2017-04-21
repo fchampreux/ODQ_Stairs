@@ -34,6 +34,7 @@ fr:
   ManagingMaps:   "Gérer les Associations"
   ManagingOrgs:   "Gérer les Organisations"
   ManagingTers:   "Gérer les Territoires"
+  Registration:   "Inscription"
   ### Page heading
   NewBO:          "Nouvel Objet Métier"
   NewBA:          "Nouveau Domaine Fonctionnel"
@@ -66,6 +67,7 @@ fr:
   ImportedTers:   "Territoires importés avec succès"
   ImportedMaps:   "Associations importées avec succès"
   ImportUsage:    "Un fichier CSV ou Excel peut être importé. La première ligne doit contenir les noms des colonnes. La meilleure façon de concevoir un jeu de données correct pour l'import est de se baser sur un fichier d'export du même objet."
+  BlankPass:      "Note : laissez le mot de passe vide si vous ne souhaitez pas le changer."
 ### Actions
   QFire:          "Publier vers QFire"
   ImportSkills:   "Importer les colonnes"
