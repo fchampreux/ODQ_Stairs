@@ -142,5 +142,11 @@ module ParametersHelper
     list_id = ParametersList.where("code=?", 'LIST_OF_DATA_TYPES').take!
     @data_types_list = Parameter.where("parameters_list_id=? AND ? BETWEEN active_from AND active_to", list_id, Time.now )
   end
+
+# retrieve the list of languages
+  def set_languages_list
+    list_id = ParametersList.where("code=?", 'LIST_OF_LANGUAGES').take!
+    @languages_list = Parameter.where("parameters_list_id=? AND ? BETWEEN active_from AND active_to", list_id, Time.now )
+  end
   
 end

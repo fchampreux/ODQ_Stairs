@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 # Check for active session as administrator
   before_action :authenticate_user!
   before_action :signed_as_admin
-
+  before_action :set_languages_list, only: [:new, :edit, :update, :create]
+  
 # Retrieve current business flow
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -48,9 +49,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.playground_id = current_user.current_playground_id
-    @user.current_playground_id = current_user.current_playground_id
-    @user.default_playground_id = current_user.current_playground_id
 
     respond_to do |format|
       if @user.save
@@ -113,7 +111,7 @@ class UsersController < ApplicationController
 
   ### strong parameters
   def user_params
-    params.require(:user).permit(:login, :first_name, :last_name, :directory, :active_from, :active_to, :is_admin, :email, :language, :description, :password, :password_confirmation)
+    params.require(:user).permit(:login, :first_name, :last_name, :directory_id, :active_from, :active_to, :is_admin, :email, :language, :description, :password, :password_confirmation)
   end
 
 end

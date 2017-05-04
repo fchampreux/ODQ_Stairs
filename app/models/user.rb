@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
   
+  before_create :set_default_values
   before_save :email_format
   before_save :name_update
-  # before_create :create_remember_token
 =begin
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :playground_id, presence: true
@@ -62,13 +62,12 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
-#  validates :password_digest, length: { maximum: 100 }
-#  validates :remember_token, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
 =end
-  validates :password, length: { minimum: 6 }
-  
+#  validates :password, length: { minimum: 6 }
+
+=begin  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -76,15 +75,21 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
+=end
 
 ### private functions definitions
   private
 
   ### before filters
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
+    def set_default_values
+      self.playground_id = 1000000
+      self.default_playground_id = 1000000
+      self.current_playground_id = 1000000
+#      self.current_landscape_id = 1000000
+      self.active_from = Time.now
+      self.active_to = Time.now
     end
-
+      
     def email_format
       self.email = email.downcase 
     end
