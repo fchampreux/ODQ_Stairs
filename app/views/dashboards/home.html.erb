@@ -4,7 +4,7 @@
   <%= @playground_measured.name %>: <%= t('Dashboard')%>
 <% end %>
 
-<h2><%= @current_user.last_name %></h2>
+<h2><%= @current_user.name %></h2>
 
   <div id="measures">
     <%= render partial: "shared/render_charts", locals: {this_object: @playground_measured} %>
