@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :signed_as_admin
   before_action :set_languages_list, only: [:new, :edit, :update, :create]
   
-# Retrieve current business flow
+# Retrieve current user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
