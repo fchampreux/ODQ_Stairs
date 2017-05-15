@@ -173,21 +173,6 @@
         var g = graph.append('g')
 					.attr('transform', 'translate(200,200)');
         
-/*        g.selectAll('path.slice')
-					.data(slices)
-						.enter()
-								.append('a')
-								.attr("xlink:href", function(d) {
-									return ( d.data.url);
-									})
-								.append('path')
-								.attr('class', 'slice')
-								.attr('d', arc)
-								.each(function(d) { this._current = d; }) 
-								.attr('fill', function(d) {
-									return color(d.data.index);
-									});
- */
 				var path = g.datum(errors_impact).selectAll("path")
 									    .data(pie)
 										  .enter()
@@ -199,8 +184,8 @@
 											.attr("fill", function(d, i) { return color(d.data.index); })
 											.attr("d", arc)
 											.each(function(d) { this._current = d; }); // store the initial angles
-											
-				change("count"); // dispoaly initial selection
+																						
+				change("count"); // display initial selection
  
         g.append('g')
 					.attr('transform', 'translate(200,20)')
