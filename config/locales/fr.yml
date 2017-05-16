@@ -35,6 +35,7 @@ fr:
   ManagingOrgs:   "Gérer les Organisations"
   ManagingTers:   "Gérer les Territoires"
   Registration:   "Inscription"
+  PasswordChange: "Modification du mot de passe"
   ### Page heading
   NewBO:          "Nouvel Objet Métier"
   NewBA:          "Nouveau Domaine Fonctionnel"

@@ -35,6 +35,7 @@ en:
   ManagingOrgs:   "Managing Organisations"
   ManagingTers:   "Managing Territories"
   Registration:   "Registration"
+  PasswordChange: "Password modification"
   ### Page heading
   NewBO:          "New Business Object"
   NewBA:          "New Business Area"
