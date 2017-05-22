@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502150542) do
+ActiveRecord::Schema.define(version: 20170522091540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -435,7 +435,6 @@ ActiveRecord::Schema.define(version: 20170502150542) do
     t.integer  "current_playground_id"
     t.integer  "current_landscape_id"
     t.string   "directory_id",           limit: 255
-    t.string   "login",                  limit: 255
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "name",                   limit: 255
@@ -466,8 +465,9 @@ ActiveRecord::Schema.define(version: 20170502150542) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "language_id"
-    t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
+    t.string   "user_name",              limit: 30
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["user_name"], name: "index_users_on_user_name", unique: true, using: :btree
   end
 
   create_table "values", force: :cascade do |t|
