@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   validates :active_from, presence: true
   validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
-  validates :login, presence: true, uniqueness: true, length: { maximum: 30 }
+  validates :user_name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
@@ -96,5 +96,15 @@ class User < ActiveRecord::Base
 
     def name_update
       self.name = "#{first_name} #{last_name}"
+     end
+    
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
     end
+        
 end
