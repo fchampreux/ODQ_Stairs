@@ -1,0 +1,47 @@
+<% provide(:title, t('Registration')) %>
+
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2">
+        <%= devise_error_messages! %>
+        <br/>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2">
+        <i>t('BlankPass')</i>
+      </div>
+    </div>
+    
+    <div class="row">
+    
+    <%= render "user" %>
+    
+    </div>
+    
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2"> 
+        <div class="field">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "off" %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+
+</div>

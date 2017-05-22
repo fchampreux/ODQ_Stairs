@@ -8,7 +8,6 @@
 #  current_playground_id  :integer
 #  current_landscape_id   :integer
 #  directory_id           :string(255)
-#  login                  :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  name                   :string(255)
@@ -17,8 +16,6 @@
 #  active_from            :datetime
 #  active_to              :datetime
 #  is_admin               :boolean
-#  password_digest        :string(255)
-#  remember_token         :string(255)
 #  created_by             :string(255)
 #  updated_by             :string(255)
 #  created_at             :datetime         not null
@@ -40,9 +37,16 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
+#  language_id            :integer
+#  user_name              :string
 #
 
 class User < ActiveRecord::Base
+  
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -96,5 +100,14 @@ class User < ActiveRecord::Base
 
     def name_update
       self.name = "#{first_name} #{last_name}"
+    end
+    
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
     end
 end

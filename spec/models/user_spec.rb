@@ -8,7 +8,6 @@
 #  current_playground_id  :integer
 #  current_landscape_id   :integer
 #  directory_id           :string(255)
-#  login                  :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  name                   :string(255)
@@ -17,8 +16,6 @@
 #  active_from            :datetime
 #  active_to              :datetime
 #  is_admin               :boolean
-#  password_digest        :string(255)
-#  remember_token         :string(255)
 #  created_by             :string(255)
 #  updated_by             :string(255)
 #  created_at             :datetime         not null
@@ -40,6 +37,8 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
+#  language_id            :integer
+#  user_name              :string
 #
 
 # Model copied from technical specifications
