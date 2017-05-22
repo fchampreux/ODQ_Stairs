@@ -31,7 +31,7 @@ module SessionsHelper
   end
 
   def current_login
-    current_user.login
+    current_user.user_name
   end
 
   def user_is_admin?
