@@ -65,7 +65,7 @@ class TerritoriesController < ApplicationController
   # PUT /Territories/1.json
   def update
     ### Retrieved by Callback function
-    @territory.updated_by = current_user.login
+    @territory.updated_by = current_user.user_name
 
     respond_to do |format|
       if @territory.update_attributes(territory_params)

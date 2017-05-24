@@ -61,7 +61,7 @@ class ParametersListsController < ApplicationController
   # PATCH/PUT /parameters_list/1.json
   def update
     ### Retrieved by Callback function
-    @parameters_list.updated_by = current_user.login
+    @parameters_list.updated_by = current_user.user_name
     respond_to do |format|
       if @parameters_list.update(parameters_list_params)
         format.html { redirect_to @parameters_list, notice: 'List of parameters was successfully updated.' }

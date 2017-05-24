@@ -38,6 +38,7 @@
             <li><%= link_to t('Scopes'), scopes_path %></li>
           </ul>
         </li>
+        <% if display_assessment? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('Assessment')%>  <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -46,6 +47,7 @@
             <li><%= link_to t('KPI'), "#" %></li>
           </ul>
         </li>
+      <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('Settings')%>  <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

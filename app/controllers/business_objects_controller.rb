@@ -71,7 +71,7 @@ class BusinessObjectsController < ApplicationController
   # PUT /business_objects/1.json
   def update
     ### Retrieved by Callback function
-    @business_object.updated_by = current_user.login
+    @business_object.updated_by = current_user.user_name
 
     respond_to do |format|
       if @business_object.update(business_object_params)

@@ -22,6 +22,8 @@ extend CsvHelper
 #  Value is linked to a list which belongs to the correct scope
 
 ### before filter
+before_create :set_playground
+before_update :set_updated_by
 
 ### validation
   validates :code, length: { maximum: 100 }
@@ -39,7 +41,9 @@ extend CsvHelper
 		self.playground_id = self.values_list.playground_id
 	end 
 
-
+    def set_updated_by
+		self.updated_by = self.values_list.updated_by
+	end
 
 end
 

@@ -6,6 +6,7 @@
 #   cities = City.create(id: 1, [{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(id: 1, name: 'Emanuel', city: cities.first)
 
+
 # Sequences create odq objects without overlap
 puts "Initialise sequences"
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE playgrounds_id_seq INCREMENT BY 1 MINVALUE 1000000 RESTART WITH 1000000 START WITH 1000000")
@@ -19,12 +20,14 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE scopes_id_seq INCREMENT BY
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_id_seq INCREMENT BY 1 MINVALUE 100 RESTART WITH 100 START WITH 100")
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_lists_id_seq INCREMENT BY 1 MINVALUE 20 RESTART WITH 20 START WITH 20")
 
+=begin
 puts "Seeding users"
 if User.count == 0
   puts "Creating first users"
   User.create( login: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1000000, current_playground_id: 1000000, current_landscape_id: -1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'support@opendataquality.com')
   User.create( login: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: 1000000, current_playground_id: 1000000, current_landscape_id: -1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: -1, email: 'frederic.champreux@opendataquality.com')
 end
+=end
 
 puts "Seeding playgrounds"
 # IDs from 1000000 
@@ -144,7 +147,7 @@ if Parameter.count==0
   Parameter.create(id: 10, playground_id: -1,  name: 'Non-obsolescence', description: 'Rule type is Non-obsolescence: attribute is valid regarding the period', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 2)
   Parameter.create(id: 11, playground_id: -1,  name: 'Uniqueness', description: 'Rule type is Uniqueness:  instance of an object is present only once', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 2)
   Parameter.create(id: 12, playground_id: -1,  name: 'Security', description: 'Rule type is Security: object is accessible to granted users only', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 2)
-  Parameter.create(id: 13, playground_id: -1,  name: 'Show assessment', description: 'Allows the display of assessment features', param_value: 'Yes', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
+  Parameter.create(id: 13, playground_id: -1,  name: 'Show monitoring', description: 'Allows the display of assessment and monitoring features', param_value: 'Yes', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
   Parameter.create(id: 14, playground_id: -1,  name: 'Nb of lines', description: 'Number of lines to display in lists', param_value: '10', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
   Parameter.create(id: 15, playground_id: -1,  name: 'Currency', param_value: '€', description: 'Sets the currency for financial risk calculation', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
   Parameter.create(id: 16, playground_id: -1,  name: 'Duration unit', param_value: 'minutes', description: 'Sets the duration unit for workload calculation', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)

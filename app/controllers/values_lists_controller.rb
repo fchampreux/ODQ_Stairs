@@ -64,7 +64,7 @@ class ValuesListsController < ApplicationController
   # PATCH/PUT /values_list/1.json
   def update
     ### Retrieved by Callback function
-    @values_list.updated_by = current_user.login
+    @values_list.updated_by = current_user.user_name
     respond_to do |format|
       if @values_list.update(values_list_params)
         format.html { redirect_to @values_list, notice: 'List of values was successfully updated.' }

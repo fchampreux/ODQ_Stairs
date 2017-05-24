@@ -59,7 +59,7 @@ class BusinessAreasController < ApplicationController
   # PUT /business_areas/1.json
   def update
     ### Retrieved by Callback function
-    @business_area.updated_by = current_user.login
+    @business_area.updated_by = current_user.user_name
 
     respond_to do |format|
       if @business_area.update_attributes(business_area_params)

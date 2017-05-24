@@ -65,7 +65,7 @@ class OrganisationsController < ApplicationController
   # PUT /organisations/1.json
   def update
     ### Retrieved by Callback function
-    @organisation.updated_by = current_user.login
+    @organisation.updated_by = current_user.user_name
 
     respond_to do |format|
       if @organisation.update_attributes(organisation_params)

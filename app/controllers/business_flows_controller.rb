@@ -61,7 +61,7 @@ class BusinessFlowsController < ApplicationController
   # PUT /business_flows/1.json
   def update
     ### Retrieved by Callback function
-    @business_flow.updated_by = current_user.login
+    @business_flow.updated_by = current_user.user_name
 
     respond_to do |format|
       if @business_flow.update_attributes(business_flow_params)

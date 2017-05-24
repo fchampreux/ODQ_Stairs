@@ -46,7 +46,9 @@
         <li> <%= link_to t('Home'), root_path %> </li>
         <li> <%= link_to t('Display'), root_path %> </li>
         <li> <%= link_to t('Notifications'), notifications_path %> </li>
+        <% if display_assessment? %>
         <li> <%= link_to t('Monitor'), monitoring_path %> </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -56,7 +56,7 @@ class PlaygroundsController < ApplicationController
   # PUT /playgrounds/1.json
   def update
     ### Retrieved by Callback function
-    @playground.updated_by = current_user.login    
+    @playground.updated_by = current_user.user_name    
 
     respond_to do |format|
       if @playground.update_attributes(playground_params)

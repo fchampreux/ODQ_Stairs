@@ -59,7 +59,7 @@ class ScopesController < ApplicationController
   # PUT /scopes/1.json
   def update
     ### Retrieved by Callback function
-    @scope.updated_by = current_user.login    
+    @scope.updated_by = current_user.user_name    
 
     respond_to do |format|
       if @scope.update_attributes(scope_params)

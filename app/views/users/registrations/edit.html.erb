@@ -21,15 +21,16 @@
     
     <div class="row">
     
-    <%= render "user" %>
+    <%= render "user", f: f %>
     
     </div>
     
     <div class="row">
       <div class="col-md-3 col-md-offset-2"> 
         <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.label :current_password %> 
           <%= f.password_field :current_password, autocomplete: "off" %>
+          <i>(we need your current password to confirm your changes)</i><br />
         </div>
       </div>
     </div>

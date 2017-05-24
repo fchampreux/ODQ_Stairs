@@ -59,7 +59,7 @@ class LandscapesController < ApplicationController
   # PUT /landscapes/1.json
   def update
     ### Retrieved by Callback function
-    @landscape.updated_by = current_user.login    
+    @landscape.updated_by = current_user.user_name    
 
     respond_to do |format|
       if @landscape.update_attributes(landscape_params)

@@ -66,7 +66,7 @@ class MappingsListsController < ApplicationController
   # PATCH/PUT /mappings_list/1.json
   def update
     ### Retrieved by Callback function
-    @mappings_list.updated_by = current_user.login
+    @mappings_list.updated_by = current_user.user_name
     @mappings  = @mappings_list.mappings.all
     respond_to do |format|
       if @mappings_list.update(mappings_list_params)

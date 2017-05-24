@@ -27,6 +27,7 @@ extend CsvHelper
 
 ### before filter
   before_create :set_playground
+  before_update :set_updated_by
 
 ### validation
 	validates :param_code, length: { maximum: 100 }
@@ -44,7 +45,11 @@ extend CsvHelper
   ### before filters
     def set_playground 
       self.playground_id = self.parameters_list.playground_id
-    end 
+    end
+    
+    def set_updated_by
+			self.updated_by = self.parameters_list.updated_by
+		end
 
 end
 
