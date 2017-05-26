@@ -69,17 +69,6 @@ class User < ActiveRecord::Base
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
 =end
-#  validates :password, length: { minimum: 6 }
-
-=begin  
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def User.encrypt(token)
-    Digest::SHA1.hexdigest(token.to_s)
-  end
-=end
 
 ### private functions definitions
   private
