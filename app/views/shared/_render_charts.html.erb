@@ -17,10 +17,10 @@
               <label><input type="radio" name="measure" value="count" checked="checked" /> Percentage</label>
               <label><input type="radio" name="measure" value="cost" /> Cost</label>
               <label><input type="radio" name="measure" value="workload" /> Workload</label>
-						</p>
-			      <div hidden>
-							<label>Selected: <input type="text" name="Selection" value="?" readonly="readonly" /></label>
-						</div>
+            </p>
+	    <div hidden> <!-- Just to check if the radio  buttons work -->
+	      <label>Selected: <input type="text" name="Selection" value="?" readonly="readonly" /></label>
+	    </div>
 	  </fieldset>
 	  </form>
           <div id="impact"></div>
@@ -28,6 +28,55 @@
       </div>
       <!-- End of tab content -->
       
+      <!-- Testing CrossFilter -->
+      <!--script type="text/javascript" src="https://rawgithub.com/NickQiZhu/dc.js/master/web/js/crossfilter.js"></script-->
+      <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+      <!--script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+      <script src="https://rawgit.com/crossfilter/reductio/master/reductio.js"></script>
+      <script src=http://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.min.js></script>
+      <script src=http://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.min.css></script-->
+      
+      <script>
+      var data = [   {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, tip: 100, type: "tab"},
+      {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, tip: 100, type: "tab"},
+      {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, tip: 200, type: "visa"},
+      {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, tip: 0, type: "cash"},
+      {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, tip: 0, type: "tab"},
+      {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, type: "cash"},
+      {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"} ]; 
+
+      var ndx = crossfilter(data); // Instancie Crossfilter
+      var totalDim = ndx.dimension(function(d) { return d.total; });  // Crée une dimension sur la colonne total
+      var typeDim = ndx.dimension(function(d) { return d.type; });  // Crée une dimension sur la colonne type
+      //var total_90 = totalDim.filter(90); // Crée le filtre pour le total=90
+      //var total90_100 = totalDim.filter([90,101]); // Crée le filtre pour le total entre 90 et 100
+      var tab_filter = typeDim.filter("tab");
+      //var total = typeDim.group().reduceSum(function(d) {return d.total;}); // Effectue une group by pour la dimension courante
+      var cash_total = ndx.groupAll().reduceSum(function(d) {return d.total;}).value() // Croise les filtres pour toutes les dimensions déclarées
+      // Les filtres restent actifs tant qu'ils ne sont pas resetés
+      	
+      // Exécution											
+//	print_filter("total_90");
+//	print_filter("total90_100");
+      //print_filter("tab_filter");
+      //   print_filter("total");
+      console.log("cash_total="+cash_total);  
+
+      function print_filter(filter){
+      var f=eval(filter);
+      if (typeof(f.length) != "undefined") {}else{}
+      if (typeof(f.top) != "undefined") {f=f.top(Infinity);}else{}
+      if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
+      console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]")); } 
+      
+
+      </script>
+
       
     <script> // Draws a bar graph in the progression element
       

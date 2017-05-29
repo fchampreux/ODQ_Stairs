@@ -35,6 +35,6 @@ ODQStairs::Application.configure do
     domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "fchampreux@gmail.com",
-    password: "@Emlss03!"   }
+    user_name: 'email_username',
+    password: 'email_password'   }
 end

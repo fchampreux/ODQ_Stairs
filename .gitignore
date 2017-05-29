@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore configuration files
+#config/*.yml
+
 # Ignore all logfiles and temporary files
 /log/*.log
 /tmp
@@ -14,10 +17,10 @@
 # Ignore all temporary files
 *.rb~
 *.erb~
-#/.gitignore~
+/.gitignore~
 /Gemfile~
 *.lock
-*~
+*.~
 
 # Ignore SQL data files
 *.sql

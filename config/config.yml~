@@ -1,0 +1,8 @@
+# Configuration for each environment
+development:
+
+test: 
+
+production:
+  username: admin
+  password: secret
