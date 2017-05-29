@@ -1,0 +1,4 @@
+https://dc-js.github.io/dc.js/js/dc.min.js
+https://dc-js.github.io/dc.js/js/crossfilter.min.js
+https://d3js.org/d3.v4.min.js
+https://d3js.org/d3.v3.min.js
