@@ -17,4 +17,7 @@
 //= require bootstrap-datepicker
 //= require datepicker_helper
 //= require nested_form_fields
+//= require d3.v3.min
+//= require crossfilter
+//= require dc
 //= require_tree .
