@@ -1,2 +1,8 @@
 https://d3js.org/d3.v4.min.js
 https://d3js.org/d3.v3.min.js
+      <!--script type="text/javascript" src="https://rawgithub.com/NickQiZhu/dc.js/master/web/js/crossfilter.js"></script-->
+      <!--script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+      <!--script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
+      <script src="https://rawgit.com/crossfilter/reductio/master/reductio.js"></script>
+      <script src=http://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.min.js></script>
+      <script src=http://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.min.css></script-->
