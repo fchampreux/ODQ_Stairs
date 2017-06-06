@@ -1,0 +1,107 @@
+<%= form_with(model: group, local: true) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :group_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.text_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :group_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.text_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :role %>
+    <%= form.text_field :role, id: :group_role %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.text_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :territory_id %>
+    <%= form.text_field :territory_id, id: :group_territory_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.number_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :organisation_id %>
+    <%= form.text_field :organisation_id, id: :group_organisation_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.number_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :created_by %>
+    <%= form.text_field :created_by, id: :group_created_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.text_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :updated_by %>
+    <%= form.text_field :updated_by, id: :group_updated_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.text_field :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_from %>
+    <%= form.text_field :active_from, id: :group_active_from %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.date_select :, id: :group_ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_to %>
+    <%= form.text_field :active_to, id: :group_active_to %>
+  </div>
+
+  <div class="field">
+    <%= form.label : %>
+    <%= form.date_select :, id: :group_ %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

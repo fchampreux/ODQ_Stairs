@@ -1,63 +1,102 @@
-<% provide(:title, 'Managing users') %>
+<% provide(:title, t('ManagingUsers')) %>
 <% content_for :page_heading do %>
     User: <%= @user.login %>
 <% end %>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
+<% content_for :breadcrums do %>
+  <ul class="breadcrumbs">
+    <li>> <%= link_to t('users'), users_path %> > </li>
+    <li><%= @user.name %> </li>
+  </ul>
+<% end %>
 
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
+  <ul class="mid_menu">
+    <li><%= link_to t('Edit'), edit_user_path(@user) %> | </li>
+    <li><%= link_to t('Back'), users_path %> </li>
+  </ul>
+  
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('Name') %>:
+        </div>
+        <div class="col-md-2"><%= @user.name%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('Login') %>:
+        </div>
+        <div class="col-md-2"><%= @user.user_name%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('Code') %>:
+        </div>
+        <div class="col-md-2"><%= @user.code%>
+        </div>
+      </div> 
+  
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('Description') %>:
+        </div>
+        <div class="col-md-4"><%= @user.description%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('IsAdmin') %>:
+        </div>
+        <div class="col-md-1"><%= @user.is_admin%>
+        </div>
+        <div class="col-md-2 text-right"> <%= t('LDAPid') %>:
+        </div>
+        <div class="col-md-1"><%= @user.directory_id%>
+        </div>
+      </div>
+            <div class=row>
+        <div class="col-md-2 text-right"> <%= t('eMail') %>:
+        </div>
+        <div class="col-md-4"><%= @user.email%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('Language') %>:
+        </div>
+        <div class="col-md-1"><%= @user.language%>
+        </div>
+      </div>
+ 
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('ActiveFrom') %>:
+        </div>
+        <div class="col-md-4"><%= @user.active_from%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('ActiveTo') %>:
+        </div>
+        <div class="col-md-1"><%= @user.active_to%>
+        </div>
+      </div>
+      
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('CreatedBy') %>:
+        </div>
+        <div class="col-md-4"><%= @user.created_by%>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('UpdatedBy') %>:
+        </div>
+        <div class="col-md-1"><%= @user.updated_by%>
+        </div>
+      </div>
+      
+      <div class=row>
+        <div class="col-md-2 text-right"> <%= t('CreatedAt') %>:
+        </div>
+        <div class="col-md-4"><%= @user.created_at %>
+        </div>        
+        <div class="col-md-2 text-right"> <%= t('UpdatedAt') %>:
+        </div>
+        <div class="col-md-1"><%= @user.updated_at %>
+        </div>
+      </div>
 
-<p>
-  <b>Directory:</b>
-  <%= @user.directory_id %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @user.description %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Language:</b>
-  <%= @user.language %>
-</p>
-
-<p>
-  <b>Active from:</b>
-  <%= @user.active_from %>
-</p>
-
-<p>
-  <b>Active to:</b>
-  <%= @user.active_to %>
-</p>
-
-<p>
-  <b>Is admin:</b>
-  <%= @user.is_admin %>
-</p>
-
-<p>
-  <b>Updated by:</b>
-  <%= @user.updated_by %>
-</p>
-
-<p>
-  <b>Updated at:</b>
-  <%= @user.updated_at %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    
+    <table width=100%>    
+      <tr><td><hr /></td></tr>
+      <tr align="left">
+        <th> <%= t('Groups') %> </th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>
+          <%= render partial: "shared/child_object_index", locals: {this_child_index: @user.groups} %>    </td>
+      </tr>
+    </table>

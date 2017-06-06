@@ -36,6 +36,8 @@ en:
   ManagingTers:   "Managing Territories"
   Registration:   "Registration"
   PasswordChange: "Password modification"
+  ManagingUsers:  "Managing Users"
+  ManagingGroups: "Managing Groups"
   ### Page heading
   NewBO:          "New Business Object"
   NewBA:          "New Business Area"
@@ -151,6 +153,7 @@ en:
   Destroy:        "Destroy"
   Add:            "Add"
   Lists:          "Lists of"
+  GroupsRoles:    "Groups & Roles"
   ### Home page
   Top10:          "Top 10 Business Rules activity"
   MainRisk:       "Main risk spots"

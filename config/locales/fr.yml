@@ -34,6 +34,8 @@ fr:
   ManagingMaps:   "Gérer les Associations"
   ManagingOrgs:   "Gérer les Organisations"
   ManagingTers:   "Gérer les Territoires"
+  ManagingUsers:  "Gérer les Utilisateurs"
+  ManagingGroups: "Gérer les Groupes"
   Registration:   "Inscription"
   PasswordChange: "Modification du mot de passe"
   ### Page heading
@@ -151,6 +153,7 @@ fr:
   Destroy:        "Supprimer"
   Add:            "Ajouter"
   Lists:          "Listes de"
+  GroupsRoles:    "Groupes et Rôles"
   ### Home page
   Top10:          "Activités récentes"
   MainRisk:       "Principaux risques"

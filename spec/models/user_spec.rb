@@ -38,7 +38,8 @@
 #  unlock_token           :string
 #  locked_at              :datetime
 #  language_id            :integer
-#  user_name              :string
+#  user_name              :string(30)
+#  code                   :string(10)
 #
 
 # Model copied from technical specifications

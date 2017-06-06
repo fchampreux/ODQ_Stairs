@@ -38,10 +38,11 @@
 #  unlock_token           :string
 #  locked_at              :datetime
 #  language_id            :integer
-#  user_name              :string
+#  user_name              :string(30)
+#  code                   :string(10)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
@@ -55,21 +56,22 @@ class User < ActiveRecord::Base
   before_create :set_default_values
   before_save :email_format
   before_save :name_update
-=begin
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   validates :playground_id, presence: true
   validates :default_playground_id, presence: true
   validates :active_from, presence: true
   validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :user_name, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :email, presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
-=end
 
+# Relations
+  has_many :group_users
+  has_many :groups, through: :group_users
+      
 ### private functions definitions
   private
 
