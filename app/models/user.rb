@@ -57,10 +57,10 @@ class User < ApplicationRecord
   before_save :email_format
   before_save :name_update
 
-  validates :playground_id, presence: true
-  validates :default_playground_id, presence: true
-  validates :active_from, presence: true
-  validates :active_to, presence: true
+  # validates :playground_id, presence: true
+  # validates :default_playground_id, presence: true
+  # validates :active_from, presence: true
+  # validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :user_name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :directory_id, length: { maximum: 100 }

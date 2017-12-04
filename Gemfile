@@ -33,7 +33,7 @@ group :development, :test, :eval do
   gem 'annotate', '~> 2.7'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl_rails', '~> 4.7'
+  gem 'factory_bot_rails', '~> 4.8'
   gem 'capybara', '~> 2.7'
   gem 'selenium-webdriver', '~> 2.53'
 end

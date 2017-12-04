@@ -8,7 +8,8 @@
 /.bundle
 
 # Ignore configuration files
-#config/*.yml
+config/database.yml
+config/initializers/smtp.rb
 
 # Ignore all logfiles and temporary files
 /log/*.log
