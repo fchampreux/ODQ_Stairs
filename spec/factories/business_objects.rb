@@ -23,8 +23,8 @@
 #  updated_at         :datetime         not null
 #
 
-#FactoryGirl.factories.clear
-FactoryGirl.define do
+#FactoryBot.factories.clear
+FactoryBot.define do
   factory :business_object do
     business_area_id    -1
     playground_id       1000000

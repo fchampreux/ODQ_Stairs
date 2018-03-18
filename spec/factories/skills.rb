@@ -15,7 +15,7 @@
 #  updated_at         :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :skill do
     business_object_id  -1
     name                "Test Skill"

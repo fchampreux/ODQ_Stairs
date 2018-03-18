@@ -38,8 +38,8 @@ Shoulda::Matchers.configure do |config|
 end
  
 RSpec.configure do |config|
-  # Integrate FactoryGirl (Fred 2015-11-26)
-  config.include FactoryGirl::Syntax::Methods
+  # Integrate FactoryBot (Fred 2018-02-26)
+  config.include FactoryBot::Syntax::Methods
   
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

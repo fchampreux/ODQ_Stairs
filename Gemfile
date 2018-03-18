@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-#ruby '2.2.3'
 
 gem 'rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3'
@@ -23,6 +22,7 @@ gem 'roo'
 gem 'nested_form_fields'
 gem 'pg'
 gem 'devise'
+gem 'mailgun-ruby', '~>1.1'
 
 group :doc do
   gem 'sdoc', '0.4', require: false
@@ -33,7 +33,7 @@ group :development, :test, :eval do
   gem 'annotate', '~> 2.7'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl_rails', '~> 4.7'
+  gem 'factory_bot_rails'
   gem 'capybara', '~> 2.7'
   gem 'selenium-webdriver', '~> 2.53'
 end

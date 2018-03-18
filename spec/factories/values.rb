@@ -17,7 +17,7 @@
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :value do
     playground_id           -1
     values_list_id          -1 

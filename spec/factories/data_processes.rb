@@ -29,7 +29,7 @@
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :data_process do
     playground_id 1
     name "MyString"

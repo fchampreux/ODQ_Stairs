@@ -24,7 +24,7 @@
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :mapping do
     playground_id             -1
     mappings_list_id          -1

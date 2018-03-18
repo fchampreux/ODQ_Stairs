@@ -21,7 +21,7 @@
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :organisation do
     playground_id           -1 
     code              "TEST" 

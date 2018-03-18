@@ -191,20 +191,20 @@ ActiveRecord::Schema.define(version: 20170601053746) do
     t.integer "year_number"
     t.string "created_by", limit: 255
     t.string "updated_by", limit: 255
+    t.integer "process_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "process_id"
   end
 
-  create_table "dm_measures", id: :integer, default: -> { "nextval('dm_business_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "dm_measures", id: :serial, force: :cascade do |t|
     t.integer "playground_id"
-    t.integer "odq_object_id", null: false
+    t.integer "odq_object_id"
     t.integer "odq_parent_id"
     t.string "odq_object_name", limit: 255
     t.string "odq_object_code", limit: 255
     t.string "odq_object_url", limit: 255
     t.boolean "is_project_hierarchy"
-    t.integer "period_id", null: false
+    t.integer "period_id"
     t.string "period_day", limit: 8
     t.integer "all_records"
     t.integer "error_count"
@@ -214,11 +214,9 @@ ActiveRecord::Schema.define(version: 20170601053746) do
     t.decimal "maintenance_cost", precision: 15, scale: 2
     t.string "created_by", limit: 255
     t.string "updated_by", limit: 255
+    t.integer "process_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "process_id"
-    t.index ["odq_object_id", "period_id"], name: "dm_measures_akey", unique: true
-    t.index ["odq_parent_id", "period_id"], name: "dm_measures_ak1"
   end
 
   create_table "group_users", force: :cascade do |t|
@@ -437,7 +435,7 @@ ActiveRecord::Schema.define(version: 20170601053746) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "time_scales", primary_key: "period_id", id: :serial, force: :cascade do |t|
+  create_table "time_scales", primary_key: "period_id", force: :cascade do |t|
     t.integer "playground_id"
     t.integer "day_of_week"
     t.integer "day_of_month"
@@ -493,6 +491,7 @@ ActiveRecord::Schema.define(version: 20170601053746) do
     t.integer "language_id"
     t.string "user_name", limit: 30
     t.string "code", limit: 10
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end

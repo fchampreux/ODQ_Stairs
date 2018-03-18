@@ -23,8 +23,8 @@
 #
 
 
-#FactoryGirl.factories.clear
-FactoryGirl.define do
+#FactoryBot.factories.clear
+FactoryBot.define do
   factory :business_flow do
     id                  0
     playground_id       1000000

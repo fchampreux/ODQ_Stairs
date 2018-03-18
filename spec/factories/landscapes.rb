@@ -20,8 +20,8 @@
 #
 
 
-#FactoryGirl.factories.clear
-FactoryGirl.define do
+#FactoryBot.factories.clear
+FactoryBot.define do
   factory :landscape do
     playground_id       1000000
     name                "Test Lanscape"

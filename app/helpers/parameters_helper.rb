@@ -45,7 +45,7 @@ module ParametersHelper
 # retrieve the assessment feature option
   def display_assessment?
     list_id = ParametersList.where("code=?", 'LIST_OF_DISPLAY_PARAMETERS').take!
-    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Show assessment', Time.now ).take!
+    @myparam = Parameter.where("parameters_list_id=? AND name=?  AND ? BETWEEN active_from AND active_to", list_id, 'Show monitoring', Time.now ).take!
     @myparam.param_value == 'Yes'
   end
 

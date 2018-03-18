@@ -20,8 +20,8 @@
 #
 
 
-#FactoryGirl.factories.clear
-FactoryGirl.define do
+#FactoryBot.factories.clear
+FactoryBot.define do
   factory :playground do
     name                "Test Playground"
     code                "TEST_PG"

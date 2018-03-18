@@ -39,8 +39,8 @@
 #
 
 
-#FactoryGirl.factories.clear
-FactoryGirl.define do
+#FactoryBot.factories.clear
+FactoryBot.define do
   factory :business_rule do
     business_process_id  -1
     business_object_id   -1
