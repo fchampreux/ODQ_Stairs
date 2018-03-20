@@ -24,7 +24,7 @@ require 'rails_helper'
 RSpec.describe Territory, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:territory)}
+  subject {FactoryBot.build(:territory)}
     it { should respond_to(:name) }
     it { should respond_to(:playground_id) }
 

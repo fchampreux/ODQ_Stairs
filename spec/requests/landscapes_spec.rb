@@ -16,7 +16,7 @@ describe "Landscapes pages: " do
 
   describe "when signed_in" do
       before { visit signin_path }
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
       before do
         fill_in "Login",    with: user.login
         fill_in "Password", with: user.password

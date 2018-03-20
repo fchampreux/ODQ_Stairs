@@ -24,7 +24,7 @@ require 'rails_helper'
 RSpec.describe Landscape, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:landscape)}
+  subject {FactoryBot.build(:landscape)}
     it { should respond_to(:playground_id) }
     it { should respond_to(:owner_id) }
     it { should respond_to(:status_id) }

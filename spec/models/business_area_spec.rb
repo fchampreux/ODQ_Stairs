@@ -26,7 +26,7 @@ require 'rails_helper'
 RSpec.describe BusinessArea, type: :model do
 	
   describe 'Validations'
-  subject {FactoryGirl.build(:business_area)}
+  subject {FactoryBot.build(:business_area)}
     it { should validate_presence_of(:playground_id) }
     it { should validate_presence_of(:owner_id) }
     it { should validate_presence_of(:status_id) }

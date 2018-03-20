@@ -188,27 +188,6 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
   
-    create_table "dm_processes", id: :serial, force: :cascade do |t|
-      t.integer "playground_id",                     null: false
-      t.integer "odq_object_id",                     null: false
-      t.integer "odq_parent_id",                     null: false
-      t.string "odq_object_name",        limit: 255
-      t.string "odq_object_code",        limit: 255
-      t.string "odq_object_url",         limit: 255
-      t.integer "period_id",                         null: false
-      t.string "period_day",             limit: 8
-      t.integer "all_records",                    default: 0
-      t.integer "error_count",                    default: 0
-      t.decimal "score",            precision: 5,  scale: 2, default: 0
-      t.decimal "workload",         precision: 15, scale: 2, default: 0
-      t.decimal "added_value",      precision: 15, scale: 2, default: 0
-      t.decimal "maintenance_cost", precision: 15, scale: 2, default: 0
-      t.string "created_by",             limit: 100, null: false
-      t.string "updated_by",             limit: 100, null: false
-      t.datetime "created_at",                       null: false
-      t.datetime "updated_at",                       null: false
-    end
-  
     create_table "groups", force: :cascade do |t|
       t.string "code",                   limit: 15,  null: false
       t.string "name",                   limit: 100, null: false
@@ -341,7 +320,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
   
-    create_table "playgrounds", id: :serial, force: :cascade do |t|
+    create_table "playgrounds", id: :serial, force: :cascade do |t
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 15,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -482,10 +461,11 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "locked_at"
       t.integer "language_id"
       t.string "user_name",              limit: 30, null: false
-#      t.string "code",                   limit: 10
+      t.string "code",                   limit: 10, null: false
       t.index ["email"], name: "index_users_on_email", unique: true
       t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
       t.index ["user_name"], name: "index_users_on_user_name", unique: true
+      t.index ["code"], name: "index_users_on_code", unique: true
     end
   
     create_table "values", id: :serial, force: :cascade do |t|
@@ -517,5 +497,49 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
 
+# Data Marts for analysis
+
+   create_table "dm_processes", id: :serial, force: :cascade do |t|
+      t.integer "playground_id",                     null: false
+      t.integer "odq_object_id",                     null: false
+      t.integer "odq_parent_id",                     null: false
+      t.string "odq_object_name",        limit: 255
+      t.string "odq_object_code",        limit: 255
+      t.string "odq_object_url",         limit: 255
+      t.integer "period_id",                         null: false
+      t.string "period_day",             limit: 8
+      t.integer "all_records",                    default: 0
+      t.integer "error_count",                    default: 0
+      t.decimal "score",            precision: 5,  scale: 2, default: 0
+      t.decimal "workload",         precision: 15, scale: 2, default: 0
+      t.decimal "added_value",      precision: 15, scale: 2, default: 0
+      t.decimal "maintenance_cost", precision: 15, scale: 2, default: 0
+      t.string "created_by",             limit: 100, null: false
+      t.string "updated_by",             limit: 100, null: false
+      t.datetime "created_at",                       null: false
+      t.datetime "updated_at",                       null: false
+    end
+   
+      create_table "dm_projects", id: :serial, force: :cascade do |t|
+      t.integer "playground_id",                     null: false
+      t.integer "odq_object_id",                     null: false
+      t.integer "odq_parent_id",                     null: false
+      t.string "odq_object_name",        limit: 255
+      t.string "odq_object_code",        limit: 255
+      t.string "odq_object_url",         limit: 255
+      t.integer "period_id",                         null: false
+      t.string "period_day",             limit: 8
+      t.integer "all_records",                    default: 0
+      t.integer "error_count",                    default: 0
+      t.decimal "score",            precision: 5,  scale: 2, default: 0
+      t.decimal "workload",         precision: 15, scale: 2, default: 0
+      t.decimal "added_value",      precision: 15, scale: 2, default: 0
+      t.decimal "maintenance_cost", precision: 15, scale: 2, default: 0
+      t.string "created_by",             limit: 100, null: false
+      t.string "updated_by",             limit: 100, null: false
+      t.datetime "created_at",                       null: false
+      t.datetime "updated_at",                       null: false
+    end
+      
   end
 end

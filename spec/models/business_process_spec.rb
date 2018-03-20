@@ -27,7 +27,7 @@ require 'rails_helper'
 RSpec.describe BusinessProcess, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:business_process)}
+  subject {FactoryBot.build(:business_process)}
     it { should respond_to(:playground_id) }
     it { should respond_to(:owner_id) }
     it { should respond_to(:business_flow_id) }

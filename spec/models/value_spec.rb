@@ -20,7 +20,7 @@ require 'rails_helper'
 RSpec.describe Value, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:value)}
+  subject {FactoryBot.build(:value)}
     it { should respond_to(:name) }
     it { should respond_to(:playground_id) }
 

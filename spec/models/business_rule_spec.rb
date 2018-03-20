@@ -43,7 +43,7 @@ require 'rails_helper'
 RSpec.describe BusinessRule, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:business_rule)}
+  subject {FactoryBot.build(:business_rule)}
     it { should respond_to(:playground_id) }
     it { should respond_to(:owner_id) }
     it { should respond_to(:business_object_id) }

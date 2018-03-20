@@ -24,6 +24,8 @@ config/initializers/smtp.rb
 *.~
 *.#
 
-# Ignore SQL data files
-*.sql
+# Ignore configuration files
+config/database.yml
+config/initializers/smtp.rb
+config/initializers/mailgun.rb
 

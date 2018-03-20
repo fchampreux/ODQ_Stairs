@@ -27,7 +27,7 @@ describe "Authentication : " do
 
 ###LOG-IN4
     describe "with valid information" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
       before do
         fill_in "Login",    with: user.login.downcase
         fill_in "Password", with: user.password

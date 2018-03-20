@@ -55,6 +55,7 @@ if Organisation.count == 0
   Organisation.create(id: 12, playground_id: 1, name: 'Finished goods', description: 'Finished products', code: 'FP', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
   Organisation.create(id: 13, playground_id: 1, name: 'Active Pharmaceuticals Ingredients', description: 'Bulk products', code: 'API', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
   Organisation.create(id: 14, playground_id: 1, name: 'Packaging', description: 'Packaing activity', code: 'PACK', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
+  ActiveRecord::Base.connection.execute("UPDATE SEQUENCE organisations_id_seq INCREMENT BY 1 START WITH 100")
 end
 
 puts "Seeding territory"
@@ -77,6 +78,7 @@ if Territory.count == 0
   Territory.create(id: 12, playground_id: 1, name: 'Pacific Islands', description: 'Pacific Islands', code: 'PCI', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
   Territory.create(id: 13, playground_id: 1, name: 'North Africa', description: 'North Africa', code: 'NAF', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 5 )
   Territory.create(id: 14, playground_id: 1, name: 'South Africa', description: 'South Africa', code: 'SAF', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 5 )
+  ActiveRecord::Base.connection.execute("UPDATE SEQUENCE territories_id_seq INCREMENT BY 1 START WITH 100")
   end
 
 puts "Seeding parameters lists"
@@ -93,6 +95,7 @@ if ParametersList.count==0
   ParametersList.create(id: 8, playground_id: 0, name: 'List of breach statuses', description: 'This list contains allowed statuses for breaches', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(id: 9, playground_id: 0, name: 'List of languages', description: 'This list contains translated localizations', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
   ParametersList.create(id: 10, playground_id: 0, name: 'List of data types', description: 'This list contains business objects skills data types', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', is_user_specific: false, owner_id: 1)
+  ActiveRecord::Base.connection.execute("UPDATE SEQUENCE parameters_lists_id_seq INCREMENT BY 1 START WITH 100")
 end
 
 puts "Seeding parameters"
@@ -148,6 +151,7 @@ if Parameter.count==0
   Parameter.create(id: 47, playground_id: 0,  name: 'Numeric', param_code: 'N', param_value: '2', description: 'Numeric values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
   Parameter.create(id: 48, playground_id: 0,  name: 'Date', param_code: 'D', param_value: '3', description: 'Date values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
   Parameter.create(id: 49, playground_id: 0,  name: 'Logo splash', param_code: 'D', param_value: 'ODQ_Logo_compact_144.png', description: 'Condensed logo', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
+  ActiveRecord::Base.connection.execute("UPDATE SEQUENCE parameters_id_seq INCREMENT BY 1 START WITH 100")
 end
 
 puts "Seeding values lists"
@@ -214,6 +218,13 @@ if TimeScale.count == 0
   end
 end
 
-# puts "SQL Queries"
-#ActiveRecord::Base.connection.execute("update business_rules set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+puts "SQL Queries"
+ActiveRecord::Base.connection.execute("update business_rules set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update business_objects set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update business_processes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update business_flows set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update business_areas set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update scopes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update landscapes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
+ActiveRecord::Base.connection.execute("update playgrounds set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
 

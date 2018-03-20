@@ -27,7 +27,7 @@ require 'rails_helper'
 RSpec.describe Mapping, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:mapping)}
+  subject {FactoryBot.build(:mapping)}
     it { should respond_to(:owner_id) }
     it { should respond_to(:playground_id) }
 

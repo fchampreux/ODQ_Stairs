@@ -34,7 +34,7 @@ require 'rails_helper'
 RSpec.describe Scope, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:scope)}
+  subject {FactoryBot.build(:scope)}
     it { should respond_to(:playground_id) }
     it { should respond_to(:owner_id) }
     it { should respond_to(:landscape_id) }

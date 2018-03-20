@@ -30,7 +30,7 @@ require 'rails_helper'
 RSpec.describe BusinessObject, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:business_object)}
+  subject {FactoryBot.build(:business_object)}
 		it {should validate_presence_of(:name)}
 		it {should validate_length_of(:name).is_at_least(2)}
     it { should validate_presence_of(:playground_id) }

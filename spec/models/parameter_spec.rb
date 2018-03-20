@@ -24,7 +24,7 @@ require 'rails_helper'
 RSpec.describe Parameter, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:parameter)}
+  subject {FactoryBot.build(:parameter)}
     it { should respond_to(:owner_id) }
     it { should respond_to(:active_from) }
     it { should respond_to(:active_to) }

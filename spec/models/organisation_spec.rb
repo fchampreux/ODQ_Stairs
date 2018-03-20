@@ -24,7 +24,7 @@ require 'rails_helper'
 RSpec.describe Organisation, type: :model do
   
   describe 'Validations'
-  subject {FactoryGirl.build(:organisation)}
+  subject {FactoryBot.build(:organisation)}
     it { should respond_to(:name) }
     it { should respond_to(:playground_id) }
 
