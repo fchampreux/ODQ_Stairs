@@ -25,7 +25,7 @@ extend CsvHelper
   before_create :set_code
 
 ### validation
-	validates :code, length: { maximum: 100 }
+	validates :code, presence: true, uniqueness: true,length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true

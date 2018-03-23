@@ -27,8 +27,8 @@ before_update :set_updated_by
 
 ### validation
   validates :code, length: { maximum: 100 }
+  validates :name, length: { maximum: 100 }
   validates :caption, length: { maximum: 100 }
-  validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
   validates :description, presence:true, length: { maximum: 1000 }
   validates :values_list_id, presence: true
   belongs_to :values_list

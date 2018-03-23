@@ -63,7 +63,8 @@ class User < ApplicationRecord
   # validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :user_name, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :directory_id, length: { maximum: 100 }
+  validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+  validates :external_directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
@@ -77,10 +78,9 @@ class User < ApplicationRecord
 
   ### before filters
     def set_default_values
-      self.playground_id = 1000000
-      self.default_playground_id = 1000000
-      self.current_playground_id = 1000000
-#      self.current_landscape_id = 1000000
+      self.playground_id = 1
+      self.default_playground_id = 1
+      self.current_playground_id = 1
       self.active_from = Time.now
       self.active_to = Time.now
     end

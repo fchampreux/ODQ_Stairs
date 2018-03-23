@@ -32,6 +32,7 @@ extend CsvHelper
 
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 25 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true

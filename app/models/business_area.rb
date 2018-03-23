@@ -32,6 +32,7 @@ extend CsvHelper
 ### before filter
   before_create :set_hierarchy
 
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
 	validates :description, length: { maximum: 1000 }

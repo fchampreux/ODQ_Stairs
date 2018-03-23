@@ -33,8 +33,9 @@ extend CsvHelper
   before_create :set_code
   before_create :set_hierarchy
 
-	validates :code, presence: true, uniqueness: true
-	validates :name, presence: true, uniqueness: true
+	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 255 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true

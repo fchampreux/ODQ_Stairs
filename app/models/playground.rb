@@ -23,12 +23,10 @@ class Playground < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### id generation
-  self.sequence_name = "objects_seq"
-
 ### before filter
   before_create :set_hierarchy
 
+	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, length: { maximum: 1000 }
@@ -45,12 +43,24 @@ extend CsvHelper
 
   ### before filters
     def set_hierarchy
+=begin
       if Playground.count == 0 or Playground.count == 1
-        self.hierarchy =  '0'
+        self.hierarchy =  Playground.count
       else 
         last_one = Playground.maximum("hierarchy")
         self.hierarchy = last_one.next
       end
+=end
+      case Playground.count
+			when 0
+        self.hierarchy =  0
+      when 1
+        self.hierarchy =  1				
+      else 
+        last_one = Playground.maximum("hierarchy")
+        self.hierarchy = last_one.next
+      end
+
     end
 
 end
