@@ -3,18 +3,17 @@
 # Table name: parameters
 #
 #  id                 :integer          not null, primary key
-#  playground_id      :integer
-#  name               :string(255)
+#  playground_id      :integer          not null
+#  parameters_list_id :integer          not null
+#  name               :string(100)      not null
 #  description        :text
-#  active_from        :datetime
-#  active_to          :datetime
-#  parent_list        :string(255)
-#  param_value        :string(255)
-#  parameters_list_id :integer
-#  param_code         :string(255)
-#  owner_id           :integer
-#  created_by         :string(255)
-#  updated_by         :string(255)
+#  active_from        :datetime         not null
+#  active_to          :datetime         not null
+#  parent_list        :string(100)
+#  code               :string(10)       not null
+#  property           :string(30)       not null
+#  created_by         :string(100)      not null
+#  updated_by         :string(100)      not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -30,8 +29,8 @@ extend CsvHelper
   before_update :set_updated_by
 
 ### validation
-	validates :param_code, length: { maximum: 100 }
-	validates :param_value, length: { maximum: 100 }
+	validates :code, length: { maximum: 100 }
+	validates :property, length: { maximum: 100 }
 	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
 	validates :description, presence: true, length: { maximum: 1000 }
 	validates :active_from, presence: true

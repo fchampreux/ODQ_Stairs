@@ -2,8 +2,8 @@
 #
 # Table name: time_scales
 #
-#  playground_id    :integer
 #  period_id        :integer          not null, primary key
+#  playground_id    :integer          not null
 #  day_of_week      :integer
 #  day_of_month     :integer
 #  day_of_year      :integer
@@ -14,8 +14,8 @@
 #  period_day       :string(8)
 #  period_date      :date
 #  period_timestamp :datetime
-#  created_by       :string(255)
-#  updated_by       :string(255)
+#  created_by       :string(100)      not null
+#  updated_by       :string(100)      not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

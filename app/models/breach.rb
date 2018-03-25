@@ -3,38 +3,38 @@
 # Table name: breaches
 #
 #  id                 :integer          not null, primary key
-#  playground_id      :integer
-#  business_rule_id   :integer
-#  application_id     :integer
-#  pk_values          :text
-#  business_object_id :integer
-#  record_id          :integer
-#  period_id          :integer
-#  organisation_id    :integer
-#  territory_id       :integer
-#  name               :string(255)
+#  playground_id      :integer          not null
+#  business_rule_id   :integer          not null
+#  application_id     :integer          not null
+#  pk_values          :text             not null
+#  business_object_id :integer          not null
+#  record_id          :integer          not null
+#  period_id          :integer          not null
+#  organisation_id    :integer          not null
+#  territory_id       :integer          not null
+#  title              :string(100)
 #  description        :text
-#  breach_type_id     :integer
-#  breach_status_id   :integer
-#  message_source     :string(255)
-#  object_name        :string(255)
+#  breach_type_id     :integer          not null
+#  breach_status_id   :integer          not null
+#  message_source     :string(100)
+#  object_name        :string(100)
 #  error_message      :text
 #  current_values     :text
 #  proposed_values    :text
-#  is_whitelisted     :boolean
+#  is_whitelisted     :boolean          default(FALSE)
 #  opened_at          :datetime
 #  expected_at        :datetime
 #  closed_at          :datetime
 #  responsible_id     :integer
 #  approver_id        :integer
 #  approved_at        :datetime
-#  record_updated_by  :string(255)
+#  record_updated_by  :string(100)
 #  record_updated_at  :datetime
-#  owner_id           :integer
-#  is_identified      :boolean
+#  owner_id           :integer          not null
+#  is_identified      :boolean          default(FALSE)
 #  notification_id    :integer
-#  created_by         :string(255)
-#  updated_by         :string(255)
+#  created_by         :string(100)      not null
+#  updated_by         :string(100)      not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

@@ -3,18 +3,16 @@
 # Table name: groups
 #
 #  id              :integer          not null, primary key
-#  name            :string
+#  code            :string(60)       not null
+#  name            :string(100)      not null
 #  description     :string
-#  role            :string
-#  territory_id    :integer
-#  organisation_id :integer
-#  created_by      :string
-#  updated_by      :string
-#  active_from     :date
-#  active_to       :date
+#  territory_id    :integer          not null
+#  organisation_id :integer          not null
+#  owner_id        :integer          not null
+#  created_by      :string(100)      not null
+#  updated_by      :string(100)      not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  code            :string(10)
 #
 
 class Group < ApplicationRecord

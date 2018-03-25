@@ -10,11 +10,11 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "period_id",                         null: false
       t.integer "organisation_id",                   null: false
       t.integer "territory_id",                      null: false
-      t.string "title",                  limit: 255
+      t.string "title",                  limit: 100
       t.text "description"
       t.integer "breach_type_id",                    null: false
       t.integer "breach_status_id",                  null: false
-      t.string "message_source",         limit: 255
+      t.string "message_source",         limit: 100
       t.string "object_name",            limit: 100
       t.text "error_message"
       t.text "current_values"
@@ -40,11 +40,11 @@ class Base < ActiveRecord::Migration[5.1]
     create_table "business_areas", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.string "hierarchy",              limit: 25,  null: false
       t.string "pcf_index",              limit: 30
-      t.string "pcf_reference",          limit: 255
+      t.string "pcf_reference",          limit: 100
       t.integer "status_id",                         null: false
       t.integer "owner_id",                          null: false
       t.integer "all_records",                    default: 0
@@ -54,8 +54,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_ba_on_code", unique: true
-      t.index ["name"], name: "index_ba_on_name", unique: true
+      t.index ["playground_id","code"], name: "index_ba_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_ba_on_name", unique: true
       t.index ["hierarchy"], name: "index_ba_on_hierarchy", unique: true
     end
   
@@ -63,11 +63,11 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "playground_id",                     null: false
       t.integer "business_area_id",                  null: false
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.string "hierarchy",              limit: 25,  null: false
       t.string "pcf_index",              limit: 30
-      t.string "pcf_reference",          limit: 255
+      t.string "pcf_reference",          limit: 100
       t.integer "status_id",                         null: false
       t.integer "owner_id",                          null: false
       t.integer "all_records",                    default: 0
@@ -77,8 +77,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_bf_on_code", unique: true
-      t.index ["name"], name: "index_bf_on_name", unique: true
+      t.index ["business_area_id","code"], name: "index_bf_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_bf_on_name", unique: true
       t.index ["hierarchy"], name: "index_bf_on_hierarchy", unique: true
     end
   
@@ -87,7 +87,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "business_area_id",                  null: false
       t.integer "main_scope_id"
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.integer "organisation_level"
       t.integer "territory_level"
@@ -101,8 +101,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_bo_on_code", unique: true
-      t.index ["name"], name: "index_bo_on_name", unique: true
+      t.index ["business_area_id","code"], name: "index_bo_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_bo_on_name", unique: true
       t.index ["hierarchy"], name: "index_bo_on_hierarchy", unique: true
     end
   
@@ -110,11 +110,11 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "playground_id",                     null: false
       t.integer "business_flow_id",                  null: false
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.string "hierarchy",              limit: 25,  null: false
       t.string "pcf_index",              limit: 30
-      t.string "pcf_reference",          limit: 255
+      t.string "pcf_reference",          limit: 100
       t.integer "status_id",                         null: false
       t.integer "owner_id",                          null: false
       t.integer "all_records",                    default: 0
@@ -124,8 +124,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_bp_on_code", unique: true
-      t.index ["name"], name: "index_bp_on_name", unique: true
+      t.index ["business_flow_id","code"], name: "index_bp_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_bp_on_name", unique: true
       t.index ["hierarchy"], name: "index_bp_on_hierarchy", unique: true
     end
   
@@ -134,7 +134,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "business_process_id",               null: false
       t.integer "business_object_id"
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.text "business_value"
       t.string "hierarchy",              limit: 25,  null: false
@@ -144,7 +144,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.text "correction_method"
       t.text "correction_script"
       t.text "correction_language_id",            default: 0
-      t.string "correction_batch",       limit: 255
+      t.string "correction_batch",       limit: 100
       t.text "white_list"
       t.integer "added_value",                    default: 0
       t.integer "maintenance_cost",               default: 0
@@ -161,8 +161,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_br_on_code", unique: true
-      t.index ["name"], name: "index_br_on_name", unique: true
+      t.index ["business_process_id","code"], name: "index_br_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_br_on_name", unique: true
       t.index ["hierarchy"], name: "index_br_on_hierarchy", unique: true
     end
   
@@ -205,7 +205,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
       t.index ["code"], name: "index_groups_on_code", unique: true
-      t.index ["name"], name: "index_groups_on_name", unique: true
+      t.index ["name" ], name: "index_groups_on_name", unique: true
     end
   
     create_table "landscapes", id: :serial, force: :cascade do |t|
@@ -223,29 +223,30 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_ls_on_code", unique: true
-      t.index ["name"], name: "index_ls_on_name", unique: true
+      t.index ["playground_id","code"], name: "index_ls_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_ls_on_name", unique: true
       t.index ["hierarchy"], name: "index_ls_on_hierarchy", unique: true
     end
   
     create_table "mappings", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "mappings_list_id",                  null: false
-      t.string "source_software",        limit: 255
-      t.string "source_table",           limit: 255
-      t.string "source_value_id",        limit: 255
-      t.string "source_code",            limit: 255
-      t.string "target_software",        limit: 255
-      t.string "target_table",           limit: 255
-      t.string "target_value_id",        limit: 255
-      t.string "target_code",            limit: 255
-      t.string "source_caption",         limit: 255
-      t.string "target_caption",         limit: 255
+      t.string "source_software",        limit: 100
+      t.string "source_table",           limit: 100
+      t.string "source_value_id",        limit: 100
+      t.string "source_code",            limit: 100
+      t.string "target_software",        limit: 100
+      t.string "target_table",           limit: 100
+      t.string "target_value_id",        limit: 100
+      t.string "target_code",            limit: 100
+      t.string "source_property",        limit: 100
+      t.string "target_property",        limit: 100
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
+      t.index ["mappings_list_id", "source_code", "target_code"], name: "index_map_on_code", unique: true
     end
   
     create_table "mappings_lists", id: :serial, force: :cascade do |t|
@@ -260,13 +261,13 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_ml_on_code", unique: true
-      t.index ["name"], name: "index_ml_on_name", unique: true
+      t.index ["playground_id", "code"], name: "index_ml_on_code", unique: true
+      t.index ["playground_id", "name"], name: "index_ml_on_name", unique: true
     end
   
     create_table "notifications", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
-      t.string "title",                 limit: 255,  null: false
+      t.string "title",                 limit: 100,  null: false
       t.text "description"
       t.integer "severity_id",                       null: false
       t.integer "status_id",                         null: false
@@ -291,16 +292,16 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "hierarchy",              limit: 25
       t.integer "status_id",                         null: false
       t.integer "parent_id",                         null: false
-      t.string "external_reference",     limit: 255
+      t.string "external_reference",     limit: 100
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_org_on_code", unique: true
+      t.index ["parent_id","code"], name: "index_org_on_code", unique: true
       t.index ["hierarchy"], name: "index_org_on_hierarchy", unique: true
-      t.index ["name"], name: "index_org_on_name", unique: true
-      t.index ["external_reference"], name: "index_org_on_ext_ref", unique: true
+      t.index ["playground_id", "name" ], name: "index_org_on_name", unique: true
+      t.index ["playground_id", "external_reference"], name: "index_org_on_ext_ref", unique: true
     end
   
     create_table "parameters", id: :serial, force: :cascade do |t|
@@ -311,12 +312,14 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "active_from",                      null: false
       t.datetime "active_to",                        null: false
       t.string "parent_list",            limit: 100
-      t.string "param_code",             limit: 10,  null: false
-      t.string "param_value",            limit: 30,  null: false 
+      t.string "code",                   limit: 10,  null: false
+      t.string "property",               limit: 30,  null: false 
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
+      t.index ["parameters_list_id", "name"], name: "index_param_on_name", unique: true
+      t.index ["parameters_list_id", "code"], name: "index_param_on_code", unique: true
     end
   
     create_table "parameters_lists", id: :serial, force: :cascade do |t|
@@ -329,8 +332,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_pl_on_code", unique: true
-      t.index ["name"], name: "index_pl_on_name", unique: true
+      t.index ["playground_id", "code"], name: "index_pl_on_code", unique: true
+      t.index ["playground_id", "name" ], name: "index_pl_on_name", unique: true
     end
   
     create_table "playgrounds", id: :serial, force: :cascade do |t|
@@ -340,7 +343,6 @@ class Base < ActiveRecord::Migration[5.1]
       t.text "description"
       t.string "hierarchy",              limit: 25
       t.integer "status_id",                         null: false
-#      t.integer "parent_id",                         null: false
       t.integer "all_records",                    default: 0
       t.integer "bad_records",                    default: 0
       t.integer "score",                          default: 0
@@ -350,7 +352,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
       t.index ["code"], name: "index_pg_on_code", unique: true
-      t.index ["name"], name: "index_pg_on_name", unique: true
+      t.index ["name" ], name: "index_pg_on_name", unique: true
       t.index ["hierarchy"], name: "index_pg_on_hierarchy", unique: true
     end
   
@@ -359,13 +361,12 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "landscape_id",                      null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
-      t.string "load_interface",         limit: 255
+      t.string "load_interface",         limit: 100
       t.integer "organisation_level"
       t.integer "territory_level"
       t.integer "business_object_id"
       t.string "hierarchy",              limit: 25,  null: false
       t.integer "status_id",                         null: false
-#      t.integer "parent_id",                         null: false
       t.integer "all_records",                    default: 0
       t.integer "bad_records",                    default: 0
       t.integer "score",                          default: 0
@@ -380,12 +381,13 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_sc_on_code", unique: true
-      t.index ["name"], name: "index_sc_on_name", unique: true
+      t.index ["landscape_id","code"], name: "index_sc_on_code", unique: true
+      t.index ["playground_id","name" ], name: "index_sc_on_name", unique: true
       t.index ["hierarchy"], name: "index_sc_on_hierarchy", unique: true
     end
   
     create_table "skills", id: :serial, force: :cascade do |t|
+      t.integer "playground_id",                     null: false
       t.string "name",                   limit: 100, null: false
       t.text "description"
       t.integer "business_object_id",                null: false
@@ -399,7 +401,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["business_object_id, name"], name: "index_skill_on_bo_name", unique: true
+      t.index ["business_object_id", "name"], name: "index_skills_on_bo_name", unique: true
     end
   
     create_table "territories", id: :serial, force: :cascade do |t|
@@ -408,19 +410,19 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "name",                   limit: 100, null: false 
       t.text "description"
       t.integer "territory_level"
-      t.string "hierarchy",              limit: 255
+      t.string "hierarchy",              limit: 100
       t.integer "status_id",                         null: false
       t.integer "parent_id",                         null: false
-      t.string "external_reference",     limit: 255
+      t.string "external_reference",     limit: 100
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_ter_on_code", unique: true
+      t.index ["parent_id","code"], name: "index_ter_on_code", unique: true
       t.index ["hierarchy"], name: "index_ter_on_hierarchy", unique: true
-      t.index ["name"], name: "index_ter_on_name", unique: true
-      t.index ["external_reference"], name: "index_ter_on_ext_ref", unique: true
+      t.index ["playground_id", "name" ], name: "index_ter_on_name", unique: true
+      t.index ["playground_id", "external_reference"], name: "index_ter_on_ext_ref", unique: true
     end
   
     create_table "time_scales", primary_key: "period_id", force: :cascade do |t|
@@ -487,15 +489,17 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "values", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
-      t.integer "values_list_id",                     null: false
+      t.integer "values_list_id",                    null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
       t.text "description"
-      t.string "caption",                limit: 255
+      t.string "property",               limit: 100
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
+      t.index ["values_list_id", "code"], name: "index_values_on_code", unique: true
+      t.index ["values_list_id", "name"], name: "index_values_on_name", unique: true
     end
   
     create_table "values_lists", id: :serial, force: :cascade do |t|
@@ -503,58 +507,58 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
       t.text "description"
-      t.string "table_name",             limit: 255
+      t.string "table_name",             limit: 100
       t.integer "software_id"
-      t.string "software_name",          limit: 255
+      t.string "software_name",          limit: 100
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_vl_on_code", unique: true
-      t.index ["name"], name: "index_vl_on_name", unique: true
+      t.index ["playground_id", "code"], name: "index_vl_on_code", unique: true
+      t.index ["playground_id", "name" ], name: "index_vl_on_name", unique: true
     end
     
     create_table "activities", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "business_process_id",               null: false
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.string "hierarchy",              limit: 25,  null: false
       t.string "pcf_index",              limit: 30
-      t.string "pcf_reference",          limit: 255
+      t.string "pcf_reference",          limit: 100
       t.integer "status_id",                         null: false
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_act_on_code", unique: true
+      t.index ["business_process_id","code"], name: "index_act_on_code", unique: true
       t.index ["hierarchy"], name: "index_act_on_hierarchy", unique: true
-      t.index ["name"], name: "index_act_on_name", unique: true
+      t.index ["playground_id", "name" ], name: "index_act_on_name", unique: true
     end
     
     create_table "tasks", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "activity_id",                       null: false
       t.string "code",                   limit: 60,  null: false
-      t.string "name",                   limit: 255, null: false
+      t.string "name",                   limit: 100, null: false
       t.text "description"
       t.string "hierarchy",              limit: 25,  null: false
       t.string "pcf_index",              limit: 30
-      t.string "pcf_reference",          limit: 255
+      t.string "pcf_reference",          limit: 100
       t.integer "software_id"
-      t.string "external_reference",     limit: 255
+      t.string "external_reference",     limit: 100
       t.integer "status_id",                         null: false
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
-      t.index ["code"], name: "index_task_on_code", unique: true
+      t.index ["activity_id","code"], name: "index_task_on_code", unique: true
       t.index ["hierarchy"], name: "index_task_on_hierarchy", unique: true
-      t.index ["name"], name: "index_task_on_name", unique: true
+      t.index ["playground_id", "name" ], name: "index_task_on_name", unique: true
     end
 
 # Data Marts for analysis
@@ -563,9 +567,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
-      t.string "odq_object_name",        limit: 255
-      t.string "odq_object_code",        limit: 255
-      t.string "odq_object_url",         limit: 255
+      t.string "odq_object_name",        limit: 100
+      t.string "odq_object_code",        limit: 100
+      t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
       t.integer "all_records",                    default: 0
@@ -584,9 +588,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
-      t.string "odq_object_name",        limit: 255
-      t.string "odq_object_code",        limit: 255
-      t.string "odq_object_url",         limit: 255
+      t.string "odq_object_name",        limit: 100
+      t.string "odq_object_code",        limit: 100
+      t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
       t.integer "all_records",                    default: 0

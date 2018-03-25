@@ -3,21 +3,21 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  playground_id          :integer
-#  default_playground_id  :integer
-#  current_playground_id  :integer
-#  current_landscape_id   :integer
-#  directory_id           :string(255)
-#  first_name             :string(255)
-#  last_name              :string(255)
-#  name                   :string(255)
+#  playground_id          :integer          not null
+#  default_playground_id  :integer          default(1)
+#  current_playground_id  :integer          default(1)
+#  current_landscape_id   :integer          default(1)
+#  external_directory_id  :string(100)
+#  first_name             :string(100)
+#  last_name              :string(100)
+#  name                   :string(100)
 #  language               :string
 #  description            :text
 #  active_from            :datetime
 #  active_to              :datetime
-#  is_admin               :boolean
-#  created_by             :string(255)
-#  updated_by             :string(255)
+#  is_admin               :boolean          default(FALSE)
+#  created_by             :string(100)      not null
+#  updated_by             :string(100)      not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -38,8 +38,8 @@
 #  unlock_token           :string
 #  locked_at              :datetime
 #  language_id            :integer
-#  user_name              :string(30)
-#  code                   :string(10)
+#  user_name              :string(30)       not null
+#  code                   :string(10)       not null
 #
 
 # Model copied from technical specifications

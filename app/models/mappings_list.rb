@@ -3,15 +3,15 @@
 # Table name: mappings_lists
 #
 #  id             :integer          not null, primary key
-#  playground_id  :integer
-#  code           :string(255)
-#  name           :string(255)
+#  playground_id  :integer          not null
+#  code           :string(60)       not null
+#  name           :string(100)      not null
 #  description    :text
-#  created_by     :string(255)
-#  updated_by     :string(255)
-#  owner_id       :integer
-#  source_list_id :integer
-#  target_list_id :integer
+#  source_list_id :integer          not null
+#  target_list_id :integer          not null
+#  owner_id       :integer          not null
+#  created_by     :string(100)      not null
+#  updated_by     :string(100)      not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

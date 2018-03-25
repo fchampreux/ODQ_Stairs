@@ -3,18 +3,18 @@
 # Table name: territories
 #
 #  id                 :integer          not null, primary key
-#  playground_id      :integer
-#  code               :string(255)
-#  name               :string(255)
+#  playground_id      :integer          not null
+#  code               :string(60)       not null
+#  name               :string(100)      not null
 #  description        :text
 #  territory_level    :integer
-#  hierarchy          :string(255)
-#  status_id          :integer
-#  owner_id           :integer
-#  parent_id          :integer
-#  external_reference :string(255)
-#  created_by         :string(255)
-#  updated_by         :string(255)
+#  hierarchy          :string(100)
+#  status_id          :integer          not null
+#  parent_id          :integer          not null
+#  external_reference :string(100)
+#  owner_id           :integer          not null
+#  created_by         :string(100)      not null
+#  updated_by         :string(100)      not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

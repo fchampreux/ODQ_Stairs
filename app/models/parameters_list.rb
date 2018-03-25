@@ -2,17 +2,16 @@
 #
 # Table name: parameters_lists
 #
-#  id               :integer          not null, primary key
-#  playground_id    :integer
-#  code             :string(255)
-#  name             :string(255)
-#  description      :text
-#  owner_id         :integer
-#  is_user_specific :boolean
-#  created_by       :string(255)
-#  updated_by       :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id            :integer          not null, primary key
+#  playground_id :integer          not null
+#  code          :string(60)       not null
+#  name          :string(100)      not null
+#  description   :text
+#  owner_id      :integer          not null
+#  created_by    :string(100)      not null
+#  updated_by    :string(100)      not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class ParametersList < ActiveRecord::Base

@@ -1,25 +1,24 @@
 # == Schema Information
 #
-# Table name: business_flows
+# Table name: tasks
 #
-#  id               :integer          not null, primary key
-#  playground_id    :integer
-#  business_area_id :integer
-#  code             :string(255)
-#  name             :string(255)
-#  description      :text
-#  hierarchy        :string(255)
-#  pcf_index        :string(255)
-#  pcf_reference    :string(255)
-#  status_id        :integer
-#  owner_id         :integer
-#  all_records      :integer
-#  bad_records      :integer
-#  score            :integer
-#  created_by       :string(255)
-#  updated_by       :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                 :integer          not null, primary key
+#  playground_id      :integer          not null
+#  activity_id        :integer          not null
+#  code               :string(60)       not null
+#  name               :string(100)      not null
+#  description        :text
+#  hierarchy          :string(25)       not null
+#  pcf_index          :string(30)
+#  pcf_reference      :string(100)
+#  software_id        :integer
+#  external_reference :string(100)
+#  status_id          :integer          not null
+#  owner_id           :integer          not null
+#  created_by         :string(100)      not null
+#  updated_by         :string(100)      not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 class Task < ActiveRecord::Base
@@ -49,7 +48,7 @@ extend CsvHelper
   belongs_to :playground								
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-	belongs_to :activity, 
+	belongs_to :activity
 
 ### private functions definitions
   private

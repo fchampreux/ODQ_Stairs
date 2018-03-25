@@ -3,34 +3,32 @@
 # Table name: landscapes
 #
 #  id            :integer          not null, primary key
-#  playground_id :integer
-#  code          :string(255)
-#  name          :string(255)
+#  playground_id :integer          not null
+#  code          :string(60)       not null
+#  name          :string(100)      not null
 #  description   :text
-#  hierarchy     :string(255)
-#  status_id     :integer
-#  owner_id      :integer
-#  all_records   :integer
-#  bad_records   :integer
-#  score         :integer
-#  created_by    :string(255)
-#  updated_by    :string(255)
+#  hierarchy     :string(25)       not null
+#  status_id     :integer          not null
+#  all_records   :integer          default(0)
+#  bad_records   :integer          default(0)
+#  score         :integer          default(0)
+#  owner_id      :integer          not null
+#  created_by    :string(100)      not null
+#  updated_by    :string(100)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 
-
 #FactoryBot.factories.clear
 FactoryBot.define do
   factory :landscape do
-    playground_id       1000000
+    playground_id       0
     name                "Test Lanscape"
     code                "TEST_LD"
     description         "This is a test Landscape used for unit testing"
     created_by          "Fred"
     updated_by          "Fred"
     hierarchy           "1.0"
-#    session_id          "TestRun-01"
     owner_id            1
     status_id           0
     end

@@ -3,20 +3,20 @@
 # Table name: business_areas
 #
 #  id            :integer          not null, primary key
-#  playground_id :integer
-#  code          :string(255)
-#  name          :string(255)
+#  playground_id :integer          not null
+#  code          :string(60)       not null
+#  name          :string(100)      not null
 #  description   :text
-#  hierarchy     :string(255)
-#  pcf_index     :string(255)
-#  pcf_reference :string(255)
-#  status_id     :integer
-#  owner_id      :integer
-#  all_records   :integer
-#  bad_records   :integer
-#  score         :integer
-#  created_by    :string(255)
-#  updated_by    :string(255)
+#  hierarchy     :string(25)       not null
+#  pcf_index     :string(30)
+#  pcf_reference :string(100)
+#  status_id     :integer          not null
+#  owner_id      :integer          not null
+#  all_records   :integer          default(0)
+#  bad_records   :integer          default(0)
+#  score         :integer          default(0)
+#  created_by    :string(100)      not null
+#  updated_by    :string(100)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -32,18 +32,17 @@ extend CsvHelper
 ### before filter
   before_create :set_hierarchy
 
-	validates :hierarchy, presence: true, uniqueness: true, length: { maximum: 30 }
-	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
-	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
+	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 25 }
+	validates :code, presence: true, uniqueness: {scope: :playground_id}, length: { maximum: 60 }
+	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
-	validates :playground_id, presence: true
+	validates :playground, presence: true
 	validates :pcf_index, length: { maximum: 30 }
-	validates :pcf_reference, length: { maximum: 30 }
- #validates :playground, presence: true
+	validates :pcf_reference, length: { maximum: 100 }
   belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name

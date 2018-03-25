@@ -19,7 +19,7 @@ test:
   database: odq_app_test
   username: odq_app
   password: odq_app
-  schema_search_path: "odq_app"
+  schema_search_path: "odq_app,odq_dwh"
   pool: 5
 
 # EVALUATION environment

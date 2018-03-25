@@ -3,14 +3,14 @@
 # Table name: values
 #
 #  id             :integer          not null, primary key
-#  playground_id  :integer
-#  values_list_id :integer
-#  name           :string(255)
+#  playground_id  :integer          not null
+#  values_list_id :integer          not null
+#  code           :string(60)       not null
+#  name           :string(100)      not null
 #  description    :text
-#  code           :string(255)
-#  caption        :string(255)
-#  created_by     :string(255)
-#  updated_by     :string(255)
+#  property       :string(100)
+#  created_by     :string(100)      not null
+#  updated_by     :string(100)      not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
