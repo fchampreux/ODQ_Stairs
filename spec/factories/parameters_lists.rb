@@ -18,7 +18,9 @@
 
 FactoryBot.define do
   factory :parameters_list do
-    playground_id             -1
+    playground_id             0
+    owner_id                  0
+    code                      "List"
     name                      "Test Parameters list"
     description               "This is a Test Parameters list for unit testing"
     created_by "Fred"

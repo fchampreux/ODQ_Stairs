@@ -21,7 +21,8 @@
 
 FactoryBot.define do
   factory :values_list do
-    playground_id           -1 
+    playground_id     0
+    owner_id          1
     code              "Application" 
     description       "Application" 
     name              "Application" 

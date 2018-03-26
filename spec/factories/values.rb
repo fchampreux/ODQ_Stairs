@@ -19,12 +19,12 @@
 
 FactoryBot.define do
   factory :value do
-    playground_id           -1
-    values_list_id          -1 
-    code              "Application" 
+    playground_id           0
+    values_list_id          0
+    code              "App" 
     description       "Application" 
     name              "Application" 
-    caption           "Application"
+    property          "Application"
     created_by "Fred"
     updated_by "Fred"
   end

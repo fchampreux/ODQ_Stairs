@@ -28,8 +28,27 @@ RSpec.describe Mapping, type: :model do
   
   describe 'Validations'
   subject {FactoryBot.build(:mapping)}
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:playground_id) }
+    it { should validate_presence_of(:playground_id) }
+    it { should validate_presence_of(:mappings_list) }
+    it { should validate_presence_of(:owner_id) }
+    it { should validate_presence_of(:created_by) }
+    it { should validate_presence_of(:updated_by) }
+    it { should validate_presence_of(:source_software) }
+    it { should validate_presence_of(:source_table) }
+    it { should validate_presence_of(:source_code) }
+    it { should validate_presence_of(:source_property) }
+    it { should validate_presence_of(:target_software) }
+    it { should validate_presence_of(:target_table) }
+    it { should validate_presence_of(:target_code) }
+    it { should validate_presence_of(:target_property) }
+		it { should validate_length_of(:source_software).is_at_most(100)}
+		it { should validate_length_of(:source_table).is_at_most(100)}
+		it { should validate_length_of(:source_code).is_at_most(100)}
+		it { should validate_length_of(:source_property).is_at_most(100)}
+		it { should validate_length_of(:target_software).is_at_most(100)}
+		it { should validate_length_of(:target_table).is_at_most(100)}
+		it { should validate_length_of(:target_code).is_at_most(100)}
+		it { should validate_length_of(:target_property).is_at_most(100)}
 
 
   describe 'It can be created'

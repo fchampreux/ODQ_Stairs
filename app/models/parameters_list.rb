@@ -24,13 +24,14 @@ extend CsvHelper
   before_create :set_code
 
 ### validation
-	validates :code, presence: true, uniqueness: true,length: { maximum: 100 }
-	validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
-	validates :description, length: { maximum: 1000 }
-	validates :created_by , presence: true
+  validates :name, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { minimum: 2, maximum: 100 }
+ 	validates :code, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { maximum: 60 }
+  validates :description, length: { maximum: 1000 }
+	validates :created_by , presence: true	
 	validates :updated_by, presence: true
-	validates :playground_id, presence: true
-#	validates :playground, presence: true
+	validates :owner_id, presence: true
+	validates :playground, presence: true
+	belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
   has_many :parameters, :inverse_of => :parameters_list, :dependent => :destroy 
   accepts_nested_attributes_for :parameters, :reject_if => :all_blank, :allow_destroy => true

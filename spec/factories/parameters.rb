@@ -22,9 +22,11 @@
 
 FactoryBot.define do
   factory :parameter do
-    playground_id             -1
-    parameters_list_id        -1
+    playground_id             0
+    parameters_list_id        0
     name                      "Test Parameter"
+    code                      "Parameter"
+    property                  "TEST"
     description               "This is a Test Parameter for unit testing"
     active_from               "2001-01-01"
     active_to                 "2100-01-01"

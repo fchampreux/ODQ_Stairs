@@ -22,7 +22,15 @@ RSpec.describe Value, type: :model do
   describe 'Validations'
   subject {FactoryBot.build(:value)}
     it { should respond_to(:name) }
-    it { should respond_to(:playground_id) }
+		it { should validate_length_of(:name).is_at_least(2).is_at_most(100)}
+    it { should validate_uniqueness_of(:name).scoped_to(:values_list_id).case_insensitive }  
+    it { should respond_to(:code) }
+    it { should validate_length_of(:code).is_at_most(20)}
+    it { should validate_uniqueness_of(:code).scoped_to(:values_list_id).case_insensitive } 
+    it { should validate_presence_of(:playground_id) }
+    it { should validate_presence_of(:values_list) }
+    it { should validate_presence_of(:created_by) }
+    it { should validate_presence_of(:updated_by) }
 
 
   describe 'It can be created'

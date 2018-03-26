@@ -23,12 +23,14 @@
 
 FactoryBot.define do
   factory :organisation do
-    playground_id           -1 
+    playground_id      0
     code              "TEST" 
     description       "Organisation used for unit testing" 
     name              "Test Organisation"
-    owner_id          -1
-    status_id         -1
+    owner_id          0
+    status_id         0
+    parent_id         0
+    hierarchy         '0'
     created_by "Fred"
     updated_by "Fred"
   end

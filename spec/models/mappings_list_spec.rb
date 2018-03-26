@@ -22,11 +22,18 @@ RSpec.describe MappingsList, type: :model do
   
   describe 'Validations'
   subject {FactoryBot.build(:mappings_list)}
-    it { should respond_to(:owner_id) }
-    it { should respond_to(:playground_id) }
-    it { should respond_to(:code) }
-    it { should respond_to(:name) }
-
+    it { should validate_presence_of(:playground) }
+    it { should validate_presence_of(:code) }
+    it { should validate_length_of(:code).is_at_most(60)}
+    it { should validate_uniqueness_of(:code).scoped_to(:playground_id).case_insensitive }
+    it { should validate_presence_of(:name) }
+		it { should validate_length_of(:name).is_at_least(2).is_at_most(100)}
+    it { should validate_uniqueness_of(:name).scoped_to(:playground_id).case_insensitive }
+    it { should validate_presence_of(:owner_id) }
+    it { should validate_presence_of(:created_by) }
+    it { should validate_presence_of(:updated_by) }
+    it { should validate_presence_of(:source_list) }
+    it { should validate_presence_of(:target_list) }
 
   describe 'It can be created'
   it 'has a valid factory' do

@@ -20,9 +20,13 @@
 
 FactoryBot.define do
   factory :mappings_list do
-    playground_id             -1
+    playground_id             0
+    code                      "TEST_MAPPING"
     name                      "Test Mappings list"
     description               "This is a Test Mappings list for unit testing"
+    source_list_id            0
+    target_list_id            0
+    owner_id                  0
     created_by "Fred"
     updated_by "Fred"
   end

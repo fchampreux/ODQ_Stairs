@@ -26,16 +26,18 @@
 
 FactoryBot.define do
   factory :mapping do
-    playground_id             -1
-    mappings_list_id          -1
+    playground_id             0
+    mappings_list_id          0
     source_software           "Application"
     source_table              "Application" 
     source_code               "Application" 
-    source_caption            "Application" 
+    source_property           "Application" 
     target_software           "Application" 
+    target_code               "Application" 
     target_table              "Application" 
-    target_caption            "Application"
-    created_by "Fred"
-    updated_by "Fred"
+    target_property           "Application"
+    created_by                "Fred"
+    updated_by                "Fred"
+    owner_id                   1
   end
 end

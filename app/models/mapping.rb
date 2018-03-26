@@ -36,16 +36,16 @@ before_update :retrieve_target_caption
 	validates :source_software  , presence: true, length: { maximum: 100 }
 	validates :source_table     , presence: true, length: { maximum: 100 }
 	validates :source_code      , presence: true, length: { maximum: 100 }
-	validates :source_caption   , presence: true, length: { maximum: 100 }
+	validates :source_property  , presence: true, length: { maximum: 100 }
 	validates :target_software  , presence: true, length: { maximum: 100 }
 	validates :target_table     , presence: true, length: { maximum: 100 }
-#	validates :target_code      , presence: true, length: { maximum: 100 }
-#	validates :target_caption   , presence: true, length: { maximum: 100 }
+	validates :target_code      , presence: true, length: { maximum: 100 }
+	validates :target_property   , presence: true, length: { maximum: 100 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
+	validates :owner_id, presence: true
 	validates :playground_id, presence: true
-	validates :mappings_list_id, presence: true
-#	validates :playground, presence: true						# validates that the playground exists
+	validates :mappings_list, presence: true
   belongs_to :mappings_list
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 
