@@ -389,14 +389,14 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.datetime "active_from", null: false
     t.datetime "active_to", null: false
     t.string "parent_list", limit: 100
-    t.string "code", limit: 10, null: false
+    t.string "code", limit: 20, null: false
     t.string "property", limit: 30, null: false
     t.string "created_by", limit: 100, null: false
     t.string "updated_by", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parameters_list_id", "code"], name: "index_param_on_code", unique: true
-    t.index ["parameters_list_id", "name"], name: "index_param_on_name", unique: true
+    t.index ["playground_id", "code"], name: "index_param_on_code", unique: true
+    t.index ["playground_id", "name"], name: "index_param_on_name", unique: true
   end
 
   create_table "parameters_lists", id: :serial, force: :cascade do |t|

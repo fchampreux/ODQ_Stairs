@@ -39,7 +39,7 @@ extend CsvHelper
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :playground_id, presence: true
-	validates :business_process_id, presence: true
+	validates :business_process, presence: true
 	validates :pcf_index, length: { maximum: 30 }
 	validates :pcf_reference, length: { maximum: 30 }
 	validates :business_process, presence: true

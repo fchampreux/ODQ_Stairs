@@ -9,9 +9,9 @@
 puts "Seeding users"
 if User.count == 0
   puts "Creating first users"
-  User.create( id:0, login: 'Unassigned', password: 'Unassigned', password_confirmation: 'Unassigned', default_playground_id: 0, current_playground_id: 0, current_landscape_id: 0, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
-  User.create( login: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
-  User.create( login: 'Fred', password: 'French', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
+  User.create( id:0, code: 'Unassigned', user_name: 'Unassigned', password: 'Unassigned', password_confirmation: 'Unassigned', default_playground_id: 0, current_playground_id: 0, current_landscape_id: 0, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
+  User.create( code: 'FCH', user_name: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
+  User.create( code: 'ADM', user_name: 'Fred', password: 'French', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
 end
 
 puts "Seeding playgrounds"
@@ -38,7 +38,7 @@ end
 puts "Seeding organisation"
 if Organisation.count == 0
   puts "Creating technical Organisation"
-  Organisation.create(id: 0, playground_id: 0, name: 'Undefined organisation', description: 'This organisation is assigned an undefined value', code: 'UNDEFINED', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+  Organisation.create(id: 0, playground_id: 0, hierarchy: '0', name: 'Undefined organisation', description: 'This organisation is assigned an undefined value', code: 'UNDEFINED', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 0 )
 # Additional setup - Comment out for real deployment
   puts "Creating Organisations hierarchy"
   Organisation.create(id: 1, playground_id: 1, name: 'Global organisation', description: 'This organisation is created when initialising ODQ application as the root for organisations hierarchy', code: 'GLOBAL', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
@@ -61,7 +61,7 @@ end
 puts "Seeding territory"
 if Territory.count == 0
   puts "Creating technical Territory"
-  Territory.create(id: 0, playground_id: 0, name: 'Undefined territory', description: 'This territory is assigned an undefined value', code: 'UNDEFINED', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
+  Territory.create(id: 0, playground_id: 0, hierarchy: '0', name: 'Undefined territory', description: 'This territory is assigned an undefined value', code: 'UNDEFINED', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
 # Additional setup - Comment out for real deployment
   puts "Creating technical Territories hierarchy"
   Territory.create(id: 1, playground_id: 1, name: 'World', description: 'This territory is created when initialising ODQ application as the root for geography hierarchy', code: 'WORLD', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
@@ -84,7 +84,7 @@ if Territory.count == 0
 puts "Seeding parameters lists"
 if ParametersList.count==0
   puts "Initialising parameters lists"
-  ParametersList.create(id: 0, playground_id: 0, name: 'List of Undefined', description: 'This list is assigned an undefined value', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
+  ParametersList.create(id: 0, playground_id: 0, code: '0', name: 'List of Undefined', description: 'This list is assigned an undefined value', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ParametersList.create(id: 1, playground_id: 0, name: 'List of statuses', description: 'This list contains statuses allowed values', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ParametersList.create(id: 2, playground_id: 0, name: 'List of rules types', description: 'This list contains allowed rules types', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ParametersList.create(id: 3, playground_id: 0, name: 'List of display parameters', description: 'This list contains display settings for users', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
@@ -198,13 +198,13 @@ end
 puts "Seeding activity"
 if Activity.count == 0
   puts "Creating Activity"
-  Activity.create(id: 0, playground_id: 0, business_process_id: 0, code: 'UNDEFINED', name: 'Undefined activity', description: 'This activty is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Activity.create(id: 0, playground_id: 0, business_process_id: 0, hierarchy: '0', code: 'UNDEFINED', name: 'Undefined activity', description: 'This activty is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
 puts "Seeding task"
 if Task.count == 0
   puts "Creating Task"
-  Task.create(id: 0, playground_id: 0, activity_id: 0, code: 'UNDEFINED', name: 'Undefined task', description: 'This task is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(id: 0, playground_id: 0, activity_id: 0, hierarchy: '0', code: 'UNDEFINED', name: 'Undefined task', description: 'This task is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
 

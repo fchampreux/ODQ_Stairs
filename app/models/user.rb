@@ -63,7 +63,7 @@ class User < ApplicationRecord
   # validates :active_to, presence: true
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :user_name, presence: true, uniqueness: true, length: { maximum: 30 }
-  validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+  validates :code, presence: true, uniqueness: true, length: { maximum: 10 }
   validates :external_directory_id, length: { maximum: 100 }
   validates :first_name, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }

@@ -37,7 +37,7 @@ extend CsvHelper
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
-	validates :parent_id, presence: true
+#	validates :parent_id, presence: true
 	validates :playground, presence: true
 	belongs_to :playground								
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
