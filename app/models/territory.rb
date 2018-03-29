@@ -32,7 +32,7 @@ extend CsvHelper
 
 	validates :code, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { minimum: 2, maximum: 100 }
-	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 25 }
+#	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 25 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true

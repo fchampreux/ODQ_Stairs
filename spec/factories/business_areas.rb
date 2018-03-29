@@ -31,7 +31,6 @@ FactoryBot.define do
     description         "This is a test Business Area used for unit testing"
     created_by          "Fred"
     updated_by          "Fred"
-    hierarchy           "1.0"
     owner_id            1
     status_id           0
     end

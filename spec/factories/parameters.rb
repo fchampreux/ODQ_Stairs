@@ -10,7 +10,7 @@
 #  active_from        :datetime         not null
 #  active_to          :datetime         not null
 #  parent_list        :string(100)
-#  code               :string(10)       not null
+#  code               :string(20)       not null
 #  property           :string(30)       not null
 #  created_by         :string(100)      not null
 #  updated_by         :string(100)      not null

@@ -27,8 +27,8 @@ RSpec.describe BusinessArea, type: :model do
 	
   describe 'Validations'
   subject {FactoryBot.build(:business_area)}
-    it { should validate_presence_of(:hierarchy) }
-    it { should validate_uniqueness_of(:hierarchy).case_insensitive }
+#    it { should validate_presence_of(:hierarchy) }
+#    it { should validate_uniqueness_of(:hierarchy).case_insensitive }
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name).scoped_to(:playground_id) }
 		it { should validate_length_of(:name).is_at_least(2).is_at_most(100)}
@@ -37,7 +37,7 @@ RSpec.describe BusinessArea, type: :model do
     it { should validate_length_of(:code).is_at_most(60)}
 		it { should validate_length_of(:pcf_index).is_at_most(30)}
 		it { should validate_length_of(:pcf_reference).is_at_most(100)}
-    it { should validate_presence_of(:playground) }
+#    it { should validate_presence_of(:playground) }
     it { should validate_presence_of(:owner_id) }
     it { should validate_presence_of(:status_id) }
     it { should validate_presence_of(:created_by) }

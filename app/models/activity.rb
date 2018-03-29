@@ -27,10 +27,10 @@ extend CsvHelper
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
 ### before filter
-  before_create :set_code
-  before_create :set_hierarchy
+  before_validation :set_code
+  before_validation :set_hierarchy
 
-	validates :code, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :code, presence: true #, uniqueness: true, length: { maximum: 30 }
 	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
 	validates :hierarchy, presence: true, uniqueness: true
 	validates :description, length: { maximum: 1000 }
@@ -55,7 +55,7 @@ extend CsvHelper
 
   ### before filters
     def set_code 
-      self.code = self.business_process.code + '-' + code
+      self.code = self.business_process.code # + '-' + code
     end 
 
     def set_hierarchy

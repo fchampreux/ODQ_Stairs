@@ -10,7 +10,7 @@
 #  active_from        :datetime         not null
 #  active_to          :datetime         not null
 #  parent_list        :string(100)
-#  code               :string(10)       not null
+#  code               :string(20)       not null
 #  property           :string(30)       not null
 #  created_by         :string(100)      not null
 #  updated_by         :string(100)      not null
@@ -25,8 +25,8 @@ extend CsvHelper
 #  Parameter is linked to a list which belongs to the correct scope
 
 ### before filter
-  before_create :set_playground
-  before_update :set_updated_by
+  before_validation :set_playground
+  before_validation :set_updated_by
 
 ### validation
 	validates :code, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { maximum: 20 }
