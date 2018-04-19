@@ -31,9 +31,10 @@ extend CsvHelper
 
 ### before filter
   before_validation :set_hierarchy
+  before_create :set_code
 
 	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 25 }
-	validates :code, presence: true, uniqueness: {scope: :playground_id}, length: { maximum: 60 }
+	validates :code, presence: true, uniqueness: {scope: :playground_id}, length: { maximum: 20 }
 	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 100 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
@@ -53,9 +54,13 @@ extend CsvHelper
   private
 
   ### before filters
+    def set_code 
+      self.code = self.playground.code + '-' + code
+    end
+  
     def set_hierarchy
       if BusinessArea.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.000'
+        self.hierarchy = self.playground.hierarchy + '.001'
       else 
         last_one = BusinessArea.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next

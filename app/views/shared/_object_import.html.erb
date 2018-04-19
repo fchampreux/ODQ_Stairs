@@ -22,9 +22,17 @@
           <div class="field">
             <%= f.file_field :file %>
           </div>
+          <div id='loading' style='visibility: hidden'><%= image_tag('montre.gif', alt: 'Horloge') %></div>
          
-          <div class="buttons"><%= f.submit ('Import') %></div>
+          <div class="buttons"><%= f.submit ('Import'), :onclick => "afficherLoading();" %></div>
 
       <% end %>
     </div>
   </div>
+<script>
+function afficherLoading()
+{
+     document.form.submit();
+     $('loading').style.visibility='visible';
+}
+</script>

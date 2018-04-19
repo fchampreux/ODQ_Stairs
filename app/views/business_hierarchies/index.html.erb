@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Business Hierarchies (first 20)</h1>
+
+<%= button_to 'Process Business Hierarchies', load_business_hierarchies_path, class: "buttons" %>
+<hr/>
+<table>
+  <tr>
+    <td colspan="3" align="right">Total count: </td>
+    <td colspan="1" align="left"><b><%= @lignes %></b></td>
+  </tr>
+</table>
+<hr/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Playground</th>
+      <th>PCF index</th>
+      <th>PCF reference</th>
+      <th>Level</th>
+      <th>Hierarchy</th>
+      <th>Name</th>
+      <th width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @business_hierarchies.each do |business_hierarchy| %>
+      <tr>
+        <td><%= business_hierarchy.playground_id %></td>
+        <td><%= business_hierarchy.pcf_index %></td>
+        <td><%= business_hierarchy.pcf_reference %></td>
+        <td><%= business_hierarchy.hierarchical_level %></td>
+        <td><%= business_hierarchy.hierarchy %></td>
+        <td><%= business_hierarchy.name %></td>
+        <td><%= business_hierarchy.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

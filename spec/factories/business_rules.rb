@@ -47,7 +47,6 @@ FactoryBot.define do
     description         "This is a test Business rule used for unit testing"
     created_by          "Fred"
     updated_by          "Fred"
-    hierarchy           "1.0"
     rule_type_id        0
     severity_id         0
     complexity_id       0

@@ -165,34 +165,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id","name" ], name: "index_br_on_name", unique: true
       t.index ["hierarchy"], name: "index_br_on_hierarchy", unique: true
     end
-  
-    create_table "dim_time", primary_key: "period_id", id: :integer, default: nil, force: :cascade do |t|
-      t.integer "playground_id",                     null: false
-      t.string "period",                 limit: 6
-      t.string "period_day",             limit: 8
-      t.date "period_date"
-      t.datetime "period_timestamp"
-      t.integer "day_of_month"
-      t.integer "day_of_year"
-      t.integer "day_number"
-      t.integer "week_of_month"
-      t.integer "week_of_year"
-      t.integer "week_number"
-      t.integer "month"
-      t.string "month_name",             limit: 20
-      t.integer "month_number"
-      t.integer "trimester_of_year"
-      t.integer "trimester_number"
-      t.integer "semester_of_year"
-      t.integer "semester_number"
-      t.integer "year"
-      t.integer "year_number"
-      t.string "created_by",             limit: 100, null: false
-      t.string "updated_by",             limit: 100, null: false
-      t.datetime "created_at",                       null: false
-      t.datetime "updated_at",                       null: false
-    end
-  
+    
     create_table "groups", force: :cascade do |t|
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false
@@ -561,9 +534,25 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_task_on_name", unique: true
     end
 
+# temorary table for imports
+
+    create_table :business_hierarchies, id: :serial, force: :cascade do |t|
+      t.integer "playground_id"
+      t.string "pcf_index"
+      t.string "pcf_reference"
+      t.integer "hierarchical_level"
+      t.string "hierarchy"
+      t.string "name"
+      t.text "description"
+      t.datetime "created_at",                       null: false
+      t.datetime "updated_at",                       null: false
+      t.index ["hierarchy"], name: "index_BH_on_hierarchy", unique: true
+      t.index ["hierarchical_level"], name: "index_BH_on_level"
+    end
+
 # Data Marts for analysis
 
-   create_table "dm_processes", id: :serial, force: :cascade do |t|
+   create_table "odq_dwh.dm_processes", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -584,7 +573,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
    
-    create_table "dm_projects", id: :serial, force: :cascade do |t|
+    create_table "odq_dwh.dm_projects", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -599,6 +588,33 @@ class Base < ActiveRecord::Migration[5.1]
       t.decimal "workload",         precision: 60, scale: 2, default: 0
       t.decimal "added_value",      precision: 60, scale: 2, default: 0
       t.decimal "maintenance_cost", precision: 60, scale: 2, default: 0
+      t.string "created_by",             limit: 100, null: false
+      t.string "updated_by",             limit: 100, null: false
+      t.datetime "created_at",                       null: false
+      t.datetime "updated_at",                       null: false
+    end
+
+    create_table "odq_dwh.dim_time", primary_key: "period_id", id: :integer, default: nil, force: :cascade do |t|
+      t.integer "playground_id",                     null: false
+      t.string "period",                 limit: 6
+      t.string "period_day",             limit: 8
+      t.date "period_date"
+      t.datetime "period_timestamp"
+      t.integer "day_of_month"
+      t.integer "day_of_year"
+      t.integer "day_number"
+      t.integer "week_of_month"
+      t.integer "week_of_year"
+      t.integer "week_number"
+      t.integer "month"
+      t.string "month_name",             limit: 20
+      t.integer "month_number"
+      t.integer "trimester_of_year"
+      t.integer "trimester_number"
+      t.integer "semester_of_year"
+      t.integer "semester_number"
+      t.integer "year"
+      t.integer "year_number"
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false

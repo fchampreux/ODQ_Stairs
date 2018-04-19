@@ -34,7 +34,7 @@ RSpec.describe BusinessArea, type: :model do
 		it { should validate_length_of(:name).is_at_least(2).is_at_most(100)}
     it { should validate_presence_of(:code) }
     it { should validate_uniqueness_of(:code).scoped_to(:playground_id) }
-    it { should validate_length_of(:code).is_at_most(60)}
+    it { should validate_length_of(:code).is_at_most(10)}
 		it { should validate_length_of(:pcf_index).is_at_most(30)}
 		it { should validate_length_of(:pcf_reference).is_at_most(100)}
 #    it { should validate_presence_of(:playground) }

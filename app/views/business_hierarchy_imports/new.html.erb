@@ -1,0 +1,43 @@
+<% provide(:title, (t('ImportBHs'))) %>
+
+<%= form_for (@business_hierarchy_import) do |f| %>
+  <% if @business_hierarchy_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@business_hierarchy_import.errors.count, t('error')) %> <%=t('ImportWarn')%></h2>
+      <ul>
+      <% @business_hierarchy_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <div class="col-md-1 text-right"> <%= t('Description') %>:
+    </div>
+    <div class="col-md-6"><pre><%= t('ImportUsage')%></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="field">
+        <%= f.file_field :file %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="field">
+        <%= f.label :playground %>
+        <%= f.collection_select :playground, @playgrounds_list, :id, :name %>
+      </div>
+    </div>
+  </div>
+      
+      
+      <div class="buttons"><%= f.submit ('Import')%></div>
+
+      <% end %>
+
+

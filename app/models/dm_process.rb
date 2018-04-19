@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: odq_dwh.dm_measures
+# Table name: odq_dwh.dm_processes
 #
 #  id                   :integer          not null, primary key
 #  playground_id        :integer
@@ -25,8 +25,8 @@
 #  process_id           :integer
 #
 
-class DmMeasure < ActiveRecord::Base
-  self.table_name = "odq_dwh.dm_measures"
+class DmProcess < ActiveRecord::Base
+  self.table_name = "odq_dwh.dm_processes"
   
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }

@@ -90,8 +90,8 @@
         <% @parameters_list.parameters.order("name ASC").each do |parameter| %>
         <tr align="left">
           <td valign="top"> <%= parameter.name %> </td>
-          <td class="col_narrow"> <%=parameter.param_code%> </td>
-          <td class="col_narrow"> <%=parameter.param_value%> </td>
+          <td class="col_narrow"> <%=parameter.code%> </td>
+          <td class="col_narrow"> <%=parameter.property%> </td>
           <td class="col_medium"> <%=parameter.description %> </td>
           <td><%= parameter.active_from %></td>
           <td><%= parameter.active_to %></td>

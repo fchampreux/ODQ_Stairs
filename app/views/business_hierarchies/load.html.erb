@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Business Hierarchies load report</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Object</th>
+      <th>Tries</th>
+      <th>Inserts</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @counter.each do |monitor| %>
+      <tr>
+        <td><%= monitor[:object] %></td>
+        <td><%= monitor[:tries] %></td>
+        <td><%= monitor[:inserts] %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2" align="right">Total count: </td>
+      <td colspan="1" align="left"><b><%= @lignes %></b></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+
+

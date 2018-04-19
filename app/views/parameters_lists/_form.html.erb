@@ -42,8 +42,8 @@
     <%=  f.nested_fields_for :parameters, wrapper_tag: 'tr' do |param| %>
       <td><%= param.remove_nested_fields_link {image_tag("remove.png")} %></td>
       <td><%= param.text_field :name %> </td>
-      <td><%= param.text_field :param_code %> </td>
-      <td><%= param.text_field :param_value %> </td>
+      <td><%= param.text_field :code %> </td>
+      <td><%= param.text_field :property %> </td>
       <td><%= param.text_field :description %> </td>
       <td><%= param.text_field :active_from %>  </td>
       <td><%= param.text_field :active_to %> </td>

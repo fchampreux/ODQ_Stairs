@@ -1,3 +1,12 @@
+<script>
+  $(document).ready(function(){
+    $("#loading").hide();
+    $(".buttons").click(function(){
+         $("#loading").show();
+      });
+  });
+</script>
+
 <header>
   <div class="container-fluid">
     <div class="row">
@@ -23,6 +32,9 @@
         <div class="row">
           <div class="col-md-10">
             <h1> <%= yield(content_for?(:page_heading) ? :page_heading : :title) %> </h1>
+          </div>
+          <div class="col-md-2">
+            <div id="loading"><img src="/assets/montre.gif", alt= 'Horloge'></div>
           </div>
         </div>
         <div class="row">

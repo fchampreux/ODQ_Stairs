@@ -14,10 +14,10 @@ module ViewsHelper
   def index_audit_tag_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
     current_period_id = TimeScale.where("period_day = ?", current_period_day).take.period_id
-    if DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).blank?
+    if DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).blank?
       measured_score = -1
     else  
-      measured_score = DmMeasure.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
+      measured_score = DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
     end
     
     image_file = case measured_score
@@ -29,6 +29,11 @@ module ViewsHelper
     return image_file
   end
   
+  # retrieve the list of playgrounds
+  def set_playgrounds_list
+    @playgrounds_list = Playground.where("id > 0")
+  end 
+  
   def current_period_id
       current_period_id = TimeScale.where("period_date = ?", Time.now.to_date).take.period_id
   end
@@ -39,14 +44,14 @@ module ViewsHelper
   
   ### extract object's series for d3
     def d3_chart_series_for(current_object)
-    measured_history = DmMeasure.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_measures.period_id").
+    measured_history = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
     where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
     select("dim_time.period_date idx, score").order("dim_time.period_date")
   end
 
   ### extract object's children errors chart series
   def d3_errors_chart_series_for(current_object)
-    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score > 0", current_period_id, current_object.id).
+    measured_children = DmProcess.where("period_id = ? and ODQ_parent_id = ? and score > 0", current_period_id, current_object.id).
     where("odq_object_id <> odq_parent_id").
     select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
   end
@@ -56,14 +61,14 @@ module ViewsHelper
   def added_value_chart_series_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
     current_period_id = TimeScale.where("period_day = ?", current_period_day).take.period_id
-    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).where("odq_object_id <> odq_parent_id").select("odq_object_id as id, odq_object_name as name, odq_object_code as code, added_value, odq_object_url as url")
+    measured_children = DmProcess.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).where("odq_object_id <> odq_parent_id").select("odq_object_id as id, odq_object_name as name, odq_object_code as code, added_value, odq_object_url as url")
   end
   
     ### extract object's children workload chart series
   def workload_chart_series_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
     current_period_id = TimeScale.where("period_day = ?", current_period_day).take.period_id
-    measured_children = DmMeasure.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).where("odq_object_id <> odq_parent_id").select("odq_object_id as id, odq_object_name as name, odq_object_code as code, workload, odq_object_url as url")
+    measured_children = DmProcess.where("period_id = ? and ODQ_parent_id = ? and score < 100", current_period_id, current_object.id).where("odq_object_id <> odq_parent_id").select("odq_object_id as id, odq_object_name as name, odq_object_code as code, workload, odq_object_url as url")
   end
 =end
 

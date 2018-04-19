@@ -93,6 +93,6 @@ class ParametersListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameters_list_params
-      params.require(:parameters_list).permit(:name, :description, :is_user_specific, parameters_attributes: [:name, :description, :param_code, :param_value, :active_from, :active_to, :_destroy, :id] )
+      params.require(:parameters_list).permit(:name, :description, :is_user_specific, parameters_attributes: [:name, :description, :code, :property, :active_from, :active_to, :_destroy, :id] )
     end
 end

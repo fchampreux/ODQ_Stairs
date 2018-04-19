@@ -27,10 +27,10 @@ extend CsvHelper
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
 ### before filter
+  before_validation :set_hierarchy
   before_create :set_code
-  before_create :set_hierarchy
 
-	validates :code, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { maximum: 30 }
+	validates :code, presence: true, length: { maximum: 10 }
 	validates :name, presence: true, uniqueness: {scope: :playground_id, case_sensitive: false}, length: { minimum: 2, maximum: 100 }
 #	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 25 }
 	validates :created_by , presence: true
@@ -38,7 +38,7 @@ extend CsvHelper
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
 	validates :parent_id, presence: true
-	validates :playground, presence: true
+#	validates :playground, presence: true
 	belongs_to :playground								
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name

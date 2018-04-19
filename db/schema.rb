@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_bf_on_name", unique: true
   end
 
+  create_table "business_hierarchies", id: :serial, force: :cascade do |t|
+    t.integer "playground_id"
+    t.string "pcf_index"
+    t.string "pcf_reference"
+    t.integer "hierarchical_level"
+    t.string "hierarchy"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hierarchical_level"], name: "index_BH_on_level"
+    t.index ["hierarchy"], name: "index_BH_on_hierarchy", unique: true
+  end
+
   create_table "business_objects", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false

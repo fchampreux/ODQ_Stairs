@@ -1,5 +1,6 @@
 ODQStairs::Application.routes.draw do
 
+
   resources :groups
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :requests
@@ -17,7 +18,13 @@ ODQStairs::Application.routes.draw do
   #resources :sessions, only: [:new, :create, :destroy]  
   #get '/signin',  to: 'sessions#new'	, via: :get
   #match '/signout', to: 'sessions#destroy', via: :delete
-
+  resources :business_hierarchies, :only=>[:index, :load] do
+    collection do
+      post :load
+    end
+  end
+  resources :business_hierarchy_imports, :only=>[:new, :create]
+  
   resources :parameters_lists do
       resources :parameters
       resources :parameters_imports, :only=>[:new, :create]
@@ -27,7 +34,6 @@ ODQStairs::Application.routes.draw do
   resources :values_lists do
       resources :values      
       resources :values_imports, :only=>[:new, :create]
-#      resources :mappings_lists
   end
   resources :values_lists_imports, :only=>[:new, :create]
 
@@ -41,29 +47,24 @@ ODQStairs::Application.routes.draw do
       resources :business_flows, :only=>[:new, :create]
       resources :business_objects, :only=>[:new, :create]
   end
-  resources :business_areas_imports, :only=>[:new, :create]
 
   resources :business_flows do
       resources :business_processes, :only=>[:new, :create]
   end
-  resources :business_flows_imports, :only=>[:new, :create]
 
   resources :business_processes do
       resources :business_rules, :only=>[:new, :create]
   end
-  resources :business_processes_imports, :only=>[:new, :create]
 
   resources :business_objects do
     get 'push', on: :member             # Push to web service
     resources :skills                   # Properties of a business object
     resources :skills_imports, :only=>[:new, :create]
   end
-  resources :business_objects_imports, :only=>[:new, :create]
 
   resources :business_rules do
       resources :breaches
   end
-  resources :business_rules_imports, :only=>[:new, :create]
 
   resources :notifications do
       resources :breaches
@@ -91,7 +92,6 @@ ODQStairs::Application.routes.draw do
        resources :update_requests, :only=>[:new, :create]
   end
 
-
   resources :time_scales
 
   resources :data_policies
@@ -99,17 +99,14 @@ ODQStairs::Application.routes.draw do
   resources :scopes do
     resources :business_rules, :only=>[:new, :create]
   end
-  resources :scopes_imports, :only=>[:new, :create]
 
   resources :landscapes do
     resources :scopes, :only=>[:new, :create]
   end
-  resources :landscapes_imports, :only=>[:new, :create]
 
   resources :playgrounds do
     resources :landscapes, :only=>[:new, :create]
   end
-  resources :playgrounds_imports, :only=>[:new, :create]
 
 
   # The priority is based upon order of creation:

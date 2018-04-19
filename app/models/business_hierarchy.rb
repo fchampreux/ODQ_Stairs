@@ -1,0 +1,2 @@
+class BusinessHierarchy < ApplicationRecord
+end
