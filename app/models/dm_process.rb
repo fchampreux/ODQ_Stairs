@@ -2,27 +2,25 @@
 #
 # Table name: odq_dwh.dm_processes
 #
-#  id                   :integer          not null, primary key
-#  playground_id        :integer
-#  odq_object_id        :integer          not null
-#  odq_parent_id        :integer
-#  odq_object_name      :string(255)
-#  odq_object_code      :string(255)
-#  odq_object_url       :string(255)
-#  is_project_hierarchy :boolean
-#  period_id            :integer          not null
-#  period_day           :string(8)
-#  all_records          :integer
-#  error_count          :integer
-#  score                :decimal(5, 2)
-#  workload             :decimal(15, 2)
-#  added_value          :decimal(15, 2)
-#  maintenance_cost     :decimal(15, 2)
-#  created_by           :string(255)
-#  updated_by           :string(255)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  process_id           :integer
+#  id               :integer          not null, primary key
+#  playground_id    :integer          not null
+#  odq_object_id    :integer          not null
+#  odq_parent_id    :integer          not null
+#  odq_object_name  :string(100)
+#  odq_object_code  :string(100)
+#  odq_object_url   :string(100)
+#  period_id        :integer          not null
+#  period_day       :string(8)
+#  all_records      :integer          default(0)
+#  error_count      :integer          default(0)
+#  score            :decimal(5, 2)    default(0.0)
+#  workload         :decimal(5, 2)    default(0.0)
+#  added_value      :decimal(5, 2)    default(0.0)
+#  maintenance_cost :decimal(5, 2)    default(0.0)
+#  created_by       :string(100)      not null
+#  updated_by       :string(100)      not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class DmProcess < ActiveRecord::Base

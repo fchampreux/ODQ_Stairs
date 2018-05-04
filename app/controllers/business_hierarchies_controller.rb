@@ -32,7 +32,12 @@ class BusinessHierarchiesController < ApplicationController
       @business_area.updated_by = current_user.user_name
       
       monitor[:tries] += 1
-      if @business_area.save then monitor[:inserts] += 1 end
+      if @business_area.save
+        monitor[:inserts] += 1
+      else
+        log_activity(ba.playground_id, 1, @business_area.id, @business_area.name, request.env['REMOTE_ADDR'],
+                     'record rejected when initialising business area', 34, DateTime.now, 'DQ&P')
+      end
       
     end
     @counter.push(monitor)

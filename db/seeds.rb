@@ -11,7 +11,7 @@ if User.count == 0
   puts "Creating first users"
   User.create( id:0, code: 'Unassigned', user_name: 'Unassigned', password: 'Unassigned', password_confirmation: 'Unassigned', default_playground_id: 0, current_playground_id: 0, current_landscape_id: 0, is_admin: 0, last_name: 'User', first_name: 'Undefined', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
   User.create( code: 'ADM', user_name: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user1@nohoo.biz')
-  User.create( code: 'FCH', user_name: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user2@nohoo.biz')
+#  User.create( code: 'FCH', user_name: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user2@nohoo.biz')
 end
 
 puts "Seeding playgrounds"
@@ -135,6 +135,7 @@ if Parameter.count==0
   Parameter.create( playground_id: 0,  name: 'Siebel CRM', code: 'Siebel', property: 2, description: 'Oracle Siebel CRM Application', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
   Parameter.create( playground_id: 0,  name: 'Global logistics', code: 'logistics', property: 3, description: 'Cloud logistic provider', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 6)
   Parameter.create( playground_id: 0,  name: 'Business rule', code: 'Business', property: 1, description: 'Breach of an identified business rule', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 7)
+  Parameter.create( playground_id: 0,  name: 'Initialisation', code: 'INIT', property: 1, description: 'Breach of APQC framewotk initial load', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 7)
   Parameter.create( playground_id: 0,  name: 'External system', code: 'External', property: 2, description: 'Breach reported by an external system', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 7)
   Parameter.create( playground_id: 0,  name: 'New breach', code: 'breach', property: 1, description: 'Newly reported breach', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
   Parameter.create( playground_id: 0,  name: 'Update submitted', code: 'submitted', property: 2, description: 'Update pening validation', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 8)
@@ -199,12 +200,18 @@ puts "Seeding activity"
 if Activity.count == 0
   puts "Creating Activity"
   Activity.create(id: 0, playground_id: 0, business_process_id: 0, code: 'UNDEFINED', name: 'Undefined activity', description: 'This activity is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Activity.create(playground_id: 0, business_process_id: 0, code: 'INIT', name: 'Initialising DQP', description: 'This activity relates to software intialisation',  created_by: 'Rake', updated_by: 'Rake', :created_at => DateTime.now.to_date, :updated_at => DateTime.now.to_date, owner_id: 1, status_id: 1)
 end
 
 puts "Seeding task"
 if Task.count == 0
   puts "Creating Task"
   Task.create(id: 0, playground_id: 0, activity_id: 0, code: 'UNDEFINED', name: 'Undefined task', description: 'This task is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(playground_id: 0, activity_id: 1, code: 'INIT BA', name: 'Initialising Business Areas', description: 'This imports business areas from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(playground_id: 0, activity_id: 1, code: 'INIT BF', name: 'Initialising Business Flows', description: 'This imports business flows from APQC from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(playground_id: 0, activity_id: 1, code: 'INIT BP', name: 'Initialising Business Processes', description: 'This imports business processes from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(playground_id: 0, activity_id: 1, code: 'INIT ACT', name: 'Initialising Activities', description: 'This imports business activities from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  Task.create(playground_id: 0, activity_id: 1, code: 'INIT TASKS', name: 'Initialising Tasks', description: 'This imports tasks from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
 

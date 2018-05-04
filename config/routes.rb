@@ -108,6 +108,7 @@ ODQStairs::Application.routes.draw do
     resources :landscapes, :only=>[:new, :create]
   end
 
+  resources :audit_trails, :only=>[:index], :controller=>:audit_trails
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

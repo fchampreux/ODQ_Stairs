@@ -563,10 +563,10 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "period_day",             limit: 8
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
-      t.decimal "score",            precision: 5,  scale: 2, default: 0
-      t.decimal "workload",         precision: 60, scale: 2, default: 0
-      t.decimal "added_value",      precision: 60, scale: 2, default: 0
-      t.decimal "maintenance_cost", precision: 60, scale: 2, default: 0
+      t.decimal "score",            precision: 5, scale: 2, default: 0
+      t.decimal "workload",         precision: 5, scale: 2, default: 0
+      t.decimal "added_value",      precision: 5, scale: 2, default: 0
+      t.decimal "maintenance_cost", precision: 5, scale: 2, default: 0
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
@@ -584,10 +584,10 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "period_day",             limit: 8
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
-      t.decimal "score",            precision: 5,  scale: 2, default: 0
-      t.decimal "workload",         precision: 60, scale: 2, default: 0
-      t.decimal "added_value",      precision: 60, scale: 2, default: 0
-      t.decimal "maintenance_cost", precision: 60, scale: 2, default: 0
+      t.decimal "score",            precision: 5, scale: 2, default: 0
+      t.decimal "workload",         precision: 5, scale: 2, default: 0
+      t.decimal "added_value",      precision: 5, scale: 2, default: 0
+      t.decimal "maintenance_cost", precision: 5, scale: 2, default: 0
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.datetime "created_at",                       null: false
@@ -620,6 +620,24 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "created_at",                       null: false
       t.datetime "updated_at",                       null: false
     end
+    
+    # Audit trail
+    
+    create_table "audit_trails", force: :cascade do |t|
+      t.integer  "playground_id",            null: false
+      t.integer  "task_id",                  null: false
+      t.string   "user_name",                  null: false
+      t.string   "action",                   null: false 
+      t.integer  "object_id",                null: false
+      t.string   "object_class",  limit: 100
+      t.string   "object_name",   limit: 100
+      t.integer  "breach_type_id",           default: 0
+      t.string   "server_name",   limit: 100
+      t.string   "description",   limit: 1000
+      t.datetime "created_at",               null: false
+      t.string   "created_by",   limit: 100
+    end    
+
       
   end
 end

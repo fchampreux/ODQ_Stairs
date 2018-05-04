@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Audit records</h1>
+<%= will_paginate %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th> playground </th>
+      <th> user </th>
+      <th> action </th>
+      <th> task </th>
+      <th> object id </th>
+      <th> object class </th>
+      <th> object name </th>
+      <th> server </th>
+      <th> incident </th>
+      <th> description </th>
+      <th> created_at </th>
+      <th> created_by </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @audit_trails.each do |trail| %>
+      <tr>
+        <td><%= trail.user.name %></td>
+        <td><%= trail.action %></td>
+        <td><%= trail.task.name %></td>
+        <td><%= trail.object_id %></td> 
+        <td><%= trail.object_class %></td> 
+        <td><%= trail.object_name %></td> 
+        <td><%= trail.server_name %></td>
+        <td><%= trail.breach_type.name %></td>
+        <td><%= trail.description %></td>  
+        <td><%= trail.created_at %></td> 
+        <td><%= trail.created_by %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>
+<br>

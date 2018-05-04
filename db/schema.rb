@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_act_on_name", unique: true
   end
 
+  create_table "audit_trails", force: :cascade do |t|
+    t.integer "playground_id", null: false
+    t.integer "task_id", null: false
+    t.string "user_name", null: false
+    t.string "action", null: false
+    t.integer "object_id", null: false
+    t.string "object_class", limit: 100
+    t.string "object_name", limit: 100
+    t.integer "breach_type_id", default: 0
+    t.string "server_name", limit: 100
+    t.string "description", limit: 1000
+    t.datetime "created_at", null: false
+    t.string "created_by", limit: 100
+  end
+
   create_table "breaches", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_rule_id", null: false
@@ -254,9 +269,9 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "all_records", default: 0
     t.integer "error_count", default: 0
     t.decimal "score", precision: 5, scale: 2, default: "0.0"
-    t.decimal "workload", precision: 60, scale: 2, default: "0.0"
-    t.decimal "added_value", precision: 60, scale: 2, default: "0.0"
-    t.decimal "maintenance_cost", precision: 60, scale: 2, default: "0.0"
+    t.decimal "workload", precision: 5, scale: 2, default: "0.0"
+    t.decimal "added_value", precision: 5, scale: 2, default: "0.0"
+    t.decimal "maintenance_cost", precision: 5, scale: 2, default: "0.0"
     t.string "created_by", limit: 100, null: false
     t.string "updated_by", limit: 100, null: false
     t.datetime "created_at", null: false
@@ -275,9 +290,9 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "all_records", default: 0
     t.integer "error_count", default: 0
     t.decimal "score", precision: 5, scale: 2, default: "0.0"
-    t.decimal "workload", precision: 60, scale: 2, default: "0.0"
-    t.decimal "added_value", precision: 60, scale: 2, default: "0.0"
-    t.decimal "maintenance_cost", precision: 60, scale: 2, default: "0.0"
+    t.decimal "workload", precision: 5, scale: 2, default: "0.0"
+    t.decimal "added_value", precision: 5, scale: 2, default: "0.0"
+    t.decimal "maintenance_cost", precision: 5, scale: 2, default: "0.0"
     t.string "created_by", limit: 100, null: false
     t.string "updated_by", limit: 100, null: false
     t.datetime "created_at", null: false

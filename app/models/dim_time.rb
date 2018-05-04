@@ -3,7 +3,7 @@
 # Table name: odq_dwh.dim_time
 #
 #  period_id         :integer          not null, primary key
-#  playground_id     :integer
+#  playground_id     :integer          not null
 #  period            :string(6)
 #  period_day        :string(8)
 #  period_date       :date
@@ -23,11 +23,10 @@
 #  semester_number   :integer
 #  year              :integer
 #  year_number       :integer
-#  created_by        :string(255)
-#  updated_by        :string(255)
+#  created_by        :string(100)      not null
+#  updated_by        :string(100)      not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  process_id        :integer
 #
 
 class DimTime < ActiveRecord::Base
