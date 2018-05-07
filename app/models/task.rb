@@ -25,6 +25,8 @@ class Task < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
+self.sequence_name = "global_seq"
+
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 
@@ -33,7 +35,7 @@ extend CsvHelper
   before_create :set_code
 
 	validates :code, presence: true, length: { maximum: 60 }
-	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 100 }
+	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 200 }
 	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true

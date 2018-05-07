@@ -23,12 +23,14 @@ class Playground < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
+self.sequence_name = "global_seq"
+
 ### before filter
   before_create :set_hierarchy
 
 	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
 	validates :code, presence: true, uniqueness: true, length: { maximum: 10 }
-	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
+	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 200 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true

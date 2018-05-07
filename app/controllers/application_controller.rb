@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   def log_activity(playground_id, task_id, objectId, objectName, server, description, breach_type)
         @trail = AuditTrail.new
         @trail.playground_id = playground_id
-        @trail.user_id = current_user.id
         @trail.task_id = task_id
         @trail.action = action_name
         @trail.object_id = objectId || 0

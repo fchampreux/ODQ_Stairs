@@ -35,8 +35,8 @@ class BusinessHierarchiesController < ApplicationController
       if @business_area.save
         monitor[:inserts] += 1
       else
-        log_activity(ba.playground_id, 1, @business_area.id, @business_area.name, request.env['REMOTE_ADDR'],
-                     'record rejected when initialising business area', 34, DateTime.now, 'DQ&P')
+        log_activity(ba.playground_id, 1, @business_area.id, ba.hierarchy + ' ' + ba.name,
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business area', 34)
       end
       
     end
@@ -62,7 +62,12 @@ class BusinessHierarchiesController < ApplicationController
       @business_flow.updated_by = current_user.user_name
       
       monitor[:tries] += 1
-      if @business_flow.save then monitor[:inserts] += 1 end
+      if @business_flow.save 
+        monitor[:inserts] += 1 
+      else
+        log_activity(bf.playground_id, 2, @business_flow.id, bf.hierarchy + ' ' + bf.name,
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business flow', 34)
+      end
       
     end
     @counter.push(monitor)
@@ -88,7 +93,13 @@ class BusinessHierarchiesController < ApplicationController
       @business_process.updated_by = current_user.user_name
       
       monitor[:tries] += 1
-      if @business_process.save then monitor[:inserts] += 1 end
+      if @business_process.save 
+        monitor[:inserts] += 1
+      else
+        log_activity(bp.playground_id, 3, @business_process.id, bp.hierarchy + ' ' + bp.name,
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business process', 34)
+      end
+      
       
     end
     @counter.push(monitor)
@@ -113,7 +124,13 @@ class BusinessHierarchiesController < ApplicationController
       @activity.updated_by = current_user.user_name
       
       monitor[:tries] += 1
-      if @activity.save then monitor[:inserts] += 1 end
+      if @activity.save 
+        monitor[:inserts] += 1
+      else
+        log_activity(activity.playground_id, 4, @activity.id, activity.hierarchy + ' ' + activity.name,
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising activity', 34)
+      end
+      
       
     end
     @counter.push(monitor)
@@ -138,7 +155,13 @@ class BusinessHierarchiesController < ApplicationController
       @task.updated_by = current_user.user_name
       
       monitor[:tries] += 1
-      if @task.save then monitor[:inserts] += 1 end
+      if @task.save 
+        monitor[:inserts] += 1
+      else
+        log_activity(task.playground_id, 5, @task.id, task.hierarchy + ' ' + task.name,
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising task', 34)
+      end
+      
       
     end
     @counter.push(monitor)

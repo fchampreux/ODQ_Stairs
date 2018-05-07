@@ -5,7 +5,6 @@
 #  id             :integer          not null, primary key
 #  playground_id  :integer          not null
 #  task_id        :integer          not null
-#  user_id        :integer          not null
 #  action         :string           not null
 #  object_id      :integer          not null
 #  object_class   :string(100)
@@ -21,7 +20,6 @@ class AuditTrail < ApplicationRecord
 #Filters
 
 #Record validations
-  validates :user_id, presence: true
 
 ### validations
 	validates :playground, presence: true

@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th> playground </th>
-      <th> user </th>
       <th> action </th>
       <th> task </th>
       <th> object id </th>
@@ -23,7 +22,7 @@
   <tbody>
     <% @audit_trails.each do |trail| %>
       <tr>
-        <td><%= trail.user.name %></td>
+        <td><%= trail.playground.code %></td>
         <td><%= trail.action %></td>
         <td><%= trail.task.name %></td>
         <td><%= trail.object_id %></td> 

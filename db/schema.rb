@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "playground_id", null: false
     t.integer "business_process_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
@@ -38,14 +38,13 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   create_table "audit_trails", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "task_id", null: false
-    t.string "user_name", null: false
-    t.string "action", null: false
+    t.string "action", limit: 100, null: false
     t.integer "object_id", null: false
     t.string "object_class", limit: 100
-    t.string "object_name", limit: 100
+    t.string "object_name", limit: 200
     t.integer "breach_type_id", default: 0
     t.string "server_name", limit: 100
-    t.string "description", limit: 1000
+    t.string "description", limit: 2000
     t.datetime "created_at", null: false
     t.string "created_by", limit: 100
   end
@@ -90,7 +89,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   create_table "business_areas", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
@@ -113,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
@@ -151,7 +150,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "business_area_id", null: false
     t.integer "main_scope_id"
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.integer "organisation_level"
     t.integer "territory_level"
@@ -174,7 +173,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "playground_id", null: false
     t.integer "business_flow_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
@@ -198,7 +197,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "business_process_id", null: false
     t.integer "business_object_id"
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.text "business_value"
     t.string "hierarchy", limit: 25, null: false
@@ -317,7 +316,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   create_table "landscapes", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.integer "status_id", null: false
@@ -445,7 +444,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   create_table "playgrounds", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25
     t.integer "status_id", null: false
@@ -466,7 +465,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "playground_id", null: false
     t.integer "landscape_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.string "load_interface", limit: 100
     t.integer "organisation_level"
     t.integer "territory_level"
@@ -514,7 +513,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "playground_id", null: false
     t.integer "activity_id", null: false
     t.string "code", limit: 60, null: false
-    t.string "name", limit: 100, null: false
+    t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
