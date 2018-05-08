@@ -1,4 +1,7 @@
 class Base < ActiveRecord::Migration[5.1]
+  # Create global sequence for business objects
+  ActiveRecord::Base.connection.execute("CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 1")
+  
   def change
     create_table "breaches", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
