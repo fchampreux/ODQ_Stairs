@@ -28,7 +28,7 @@ self.sequence_name = "global_seq"
 ### before filter
   before_create :set_hierarchy
 
-	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
+	validates :hierarchy, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
 	validates :code, presence: true, uniqueness: true, length: { maximum: 10 }
 	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 200 }
 	validates :description, length: { maximum: 1000 }
@@ -62,6 +62,7 @@ self.sequence_name = "global_seq"
       else 
         last_one = Playground.maximum("hierarchy")
         self.hierarchy = last_one.next
+        self.playground_id = self.hierarchy
       end
 
     end

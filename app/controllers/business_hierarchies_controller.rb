@@ -20,7 +20,7 @@ class BusinessHierarchiesController < ApplicationController
     business_areas_list.each do |ba|
       @business_area = BusinessArea.new
       @business_area.playground_id = ba.playground_id
-      @business_area.code = ba.pcf_reference
+      @business_area.code = ba.pcf_reference.remove('.0')
       @business_area.name = ba.name
       @business_area.description = ba.description
       @business_area.hierarchy = ba.hierarchy # This value is overwritten by before filter un the BA model validations
@@ -50,7 +50,7 @@ class BusinessHierarchiesController < ApplicationController
       @business_flow = BusinessFlow.new
       @business_flow.playground_id = bf.playground_id
       @business_flow.business_area_id = ba.id
-      @business_flow.code = bf.pcf_reference
+      @business_flow.code = bf.pcf_reference.remove(ba.pcf_reference.chomp('0'))
       @business_flow.name = bf.name
       @business_flow.description = bf.description
       @business_flow.hierarchy = bf.hierarchy # This value is overwritten by before filter un the BF model validations
@@ -81,7 +81,7 @@ class BusinessHierarchiesController < ApplicationController
       @business_process = BusinessProcess.new
       @business_process.playground_id = bp.playground_id
       @business_process.business_flow_id = bf.id
-      @business_process.code = bp.pcf_reference
+      @business_process.code = bp.pcf_reference.remove(bf.pcf_reference + '.')
       @business_process.name = bp.name
       @business_process.description = bp.description
       @business_process.hierarchy = bp.hierarchy # This value is overwritten by before filter un the BP model validations
@@ -112,7 +112,7 @@ class BusinessHierarchiesController < ApplicationController
       @activity = Activity.new
       @activity.playground_id = activity.playground_id
       @activity.business_process_id = bp.id
-      @activity.code = activity.pcf_reference
+      @activity.code = activity.pcf_reference.remove(bp.pcf_reference + '.')
       @activity.name = activity.name
       @activity.description = activity.description
       @activity.hierarchy = activity.hierarchy # This value is overwritten by before filter un the Activity model validations
@@ -143,7 +143,7 @@ class BusinessHierarchiesController < ApplicationController
       @task = Task.new
       @task.playground_id = task.playground_id
       @task.activity_id = activity.id
-      @task.code = task.pcf_reference
+      @task.code = task.pcf_reference.remove(activity.pcf_reference + '.')
       @task.name = task.name
       @task.description = task.description
       @task.hierarchy = task.hierarchy # This value is overwritten by before filter un the Activity model validations
@@ -162,11 +162,10 @@ class BusinessHierarchiesController < ApplicationController
                      request.env['REMOTE_ADDR'], 'Record rejected when initialising task', 34)
       end
       
-      
     end
     @counter.push(monitor)
-    
-    
+    log_activity(current_user.playground_id, 0, 0, 'Loading business hierarchy',
+                     request.env['REMOTE_ADDR'], 'Load successful', 0)
   end
 
 end

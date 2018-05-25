@@ -7,7 +7,7 @@
 #   Mayor.create(id: 1, name: 'Emanuel', city: cities.first)
 
 puts "Initialise global sequence" # Used by object hierarchies to get an application-wide Id for easing reporting
-ActiveRecord::Base.connection.execute("DROP SEQUENCE global_seq")
+#ActiveRecord::Base.connection.execute("DROP SEQUENCE global_seq")
 ActiveRecord::Base.connection.execute("CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 10000")
 
 puts "Seeding users"
@@ -184,7 +184,6 @@ if Task.count == 0
   Task.create(playground_id: 0, activity_id: 1, code: 'INIT TASKS', name: 'Initialising Tasks', description: 'This imports tasks from APQC',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
-
 puts "Seeding time scale"
 if TimeScale.count == 0
   puts "Creating Initial Date"
@@ -205,6 +204,11 @@ if TimeScale.count == 0
                    created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01')
   calendar_date += 1
   end
+end
+
+if AuditTrail.count<=1
+  puts "Registering seed activity"
+  AuditTrail.create( playground_id: 0, task_id: 5, action: "Initialize", object_id: 0, description: "Running initial data creation script", created_by: "RAKE")
 end
 
 puts "SQL Queries"

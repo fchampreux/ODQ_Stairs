@@ -13,7 +13,6 @@
       <th><%= t('Name')%></th>
       <th><%= t('Description')%></th>
       <th><%= t('Code')%></th>
-      <th><%= t('User')%></th>
       <th><%= t('Owner')%></th>
       <th><%= t('CreatedBy')%></th>
       <th><%= t('UpdatedBy')%></th>
@@ -26,7 +25,6 @@
         <td><%= link_to parameters_list.name, parameters_list %></td>
         <td><%= parameters_list.description %></td>
         <td><%= parameters_list.code %></td>
-        <td><%= parameters_list.is_user_specific %></td>
         <td><%= parameters_list.owner.user_name %></td>
         <td><%= parameters_list.created_by %></td>
         <td><%= parameters_list.updated_by %></td>
