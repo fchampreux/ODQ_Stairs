@@ -5,5 +5,5 @@
         
     ActionMailer::Base.mailgun_settings = {
         api_key: 'key-which-is-mine',
-        domain: 'keyman.MyDomain.net',
+        domain: 'keyman.MyDomain.net'
       }

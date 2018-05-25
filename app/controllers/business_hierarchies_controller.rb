@@ -13,6 +13,10 @@ class BusinessHierarchiesController < ApplicationController
     # Setup counters
     @lignes = BusinessHierarchy.count
     @counter = [] #object, tries, inserts
+
+    # Read statuses Ids
+    new_status = Parameter.joins(:parameters_lists).where("parameters_lists.code = ? and parameters.code = ?", 'LIST_OF_STATUSES','NEW')
+    audit_status = Parameter.joins(:parameters_lists).where("parameters_lists.code = ? and parameters.code = ?", 'LIST_OF_BREACH_TYPES','INIT')
     
     # Load Business Areas
     monitor = {:object => 'Business Areas', :tries => 0, :inserts => 0}
@@ -26,7 +30,7 @@ class BusinessHierarchiesController < ApplicationController
       @business_area.hierarchy = ba.hierarchy # This value is overwritten by before filter un the BA model validations
       @business_area.pcf_index = ba.pcf_index
       @business_area.pcf_reference = ba.pcf_reference
-      @business_area.status_id = 1
+      @business_area.status_id = new_status
       @business_area.owner_id = current_user.id      
       @business_area.created_by = current_user.user_name
       @business_area.updated_by = current_user.user_name
@@ -36,7 +40,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1
       else
         log_activity(ba.playground_id, 1, @business_area.id, ba.hierarchy + ' ' + ba.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business area', 34)
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business area', audit_status)
       end
       
     end
@@ -56,7 +60,7 @@ class BusinessHierarchiesController < ApplicationController
       @business_flow.hierarchy = bf.hierarchy # This value is overwritten by before filter un the BF model validations
       @business_flow.pcf_index = bf.pcf_index
       @business_flow.pcf_reference = bf.pcf_reference
-      @business_flow.status_id = 1
+      @business_flow.status_id = new_status
       @business_flow.owner_id = current_user.id      
       @business_flow.created_by = current_user.user_name
       @business_flow.updated_by = current_user.user_name
@@ -66,7 +70,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1 
       else
         log_activity(bf.playground_id, 2, @business_flow.id, bf.hierarchy + ' ' + bf.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business flow', 34)
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business flow', audit_status)
       end
       
     end
@@ -87,7 +91,7 @@ class BusinessHierarchiesController < ApplicationController
       @business_process.hierarchy = bp.hierarchy # This value is overwritten by before filter un the BP model validations
       @business_process.pcf_index = bp.pcf_index
       @business_process.pcf_reference = bp.pcf_reference
-      @business_process.status_id = 1
+      @business_process.status_id = new_status
       @business_process.owner_id = current_user.id      
       @business_process.created_by = current_user.user_name
       @business_process.updated_by = current_user.user_name
@@ -97,7 +101,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1
       else
         log_activity(bp.playground_id, 3, @business_process.id, bp.hierarchy + ' ' + bp.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business process', 34)
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business process', audit_status)
       end
       
       
@@ -118,7 +122,7 @@ class BusinessHierarchiesController < ApplicationController
       @activity.hierarchy = activity.hierarchy # This value is overwritten by before filter un the Activity model validations
       @activity.pcf_index = activity.pcf_index
       @activity.pcf_reference = activity.pcf_reference
-      @activity.status_id = 1
+      @activity.status_id = new_status
       @activity.owner_id = current_user.id      
       @activity.created_by = current_user.user_name
       @activity.updated_by = current_user.user_name
@@ -128,7 +132,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1
       else
         log_activity(activity.playground_id, 4, @activity.id, activity.hierarchy + ' ' + activity.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising activity', 34)
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising activity', audit_status)
       end
       
       
@@ -149,7 +153,7 @@ class BusinessHierarchiesController < ApplicationController
       @task.hierarchy = task.hierarchy # This value is overwritten by before filter un the Activity model validations
       @task.pcf_index = task.pcf_index
       @task.pcf_reference = task.pcf_reference
-      @task.status_id = 1
+      @task.status_id = new_status
       @task.owner_id = current_user.id      
       @task.created_by = current_user.user_name
       @task.updated_by = current_user.user_name
@@ -159,7 +163,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1
       else
         log_activity(task.playground_id, 5, @task.id, task.hierarchy + ' ' + task.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising task', 34)
+                     request.env['REMOTE_ADDR'], 'Record rejected when initialising task', audit_status)
       end
       
     end
