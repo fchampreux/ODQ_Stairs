@@ -66,6 +66,7 @@ if ParametersList.count==0
   ParametersList.create(id: 8, playground_id: 0, name: 'List of breach statuses', description: 'This list contains allowed statuses for breaches', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ParametersList.create(id: 9, playground_id: 0, name: 'List of languages', description: 'This list contains translated localizations', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ParametersList.create(id: 10, playground_id: 0, name: 'List of data types', description: 'This list contains business objects skills data types', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
+  ParametersList.create(id: 11, playground_id: 0, name: 'List of object types', description: 'This list contains ODQ objects types', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1)
   ActiveRecord::Base.connection.execute("ALTER SEQUENCE parameters_lists_id_seq INCREMENT BY 1 START WITH 100")
 end
 
@@ -123,6 +124,16 @@ if Parameter.count==0
   Parameter.create( playground_id: 0,  name: 'Numeric', code: 'N', property: '2', description: 'Numeric values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
   Parameter.create( playground_id: 0,  name: 'Date', code: 'D', property: '3', description: 'Date values', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 10)
   Parameter.create( playground_id: 0,  name: 'Logo splash', code: 'LOGO144', property: 'ODQ_Logo_compact_144.png', description: 'Condensed logo', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 3)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'PG', property: '0', description: 'Playground', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'BA', property: '1', description: 'Business Area', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'BF', property: '2', description: 'Business Flow', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'BP', property: '3', description: 'Business Process', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'BR', property: '4', description: 'Business Rule', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'ACT', property: '5', description: 'Activity', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'TASK', property: '6', description: 'Task', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'LS', property: '7', description: 'Landscape', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'SC', property: '8', description: 'Scope', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
+  Parameter.create( playground_id: 0,  name: 'Playground', code: 'BO', property: '9', description: 'Business Object', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', parameters_list_id: 11)
 end
 
 puts "Seeding values lists"

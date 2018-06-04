@@ -99,6 +99,7 @@ ODQStairs::Application.routes.draw do
   resources :scopes do
     resources :business_rules, :only=>[:new, :create]
   end
+  resources :business_rules_imports, :only=>[:new, :create]
 
   resources :landscapes do
     resources :scopes, :only=>[:new, :create]

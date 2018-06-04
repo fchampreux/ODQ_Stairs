@@ -11,10 +11,83 @@ namespace :db do
     desc 'Initialise evaluation users'
     task evaluation: :environment do
     if User.count == 2
-      puts 'Creating users'
+      puts 'Creating evaluation user USER1'
       User.create( code: 'USER1', user_name: 'user1', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'User', first_name: 'My First', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user2@nohoo.biz')
     end
     
+    desc 'Create evaluation playground'
+    task evaluation: environment do
+    if Playground.count == 1
+      puts 'Creating playground 1'
+      Playground.create(name: 'Evaluation playground', description: 'This playground is created during initialisation for evaluation purpose', code: 'EVAL', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+    end
+    
+    desc 'Create evaluation landscapes'
+    if Landscape.count == 1
+      puts 'Creating evaluation Landscapes'
+      Landscape.create(playground_id: 1, name: 'Item landscape', description: 'This landscape is dedicated to the audit of all processes impacting Item Master Data', code: 'ITEM', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+      Landscape.create(playground_id: 1, name: 'Audit landscape', description: 'This landscape is created during initialiation', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+    end
+    
+    desc 'Create evaluation scopes'    
+    if Scope.count == 1
+      puts 'Creating first Scopes'
+      Scope.create(id: 1101, playground_id: 1, landscape_id: 1, name: 'FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        from APPS.XX_INVENTORY_ITEM_MASTER_V
+        where ITEM_TYPE = "FP"
+        and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+      Scope.create(id: 1102, playground_id: 1, landscape_id: 1, name: 'No category Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        from APPS.XX_INVENTORY_ITEM_MASTER_V
+        where ITEM_TYPE = "None"
+        and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+      Scope.create(id: 1103, playground_id: 1, landscape_id: 1, name: 'Not FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        from APPS.XX_INVENTORY_ITEM_MASTER_V
+        where ITEM_TYPE <> "FP"
+        and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+    end
+    
+    desc 'Create evaluation business object'
+      if BusinessObject.count == 1
+        puts 'Creating first Business Object'
+        BusinessObject.create(playground_id: 1, business_area_id: 5, code: 'ITEM_MD', name: 'Inventory Item Master', description: 'This object describes the Master Data for Inventory Items', db_technology: 'Oracle 11g', db_connection: 'ERP@PROD.server.com', db_owner_schema: 'ERP_APP', structure_name: 'XX_INV_ITEM_MASTER', key_columns: 'ITEM_ID', published_columns: 'ITEM_ID; ITEM_NO; ITEM_NAME; BRAND; STATUS', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      end
+    
+    desc 'Create evaluation Business Area'
+    task evaluation: environment do
+    if BusinessArea.count == 1
+      BusinessArea.create(playground_id: 1001, code: 'A', name: 'Advanced Supply Chain Planning', pcf_reference: 'A', description: 'Advanced Supply Chain Planning', hierarchy: '01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'B', name: 'Process Manufacturing', pcf_reference: 'B', description: 'Process Manufacturing', hierarchy: '02', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'C', name: 'Enterprise Asset Management', pcf_reference: 'C', description: 'Enterprise Asset Management', hierarchy: '03', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'D', name: 'Purchase Order Management', pcf_reference: 'D', description: 'Purchase Order Management', hierarchy: '04', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'E', name: 'Inventory Management', pcf_reference: 'E', description: 'Inventory Management', hierarchy: '05', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'F', name: 'Order Management', pcf_reference: 'F', description: 'Order Management', hierarchy: '06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'G', name: 'Accounts Receivable', pcf_reference: 'G', description: 'Accounts Receivable', hierarchy: '07', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'H', name: 'Accounts Payable', pcf_reference: 'H', description: 'Accounts Payable', hierarchy: '08', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+      BusinessArea.create(playground_id: 1001, code: 'I', name: 'Fixed Assets', pcf_reference: 'I', description: 'Fixed Assets', hierarchy: '09', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'J', name: 'General Ledger', pcf_reference: 'J', description: 'General Ledger', hierarchy: '10', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'K', name: 'Cash Management', pcf_reference: 'K', description: 'Cash Management', hierarchy: '11', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'L', name: 'EBusiness Tax', pcf_reference: 'L', description: 'EBusiness Tax', hierarchy: '12', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+      BusinessArea.create(playground_id: 1001, code: 'O', name: 'Oracle Generic', pcf_reference: 'O ', description: 'Oracle Generic', hierarchy: '13', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+   #   BusinessArea.create(playground_id: 1002, code: 'ERP', name: 'Enterprise Resources Planning', description: 'ERP integration transactions', hierarchy: '01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+   #   BusinessArea.create(playground_id: 1002, code: 'CRM', name: 'Customer Relationship Management', description: 'CRM integration transactions', hierarchy: '02', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+   #   BusinessArea.create(playground_id: 1002, code: 'LOG', name: 'Logistic Support Tier', description: 'Logistics integration transactions', hierarchy: '03', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
+    end
+      
+    desc 'Create evaluation Business Flows'
+    task evaluation: environment do
+    if BusinessFlow.count == 1
+    end
+      
+    desc 'Create evaluation Business Processes'
+    task evaluation: environment do
+    if BusinessProcesse.count == 1
+    end
+
+    desc 'Create evaluation Business Rules'
+    task evaluation: environment do
+    if BusinessRule.count == 1
+    end  
+      
     desc 'Inititalise territories'
     if Territory.count == 1
       puts "Creating technical Territories hierarchy"

@@ -564,6 +564,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
+      t.integer "organisation_id"                    null: false
+      t.integer "territory_id"                       null: false
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
       t.decimal "score",            precision: 5, scale: 2, default: 0
@@ -576,7 +578,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
    
-    create_table "odq_dwh.dm_projects", id: :serial, force: :cascade do |t|
+    create_table "odq_dwh.dm_scopes", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -585,6 +587,31 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
+      t.integer "organisation_id"                    null: false
+      t.integer "territory_id"                       null: false
+      t.integer "all_records",                    default: 0
+      t.integer "error_count",                    default: 0
+      t.decimal "score",            precision: 5, scale: 2, default: 0
+      t.decimal "workload",         precision: 5, scale: 2, default: 0
+      t.decimal "added_value",      precision: 5, scale: 2, default: 0
+      t.decimal "maintenance_cost", precision: 5, scale: 2, default: 0
+      t.string "created_by",             limit: 100, null: false
+      t.string "updated_by",             limit: 100, null: false
+      t.datetime "created_at",                       null: false
+      t.datetime "updated_at",                       null: false
+    end
+   
+    create_table "odq_dwh.dm_activities", id: :serial, force: :cascade do |t|
+      t.integer "playground_id",                     null: false
+      t.integer "odq_object_id",                     null: false
+      t.integer "odq_parent_id",                     null: false
+      t.string "odq_object_name",        limit: 100
+      t.string "odq_object_code",        limit: 100
+      t.string "odq_object_url",         limit: 100
+      t.integer "period_id",                         null: false
+      t.string "period_day",             limit: 8
+      t.integer "organisation_id"                    null: false
+      t.integer "territory_id"                       null: false
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
       t.decimal "score",            precision: 5, scale: 2, default: 0
