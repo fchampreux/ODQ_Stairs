@@ -1,6 +1,4 @@
 class Base < ActiveRecord::Migration[5.1]
-  # Create global sequence for business objects
-  ActiveRecord::Base.connection.execute("CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 1")
   
   def change
     create_table "breaches", id: :serial, force: :cascade do |t|
@@ -564,8 +562,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
-      t.integer "organisation_id"                    null: false
-      t.integer "territory_id"                       null: false
+      t.integer "organisation_id",                   null: false
+      t.integer "territory_id",                      null: false
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
       t.decimal "score",            precision: 5, scale: 2, default: 0
@@ -587,8 +585,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
-      t.integer "organisation_id"                    null: false
-      t.integer "territory_id"                       null: false
+      t.integer "organisation_id",                   null: false
+      t.integer "territory_id",                      null: false
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
       t.decimal "score",            precision: 5, scale: 2, default: 0
@@ -610,8 +608,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "odq_object_url",         limit: 100
       t.integer "period_id",                         null: false
       t.string "period_day",             limit: 8
-      t.integer "organisation_id"                    null: false
-      t.integer "territory_id"                       null: false
+      t.integer "organisation_id",                   null: false
+      t.integer "territory_id",                      null: false
       t.integer "all_records",                    default: 0
       t.integer "error_count",                    default: 0
       t.decimal "score",            precision: 5, scale: 2, default: 0

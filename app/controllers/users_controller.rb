@@ -88,6 +88,24 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def set_playground
+    @user = current_user
+    @user.updated_by = current_user.user_name
+    @user.current_playground_id = (params[:id])
+    log_activity(@user.current_playground_id, 0, @user.id, @user.user_name,
+                     request.env['REMOTE_ADDR'], 'User switched playground', 0)
+    
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to root_path, notice: 'User switched playground.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 ### private functions
   private
@@ -111,7 +129,8 @@ class UsersController < ApplicationController
 
   ### strong parameters
   def user_params
-    params.require(:user).permit(:login, :first_name, :last_name, :directory_id, :active_from, :active_to, :is_admin, :email, :language, :description, :password, :password_confirmation)
+    params.require(:user).permit(:login, :first_name, :last_name, :directory_id, :active_from, :active_to, :is_admin, :email,
+                                 :language, :description, :password, :password_confirmation, :current_playground_id, :remember_created_at)
   end
 
 end

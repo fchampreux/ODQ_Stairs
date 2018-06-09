@@ -31,6 +31,7 @@
 
 class DimTime < ActiveRecord::Base
   self.table_name = "odq_dwh.dim_time"
+  
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

@@ -72,7 +72,9 @@ ODQStairs::Application.routes.draw do
   
   resources :breaches
 
-  resources :users
+  resources :users do
+    patch 'set_playground', on: :member
+  end
 
   resources :user_accesses
 

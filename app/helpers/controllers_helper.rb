@@ -1,15 +1,5 @@
 module ControllersHelper
 
-  ### get playground scoped id for new objects
-=begin
-  def next_id(current_object)
-    my_sequence=Sequence.pgnd(current_playground).where("class_name = ?", current_object.class.name).take!
-    my_id = my_sequence.current_id + 1
-    my_sequence.update(current_id: my_id)
-    return my_id
-  end
-=end
-    
   ### initialise object metadata
   def metadata_setup(current_object)
     current_object.updated_by = current_login

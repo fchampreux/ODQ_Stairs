@@ -18,7 +18,7 @@ class ParametersList < ActiveRecord::Base
 extend CsvHelper
 
 ### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
+# Parameters are global to the project
 
 ### before filter
   before_create :set_code

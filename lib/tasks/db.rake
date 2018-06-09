@@ -12,21 +12,22 @@ namespace :db do
     task evaluation: :environment do
       if User.count == 2
         puts 'Creating evaluation user USER1'
-        User.create( code: 'USER1', user_name: 'user1', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'User', first_name: 'My First', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user2@nohoo.biz')
+        User.create( code: 'USER1', user_name: 'user1', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'User', first_name: 'My First', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user1@nohoo.biz')
+        ActiveRecord::Base.connection.execute("update users set confirmed_at = now() where user_name = 'user1' ")
       end
     end
     
     desc 'Create evaluation playground'
-    task evaluation: environment do
-      if Playground.count == 1
+    task evaluation: :environment do
+      if Playground.count == 2
         puts 'Creating playground 99'
-        Playground.create(id: 99, name: 'Evaluation playground', description: 'This playground is created during initialisation for evaluation purpose', code: 'EVAL', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+        Playground.create(id: 99, playground_id: 0, name: 'Evaluation playground', description: 'This playground is created during initialisation for evaluation purpose', code: 'EVAL', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
       end
     end
         
     desc 'Create evaluation landscapes'
-    task evaluation: environment do
-      if Landscape.count == 1
+    task evaluation: :environment do
+      if Landscape.count == 2
         puts 'Creating evaluation Landscapes'
         Landscape.create(playground_id: 99, name: 'Item landscape', description: 'This landscape is dedicated to the audit of all processes impacting Item Master Data', code: 'ITEM', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         Landscape.create(playground_id: 99, name: 'Audit landscape', description: 'This landscape is created during initialiation', code: 'AUDIT', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
@@ -34,18 +35,18 @@ namespace :db do
     end
     
     desc 'Create evaluation scopes'  
-    task evaluation: environment do  
-      if Scope.count == 1
+    task evaluation: :environment do  
+      if Scope.count == 2
         puts 'Creating first Scopes'
-        Scope.create(playground_id: 99, landscape_id: 1, name: 'FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        Scope.create(playground_id: 99, landscape_id: 1, name: 'FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
           from APPS.XX_INVENTORY_ITEM_MASTER_V
           where ITEM_TYPE = "FP"
           and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-        Scope.create(playground_id: 99, landscape_id: 1, name: 'No category Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        Scope.create(playground_id: 99, landscape_id: 1, name: 'No category Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
           from APPS.XX_INVENTORY_ITEM_MASTER_V
           where ITEM_TYPE = "None"
           and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-        Scope.create(playground_id: 99, landscape_id: 1, name: 'Not FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', SQL_query: 'Select *
+        Scope.create(playground_id: 99, landscape_id: 1, name: 'Not FP Item Master view', description: 'This scope is created when initialising ODQ application', code: 'ITEM', load_interface: 'ODS_load_DWH_ItemMaster', sql_query: 'Select *
           from APPS.XX_INVENTORY_ITEM_MASTER_V
           where ITEM_TYPE <> "FP"
           and IS_ACTIVE = 1',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
@@ -55,7 +56,7 @@ namespace :db do
 
     
     desc 'Create evaluation Business Areas'
-    task evaluation: environment do
+    task evaluation: :environment do
       if BusinessArea.count == 1
         puts 'Creating first Business Areas'
         BusinessArea.create(playground_id: 99, code: 'A', name: 'Advanced Supply Chain Planning', pcf_reference: 'A', description: 'Advanced Supply Chain Planning', hierarchy: '01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1  )
@@ -78,15 +79,15 @@ namespace :db do
     end
     
     desc 'Create evaluation Business Objects'
-    task evaluation: environment do
+    task evaluation: :environment do
       if BusinessObject.count == 1
         puts 'Creating first Business Object'
-        BusinessObject.create(playground_id: 99, business_area_id: 5, code: 'ITEM_MD', name: 'Inventory Item Master', description: 'This object describes the Master Data for Inventory Items', db_technology: 'Oracle 11g', db_connection: 'ERP@PROD.server.com', db_owner_schema: 'ERP_APP', structure_name: 'XX_INV_ITEM_MASTER', key_columns: 'ITEM_ID', published_columns: 'ITEM_ID; ITEM_NO; ITEM_NAME; BRAND; STATUS', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessObject.create(playground_id: 99, business_area_id: 5, code: 'ITEM_MD', name: 'Inventory Item Master', description: 'This object describes the Master Data for Inventory Items', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
       end
     end
         
     desc 'Create evaluation Business Flows'
-    task evaluation: environment do
+    task evaluation: :environment do
       if BusinessFlow.count == 1
         puts "Initialising business flows"
         BusinessFlow.create(playground_id: 99, business_area_id: 1, code: '1', name: 'Forecast', description: 'Forecast', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
@@ -156,15 +157,12 @@ namespace :db do
         BusinessFlow.create(playground_id: 99, business_area_id: 12, code: '2', name: 'FER Tax Register Report (Discoverer) ', description: 'FER Tax Register Report (Discoverer) ', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         BusinessFlow.create(playground_id: 99, business_area_id: 13, code: '1', name: 'Applications Login', description: 'Applications Login', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         BusinessFlow.create(playground_id: 99, business_area_id: 13, code: '2', name: 'Reporting', description: 'Reporting', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-        BusinessFlow.create(playground_id: 100, business_area_id: 1227, code: '1', name: 'ERP user integration', description: 'User propagation through systems with ERP target', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-        BusinessFlow.create(playground_id: 100, business_area_id: 1227, code: '2', name: 'ERP grants update', description: 'Applications Login replication', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-        BusinessFlow.create(playground_id: 100, business_area_id: 1228, code: '1', name: 'CRM user integration', description: 'User propagation with CRM as target', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
       end
     end
  
     desc 'Create evaluation Business Processes'
-    task evaluation: environment do
-      if BusinessProcesse.count == 1
+    task evaluation: :environment do
+      if BusinessProcess.count == 1
         puts "Initialising business processes"
         BusinessProcess.create(playground_id: 99, business_flow_id: 1,code: '01', name: 'Review and Adjust Forecast (Increase) ', description: 'Review and Adjust Forecast (Increase) ', pcf_reference: 'A1', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         BusinessProcess.create(playground_id: 99, business_flow_id: 2,code: '02', name: 'Check Exception Messages', description: 'Check Exception Messages', pcf_reference: 'A4', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
@@ -517,85 +515,73 @@ namespace :db do
         BusinessProcess.create(playground_id: 99, business_flow_id: 65,code: '02', name: 'FER Tax Register Report (Discoverer) ', description: 'FER Tax Register Report (Discoverer) ', pcf_reference: 'L2', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         BusinessProcess.create(playground_id: 99, business_flow_id: 66,code: '01', name: 'Oracle Login and Navigation', description: 'Oracle Login and Navigation', pcf_reference: 'O01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
         BusinessProcess.create(playground_id: 99, business_flow_id: 67,code: '02', name: 'Discoverer Navigation and Basic Custom Report ', description: 'Discoverer Navigation and Basic Custom Report ', pcf_reference: 'O02', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-#        BusinessProcess.create(playground_id: 100, business_flow_id:68,code: '01', name: 'ERP user replication', description: 'ERP user replication', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-#        BusinessProcess.create(playground_id: 100, business_flow_id:69,code: '01', name: 'ERP grants replication', description: 'ERP grants replication', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
-#        BusinessProcess.create(playground_id: 100, business_flow_id:70,code: '01', name: 'CRM user replication', description: 'CRM user replication', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
       end
     end
 
     desc 'Create evaluation Business Rules'
-    task evaluation: environment do
+    task evaluation: :environment do
       if BusinessRule.count == 1
         puts "Seeding business rule"
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR1', name: 'Saint-Prex pack', description: 'If column “Ias Stprex Pack” = “No” in data file then item is assigned (Organization name) to at least one inventory organization  which contains in the organization name (reference.xlsx, sheet Organizations, column B “INVENTORY_ORGANIZATION”) “Hub” or “Drop Shipment” or “TPM”', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where column B value = “No”, store Item Number from Column F
       b) Using Item Number from previous point find all Organization codes (column D, Item Master.xls), store Item Number, Organization code
       c) Select all records from reference.xlsx, sheet Organizations, column B where value in column B contains “Hub” or “Drop Shipment” or “TPM”, store ORG_CODE from column A
-      d) Check that for every Item number (point a), at least one Organization code from point b exists in the list from point c, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 22, owner_id: 1, status_id: 1)
+      d) Check that for every Item number (point a), at least one Organization code from point b exists in the list from point c, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 22, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR2', name: 'Make or Buy', description: 'If column “Make Or Buy” = “Make” where “Organization Code” =  “GIM” it also has to be “Make Or Buy” = “Make” on one of the assigned organizations where the name of the organization does not contain “Costing” or “Global Ferring Item Master”', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column C value = “Make” and column D value = “GIM”, store Item Number from Column F
       b) Using Item Number from previous point find all Organization codes (column D, Item Master.xls), store Item Number, Organization code
       c) Select all records from reference.xlsx, sheet Organizations, column B where value in column B does not contain “Costing” or “Global Ferring Item Master”, store ORG_CODE from column A
-      d) Check that for every Item number (point a), at least one Organization code from point b exists in the list from point c, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 21800, owner_id: 1, status_id: 1)
+      d) Check that for every Item number (point a), at least one Organization code from point b exists in the list from point c, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 21800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR3', name: 'FP Items', description: 'All items with User Item type = “FP” need to have value populated (non blank) on Default Shipping Organization (column on same data sheet) and Default Shipping organization value equals to Organization Code for same Item Number', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column I value = “FP”, store Item Number
       b) Check that column E (Default Shipping Organization) is not blank, store Default Shipping Organization
-      c) Check that for Item number from point a exists value in Column D equal to Default Shipping Organization from point b, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 5000, owner_id: 1, status_id: 1)
+      c) Check that for Item number from point a exists value in Column D equal to Default Shipping Organization from point b, if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 5000, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR4', name: 'Item number digits 1 and 2', description: 'Item number check: Digit 1 and 2 of Item Number is checked against reference file (reference.xlsx, sheet Production site) with matrix between first two digits of Item number and Ias Production site ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, store Item Number (column F) and Ias Production site (Column A)
       b) Store digit 1 and 2 from Item Number (point a) in the variable
       c) Using variable from point b, search in reference.xlsx, sheet Production Site, column C, store value from column B
-      d) Compare Ias Production site value from point a with value in column B from point c, if they are not match then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      d) Compare Ias Production site value from point a with value in column B from point c, if they are not match then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR5', name: 'Item number digits 3 and 4', description: 'Item number check: Digit 3 and 4 is checked against reference file (reference.xlsx, sheet User Item Type) with matrix between digit 3 and 4 and User  Item Type ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, store Item Number (column F) andUser Item Type (Column I)
       b) Store digit 3 and 4 from Item Number (point a) in the variable
       c) Using variable from point b, search in reference.xlsx, sheet User Item Type, column D, store value from column B
-      d) Compare User Item type value from point a with value in column B from point c, if they are not match then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
-        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR6', name: 'General ledger class value ', description: 'General ledger class value (reference.xlsx, sheet General Ledger Class) is populated on all organizations that have GENERAL_LEDGER_UPDATE_CODE = 1 (reference.xlsx, sheet Organizations, column E)', business_value: 'Avoid failing of processes due to inconsistent data', check_description: 'N/A', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      d) Compare User Item type value from point a with value in column B from point c, if they are not match then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR6', name: 'General ledger class value ', description: 'General ledger class value (reference.xlsx, sheet General Ledger Class) is populated on all organizations that have GENERAL_LEDGER_UPDATE_CODE = 1 (reference.xlsx, sheet Organizations, column E)', business_value: 'Avoid failing of processes due to inconsistent data', check_description: 'N/A', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR7', name: 'Item number ends with _S', description: 'If Item Number ends with “_S” then child lot prefix is _S', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column F value ends “_S”, store Item Number
-      b) Check that for all records from point a, column DE value is “_S”, if not then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      b) Check that for all records from point a, column DE value is “_S”, if not then Item number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR8', name: 'Item type MFC', description: 'If User Item Type is MFC then Material status needs to be AP in the organization containing the letter T on second digit in organization code (reference.xlsx, sheet Organizations, column A)', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column I value = “MFC”, store Item Number (column F), Material status (column AM) and Organization code (column D)
-      b) Check that for all items from point a, Material status value equals “AP” for all Organization codes having second digit “T” (ie. DTZ, ATP, ETM..), if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      b) Check that for all items from point a, Material status value equals “AP” for all Organization codes having second digit “T” (ie. DTZ, ATP, ETM..), if not then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR9', name: 'Sales account', description: 'Sales account needs to have the correct value (reference.xlsx, sheet Sales Account Product Segment) based on product name.', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Store Item number from column F, Sales account from column AU and Ias Product name from column T
       b) Sales account from point a is concatenated value using dots (.) as delimiter. Value contains 10 segments. Store into variable 7th segment.
       c) Using variable from point b search in reference.xlsx, sheet Sales Account Product Segment, column B, store value from column A
-      d) Compare value from point c and Ias Product name from point a, if they do not match, then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      d) Compare value from point c and Ias Product name from point a, if they do not match, then Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR10', name: 'Primary Spend Category', description: 'All items that have column Make Or Buy = Buy on Organization code = GIM need to have Primary Spend Category	 and Secondary Spend Category populated and value does not contain “N/A” in either one or both columns.', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where column C value = “Buy” and column D value = “GIM”
-      b) Check that for all records from point a, columns N and O are populated and values are not equal “N/A”, if columns N or O are blank or at least one value in column N or O is equal “N/A” then Item is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      b) Check that for all records from point a, columns N and O are populated and values are not equal “N/A”, if columns N or O are blank or at least one value in column N or O is equal “N/A” then Item is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR11', name: 'Ascp Sourcing Category', description: 'Items that have an Ascp Sourcing Category starting with “B” and Organization Code is not starting with “Z” then item needs to have List Price populated in Organization Code with M as second digit and first digit equals to organization code where the item has the sourcing category starting with “B”.', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column M value begins with  “B” and column D value does not begin with “Z”, store Item Number (column F), Organization code (column D)
       b) Concatenate into variable first digit from Organization code from point a and value “M”, ie. AM, DM, CM etc..
-      c) Search using Item number from point a and variable from point b, check if column BA has non blank value and number only, if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      c) Search using Item number from point a and variable from point b, check if column BA has non blank value and number only, if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR12', name: 'Customs class', description: 'Customs class has to be assigned on User Item Type = FP and value has 8 digits.', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       e) Select all records from Item Master.xls, sheet FCH Item Master, where  column I value = “FP”, store Item Number
-      f) Check that for all Item Numbers from point a Customs class value, column P, has 8 digits, if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      f) Check that for all Item Numbers from point a Customs class value, column P, has 8 digits, if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR13', name: 'Inactive Items', description: 'If Item status is “Inactive” then attributes Costing enabled and Inventory asset value must be “No”', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column J value = “Inactive”, store Item Number
-      b) Check that for all Item Numbers from point a columns AQ and AR have value = “No”,  if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      b) Check that for all Item Numbers from point a columns AQ and AR have value = “No”,  if not than Item Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
       b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
-      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
-#        BusinessRule.create(playground_id: 100, business_process_id: 184, business_object_id: 1302, rule_type_id: 8, code: 'CUST_BR1', name: 'Customers class', description: 'Customers class has to be assigned on User .', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
-#      e) Select all records from Customer Master.xls, sheet FCH Master, where  column I value = “FP”, store Cust Number
-#      f) Check that for all Item Numbers from point a Customs class value, column P, has 8 digits, if not than Cust Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
-#        BusinessRule.create(playground_id: 100, business_process_id: 184, business_object_id: 1302, rule_type_id: 8, code: 'CUST_BR2', name: 'Customer unicity', description: 'If Item status is “Inactive” then attributes Costing enabled and Inventory asset value must be “No”', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
-#      a) Select all records from Customer Master.xls, sheet FCH Master, where  column J value = “Inactive”, store Cust Number
-#      b) Check that for all Item Numbers from point a columns AQ and AR have value = “No”,  if not than Cust Number is not following business rule', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
-#        BusinessRule.create(playground_id: 100, business_process_id: 184, business_object_id: 1302, rule_type_id: 8, code: 'CUST_BR3', name: 'Check address', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
-#      a) Select all records from Customer Master.xls, sheet FCH Master, where  column H value is not blank, store Cust Number and Ias Brand value
-#      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Cust Number is not following business rule
-#      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', condition: 'None', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, version: '1.0', approver_id: 1, approved_at: '2014-01-06', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
       end
     end
       
     desc 'Inititalise territories'
-    if Territory.count == 1
-      puts "Creating technical Territories hierarchy"
+    task evaluation: :environment do
+      if Territory.count == 1
+        puts "Creating technical Territories hierarchy"
         Territory.create(id: 1, playground_id: 1, name: 'World', description: 'This territory is created when initialising ODQ application as the root for geography hierarchy', code: 'WORLD', territory_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
         Territory.create(id: 2, playground_id: 1, name: 'Europe & Middle East', description: 'Europe & Middle East', code: 'EMEA', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
         Territory.create(id: 3, playground_id: 1, name: 'Americas', description: 'Americas', code: 'AME', territory_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
@@ -612,9 +598,11 @@ namespace :db do
         Territory.create(id: 14, playground_id: 1, name: 'South Africa', description: 'South Africa', code: 'SAF', territory_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 5 )
         ActiveRecord::Base.connection.execute("ALTER SEQUENCE territories_id_seq INCREMENT BY 1 START WITH 100")
       end
+    end
     
     desc 'Initialise organisations'
-    if Organisation.count == 1
+    task evaluation: :environment do
+      if Organisation.count == 1
         puts "Creating Organisations hierarchy"
         Organisation.create(id: 1, playground_id: 1, name: 'Global organisation', description: 'This organisation is created when initialising ODQ application as the root for organisations hierarchy', code: 'GLOBAL', organisation_level: 1, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: -1 )
         Organisation.create(id: 2, playground_id: 1, name: 'Marketing', description: 'Marketing organisations', code: 'MKT', organisation_level: 2, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 1 )
@@ -632,14 +620,15 @@ namespace :db do
         Organisation.create(id: 14, playground_id: 1, name: 'Packaging', description: 'Packaing activity', code: 'PACK', organisation_level: 3, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1, parent_id: 4 )
         ActiveRecord::Base.connection.execute("ALTER SEQUENCE organisations_id_seq INCREMENT BY 1 START WITH 100")
       end
-    
+    end
+
+    desc 'Record trace'
+    task evaluation: :environment do   
       if AuditTrail.count<=1
         puts "Registering seed activity"
         AuditTrail.create( playground_id: 0, task_id: 5, action: "Evaluation", object_id: 0, description: "Running evaluation data creation script", created_by: "RAKE")
       end
-        
-      puts "SQL Queries"
-      ActiveRecord::Base.connection.execute("update users set confirmed_at = now() where user_name = 'user1' ")
     end
+        
   end
           

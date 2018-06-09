@@ -23,7 +23,7 @@ class Skill < ActiveRecord::Base
 extend CsvHelper
 
 ### scope
-#  Skill is linked to a business object which belongs to the correct scope
+#  Skills are linked to a list which belongs to the correct scope
 
 ### before filter : none
 

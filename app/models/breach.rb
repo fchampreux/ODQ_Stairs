@@ -42,6 +42,9 @@
 #
 
 class Breach < ActiveRecord::Base
+extend SimpleSearch
+extend CsvHelper
+
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

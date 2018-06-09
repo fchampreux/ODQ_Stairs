@@ -22,7 +22,7 @@ class Parameter < ActiveRecord::Base
 extend CsvHelper
 
 ### scope
-#  Parameter is linked to a list which belongs to the correct scope
+#  Parameter are global to the project
 
 ### before filter
   before_validation :set_playground

@@ -26,8 +26,6 @@ class BusinessFlow < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-self.sequence_name = "global_seq"
-
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

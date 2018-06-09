@@ -23,8 +23,6 @@ class Playground < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-self.sequence_name = "global_seq"
-
 ### before filter
   before_create :set_hierarchy
 
