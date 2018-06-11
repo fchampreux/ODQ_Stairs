@@ -32,8 +32,8 @@ end
 puts "Seeding scope"
 if Scope.count == 0
   puts "Creating technical Scopes"
-  Scope.create(id: 0, playground_id: 0, landscape_id: 0, hierarchy: '0', name: 'Undefined scope', description: 'This scope is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Scope.create( playground_id: 1, landscape_id: 1, hierarchy: '1', name: 'Firt scope of your project', description: 'This scope was created during installation. It targets a data set to which apply business rules', code: 'SCOPE_1', load_interface: 'ToBeDefined', sql_query: 'Select * from dual',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+  Scope.create(id: 0, playground_id: 0, landscape_id: 0, hierarchy: '0', name: 'Undefined scope', description: 'This scope is assigned an undefined value', code: 'UNDEFINED', business_object_id: '0', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Scope.create( playground_id: 1, landscape_id: 1, hierarchy: '1', name: 'Firt scope of your project', description: 'This scope was created during installation. It targets a data set to which apply business rules', code: 'SCOPE_1', business_object_id: '0', load_interface: 'ToBeDefined', sql_query: 'Select * from dual',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding organisation"
@@ -153,7 +153,7 @@ end
 puts "Seeding business object"
 if BusinessObject.count == 0
   puts "Creating first Business Object"
-  BusinessObject.create(id: 0, playground_id: 0, business_area_id: 0, code: 'UNDEFINED', name: 'Undefined business object', description: 'This object is assigned an undefined value', hierarchy: '0', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
+  BusinessObject.create(id: 0, playground_id: 0, business_area_id: 0, code: 'UNDEFINED', name: 'Undefined business object', description: 'This object is assigned an undefined value', hierarchy: '0', main_scope_id: '0', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
 end
 
 puts "Seeding business flows"
