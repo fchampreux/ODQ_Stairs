@@ -105,7 +105,7 @@ where
 D.odq_object_id = R.odq_parent_id
 
 /* Glisser le jeu d'essais de 20 jours */
-update odq_dwh.dm_measures AS m 
+update odq_dwh.dm_processes AS m 
 set period_id = m.period_id+20,
 period_day = p.period_day
 from odq_dwh.dim_time AS p

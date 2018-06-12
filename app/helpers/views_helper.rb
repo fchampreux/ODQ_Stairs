@@ -19,13 +19,14 @@ module ViewsHelper
     else  
       measured_score = DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
     end
-    
+
     image_file = case measured_score
       when -1 then grey_image     
-      when 0..green_threshold then green_image
-      when green_threshold..yellow_threshold then yellow_image 
+      when green_threshold..100 then green_image
+      when yellow_threshold..green_threshold then yellow_image 
       else red_image
     end
+
     return image_file
   end
   
