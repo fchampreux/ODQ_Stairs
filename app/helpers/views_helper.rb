@@ -44,7 +44,7 @@ module ViewsHelper
   end
   
   ### extract object's series for d3
-    def d3_chart_series_for(current_object)
+  def d3_chart_series_for(current_object)
     measured_history = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
     where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
     select("dim_time.period_date idx, score").order("dim_time.period_date")
@@ -53,6 +53,15 @@ module ViewsHelper
   ### extract object's children errors chart series
   def d3_errors_chart_series_for(current_object)
     measured_children = DmProcess.where("period_id = ? and ODQ_parent_id = ? and score > 0", current_period_id, current_object.id).
+    where("odq_object_id <> odq_parent_id").
+    select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
+  end
+  
+  ### extract object's children errors chart series for dc with cross-filter
+  def dc_errors_chart_series_for(current_object)
+    measured_children = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
+    where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
+    where("ODQ_parent_id = ? and score > 0", current_object.id).
     where("odq_object_id <> odq_parent_id").
     select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
   end
