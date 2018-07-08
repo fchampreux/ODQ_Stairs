@@ -1,4 +1,5 @@
 /* Full query with -1 assigned to rules with no record evaluated */
+/* PG parent_id is assigned to 0 */
 /* Based on id */
 /* Simplified and including Playground */
 
@@ -51,7 +52,7 @@ inner join odq_app.business_processes BP on BP.business_flow_id = BF.id
 inner join odq_app.business_rules BR on BR.business_process_id = BP.id
 group by BA.playground_id,  BA.id, BA.playground_id, BA.name, BA.code, '/business_areas/'||BA.id, to_char(current_date, 'YYYYMMDD')
 UNION
-select PG.id, PG.id, PG.id parent_id, PG.name, PG.code, '/playgrounds/'||PG.id url, to_char(current_date, 'YYYYMMDD') Period_day,
+select PG.id, PG.id, 0 parent_id, PG.name, PG.code, '/playgrounds/'||PG.id url, to_char(current_date, 'YYYYMMDD') Period_day,
 pg.all_records, 
 pg.bad_records  error_count,
 0 score,

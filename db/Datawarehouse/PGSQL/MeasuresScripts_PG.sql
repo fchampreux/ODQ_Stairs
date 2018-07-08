@@ -98,6 +98,7 @@ group by BR.playground_id, BR.id, BR.business_process_id, BR.name, BR.code, '/bu
 
 
 /* Full query with -1 assigned to rules with no record evaluated */
+/* PG parent_id is assigned to 0 */
 /* Based on id */
 /* Simplified and including Playground */
 
@@ -226,7 +227,7 @@ inner join business_rules BR on BR.business_process_id = BP.id
 left outer join dwh_records DWH on bitand2(power(2,BR.id), rawtohex(rule_mask)) <> 0
 group by BA.playground_id,  BA.id, BA.playground_id, BA.name, BA.code, '/business_areas/'||BA.id, to_char(current_date, 'YYYYMMDD')
 UNION
-select PG.id, PG.id, PG.id parent_id, PG.name, PG.code, '/playgrounds/'||PG.id url, to_char(current_date, 'YYYYMMDD') Period_day,
+select PG.id, PG.id, 0 parent_id, PG.name, PG.code, '/playgrounds/'||PG.id url, to_char(current_date, 'YYYYMMDD') Period_day,
 count(distinct record_id) all_records, 
 sum(case
     when  bitand2(power(2,BR.id), rawtohex(error_mask)) <> 0 then 1

@@ -20,11 +20,19 @@ module ViewsHelper
       measured_score = DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
     end
 
+=begin
     image_file = case measured_score
       when -1 then grey_image     
       when green_threshold..100 then green_image
       when yellow_threshold..green_threshold then yellow_image 
       else red_image
+    end
+=end
+    image_file = case measured_score
+      when -1 then $GreyImage     
+      when $GreenThreshold..100 then $GreenImage
+      when $YellowThreshold..$GreenThreshold then $YellowImage 
+      else $RedImage
     end
 
     return image_file
@@ -57,13 +65,21 @@ module ViewsHelper
     select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
   end
   
-  ### extract object's children errors chart series for dc with cross-filter
-  def dc_errors_chart_series_for(current_object)
-    measured_children = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
+  ### extract object's errors chart series for dc with cross-filter
+  def dc_chart_series_for(current_object)
+    measured_history = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
     where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
-    where("ODQ_parent_id = ? and score > 0", current_object.id).
+    where("score > 0").
+    select("dm_processes.period_id, odq_object_id, odq_object_name, odq_object_code, score")
+  end
+  
+    ### extract object's childrens' errors chart series for dc with cross-filter
+  def dc_chart_child_series_for(current_object)
+    measured_children = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
+    where("dim_time.period_id between ? and ? and ODQ_parent_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
+    where("score > 0").
     where("odq_object_id <> odq_parent_id").
-    select("odq_object_id, odq_object_name, odq_object_code, error_count, added_value, workload, odq_object_url")
+    select("dm_processes.period_id, odq_object_id, odq_object_name, odq_object_code, score, error_count, added_value, workload, odq_object_url")
   end
 
 =begin  

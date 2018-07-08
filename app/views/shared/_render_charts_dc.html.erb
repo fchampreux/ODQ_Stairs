@@ -4,11 +4,22 @@
 <!-- Tab content for Measures -->
       <div class="row">
         <div class="col-md-6">
-          <div id="impact"><span>Impact assessment</span></div>
+          <div id="impact"><span>Impact assessment</span>
+           <%= dc_chart_series_for(this_object).map { |measure| {index: measure.period_id, count: measure.score}}.to_json.html_safe   %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div id="impact"><span>Impact assessment</span>
+           <%= dc_chart_child_series_for(this_object).map { |measure| {index: measure.period_id, count: measure.score}}.to_json.html_safe   %>
+          </div>
         </div>
       </div>
       <!-- End of tab content -->
       
+
       
     <script> // Draws a bar graph and piechart in the progression and impact elements
       use 'strict'
