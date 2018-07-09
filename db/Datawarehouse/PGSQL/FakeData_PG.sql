@@ -72,8 +72,7 @@ where dwh.playground_id = 99;
 commit ;
 
 update odq_dwh.dm_processes 
-set error_count = 1+(all_records/10) * random()
-;
+set error_count = 1+(all_records/10) * random() ;
 
 commit ;
 
@@ -90,7 +89,7 @@ set workload = D.score * R.maintenance_duration,
 added_value = D.score * R.added_value,
 maintenance_cost = D.score * R.maintenance_cost
 from odq_app.business_rules R
-where D.odq_object_id = R.id
+where D.odq_object_id = R.id ;
 
 update odq_dwh.dm_processes D 
 set workload = R.workload,
@@ -103,14 +102,14 @@ sum(maintenance_cost) maintenance_cost from odq_dwh.dm_processes
 where odq_object_id < 100
 group by odq_parent_id) R 
 where
-D.odq_object_id = R.odq_parent_id
+D.odq_object_id = R.odq_parent_id ;
 
 /* Glisser le jeu d'essais de 20 jours */
 update odq_dwh.dm_processes AS m 
 set period_id = m.period_id+20,
 period_day = p.period_day
 from odq_dwh.dim_time AS p
-where p.period_id = m.period_id+20
+where p.period_id = m.period_id+20 ;
 
 /* Etendre le jeu d'essais de 10 jours */
 

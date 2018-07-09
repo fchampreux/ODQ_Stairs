@@ -5,22 +5,55 @@
       <div class="row">
         <div class="col-md-6">
           <div id="impact"><span>Impact assessment</span>
-           <%= dc_chart_series_for(this_object).map { |measure| {index: measure.period_id, count: measure.score}}.to_json.html_safe   %>
           </div>
         </div>
       </div>
       
       <div class="row">
         <div class="col-md-6">
-          <div id="impact"><span>Impact assessment</span>
-           <%= dc_chart_child_series_for(this_object).map { |measure| {index: measure.period_id, count: measure.score}}.to_json.html_safe   %>
+          <div id="child_impact"><span>Child impact assessment</span>
           </div>
         </div>
       </div>
-      <!-- End of tab content -->
-      
-
       
     <script> // Draws a bar graph and piechart in the progression and impact elements
-      use 'strict'
-      </script>
+
+      // Div selectors wher to create graphs
+      var impactAssessment = dc.barChart('#impact', 'ChartsGroup');
+      var childImpactAssessment = dc.pieChart('#child_impact', 'ChartsGroup');
+
+      // Datasets extracted from database
+      var barData = <%= dc_chart_series_for(this_object).map { |measure| {index: measure.period_id, period: measure.period_date, score: measure.score}}.to_json.html_safe %>;
+      var pieData = <%= dc_chart_child_series_for(this_object).map { |measure| {index: measure.period_id, period: measure.period_date, name: measure.odq_object_name,
+			url: measure.odq_object_url, count: measure.error_count, value: measure.added_value, workload: measure.workload }}.to_json.html_safe %>;
+
+      // Date parsing
+//      var parseDate = d3.time.format("%Y-%m-%d").parse;
+//      barData.forEach(function(d) {
+//          d.period_date = parseDate(d.period_date);
+//      });
+      
+//      pieData.forEach(function(d) {
+//          d.period_date = parseDate(d.period_date);
+//      });
+
+      // Filters and dimensions
+      var x_barData = crossfilter(barData);
+      var dateDim_barData = x_barData.dimension(function(d) {return d.period_date;});
+      var group_barData = dateDim_barData.group().reduceCount();
+      
+//      var x_pieData = crossfilter(pieData);
+//      var objectDim_pieData = x_pieData.dimension(function(d) {return d.odq_object_name;});
+
+      // Define bar chart
+      impactAssessment
+      .width(400)
+      .height(200)
+      .on('renderlet', function(chart) {
+          chart.selectAll('rect').on('click', function(d) {
+              console.log('click!', d);
+              });
+          });
+      dc.renderAll();
+
+    </script>

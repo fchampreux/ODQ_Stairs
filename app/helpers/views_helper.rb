@@ -20,7 +20,8 @@ module ViewsHelper
       measured_score = DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).first.score
     end
 
-=begin
+# Use constants initialized at startup instead of parameters queried foreach line
+=begin 
     image_file = case measured_score
       when -1 then grey_image     
       when green_threshold..100 then green_image
@@ -70,7 +71,7 @@ module ViewsHelper
     measured_history = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
     where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
     where("score > 0").
-    select("dm_processes.period_id, odq_object_id, odq_object_name, odq_object_code, score")
+    select("dm_processes.period_id, dim_time.period_date, odq_object_id, odq_object_name, odq_object_code, score")
   end
   
     ### extract object's childrens' errors chart series for dc with cross-filter
@@ -79,7 +80,7 @@ module ViewsHelper
     where("dim_time.period_id between ? and ? and ODQ_parent_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
     where("score > 0").
     where("odq_object_id <> odq_parent_id").
-    select("dm_processes.period_id, odq_object_id, odq_object_name, odq_object_code, score, error_count, added_value, workload, odq_object_url")
+    select("dm_processes.period_id, dim_time.period_date, odq_object_id, odq_object_name, odq_object_code, score, error_count, added_value, workload, odq_object_url")
   end
 
 =begin  
