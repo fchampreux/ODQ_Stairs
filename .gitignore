@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore configuration files
-config/database.yml
-config/initializers/smtp.rb
-
 # Ignore all logfiles and temporary files
 /log/*.log
 /tmp
