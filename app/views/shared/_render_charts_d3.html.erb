@@ -2,6 +2,7 @@
 <!-- Series are built by methods available in the views helper -->
 
 <!-- Tab content for Measures -->
+<br/><br/>
       <div class="row">
         <div class="col-md-6">
 	  <fieldset>
@@ -32,7 +33,7 @@
     <script> // Draws a bar graph in the progression element
       
       // Progression data : Returns an array of hashes        
-      var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: measure.score}}.to_json.html_safe   %>;
+      var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: 100-measure.score}}.to_json.html_safe   %>;
       //       var errors = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
 
       function drawChart(){
@@ -96,7 +97,7 @@
 					.attr('y',50)
 					.attr('height', function(d,i) {
 						return y(d.count);})
-					.attr('width', posWidth / 20 )
+					.attr('width', posWidth / 25 )
 					.attr('fill', color());
 	
 				graph.append('g')
