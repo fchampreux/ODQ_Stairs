@@ -148,7 +148,7 @@
            .outerRadius(150);
 
         // helper that returns a color based on an ID
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
+        var color = d3.scaleOrdinal(d3.schemePaired);
 
         var graph =  d3.select('#impact')
           .append('svg')
@@ -185,7 +185,7 @@
 											.attr("d", arc)
 											.each(function(d) { this._current = d; }); // store the initial angles
 											
-				change("count"); // dispoaly initial selection
+				change("count"); // display initial selection
  
         g.append('g')
 					.attr('transform', 'translate(200,20)')
