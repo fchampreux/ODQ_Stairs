@@ -20,6 +20,9 @@ gem 'roo'
 gem 'nested_form_fields'
 gem 'pg'
 gem 'devise'
+# MarkDown parser
+gem 'redcarpet'
+# eMail notification support
 gem 'mailgun-ruby', '~>1.1'
 
 group :doc do
