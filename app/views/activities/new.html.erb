@@ -1,0 +1,9 @@
+<% provide(:title, (t('ManagingPms'))) %>
+
+<% content_for :page_heading do %>
+    <%= t('NewPm') %>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to t('Back'), parameters_lists_path %>

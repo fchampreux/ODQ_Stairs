@@ -6,7 +6,7 @@
 #  playground_id    :integer          not null
 #  business_flow_id :integer          not null
 #  code             :string(60)       not null
-#  name             :string(100)      not null
+#  name             :string(200)      not null
 #  description      :text
 #  hierarchy        :string(25)       not null
 #  pcf_index        :string(30)
@@ -50,6 +50,7 @@ extend CsvHelper
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_flow
 	has_many :business_rules
+	has_many :activities
     
 ### private functions definitions
   private

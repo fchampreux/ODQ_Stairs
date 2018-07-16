@@ -6,7 +6,7 @@
 #  playground_id      :integer          not null
 #  landscape_id       :integer          not null
 #  code               :string(60)       not null
-#  name               :string(100)      not null
+#  name               :string(200)      not null
 #  load_interface     :string(100)
 #  organisation_level :integer
 #  territory_level    :integer

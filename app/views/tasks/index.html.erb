@@ -1,0 +1,38 @@
+<% provide(:title, (t('ManagingPms'))) %>
+
+<% content_for :page_heading do %>
+    <%= t('ParametersLists')%>
+<% end %> 
+
+<%= render partial: "shared/simple_export", locals: {this_path: parameters_lists_path, import_path: new_parameters_lists_import_path, import_message: "ImportPLs" } %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t('Name')%></th>
+      <th><%= t('Description')%></th>
+      <th><%= t('Code')%></th>
+      <th><%= t('Owner')%></th>
+      <th><%= t('CreatedBy')%></th>
+      <th><%= t('UpdatedBy')%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parameters_lists.each do |parameters_list| %>
+      <tr>
+        <td><%= link_to parameters_list.name, parameters_list %></td>
+        <td><%= parameters_list.description %></td>
+        <td><%= parameters_list.code %></td>
+        <td><%= parameters_list.owner.user_name %></td>
+        <td><%= parameters_list.created_by %></td>
+        <td><%= parameters_list.updated_by %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('NewPm'), new_parameters_list_path %>

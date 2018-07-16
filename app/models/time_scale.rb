@@ -2,7 +2,7 @@
 #
 # Table name: time_scales
 #
-#  period_id        :integer          not null, primary key
+#  period_id        :bigint(8)        not null, primary key
 #  playground_id    :integer          not null
 #  day_of_week      :integer
 #  day_of_month     :integer

@@ -1,0 +1,53 @@
+<%= form_for(@activity) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity.errors.count, "error") %>: <%= t('ErrorWarn') %></h2>
+
+      <ul>
+      <% @activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-2 text-right"><%= t('Name') %>:
+    </div>
+    <div class="col-md-6 field"><%= f.text_field :name, :class => "col-md-6" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 text-right"><%= t('Description') %>:
+    </div>
+    <div class="col-md-10 field"><%= f.text_area :description, :rows => 5, :class => "col-md-8" %>
+    </div>
+  </div>
+
+  <table>
+    <tr align="left">
+      <th></th>
+      <th> <%= t('Name') %> </th>
+      <th> <%= t('Code') %> </th>
+      <th> <%= t('Value') %> </th>
+      <th> <%= t('Description') %> </th>
+    </tr>
+    <%=  f.nested_fields_for :tasks, wrapper_tag: 'tr' do |task| %>
+      <td><%= task.remove_nested_fields_link {image_tag("remove.png")} %></td>
+      <td><%= task.text_field :name %> </td>
+      <td><%= task.text_field :code %> </td>
+      <td><%= task.text_field :property %> </td>
+      <td><%= task.text_field :description %> </td>
+    <% end %>
+  </table>
+  
+  <br/>   
+  <%= f.add_nested_fields_link :tasks, image_tag("add.png") %> <%= t('New') %> 
+  <br/>
+  <br/>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
