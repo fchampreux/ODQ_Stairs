@@ -1,0 +1,79 @@
+<% provide(:title, (t('ManagingPms'))) %>
+
+<% content_for :page_heading do %>
+    <%= t('Settings') %>: <%= @task.name %>
+<% end %> 
+
+  <ul class="mid_menu">
+    <li><%= link_to t('Edit'), edit_task_path(@task) %> |</li>
+    <li><%= link_to t('Up'), tasks_path %> |</li>
+    <li><%= link_to t('Destroy'), @task, confirm: t('Sure'), method: :delete %></li>
+  </ul>
+
+<!-- <p id="notice"><%= notice %></p> -->
+
+
+      <div class="row">
+        <div class="col-md-2 text-right"><%= t('Name') %>:
+        </div>
+        <div class="col-md-3"><%= @task.name%>
+        </div>
+        <div class="col-md-1 text-right"><%= t('Code') %>:
+        </div>
+        <div class="col-md-2"><%= @task.code%>
+        </div>
+        <div class="col-md-2 text-right"><%= t('UniqueId') %>:
+        </div>
+        <div class="col-md-1"><%= @task.id%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right"><%= t('Description') %>:
+        </div>
+        <div class="col-md-6"><pre><%= @task.description%></pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right"><%= t('Owner') %>:
+        </div>
+        <div class="col-md-2"><%= @task.owner.login%>
+        </div>
+        <div class="col-md-2 text-right"><%= t('CreatedBy') %>:
+        </div>
+        <div class="col-md-2"><%= @task.created_by%>
+        </div>
+        <div class="col-md-2 text-right"><%= t('UpdatedBy') %>:
+        </div>
+        <div class="col-md-2"><%= @task.updated_by%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right"><%= t('PgndId') %>:
+        </div>
+        <div class="col-md-2"><%= @task.playground_id%>
+        </div>
+        <div class="col-md-2 text-right"><%= t('CreatedAt') %>:
+        </div>
+        <div class="col-md-2"><%= @task.created_at%>
+        </div>
+        <div class="col-md-2 text-right"><%= t('UpdatedAt') %>:
+        </div>
+        <div class="col-md-2"><%= @task.updated_at%>
+        </div>
+      </div>
+
+<!-- Paramètres liés -->
+
+  <div class="row">
+    <div class="col-md-2">
+      Download:
+      <%= link_to "CSV", task_path(@task, format: "csv") %> |
+      <%= link_to "Excel", task_path(@task, format: "xls") %>
+    </div>
+  </div>
+
+
+

@@ -7,7 +7,7 @@
 #  business_area_id   :integer          not null
 #  main_scope_id      :integer
 #  code               :string(60)       not null
-#  name               :string(100)      not null
+#  name               :string(200)      not null
 #  description        :text
 #  organisation_level :integer
 #  territory_level    :integer

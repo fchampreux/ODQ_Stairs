@@ -2,7 +2,7 @@
 #
 # Table name: groups
 #
-#  id              :integer          not null, primary key
+#  id              :bigint(8)        not null, primary key
 #  code            :string(60)       not null
 #  name            :string(100)      not null
 #  description     :string

@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  playground_id :integer          not null
 #  code          :string(60)       not null
-#  name          :string(100)      not null
+#  name          :string(200)      not null
 #  description   :text
 #  hierarchy     :string(25)       not null
 #  status_id     :integer          not null

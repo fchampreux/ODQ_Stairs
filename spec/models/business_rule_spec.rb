@@ -7,7 +7,7 @@
 #  business_process_id    :integer          not null
 #  business_object_id     :integer
 #  code                   :string(60)       not null
-#  name                   :string(100)      not null
+#  name                   :string(200)      not null
 #  description            :text
 #  business_value         :text
 #  hierarchy              :string(25)       not null
