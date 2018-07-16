@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :signed_as_admin
   before_action :set_languages_list, only: [:new, :edit, :update, :create]
+  before_action :set_groups_list, only: [:new, :edit, :update, :create]
   
 # Retrieve current user
   before_action :set_user, only: [:show, :edit, :update, :destroy]

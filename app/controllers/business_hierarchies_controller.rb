@@ -40,7 +40,7 @@ class BusinessHierarchiesController < ApplicationController
         monitor[:inserts] += 1
       else
         log_activity(ba.playground_id, 1, @business_area.id, ba.hierarchy + ' ' + ba.name,
-                     request.env['REMOTE_ADDR'], 'Record rejected when initialising business area', audit_status)
+                     request.env['REMOTE_ADDR'], @business_area.errors.full_messages, audit_status)
       end
       
     end

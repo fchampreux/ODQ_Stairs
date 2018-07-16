@@ -15,4 +15,9 @@ module UsersHelper
     @users_list = User.all
   end
   
+  # retrieve the list of users groups
+  def set_groups_list
+    @groups_list = Group.all
+  end
+  
 end

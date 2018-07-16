@@ -68,7 +68,6 @@ class User < ApplicationRecord
   validates :first_name, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
-  validates :group, presence: true
 
 # Relations
   belongs_to :group
@@ -81,8 +80,7 @@ class User < ApplicationRecord
       self.playground_id = 1
       self.default_playground_id = 1
       self.current_playground_id = 1
-      self.active_from = Time.now
-      self.active_to = Time.now
+      self.group = group || 0
     end
       
     def email_format

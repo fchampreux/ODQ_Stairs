@@ -56,3 +56,10 @@
           <%= f.text_area :description %>
         </div>
       </div>
+            <div class="col-md-3">
+        <div class="field">
+          <%= f.label :group %><br />
+          <%= f.select :group_id, @groups_list, :id, :name %>
+        </div>
+      </div>
+
