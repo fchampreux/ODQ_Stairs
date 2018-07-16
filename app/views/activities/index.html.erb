@@ -1,11 +1,8 @@
-<% provide(:title, (t('ManagingPms'))) %>
+<% provide(:title, (t('ManagingActs'))) %>
 
 <% content_for :page_heading do %>
-    <%= t('ParametersLists')%>
+    <%= t('Activities')%>
 <% end %> 
-
-<%= render partial: "shared/simple_export", locals: {this_path: parameters_lists_path, import_path: new_parameters_lists_import_path, import_message: "ImportPLs" } %>
-
 
 <table class="table table-striped">
   <thead>
@@ -20,14 +17,14 @@
   </thead>
 
   <tbody>
-    <% @parameters_lists.each do |parameters_list| %>
+    <% @activities.each do |activity| %>
       <tr>
-        <td><%= link_to parameters_list.name, parameters_list %></td>
-        <td><%= parameters_list.description %></td>
-        <td><%= parameters_list.code %></td>
-        <td><%= parameters_list.owner.user_name %></td>
-        <td><%= parameters_list.created_by %></td>
-        <td><%= parameters_list.updated_by %></td>
+        <td><%= link_to activity.name, activity %></td>
+        <td><%= activity.description %></td>
+        <td><%= activity.code %></td>
+        <td><%= activity.owner.user_name %></td>
+        <td><%= activity.created_by %></td>
+        <td><%= activity.updated_by %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +32,4 @@
 
 <br>
 
-<%= link_to t('NewPm'), new_parameters_list_path %>
+

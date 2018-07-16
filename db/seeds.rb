@@ -7,6 +7,11 @@
 #   cities = City.create(id: 1, [{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(id: 1, name: 'Emanuel', city: cities.first)
 
+puts "Seeding users groups"
+if Group.count == 0
+  puts "Creating first group"
+  Group.create(id: 0, code: 'Everyone', name: 'Everyone', description: 'Default group for users', territory_id: 0, organisation_id: 0, owner_id: 0, created_by: 'Rake', updated_by: 'Rake', created_at: '2018-01-01', updated_at: '2018-01-01')
+
 puts "Seeding users"
 if User.count == 0
   puts "Creating first users"

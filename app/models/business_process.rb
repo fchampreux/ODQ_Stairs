@@ -45,12 +45,12 @@ extend CsvHelper
 	validates :pcf_reference, length: { maximum: 100 }
 	validates :business_flow, presence: true
 	validates :playground_id, presence: true
-  belongs_to :playground
+        belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	belongs_to :business_flow
-	has_many :business_rules
-	has_many :activities
+	has_many :business_rules, :inverse_of => :business_process, :dependent => :destroy
+	has_many :activities, :inverse_of => :business_process, :dependent => :destroy
     
 ### private functions definitions
   private

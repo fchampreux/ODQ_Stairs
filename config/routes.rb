@@ -49,11 +49,12 @@ ODQStairs::Application.routes.draw do
   end
 
   resources :business_flows do
-      resources :business_processes, :only=>[:new, :create]
+    resources :business_processes, :only=>[:new, :create]
   end
 
   resources :business_processes do
-      resources :business_rules, :only=>[:new, :create]
+    resources :business_rules, :only=>[:new, :create]
+    resources :activities, :only=>[:new, :create]
   end
 
   resources :business_objects do
@@ -62,6 +63,10 @@ ODQStairs::Application.routes.draw do
     resources :skills_imports, :only=>[:new, :create]
   end
 
+  resources :activities do
+    resources :tasks, :only=>[:new, :create]
+  end
+  
   resources :business_rules do
       resources :breaches
   end

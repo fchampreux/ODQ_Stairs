@@ -419,6 +419,7 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "users", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
+      t.integer "group_id",                          null: false
       t.integer "default_playground_id",          default: 1
       t.integer "current_playground_id",          default: 1
       t.integer "current_landscape_id",           default: 1

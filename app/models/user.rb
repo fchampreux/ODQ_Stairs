@@ -68,10 +68,10 @@ class User < ApplicationRecord
   validates :first_name, length: { maximum: 100 }
   validates :created_by, length: { maximum: 30 }
   validates :updated_by, length: { maximum: 30 }
+  validates :group, presence: true
 
 # Relations
-  has_many :group_users
-  has_many :groups, through: :group_users
+  belongs_to :group
       
 ### private functions definitions
   private

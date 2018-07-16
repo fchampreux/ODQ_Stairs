@@ -58,27 +58,27 @@
     <div class="col-md-11">
       <div class="tabbable">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#business_rules" data-toggle="tab"> <%= t('BFs') %> </a></li>
-          <li><a href="#activities" data-toggle="tab"> <%= t('BOs') %> </a></li>
+          <li class="active"><a href="#business_rules" data-toggle="tab"> <%= t('BRs') %> </a></li>
+          <li><a href="#activities" data-toggle="tab"> <%= t('Acts') %> </a></li>
         </ul>
         <div class="tab-content">
     
         <div class="tab-pane active" id="business_rules">
-    <!-- Tab content for Linked Business Flows -->
+    <!-- Tab content for Linked Business Rules -->
     
           <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_process.business_rules} %>
     
-          <%= link_to t('NewBF'), new_business_process_business_rule_path(@business_process) %>
+          <%= link_to t('NewBR'), new_business_process_business_rule_path(@business_process) %>
     
     <!-- Tab content -->
         </div>
     
         <div class="tab-pane" id="activities">
-    <!-- Tab content for Linked Business Objects -->
+    <!-- Tab content for Linked Business Activities -->
     
-          <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_process.business_activities} %>
+          <%= render partial: "shared/child_object_index", locals: {this_child_index: @business_process.activities} %>
     
-          <%= link_to t('NewBO'), new_business_process_activity_path(@business_process) %>
+          <%= link_to t('NewAct'), new_business_process_activity_path(@business_process) %>
     
     <!-- Tab content -->
         </div>
