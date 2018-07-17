@@ -12,7 +12,7 @@ namespace :db do
     task evaluation: :environment do
       if User.count == 2
         puts 'Creating evaluation user USER1'
-        User.create( code: 'USER1', user_name: 'user1', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'User', first_name: 'My First', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user1@nohoo.biz')
+        User.create( group_id: 0, code: 'USER1', user_name: 'user1', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'User', first_name: 'My First', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user1@nohoo.biz')
         ActiveRecord::Base.connection.execute("update users set confirmed_at = now() where user_name = 'user1' ")
       end
     end

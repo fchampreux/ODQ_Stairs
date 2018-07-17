@@ -40,7 +40,7 @@ extend CsvHelper
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
-	validates :status_id, presence: true
+#	validates :status_id, presence: true
 	validates :playground, presence: true
 	validates :pcf_index, length: { maximum: 30 }
 	validates :pcf_reference, length: { maximum: 100 }
