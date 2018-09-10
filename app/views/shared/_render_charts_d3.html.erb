@@ -47,14 +47,14 @@
 				
 				// axis parameters
 				var yDomain = 25;
-				var yRange = 300;
-				var xTics = <%= date_excursion %>;
+                                var yRange = 300;
+                                var xTics = <%= date_excursion %>; // This parameter gives the number of days to display in history
 				var yTics = 5;
 
         var x = d3.scaleTime()
           .domain([
               new Date(Date.parse('<%=history_date.strftime("%Y-%m-%d")%>')),
-              new Date()
+              new Date().setHours(12,0,0,0)  // Sets time to midday to split x axis half a day left
               ])
           .range([0, posWidth - margin * 3]);
           
