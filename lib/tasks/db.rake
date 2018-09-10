@@ -1,3 +1,4 @@
+# coding: utf-8
 namespace :db do
     desc 'Create database schemas before going for the first migration'
     task init: ['db:drop','db:create'] do
@@ -82,7 +83,9 @@ namespace :db do
     task evaluation: :environment do
       if BusinessObject.count == 1
         puts 'Creating first Business Object'
+        BusinessObject.create(playground_id: 99, business_area_id: 4, code: 'PURCHASE_MD', name: 'Purchase Master', description: 'This object describes the Master Data for Purchased Items', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
         BusinessObject.create(playground_id: 99, business_area_id: 5, code: 'ITEM_MD', name: 'Inventory Item Master', description: 'This object describes the Master Data for Inventory Items', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessObject.create(playground_id: 99, business_area_id: 6, code: 'ORDER_MD', name: 'Order Master', description: 'This object describes the Master Data for Orders', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
       end
     end
         
@@ -575,6 +578,40 @@ namespace :db do
       a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
       b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
       ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+###New rules
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        BusinessRule.create(playground_id: 99, business_process_id: 146, business_object_id: 1, rule_type_id: 8, code: 'ITEM_BR14', name: 'Brand value', description: ' If Ias Brand value is not blank (part with capital letters only) then it needs to be part of Item Description ', business_value: 'Avoid failing of processes due to inconsistent data', check_description: '
+      a) Select all records from Item Master.xls, sheet FCH Item Master, where  column H value is not blank, store Item Number and Ias Brand value
+      b) Check that for all Item Numbers from point a, column G Item description contains Ias Brand value from point a, if not than Item Number is not following business rule
+      ', check_script: 'None', correction_method: 'To be defined', correction_script: 'None', correction_batch: 'None', white_list: 'N/A', complexity_id: 18, added_value: 10, severity_id: 23, maintenance_cost: 100, maintenance_duration: 15, created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1)
+        
       end
     end
       
