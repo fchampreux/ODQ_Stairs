@@ -11,7 +11,6 @@ gem 'turbolinks', '~> 5.0'
 gem 'jbuilder', '~> 2.6'
 gem 'bootstrap-datepicker-rails', '~> 1.6'
 gem 'will_paginate', '~> 3.1'
-gem 'bootstrap-will_paginate', '~> 0.0'
 gem 'selenium-webdriver', '~> 2.53'
 gem 'd3-rails'
 gem 'httparty', '~> 0.14'
@@ -19,24 +18,33 @@ gem 'iconv'
 gem 'roo'
 gem 'nested_form_fields'
 gem 'pg'
+
+# gem 'rails-i18n', '~> 5.1'
+
+# Authorisations
 gem 'devise'
+gem 'cancancan', '~> 2.0'
+
 # MarkDown parser
 gem 'redcarpet'
 # eMail notification support
 gem 'mailgun-ruby', '~>1.1'
 
-group :doc do
-  gem 'sdoc', '0.4', require: false
-end
-
 # gem for dev and test only
 group :development, :test, :eval do
   gem 'annotate', '~> 2.7'
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
   gem 'capybara', '~> 2.7'
   gem 'selenium-webdriver', '~> 2.53'
+end
+
+group :development do
+  gem 'web-console',           '~>3.1'
+  gem 'listen',                '~>3.0'
+  gem 'spring',                '~>1.7'
+  gem 'spring-watcher-listen', '2.0'
 end
 
 # gem for SQLServer POC

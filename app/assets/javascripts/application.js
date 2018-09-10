@@ -13,11 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require datepicker_helper
 //= require nested_form_fields
 //= require d3
-//= require crossfilter
-//= require dc
 //= require_tree .
