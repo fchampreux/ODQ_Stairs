@@ -49,7 +49,7 @@ extend CsvHelper
 
 	validates :playground_id, presence: true
 	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
-	validates :code, presence: true, length: { maximum: 10 }
+	validates :code, presence: true, length: { maximum: 10 } #Find a way to remove this test which fails at update
 	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 200 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true

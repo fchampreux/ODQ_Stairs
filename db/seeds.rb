@@ -235,4 +235,7 @@ ActiveRecord::Base.connection.execute("update scopes set score = (1-cast(bad_rec
 ActiveRecord::Base.connection.execute("update landscapes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
 ActiveRecord::Base.connection.execute("update playgrounds set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
 ActiveRecord::Base.connection.execute("update users set confirmed_at = now()")
+ActiveRecord::Base.connection.execute("INSERT INTO odq_dwh.dim_time (period_id,playground_id,period_day,period_date,period_timestamp,day_of_month,day_of_year,week_of_year,year,created_by,updated_by,created_at,updated_at) 
+SELECT period_id,playground_id,period_day,period_date,period_timestamp,day_of_month,day_of_year,week_of_year,year,created_by,updated_by,created_at,updated_at
+from odq_app.time_scales")
 

@@ -77,7 +77,7 @@ set error_count = 1+(all_records/10) * random() ;
 commit ;
 
 update odq_dwh.dm_processes 
-set score = (1.0- (1.0 * error_count) / (1.0 * all_records))*100.0
+set score = (1.0- (1.0 * error_count) / (1.0 * all_records))*100.0 -5
 where error_count > 0;
 
 commit ;

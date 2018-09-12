@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper, ParametersHelper, UsersHelper, ViewsHelper, ControllersHelper
+  include SessionsHelper, ParametersHelper, UsersHelper, ViewsHelper, ControllersHelper, ScopesHelper
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
   
