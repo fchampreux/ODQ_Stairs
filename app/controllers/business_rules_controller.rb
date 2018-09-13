@@ -8,7 +8,7 @@ class BusinessRulesController < ApplicationController
 # Create the selection lists be used in the form
   before_action :set_statuses_list, only: [:new, :edit, :update, :create]
   before_action :set_rule_types_list, only: [:new, :edit, :update, :create]
-  before_action :set_business_objects_list, only: [:new, :edit]
+  before_action :set_business_objects_list, only: [:new, :edit, :update]
   before_action :set_severity_list, only: [:new, :edit, :update, :create]
   before_action :set_complexity_list, only: [:new, :edit, :update, :create]
 
@@ -102,7 +102,7 @@ class BusinessRulesController < ApplicationController
 
     # Retrieve business objects list
     def set_business_objects_list
-      if action_name == 'edit'
+      if (action_name == 'edit' or action_name == 'update')
         my_business_area = @business_rule.business_process.business_flow.business_area_id
       else
         my_business_area = BusinessProcess.find(params[:business_process_id]).business_flow.business_area_id
