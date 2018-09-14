@@ -47,9 +47,10 @@ extend CsvHelper
 	validates :playground_id, presence: true
         belongs_to :playground
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
+        belongs_to :business_flow
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-	belongs_to :business_flow
-	has_many :business_rules, :inverse_of => :business_process, :dependent => :destroy
+        belongs_to :parent, :class_name => "BusinessFlow", :foreign_key => "business_flow_id"
+        has_many :business_rules, :inverse_of => :business_process, :dependent => :destroy
 	has_many :activities, :inverse_of => :business_process, :dependent => :destroy
     
 ### private functions definitions

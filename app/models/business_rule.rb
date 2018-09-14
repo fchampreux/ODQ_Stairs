@@ -58,7 +58,8 @@ extend CsvHelper
 	validates :status_id, presence: true
 	validates :business_object, presence: true
 	validates :business_process, presence: true
-  belongs_to :playground
+        belongs_to :playground
+        belongs_to :parent, :class_name => "BusinessProcess", :foreign_key => "business_process_id" 
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"			# helps retrieving the owner name
 	belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"		# helps retrieving the approver name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"		# helps retrieving the status name
@@ -67,7 +68,7 @@ extend CsvHelper
 	belongs_to :complexity, :class_name => "Parameter", :foreign_key => "complexity_id"	# helps retrieving the complexity grade
 	belongs_to :business_object								# helps retrieving the target business object
 	belongs_to :business_process
-  has_many :breaches
+        has_many :breaches
 
 ### private functions definitions
   private

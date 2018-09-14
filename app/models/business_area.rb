@@ -44,7 +44,7 @@ extend CsvHelper
 	validates :playground, presence: true
 	validates :pcf_index, length: { maximum: 30 }
 	validates :pcf_reference, length: { maximum: 100 }
-  belongs_to :playground
+        belongs_to :parent, :class_name => "Playground", :foreign_key => "playground_id" 
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	has_many :business_flows

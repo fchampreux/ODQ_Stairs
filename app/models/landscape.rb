@@ -42,7 +42,9 @@ extend CsvHelper
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
 	has_many :scopes
-  belongs_to :playground
+        belongs_to :playground
+        belongs_to :parent, :class_name => "Playground", :foreign_key => "playground_id" 
+
 
 ### private functions definitions
   private
