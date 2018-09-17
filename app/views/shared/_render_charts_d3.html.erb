@@ -33,8 +33,8 @@
     <script> // Draws a bar graph in the progression element
       
       // Progression data : Returns an array of hashes        
-      var errors = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: 100-measure.score}}.to_json.html_safe   %>;
-      //       var errors = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
+      var errors_count = <%= d3_chart_series_for(this_object).map { |measure| {index: measure.idx, count: 100-measure.score}}.to_json.html_safe   %>;
+      //       var errors_count = [{"index":"2017-01-14","count":"5.35"},{"index":"2017-01-15","count":"2.24"},{"index":"2017-01-16","count":"1.55"},{"index":"2017-01-17","count":"5.11"},{"index":"2017-01-18","count":"2.96"},{"index":"2017-01-19","count":"4.62"},{"index":"2017-01-20","count":"6.71"},{"index":"2017-01-21","count":"9.47"},{"index":"2017-01-22","count":"8.15"},{"index":"2017-01-23","count":"9.25"},{"index":"2017-01-24","count":"5.35"}];
 
       function drawChart(){
 
@@ -47,8 +47,8 @@
 				
 				// axis parameters
 				var yDomain = 25;
-                                var yRange = 300;
-                                var xTics = <%= date_excursion %>; // This parameter gives the number of days to display in history
+				var yRange = 300;
+				var xTics = <%= date_excursion %>; // This parameter gives the number of days to display in history
 				var yTics = 5;
 
         var x = d3.scaleTime()
@@ -74,7 +74,7 @@
           .attr('height', 400);
           
         var bars = graph.selectAll('rect')
-          .data(errors);
+          .data(errors_count);
           
         var newBars = bars.enter();
           
@@ -129,7 +129,7 @@
       
       <script>  // Draws a pie chart in the impact element
 				// Impact data : Returns an array of hashes from children of current object 
-        var errors_impact = <%= d3_errors_chart_series_for(this_object).
+        var errors_impact = <%= d3_chart_child_series_for(this_object).
         map { |measure| {index: measure.odq_object_id,
             code: measure.odq_object_code,
             name: measure.odq_object_name,
