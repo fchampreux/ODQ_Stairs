@@ -328,5 +328,11 @@ td.col_wide{
     top: 0;
     left: 0;
 }
+.bar {
+    fill: steelblue;
+    &:hover {
+        fill: $menu_bright;
+	}
+}
 
 
