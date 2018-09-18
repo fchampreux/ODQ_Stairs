@@ -23,6 +23,9 @@ class Activity < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
+### global identifier
+   self.sequence_name = "global_seq"
+
 ### scope
   scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
 

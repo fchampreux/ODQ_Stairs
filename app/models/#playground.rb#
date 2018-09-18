@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: landscapes
+# Table name: playgrounds
 #
 #  id            :integer          not null, primary key
 #  playground_id :integer          not null
 #  code          :string(60)       not null
 #  name          :string(200)      not null
 #  description   :text
-#  hierarchy     :string(25)       not null
+#  hierarchy     :string(25)
 #  status_id     :integer          not null
 #  all_records   :integer          default(0)
 #  bad_records   :integer          default(0)
@@ -19,51 +19,51 @@
 #  updated_at    :datetime         not null
 #
 
-class Landscape < ActiveRecord::Base
+class Playground < ActiveRecord::Base
 extend SimpleSearch
 extend CsvHelper
 
-### global identifier
-  self.sequence_name = "global_seq"
-
-### scope
-  scope :pgnd, ->(my_pgnd) { where "playground_id=?", my_pgnd }
-
 ### before filter
-  before_create :set_code
   before_create :set_hierarchy
 
-	validates :hierarchy, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
-	validates :code, presence: true, uniqueness: {scope: :playground_id}, length: { maximum: 60 }
-	validates :name, presence: true, uniqueness: {scope: :playground_id}, length: { minimum: 2, maximum: 200 }
+	validates :hierarchy, uniqueness: true, case_sensitive: false, length: { maximum: 30 }
+	validates :code, presence: true, uniqueness: true, length: { maximum: 10 }
+	validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 200 }
 	validates :description, length: { maximum: 1000 }
 	validates :created_by , presence: true
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 	validates :status_id, presence: true
- 	validates :playground, presence: true
+	validates :playground_id, presence: true
+        belongs_to :parent, :class_name => "Playground", :foreign_key => "playground_id" 
 	belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"		# helps retrieving the owner name
 	belongs_to :status, :class_name => "Parameter", :foreign_key => "status_id"	# helps retrieving the status name
-	has_many :scopes
-        belongs_to :playground
-        belongs_to :parent, :class_name => "Playground", :foreign_key => "playground_id" 
-
+	has_many :landscapes
 
 ### private functions definitions
   private
 
   ### before filters
-    def set_code 
-      self.code = self.playground.code + '-' + code
-    end 
-
     def set_hierarchy
-      if Landscape.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.001'
+=begin
+      if Playground.count == 0 or Playground.count == 1
+        self.hierarchy =  Playground.count
       else 
-        last_one = Landscape.pgnd(self.playground_id).maximum("hierarchy")
+        last_one = Playground.maximum("hierarchy")
         self.hierarchy = last_one.next
       end
+=end
+      case Playground.count
+			when 0
+        self.hierarchy =  0
+      when 1
+        self.hierarchy =  1				
+      else 
+        last_one = Playground.maximum("hierarchy")
+        self.hierarchy = last_one.next
+        self.playground_id = self.hierarchy
+      end
+
     end
 
 end
