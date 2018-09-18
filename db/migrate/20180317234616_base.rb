@@ -1,6 +1,11 @@
 class Base < ActiveRecord::Migration[5.1]
   
   def change
+
+# Create global sequence for application-wide identifier unicity
+    execute "CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 1000"
+    
+# Create application tables
     create_table "breaches", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
       t.integer "business_rule_id",                  null: false
@@ -536,7 +541,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_task_on_name", unique: true
     end
 
-# temorary table for imports
+# Create temorary table for imports
 
     create_table :business_hierarchies, id: :serial, force: :cascade do |t|
       t.integer "playground_id"
@@ -552,7 +557,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchical_level"], name: "index_BH_on_level"
     end
 
-# Data Marts for analysis
+# Create Data Marts for analysis
 
    create_table "odq_dwh.dm_processes", id: :serial, force: :cascade do |t|
       t.integer "playground_id",                     null: false
@@ -650,7 +655,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
     
-    # Audit trail
+# Create Audit trail table
     
     create_table "audit_trails", force: :cascade do |t|
       t.integer  "playground_id",                    null: false
