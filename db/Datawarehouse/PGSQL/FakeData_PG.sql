@@ -97,6 +97,25 @@ added_value = R.added_value,
 maintenance_cost = R.maintenance_cost
 from ( select odq_parent_id,
 sum(workload) workload,
+sum(added_value) added_value,
+sum(maintenance_cost) maintenance_cost from odq_dwh.dm_processes 
+where odq_object_id < 100
+group by odq_parent_id) R 
+where
+D.odq_object_id = R.odq_parent_id ;
+
+/* Glisser le jeu d'essais de 20 jours */
+update odq_dwh.dm_processes AS m 
+set period_id = m.period_id+20,
+period_day = p.period_day
+from odq_dwh.dim_time AS p
+where p.period_id = m.period_id+20 ;
+
+/* Etendre le jeu d'essais de 10 jours */
+insert into odq_dwh.dm_processes(PLAYGROUND_ID,ODQ_OBJECT_ID,ODQ_PARENT_ID,ODQ_OBJECT_NAME, ODQ_OBJECT_CODE, ODQ_OBJECT_URL, PERIOD_DAY,ALL_RECORDS,ERROR_COUNT,SCORE,WORKLOAD,ADDED_VALUE,MAINTENANCE_COST,PERIOD_ID,CREATED_BY,UPDATED_BY,CREATED_AT,UPDATED_AT,TERRITORY_ID,ORGANISATION_ID) 
+select M.PLAYGROUND_ID,ODQ_OBJECT_ID,ODQ_PARENT_ID,ODQ_OBJECT_NAME, ODQ_OBJECT_CODE, ODQ_OBJECT_URL, T.PERIOD_DAY,ALL_RECORDS,ERROR_COUNT,SCORE,WORKLOAD,ADDED_VALUE,MAINTENANCE_COST, T.PERIOD_ID,M.CREATED_BY,M.UPDATED_BY,M.CREATED_AT,M.UPDATED_AT,0,0
+from odq_dwh.dm_processes M inner join odq_dwh.dim_time T on T.period_id = M.period_id + 10; 
+
 /* Generate unique object identifier for loading into Data Marts by concatenating id with object type:
 0: playground
 1: landscape
