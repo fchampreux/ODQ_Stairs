@@ -9,7 +9,7 @@ class BusinessHierarchiesController < ApplicationController
     @lignes = BusinessHierarchy.count
   end
 
-  # Loads each element of the business hierarchy
+  # Loads each element of the business hierarchy into ODQ application objects
   def load
     # Setup counters
     @lignes = BusinessHierarchy.count
@@ -172,5 +172,144 @@ class BusinessHierarchiesController < ApplicationController
     log_activity(current_user.playground_id, 0, 0, 'Loading business hierarchy',
                      request.env['REMOTE_ADDR'], 'Load successful', 0)
   end
+  
+  def unload
+  # Generates a business hierarchy ready to export to a MS Excel file
+  # Search for selected playground, then iterate through hierarchy
+  # Setup counter
+    @counter = [] #object, tries, inserts
+    audit_status = Parameter.joins(:parameters_list).where("parameters_lists.code = ? and parameters.code = ?", 'LIST_OF_BREACH_TYPES','INIT').take!
+    
+    # == Schema Information
+    #
+    # Table name: business_hierarchies
+    #
+    #  id                 :integer          not null, primary key
+    #  playground_id      :integer
+    #  pcf_index          :string
+    #  pcf_reference      :string
+    #  hierarchical_level :integer
+    #  hierarchy          :string
+    #  name               :string
+    #  description        :text
+    #  created_at         :datetime         not null
+    #  updated_at         :datetime         not null
+    #
+    @playground = Playground.find(params[:id])
+    
+    # Business Areas
+    @business_areas = BusinessArea.where("playgrond_id = ?", @playground.id).order("hierarchy")
+    monitor = {:object => 'Business Areas', :tries => 0, :inserts => 0}
+    @business_areas.each do |ba|
+      hierarchy = BusinessHierarchy.new
+      hierarchy.playground_id = ba.playground_id
+      hierarchy.pcf_index = ba.pcf_index        
+      hierarchy.pcf_reference = ba.pcf_reference   
+      hierarchy.hierarchical_level = ba.hierarchy.count('.')
+      hierarchy.hierarchy = ba.hierarchy       
+      hierarchy.name = ba.name         
+      hierarchy.description = ba.description
+      
+      monitor[:tries] += 1
+      if hierarchy.save 
+        monitor[:inserts] += 1
+      else
+        log_activity(ba.playground_id, 5, ba.id, ba.hierarchy + ' ' + ba.name,
+                     request.env['REMOTE_ADDR'], hierarchy.errors.full_messages, audit_status.id)
+      end
+    
+    # Business Flows  
+      @business_flows = BusinessFlow.where("business_area_id = ?", ba.id).order("hierarchy")
+      @business_flows.each do |bf|
+        hierarchy = BusinessHierarchy.new
+        hierarchy.playground_id = bf.playground_id
+        hierarchy.pcf_index = bf.pcf_index        
+        hierarchy.pcf_reference = bf.pcf_reference   
+        hierarchy.hierarchical_level = bf.hierarchy.count('.')
+        hierarchy.hierarchy = bf.hierarchy       
+        hierarchy.name = bf.name         
+        hierarchy.description = bf.description
+        
+        monitor[:tries] += 1
+        if hierarchy.save 
+          monitor[:inserts] += 1
+        else
+          log_activity(bf.playground_id, 5, bf.id, bf.hierarchy + ' ' + bf.name,
+                       request.env['REMOTE_ADDR'], hierarchy.errors.full_messages, audit_status.id)
+        end
+          
+    # Business Processes        
+        @business_processes = BusinessProcess.where("business_flow_id = ?", bf.id).order("hierarchy")
+        @business_processes.each do |bp|
+          hierarchy = BusinessHierarchy.new
+          hierarchy.playground_id = bp.playground_id
+          hierarchy.pcf_index = bp.pcf_index        
+          hierarchy.pcf_reference = bp.pcf_reference   
+          hierarchy.hierarchical_level = bp.hierarchy.count('.')
+          hierarchy.hierarchy = bp.hierarchy       
+          hierarchy.name = bp.name         
+          hierarchy.description = bp.description
+          
+          monitor[:tries] += 1
+          if hierarchy.save 
+            monitor[:inserts] += 1
+          else
+            log_activity(bp.playground_id, 5, bp.id, bp.hierarchy + ' ' + bp.name,
+                         request.env['REMOTE_ADDR'], hierarchy.errors.full_messages, audit_status.id)
+          end
+          
+    # Activities
+          @activities = Activity.where("business_process_id = ?", bp.id).order("hierarchy")
+          @activities.each do |act|
+            hierarchy = BusinessHierarchy.new
+            hierarchy.playground_id = act.playground_id
+            hierarchy.pcf_index = act.pcf_index        
+            hierarchy.pcf_reference = act.pcf_reference   
+            hierarchy.hierarchical_level = act.hierarchy.count('.')
+            hierarchy.hierarchy = act.hierarchy       
+            hierarchy.name = act.name         
+            hierarchy.description = act.description
+            
+            monitor[:tries] += 1
+            if hierarchy.save 
+              monitor[:inserts] += 1
+            else
+              log_activity(act.playground_id, 5, act.id, act.hierarchy + ' ' + act.name,
+                           request.env['REMOTE_ADDR'], hierarchy.errors.full_messages, audit_status.id)
+            end
+            
+    # Tasks
+            @tasks = Task.where("activity_id = ?", act.id).order("hierarchy")
+            @tasks.each do |task|
+              hierarchy = BusinessHierarchy.new
+              hierarchy.playground_id = task.playground_id
+              hierarchy.pcf_index = task.pcf_index        
+              hierarchy.pcf_reference = task.pcf_reference   
+              hierarchy.hierarchical_level = task.hierarchy.count('.')
+              hierarchy.hierarchy = task.hierarchy       
+              hierarchy.name = task.name         
+              hierarchy.description = task.description
+              
+              monitor[:tries] += 1
+              if hierarchy.save 
+                monitor[:inserts] += 1
+              else
+                log_activity(task.playground_id, 5, task.id, task.hierarchy + ' ' + task.name,
+                             request.env['REMOTE_ADDR'], hierarchy.errors.full_messages, audit_status.id)
+              end
+              
+            end
+            
+          end
+          
+        end
+        
+      end
+      
+    end
+    @lignes = monitor[:tries]
+    
+  end
+  
 
 end

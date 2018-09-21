@@ -13,7 +13,7 @@ module ViewsHelper
   ### select audit tag filename
   def index_audit_tag_for(current_object)
     current_period_day = Time.now.strftime("%Y%m%d")
-    current_period_id = TimeScale.where("period_day = ?", current_period_day).take.period_id
+    current_period_id = DimTime.where("period_day = ?", current_period_day).take.period_id
     if DmProcess.where("period_id = ? and ODQ_object_id = ?", current_period_id, current_object.id).blank?
       measured_score = -1
     else  
@@ -55,7 +55,8 @@ module ViewsHelper
   ### extract object's series for d3
   def d3_chart_series_for(current_object)
     measured_history = DmProcess.joins("inner join odq_dwh.dim_time on dim_time.period_id = dm_processes.period_id").
-    where("dim_time.period_id between ? and ? and ODQ_object_id = ?",current_period_id - date_excursion, current_period_id, current_object.id).
+    where("dim_time.period_id between ? and ? and ODQ_object_id = ? and dm_processes.playground_id = ?",
+          current_period_id - date_excursion, current_period_id, current_object.id, current_user.current_playground_id).
     select("dim_time.period_date idx, score").order("dim_time.period_date")
   end
 
