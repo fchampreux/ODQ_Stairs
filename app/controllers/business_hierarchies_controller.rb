@@ -1,6 +1,7 @@
 class BusinessHierarchiesController < ApplicationController
   # Check for active session 
   before_action :authenticate_user!
+  before_action :set_playgrounds_list
   
   # GET /business_hierarchies
   # GET /business_hierarchies.json
@@ -9,6 +10,10 @@ class BusinessHierarchiesController < ApplicationController
     @lignes = BusinessHierarchy.count
   end
 
+  def new
+    @business_hierarchy = BusinessHierarchy.new
+  end
+  
   # Loads each element of the business hierarchy into ODQ application objects
   def load
     # Setup counters
@@ -173,7 +178,7 @@ class BusinessHierarchiesController < ApplicationController
                      request.env['REMOTE_ADDR'], 'Load successful', 0)
   end
   
-  def unload
+  def create
   # Generates a business hierarchy ready to export to a MS Excel file
   # Search for selected playground, then iterate through hierarchy
   # Setup counter
@@ -195,7 +200,7 @@ class BusinessHierarchiesController < ApplicationController
     #  created_at         :datetime         not null
     #  updated_at         :datetime         not null
     #
-    @playground = Playground.find(params[:id])
+    @playground = Playground.find(params[:playground_id])
     
     # Business Areas
     @business_areas = BusinessArea.where("playgrond_id = ?", @playground.id).order("hierarchy")
@@ -308,6 +313,7 @@ class BusinessHierarchiesController < ApplicationController
       
     end
     @lignes = monitor[:tries]
+#     redirect_to "/business_hierarchy/load", notice: 'Business hierarchy was successfully extracted.'
     
   end
   

@@ -18,7 +18,7 @@ ODQStairs::Application.routes.draw do
   #resources :sessions, only: [:new, :create, :destroy]  
   #get '/signin',  to: 'sessions#new'	, via: :get
   #match '/signout', to: 'sessions#destroy', via: :delete
-  resources :business_hierarchies, :only=>[:index, :load] do
+  resources :business_hierarchies, :only=>[:index, :new, :create, :load] do
     collection do
       post :load
     end
