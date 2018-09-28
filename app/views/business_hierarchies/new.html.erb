@@ -1,16 +1,6 @@
-<% provide(:title, (t('ImportBHs'))) %>
+<% provide(:title, (t('ExportBHs'))) %>
 
-<%= form_for (@business_hierarchy) do |f| %>
-  <% if @business_hierarchy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@business_hierarchy.errors.count, t('error')) %> <%=t('ImportWarn')%></h2>
-      <ul>
-      <% @business_hierarchy.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_tag %>
   
   <div class="row">
     <div class="col-md-1 text-right"> <%= t('Description') %>:
@@ -22,15 +12,14 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="field">
-        <%= f.label :playground %>
-        <%= f.collection_select :playground_id, @playgrounds_list, :id, :name %>
+        <%= t('Playground') %>
+        <%= collection_select :playground_id, @playgrounds_list, :id, :name %>
       </div>
     </div>
   </div>
       
       
-      <div class="buttons"><%= f.submit ('Export')%></div>
+      <div class="buttons"><%= submit ('Export')%></div>
 
-      <% end %>
 
 

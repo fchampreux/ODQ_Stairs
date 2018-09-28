@@ -11,7 +11,7 @@ class BusinessHierarchiesController < ApplicationController
   end
 
   def new
-    @business_hierarchy = BusinessHierarchy.new
+    # @business_hierarchy = BusinessHierarchy.new
   end
   
   # Loads each element of the business hierarchy into ODQ application objects
@@ -178,7 +178,7 @@ class BusinessHierarchiesController < ApplicationController
                      request.env['REMOTE_ADDR'], 'Load successful', 0)
   end
   
-  def create
+  def unload
   # Generates a business hierarchy ready to export to a MS Excel file
   # Search for selected playground, then iterate through hierarchy
   # Setup counter
