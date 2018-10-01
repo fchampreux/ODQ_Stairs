@@ -39,11 +39,6 @@ module ViewsHelper
     return image_file
   end
   
-  # retrieve the list of playgrounds
-  def set_playgrounds_list
-    @playgrounds_list = Playground.where("id > 0")
-  end 
-  
   def current_period_id
       current_period_id = TimeScale.where("period_date = ?", Time.now.to_date).take.period_id
   end

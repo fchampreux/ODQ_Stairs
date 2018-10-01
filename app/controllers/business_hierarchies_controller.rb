@@ -8,10 +8,16 @@ class BusinessHierarchiesController < ApplicationController
   def index
     @business_hierarchies = BusinessHierarchy.order("hierarchy").limit(20)
     @lignes = BusinessHierarchy.count
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: BusinessHierarchy.order("hierarchy") }
+      format.xls # uses specific template to render xml
+    end
   end
 
+  # Select the playground to generate the business hierarchy, then calls unload
   def new
-    # @business_hierarchy = BusinessHierarchy.new
   end
   
   # Loads each element of the business hierarchy into ODQ application objects
@@ -181,8 +187,11 @@ class BusinessHierarchiesController < ApplicationController
   def unload
   # Generates a business hierarchy ready to export to a MS Excel file
   # Search for selected playground, then iterate through hierarchy
+  # Truncate table
+  ActiveRecord::Base.connection.execute("TRUNCATE table business_hierarchies")
   # Setup counter
     @counter = [] #object, tries, inserts
+    monitor = {:object => 'Business Hierarchies', :tries => 0, :inserts => 0}
     audit_status = Parameter.joins(:parameters_list).where("parameters_lists.code = ? and parameters.code = ?", 'LIST_OF_BREACH_TYPES','INIT').take!
     
     # == Schema Information
@@ -203,8 +212,7 @@ class BusinessHierarchiesController < ApplicationController
     @playground = Playground.find(params[:playground_id])
     
     # Business Areas
-    @business_areas = BusinessArea.where("playgrond_id = ?", @playground.id).order("hierarchy")
-    monitor = {:object => 'Business Areas', :tries => 0, :inserts => 0}
+    @business_areas = BusinessArea.where("playground_id = ?", @playground.id).order("hierarchy")
     @business_areas.each do |ba|
       hierarchy = BusinessHierarchy.new
       hierarchy.playground_id = ba.playground_id
@@ -312,10 +320,22 @@ class BusinessHierarchiesController < ApplicationController
       end
       
     end
+    @counter.push(monitor)
     @lignes = monitor[:tries]
-#     redirect_to "/business_hierarchy/load", notice: 'Business hierarchy was successfully extracted.'
-    
+    redirect_to business_hierarchies_path
+  end
+
+### private functions  
+  private
+  
+  # retrieve the list of playgrounds
+  def set_playgrounds_list
+    @playgrounds_list = Playground.where("id > 0").map{ |playground| [playground.name, playground.id]}
   end
   
+  ### strong parameters
+  def business_hierarchy_params
+    params.require(:business_hierarchy).permit(:playground_id)
+  end
 
 end

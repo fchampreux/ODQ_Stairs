@@ -1,6 +1,6 @@
 <% provide(:title, (t('ExportBHs'))) %>
 
-<%= form_tag %>
+<%= form_tag(unload_business_hierarchies_path) do %>
   
   <div class="row">
     <div class="col-md-1 text-right"> <%= t('Description') %>:
@@ -13,13 +13,13 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="field">
         <%= t('Playground') %>
-        <%= collection_select :playground_id, @playgrounds_list, :id, :name %>
+        <%= select_tag(:playground_id, options_for_select(@playgrounds_list)) %>
       </div>
     </div>
   </div>
       
       
-      <div class="buttons"><%= submit ('Export')%></div>
+      <div class="buttons"><%= submit_tag ('Export')%></div>
 
-
+<% end %>
 

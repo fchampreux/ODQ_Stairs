@@ -21,6 +21,9 @@ ODQStairs::Application.routes.draw do
   resources :business_hierarchies, :only=>[:index, :new, :create, :load, :unload] do
     collection do
       post :load
+      post :unload
+    end
+    member do
     end
   end
   resources :business_hierarchy_imports, :only=>[:new, :create]
