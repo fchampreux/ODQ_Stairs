@@ -43,7 +43,7 @@ extend CsvHelper
 	validates :updated_by, presence: true
 	validates :owner_id, presence: true
 #	validates :status_id, presence: true
-	validates :playground_id, presence: true
+	validates :parent, presence: true
 	validates :pcf_index, length: { maximum: 30 }
 	validates :pcf_reference, length: { maximum: 100 }
   belongs_to :parent, :class_name => "Playground", :foreign_key => "playground_id" 
@@ -57,12 +57,12 @@ extend CsvHelper
 
   ### before filters
     def set_code 
-      self.code = self.playground.code + '-' + code
+      self.code = self.parent.code + '-' + code
     end
   
     def set_hierarchy
       if BusinessArea.where("playground_id = ?", self.playground_id).count == 0 
-        self.hierarchy = self.playground.hierarchy + '.001'
+        self.hierarchy = self.parent.hierarchy + '.001'
       else 
         last_one = BusinessArea.pgnd(self.playground_id).maximum("hierarchy")
         self.hierarchy = last_one.next
