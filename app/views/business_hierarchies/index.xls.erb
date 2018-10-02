@@ -7,15 +7,15 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-      <% BusinessHierarchy.column_names.each do |field| %>
-        <Cell><Data ss:Type="String"><%= field %></Data></Cell>
-      <% end %>
+        <Cell><Data ss:Type="String">PCF ID</Data></Cell>
+        <Cell><Data ss:Type="String">Hierarchy ID</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
       </Row>
     <% BusinessHierarchy.order("hierarchy").each do |item| %>
       <Row>
-      <% item.attributes.values.each do |field| %>
-        <Cell><Data ss:Type="String"><%= field %></Data></Cell>
-      <% end %>
+        <Cell><Data ss:Type="String"><%= item.pcf_index %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= item.hierarchy  %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= item.name  %></Data></Cell>
       </Row>
     <% end %>
     </Table>
