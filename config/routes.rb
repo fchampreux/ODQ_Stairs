@@ -22,6 +22,7 @@ ODQStairs::Application.routes.draw do
     collection do
       post :load
       post :unload
+      post :export
     end
     member do
     end

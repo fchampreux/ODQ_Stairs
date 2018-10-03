@@ -11,13 +11,15 @@ gem 'turbolinks', '~> 5.0'
 gem 'jbuilder', '~> 2.6'
 gem 'bootstrap-datepicker-rails', '~> 1.6'
 gem 'will_paginate', '~> 3.1'
-gem 'selenium-webdriver', '~> 2.53'
 gem 'd3-rails'
 gem 'httparty', '~> 0.14'
-gem 'iconv'
-gem 'roo'
 gem 'nested_form_fields'
 gem 'pg'
+
+# XLSX format support
+gem 'iconv'
+gem 'write_xlsx'
+gem 'roo'
 
 # gem 'rails-i18n', '~> 5.1'
 

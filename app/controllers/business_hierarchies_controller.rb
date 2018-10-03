@@ -325,6 +325,37 @@ class BusinessHierarchiesController < ApplicationController
     redirect_to business_hierarchies_path
   end
 
+  def export
+    require 'write_xlsx'
+
+    # Create a new XLSX workbook
+    @workbook = WriteXLSX.new("ODQBusinessHierarchy.xlsx")
+    
+    # Add a worksheet
+    worksheet = @workbook.add_worksheet
+    
+    # Add and define a format
+    header = @workbook.add_format # Add a format
+    header.set_bold
+    header.set_color('blue')
+    header.set_align('center')
+    
+    # Fill header
+    row = 0
+    worksheet.write(row, 0, "PCF ID", format)
+    worksheet.write(row, 1, "Hierarchy ID", format)
+    worksheet.write(row, 2, "Name", format)
+    
+    # Fill in rows
+    BusinessHierarchy.all.order("hierarchy") do |bh|
+      row += 1
+      worksheet.write(row, 0, "pcf_reference")
+      worksheet.write(row, 1, "hierarchy")
+      worksheet.write(row, 2, "name")
+      worksheet.write_comment(row, 2, "description")
+    end
+  end
+
 ### private functions  
   private
   
