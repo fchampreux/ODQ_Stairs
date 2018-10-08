@@ -1,7 +1,7 @@
 class BusinessHierarchyImportsController < ApplicationController
   # Check for active session 
   before_action :authenticate_user!
-  before_action :set_playgrounds_list
+  #before_action :set_playgrounds_list
   
   def new
     @business_hierarchy_import = BusinessHierarchyImport.new

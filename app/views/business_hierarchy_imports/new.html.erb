@@ -30,7 +30,7 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="field">
         <%= f.label :playground %>
-        <%= f.collection_select :playground, @playgrounds_list, :id, :name %>
+        <%= f.collection_select :playground, list_of_playgrounds, :id, :name %>
       </div>
     </div>
   </div>

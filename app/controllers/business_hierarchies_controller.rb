@@ -1,7 +1,7 @@
 class BusinessHierarchiesController < ApplicationController
   # Check for active session 
   before_action :authenticate_user!
-  before_action :set_playgrounds_list
+  #before_action :set_playgrounds_list
   
   # GET /business_hierarchies
   # GET /business_hierarchies.json
@@ -322,7 +322,7 @@ class BusinessHierarchiesController < ApplicationController
     end
     @counter.push(monitor)
     @lignes = monitor[:tries]
-    redirect_to business_hierarchies_path
+    #redirect_to unload_business_hierarchies_path
   end
 
   def export
@@ -341,28 +341,37 @@ class BusinessHierarchiesController < ApplicationController
     header.set_align('center')
     
     # Fill header
+    puts "write header"
     row = 0
-    worksheet.write(row, 0, "PCF ID", format)
-    worksheet.write(row, 1, "Hierarchy ID", format)
-    worksheet.write(row, 2, "Name", format)
+    worksheet.write(row, 0, "PCF ID", header)
+    worksheet.write(row, 1, "Hierarchy ID", header)
+    worksheet.write(row, 2, "Name", header)
     
     # Fill in rows
-    BusinessHierarchy.all.order("hierarchy") do |bh|
+    puts "write lines"
+    puts BusinessHierarchy.count
+    business_hierarchies = BusinessHierarchy.all.order("hierarchy")
+    business_hierarchies.each do |bh|
       row += 1
-      worksheet.write(row, 0, "pcf_reference")
-      worksheet.write(row, 1, "hierarchy")
-      worksheet.write(row, 2, "name")
-      worksheet.write_comment(row, 2, "description")
+      puts "row"
+      worksheet.write(row, 0, bh.pcf_reference)
+      worksheet.write(row, 1, bh.hierarchy)
+      worksheet.write(row, 2, bh.name)
+      worksheet.write_comment(row, 2, bh.description)
     end
+    
+    @workbook.close
   end
 
 ### private functions  
   private
   
+=begin  
   # retrieve the list of playgrounds
   def set_playgrounds_list
     @playgrounds_list = Playground.where("id > 0").map{ |playground| [playground.name, playground.id]}
   end
+=end
   
   ### strong parameters
   def business_hierarchy_params

@@ -13,7 +13,7 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="field">
         <%= t('Playground') %>
-        <%= select_tag(:playground_id, options_for_select(@playgrounds_list)) %>
+        <%= select_tag(:playground_id, options_for_select(list_of_playgrounds.map {|pg| [pg.name, pg.id]})) %>
       </div>
     </div>
   </div>
