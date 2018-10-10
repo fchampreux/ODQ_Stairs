@@ -186,7 +186,8 @@ class BusinessHierarchiesController < ApplicationController
   
   def unload
   # Generates a business hierarchy ready to export to a MS Excel file
-  # Search for selected playground, then iterate through hierarchy
+  # Search for selected playground, then iterate through hierarchy, and exports result to XLSX file
+  require 'write_xlsx'
   # Truncate table
   ActiveRecord::Base.connection.execute("TRUNCATE table business_hierarchies")
   # Setup counter
@@ -322,23 +323,20 @@ class BusinessHierarchiesController < ApplicationController
     end
     @counter.push(monitor)
     @lignes = monitor[:tries]
-    #redirect_to unload_business_hierarchies_path
-  end
 
-  def export
-    require 'write_xlsx'
-
+    ### Export each record to XLSX file formated as APQC's PCF
     # Create a new XLSX workbook
-    @workbook = WriteXLSX.new("ODQBusinessHierarchy.xlsx")
+    @workbook = WriteXLSX.new("public/ODQBusinessHierarchy.xlsx")
     
     # Add a worksheet
-    worksheet = @workbook.add_worksheet
+    worksheet = @workbook.add_worksheet("Combined")
     
     # Add and define a format
     header = @workbook.add_format # Add a format
     header.set_bold
     header.set_color('blue')
     header.set_align('center')
+    string_cell = @workbook.add_format(:num_format => '@')
     
     # Fill header
     puts "write header"
@@ -353,9 +351,11 @@ class BusinessHierarchiesController < ApplicationController
     business_hierarchies = BusinessHierarchy.all.order("hierarchy")
     business_hierarchies.each do |bh|
       row += 1
-      puts "row"
+      # Format hierarchy the same way as APQC
+      hierarchy = bh.hierarchy[(bh.hierarchy.index('.')+1)..-1] # Remove playground from hierarchy
+      built_hierarchy = hierarchy.split('.').map {|index| index.to_i.to_s}.join('.') # Remove leading 0s at each index of hierarchy
       worksheet.write(row, 0, bh.pcf_reference)
-      worksheet.write(row, 1, bh.hierarchy)
+      worksheet.write_string(row, 1, built_hierarchy, string_cell)
       worksheet.write(row, 2, bh.name)
       worksheet.write_comment(row, 2, bh.description)
     end
