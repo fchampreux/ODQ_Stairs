@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">id</Data></Cell>
+        <Cell><Data ss:Type="String">playground_id</Data></Cell>
+        <Cell><Data ss:Type="String">code</Data></Cell>
+        <Cell><Data ss:Type="String">name</Data></Cell>
+        <Cell><Data ss:Type="String">description</Data></Cell>
+        <Cell><Data ss:Type="String">territory_level</Data></Cell>
+        <Cell><Data ss:Type="String">hierarchy</Data></Cell>
+        <Cell><Data ss:Type="String">status_id</Data></Cell>
+        <Cell><Data ss:Type="String">parent_id</Data></Cell>
+        <Cell><Data ss:Type="String">external_reference</Data></Cell>
+        <Cell><Data ss:Type="String">owner_id</Data></Cell>
+        <Cell><Data ss:Type="String">created_by</Data></Cell>
+        <Cell><Data ss:Type="String">updated_by</Data></Cell>
+        <Cell><Data ss:Type="String">created_at</Data></Cell>
+        <Cell><Data ss:Type="String">updated_at</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD</Data></Cell>
+        <Cell><Data ss:Type="String">World</Data></Cell>
+        <Cell><Data ss:Type="String">This territory is created when initialising ODQ application as the root for geography hierarchy</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">-1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-EMEA</Data></Cell>
+        <Cell><Data ss:Type="String">Europe &amp; Middle East</Data></Cell>
+        <Cell><Data ss:Type="String">Europe &amp; Middle East</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">6</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-EMEA-EUR</Data></Cell>
+        <Cell><Data ss:Type="String">Europe</Data></Cell>
+        <Cell><Data ss:Type="String">Europe</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">7</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-EMEA-MEA</Data></Cell>
+        <Cell><Data ss:Type="String">Middle East</Data></Cell>
+        <Cell><Data ss:Type="String">Middle East</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AME</Data></Cell>
+        <Cell><Data ss:Type="String">Americas</Data></Cell>
+        <Cell><Data ss:Type="String">Americas</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">8</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AME-NAM</Data></Cell>
+        <Cell><Data ss:Type="String">North America</Data></Cell>
+        <Cell><Data ss:Type="String">North America</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">9</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AME-LAM</Data></Cell>
+        <Cell><Data ss:Type="String">Latin America</Data></Cell>
+        <Cell><Data ss:Type="String">Latin America</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">10</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AME-SAM</Data></Cell>
+        <Cell><Data ss:Type="String">South America</Data></Cell>
+        <Cell><Data ss:Type="String">South America</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.003</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-OCEAN</Data></Cell>
+        <Cell><Data ss:Type="String">Oceania</Data></Cell>
+        <Cell><Data ss:Type="String">Oceania</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">11</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-OCEAN-AUS</Data></Cell>
+        <Cell><Data ss:Type="String">Australia</Data></Cell>
+        <Cell><Data ss:Type="String">Australia</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">12</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-OCEAN-PCI</Data></Cell>
+        <Cell><Data ss:Type="String">Pacific Islands</Data></Cell>
+        <Cell><Data ss:Type="String">Pacific Islands</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">5</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AFRIC</Data></Cell>
+        <Cell><Data ss:Type="String">Africa</Data></Cell>
+        <Cell><Data ss:Type="String">Africa</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.004</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">13</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AFRIC-NAF</Data></Cell>
+        <Cell><Data ss:Type="String">North Africa</Data></Cell>
+        <Cell><Data ss:Type="String">North Africa</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.004.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">5</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">14</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">WORLD-AFRIC-SAF</Data></Cell>
+        <Cell><Data ss:Type="String">South Africa</Data></Cell>
+        <Cell><Data ss:Type="String">South Africa</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.004.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">5</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>
+

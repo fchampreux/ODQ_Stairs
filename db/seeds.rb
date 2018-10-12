@@ -25,7 +25,7 @@ puts "Seeding playgrounds"
 if Playground.count == 0
   puts "Creating Playgrounds"
   Playground.create( id: 0, playground_id: 0, hierarchy: '0', name: 'Undefined playground', description: 'This playground is assigned to templates objects', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Playground.create( playground_id: 1, hierarchy: '1', name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+  Playground.create( playground_id: 0, hierarchy: '1', name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding landscape"

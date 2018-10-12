@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">id</Data></Cell>
+        <Cell><Data ss:Type="String">playground_id</Data></Cell>
+        <Cell><Data ss:Type="String">code</Data></Cell>
+        <Cell><Data ss:Type="String">name</Data></Cell>
+        <Cell><Data ss:Type="String">description</Data></Cell>
+        <Cell><Data ss:Type="String">organisation_level</Data></Cell>
+        <Cell><Data ss:Type="String">hierarchy</Data></Cell>
+        <Cell><Data ss:Type="String">status_id</Data></Cell>
+        <Cell><Data ss:Type="String">parent_id</Data></Cell>
+        <Cell><Data ss:Type="String">external_reference</Data></Cell>
+        <Cell><Data ss:Type="String">owner_id</Data></Cell>
+        <Cell><Data ss:Type="String">created_by</Data></Cell>
+        <Cell><Data ss:Type="String">updated_by</Data></Cell>
+        <Cell><Data ss:Type="String">created_at</Data></Cell>
+        <Cell><Data ss:Type="String">updated_at</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL</Data></Cell>
+        <Cell><Data ss:Type="String">Global organisation</Data></Cell>
+        <Cell><Data ss:Type="String">This organisation is created when initialising ODQ application as the root for organisations hierarchy</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">-1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-MKT</Data></Cell>
+        <Cell><Data ss:Type="String">Marketing</Data></Cell>
+        <Cell><Data ss:Type="String">Marketing organisations</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">7</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-MKT-CUS</Data></Cell>
+        <Cell><Data ss:Type="String">Consumer goods</Data></Cell>
+        <Cell><Data ss:Type="String">End customer marketing</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">8</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-MKT-PROF</Data></Cell>
+        <Cell><Data ss:Type="String">Professional</Data></Cell>
+        <Cell><Data ss:Type="String">Professional customer marketing</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.001.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-SALES</Data></Cell>
+        <Cell><Data ss:Type="String">Sales</Data></Cell>
+        <Cell><Data ss:Type="String">Sales divisions</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">9</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-SALES-DIR</Data></Cell>
+        <Cell><Data ss:Type="String">Hospitals and organisations</Data></Cell>
+        <Cell><Data ss:Type="String">Organisations sales</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">10</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-SALES-RES</Data></Cell>
+        <Cell><Data ss:Type="String">Resalers</Data></Cell>
+        <Cell><Data ss:Type="String">Resalers sales</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">11</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-SALES-INT</Data></Cell>
+        <Cell><Data ss:Type="String">Clinical trials</Data></Cell>
+        <Cell><Data ss:Type="String">Internal reseach sales</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.002.003</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-PROD</Data></Cell>
+        <Cell><Data ss:Type="String">Production</Data></Cell>
+        <Cell><Data ss:Type="String">Production and plants</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">12</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-PROD-FP</Data></Cell>
+        <Cell><Data ss:Type="String">Finished goods</Data></Cell>
+        <Cell><Data ss:Type="String">Finished products</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003.001</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">13</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-PROD-API</Data></Cell>
+        <Cell><Data ss:Type="String">Active Pharmaceuticals Ingredients</Data></Cell>
+        <Cell><Data ss:Type="String">Bulk products</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003.002</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">14</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-PROD-PACK</Data></Cell>
+        <Cell><Data ss:Type="String">Packaging</Data></Cell>
+        <Cell><Data ss:Type="String">Packaing activity</Data></Cell>
+        <Cell><Data ss:Type="String">3</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.003.003</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">4</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">5</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-ACC</Data></Cell>
+        <Cell><Data ss:Type="String">Legal and accounting</Data></Cell>
+        <Cell><Data ss:Type="String">Administration</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.004</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">6</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">GLOBAL-HR</Data></Cell>
+        <Cell><Data ss:Type="String">Human resources</Data></Cell>
+        <Cell><Data ss:Type="String">HR department</Data></Cell>
+        <Cell><Data ss:Type="String">2</Data></Cell>
+        <Cell><Data ss:Type="String">1.001.005</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">1</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">Rake</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+        <Cell><Data ss:Type="String">2000-01-01 00:00:00 UTC</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>
+
