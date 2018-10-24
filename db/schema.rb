@@ -108,7 +108,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_ba_on_name", unique: true
   end
 
-  create_table "business_flows", id: :integer, default: -> { "nextval('global_seq'::regclass)" }, force: :cascade do |t|
+  create_table "business_flows", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false
     t.string "code", limit: 60, null: false

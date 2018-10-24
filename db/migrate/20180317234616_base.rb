@@ -45,7 +45,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "business_areas", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 200, null: false
@@ -69,7 +68,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "business_flows", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_area_id",                  null: false
       t.string "code",                   limit: 60,  null: false
@@ -91,11 +89,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id","name" ], name: "index_bf_on_name", unique: true
       t.index ["hierarchy"], name: "index_bf_on_hierarchy", unique: true
     end
-    change_column :business_flows, :id, :integer, default: -> { "nextval('global_seq')" }
   
     create_table "business_objects", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_area_id",                  null: false
       t.integer "main_scope_id"
@@ -121,7 +117,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "business_processes", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_flow_id",                  null: false
       t.string "code",                   limit: 60,  null: false
@@ -146,7 +141,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "business_rules", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_process_id",               null: false
       t.integer "business_object_id"
@@ -200,7 +194,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "landscapes", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 200, null: false 
@@ -350,7 +343,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "scopes", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "landscape_id",                      null: false
       t.string "code",                   limit: 60,  null: false
@@ -516,7 +508,6 @@ class Base < ActiveRecord::Migration[5.1]
     
     create_table "activities", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_process_id",               null: false
       t.string "code",                   limit: 60,  null: false
@@ -538,7 +529,6 @@ class Base < ActiveRecord::Migration[5.1]
     
     create_table "tasks", id: false do |t|
       t.integer "id", null: false, default: -> { "nextval('global_seq')" }
-      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "activity_id",                       null: false
       t.string "code",                   limit: 60,  null: false
