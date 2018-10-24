@@ -6,7 +6,7 @@ class Base < ActiveRecord::Migration[5.1]
     execute "CREATE SEQUENCE global_seq INCREMENT BY 1 START WITH 1000"
     
 # Create application tables
-    create_table "breaches", id: :serial, force: :cascade do |t|
+    create_table "breaches", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "business_rule_id",                  null: false
       t.integer "application_id",                    null: false
@@ -43,7 +43,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
   
-    create_table "business_areas", id: :serial, force: :cascade do |t|
+    create_table "business_areas", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 200, null: false
@@ -65,7 +67,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_ba_on_hierarchy", unique: true
     end
   
-    create_table "business_flows", id: :serial, force: :cascade do |t|
+    create_table "business_flows", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_area_id",                  null: false
       t.string "code",                   limit: 60,  null: false
@@ -87,8 +91,11 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id","name" ], name: "index_bf_on_name", unique: true
       t.index ["hierarchy"], name: "index_bf_on_hierarchy", unique: true
     end
+    change_column :business_flows, :id, :integer, default: -> { "nextval('global_seq')" }
   
-    create_table "business_objects", id: :serial, force: :cascade do |t|
+    create_table "business_objects", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_area_id",                  null: false
       t.integer "main_scope_id"
@@ -112,7 +119,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_bo_on_hierarchy", unique: true
     end
   
-    create_table "business_processes", id: :serial, force: :cascade do |t|
+    create_table "business_processes", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_flow_id",                  null: false
       t.string "code",                   limit: 60,  null: false
@@ -135,7 +144,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_bp_on_hierarchy", unique: true
     end
   
-    create_table "business_rules", id: :serial, force: :cascade do |t|
+    create_table "business_rules", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_process_id",               null: false
       t.integer "business_object_id"
@@ -172,7 +183,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_br_on_hierarchy", unique: true
     end
     
-    create_table "groups", force: :cascade do |t|
+    create_table "groups", id: :serial do |t|
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false
       t.string "description"
@@ -187,7 +198,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["name" ], name: "index_groups_on_name", unique: true
     end
   
-    create_table "landscapes", id: :serial, force: :cascade do |t|
+    create_table "landscapes", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 200, null: false 
@@ -207,7 +220,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_ls_on_hierarchy", unique: true
     end
   
-    create_table "mappings", id: :serial, force: :cascade do |t|
+    create_table "mappings", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "mappings_list_id",                  null: false
       t.string "source_software",        limit: 100
@@ -228,7 +241,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["mappings_list_id", "source_code", "target_code"], name: "index_map_on_code", unique: true
     end
   
-    create_table "mappings_lists", id: :serial, force: :cascade do |t|
+    create_table "mappings_lists", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -244,7 +257,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name"], name: "index_ml_on_name", unique: true
     end
   
-    create_table "notifications", id: :serial, force: :cascade do |t|
+    create_table "notifications", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "title",                 limit: 100,  null: false
       t.text "description"
@@ -262,7 +275,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
   
-    create_table "organisations", id: :serial, force: :cascade do |t|
+    create_table "organisations", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -283,7 +296,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "external_reference"], name: "index_org_on_ext_ref", unique: true
     end
   
-    create_table "parameters", id: :serial, force: :cascade do |t|
+    create_table "parameters", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "parameters_list_id",                null: false
       t.string "name",                   limit: 100, null: false
@@ -301,7 +314,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "code"], name: "index_param_on_code", unique: true
     end
   
-    create_table "parameters_lists", id: :serial, force: :cascade do |t|
+    create_table "parameters_lists", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -315,7 +328,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_pl_on_name", unique: true
     end
   
-    create_table "playgrounds", id: :serial, force: :cascade do |t|
+    create_table "playgrounds", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 200, null: false 
@@ -335,7 +348,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_pg_on_hierarchy", unique: true
     end
   
-    create_table "scopes", id: :serial, force: :cascade do |t|
+    create_table "scopes", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "landscape_id",                      null: false
       t.string "code",                   limit: 60,  null: false
@@ -365,7 +380,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["hierarchy"], name: "index_sc_on_hierarchy", unique: true
     end
   
-    create_table "skills", id: :serial, force: :cascade do |t|
+    create_table "skills", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "name",                   limit: 100, null: false
       t.text "description"
@@ -383,7 +398,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["business_object_id", "name"], name: "index_skills_on_bo_name", unique: true
     end
   
-    create_table "territories", id: :serial, force: :cascade do |t|
+    create_table "territories", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -404,7 +419,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "external_reference"], name: "index_ter_on_ext_ref", unique: true
     end
   
-    create_table "time_scales", primary_key: "period_id", force: :cascade do |t|
+    create_table "time_scales", primary_key: "period_id" do |t|
       t.integer "playground_id",                     null: false
       t.integer "day_of_week"
       t.integer "day_of_month"
@@ -422,7 +437,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
   
-    create_table "users", id: :serial, force: :cascade do |t|
+    create_table "users", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "group_id",                          null: false
       t.integer "default_playground_id",          default: 1
@@ -467,7 +482,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["code"], name: "index_users_on_code", unique: true
     end
   
-    create_table "values", id: :serial, force: :cascade do |t|
+    create_table "values", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "values_list_id",                    null: false
       t.string "code",                   limit: 60,  null: false
@@ -482,7 +497,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["values_list_id", "name"], name: "index_values_on_name", unique: true
     end
   
-    create_table "values_lists", id: :serial, force: :cascade do |t|
+    create_table "values_lists", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false 
@@ -499,7 +514,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_vl_on_name", unique: true
     end
     
-    create_table "activities", id: :serial, force: :cascade do |t|
+    create_table "activities", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "business_process_id",               null: false
       t.string "code",                   limit: 60,  null: false
@@ -519,7 +536,9 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_act_on_name", unique: true
     end
     
-    create_table "tasks", id: :serial, force: :cascade do |t|
+    create_table "tasks", id: false do |t|
+      t.integer "id", null: false, default: -> { "nextval('global_seq')" }
+      t.primary_key :id
       t.integer "playground_id",                     null: false
       t.integer "activity_id",                       null: false
       t.string "code",                   limit: 60,  null: false
@@ -543,7 +562,7 @@ class Base < ActiveRecord::Migration[5.1]
 
 # Create temorary table for imports
 
-    create_table :business_hierarchies, id: :serial, force: :cascade do |t|
+    create_table :business_hierarchies, id: :serial do |t|
       t.integer "playground_id"
       t.string "pcf_index"
       t.string "pcf_reference"
@@ -559,7 +578,7 @@ class Base < ActiveRecord::Migration[5.1]
 
 # Create Data Marts for analysis
 
-   create_table "odq_dwh.dm_processes", id: :serial, force: :cascade do |t|
+   create_table "odq_dwh.dm_processes", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -582,7 +601,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
    
-    create_table "odq_dwh.dm_scopes", id: :serial, force: :cascade do |t|
+    create_table "odq_dwh.dm_scopes", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -605,7 +624,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
    
-    create_table "odq_dwh.dm_activities", id: :serial, force: :cascade do |t|
+    create_table "odq_dwh.dm_activities", id: :serial do |t|
       t.integer "playground_id",                     null: false
       t.integer "odq_object_id",                     null: false
       t.integer "odq_parent_id",                     null: false
@@ -628,7 +647,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "updated_at",                       null: false
     end
 
-    create_table "odq_dwh.dim_time", primary_key: "period_id", id: :integer, default: nil, force: :cascade do |t|
+    create_table "odq_dwh.dim_time", primary_key: "period_id", id: :integer, default: nil do |t|
       t.integer "playground_id",                     null: false
       t.string "period",                 limit: 6
       t.string "period_day",             limit: 8
@@ -657,7 +676,7 @@ class Base < ActiveRecord::Migration[5.1]
     
 # Create Audit trail table
     
-    create_table "audit_trails", force: :cascade do |t|
+    create_table "audit_trails" do |t|
       t.integer  "playground_id",                    null: false
       t.integer  "task_id",                          null: false
       t.string   "action",        limit: 100,        null: false 

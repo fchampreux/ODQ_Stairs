@@ -9,15 +9,16 @@
 
 puts "Seeding users groups"
 if Group.count == 0
-  puts "Creating first group"
-  Group.create(id: 0, code: 'Everyone', name: 'Everyone', description: 'Default group for users', territory_id: 0, organisation_id: 0, owner_id: 0, created_by: 'Rake', updated_by: 'Rake', created_at: '2018-01-01', updated_at: '2018-01-01')
+  puts "Creating first groups"
+  Group.create(id: 0, code: 'EVERYONE', name: 'Everyone', description: 'Default group for users', territory_id: 0, organisation_id: 0, owner_id: 0, created_by: 'Rake', updated_by: 'Rake', created_at: '2018-01-01', updated_at: '2018-01-01')
+  Group.create(code: 'ADMIN', name: 'Administrators', description: 'Software administration users', territory_id: 0, organisation_id: 0, owner_id: 0, created_by: 'Rake', updated_by: 'Rake', created_at: '2018-01-01', updated_at: '2018-01-01')
 end
 
 puts "Seeding users"
 if User.count == 0
   puts "Creating first users"
   User.create( id: 0, group_id: 0, code: 'Unassigned', user_name: 'Unassigned', password: 'Unassigned', password_confirmation: 'Unassigned', default_playground_id: 0, current_playground_id: 0, current_landscape_id: 0, is_admin: 0, last_name: 'User', first_name: 'Undefined', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'service@nohoo.biz')
-  User.create( group_id: 0, code: 'ADM', user_name: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'fred@nohoo.biz')
+  User.create( group_id: 0, code: 'ADM', user_name: 'Admin', password: 'DQAdmin', password_confirmation: 'DQAdmin', default_playground_id: 0, current_playground_id: 0, current_landscape_id: 0, is_admin: 1, last_name: 'Administrator', first_name: 'Open Data Quality', description: 'Admin user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'fred@nohoo.biz')
 #  User.create( code: 'FCH', user_name: 'Fred', password: 'French', password_confirmation: 'French', default_playground_id: 1, current_playground_id: 1, current_landscape_id: 1, is_admin: 0, last_name: 'Champreux', first_name: 'Frédéric', description: 'First user', active_from: '2000-01-01', active_to: '2100-01-01', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', playground_id: 0, email: 'user2@nohoo.biz')
 end
 
@@ -25,21 +26,21 @@ puts "Seeding playgrounds"
 if Playground.count == 0
   puts "Creating Playgrounds"
   Playground.create( id: 0, playground_id: 0, hierarchy: '0', name: 'Undefined playground', description: 'This playground is assigned to templates objects', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Playground.create( playground_id: 0, hierarchy: '1', name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+#  Playground.create( playground_id: 0, hierarchy: '1', name: 'Main playground', description: 'This playground was created during installation ', code: 'MAIN', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding landscape"
 if Landscape.count == 0
   puts "Creating Landscapes"
   Landscape.create(id: 0, playground_id: 0, hierarchy: '0', name: 'Undefined landscape', description: 'This landscape is assigned an undefined value', code: 'UNDEFINED', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Landscape.create( playground_id: 1, hierarchy: '1', name: 'Default landscape', description: 'This landscape is the first landscape of your project, it was created during installation', code: 'FIRST', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
+#  Landscape.create( playground_id: 1, hierarchy: '1', name: 'Default landscape', description: 'This landscape is the first landscape of your project, it was created during installation', code: 'FIRST', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding scope"
 if Scope.count == 0
   puts "Creating technical Scopes"
   Scope.create(id: 0, playground_id: 0, landscape_id: 0, hierarchy: '0', name: 'Undefined scope', description: 'This scope is assigned an undefined value', code: 'UNDEFINED', business_object_id: '0', created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1 )
-  Scope.create( playground_id: 1, landscape_id: 1, hierarchy: '1', name: 'Firt scope of your project', description: 'This scope was created during installation. It targets a data set to which apply business rules', code: 'SCOPE_1', business_object_id: '0', load_interface: 'ToBeDefined', sql_query: 'Select * from dual',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
+#  Scope.create( playground_id: 1, landscape_id: 1, hierarchy: '1', name: 'Firt scope of your project', description: 'This scope was created during installation. It targets a data set to which apply business rules', code: 'SCOPE_1', business_object_id: '0', load_interface: 'ToBeDefined', sql_query: 'Select * from dual',created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', all_records: 22000, bad_records: 1800, owner_id: 1, status_id: 1 )
 end
 
 puts "Seeding organisation"
@@ -184,7 +185,7 @@ puts "Seeding activity"
 if Activity.count == 0
   puts "Creating Activity"
   Activity.create(id: 0, playground_id: 0, business_process_id: 0, code: 'UNDEFINED', name: 'Undefined activity', description: 'This activity is assigned an undefined value',  created_by: 'Rake', updated_by: 'Rake', created_at: '2000-01-01', updated_at: '2000-01-01', owner_id: 1, status_id: 1)
-  Activity.create(playground_id: 0, business_process_id: 0, code: 'INIT', name: 'Initialising DQP', description: 'This activity relates to software intialisation',  created_by: 'Rake', updated_by: 'Rake', :created_at => DateTime.now.to_date, :updated_at => DateTime.now.to_date, owner_id: 1, status_id: 1)
+  Activity.create(id: 1, playground_id: 0, business_process_id: 0, code: 'INIT', name: 'Initialising DQP', description: 'This activity relates to software intialisation',  created_by: 'Rake', updated_by: 'Rake', :created_at => DateTime.now.to_date, :updated_at => DateTime.now.to_date, owner_id: 1, status_id: 1)
 end
 
 puts "Seeding task"
@@ -226,14 +227,6 @@ if AuditTrail.count<=1
 end
 
 puts "SQL Queries"
-ActiveRecord::Base.connection.execute("update business_rules set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update business_objects set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update business_processes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update business_flows set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update business_areas set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update scopes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update landscapes set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
-ActiveRecord::Base.connection.execute("update playgrounds set score = (1-cast(bad_records as numeric)/(cast(all_records as numeric)+1)) * 100")
 ActiveRecord::Base.connection.execute("update users set confirmed_at = now()")
 ActiveRecord::Base.connection.execute("INSERT INTO odq_dwh.dim_time (period_id,playground_id,period_day,period_date,period_timestamp,day_of_month,day_of_year,week_of_year,year,created_by,updated_by,created_at,updated_at) 
 SELECT period_id,playground_id,period_day,period_date,period_timestamp,day_of_month,day_of_year,week_of_year,year,created_by,updated_by,created_at,updated_at

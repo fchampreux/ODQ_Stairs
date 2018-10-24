@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", id: :serial, force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_process_id", null: false
     t.string "code", limit: 60, null: false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "business_areas", id: :serial, force: :cascade do |t|
+  create_table "business_areas", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_ba_on_name", unique: true
   end
 
-  create_table "business_flows", id: :serial, force: :cascade do |t|
+  create_table "business_flows", id: :integer, default: -> { "nextval('global_seq'::regclass)" }, force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false
     t.string "code", limit: 60, null: false
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["hierarchy"], name: "index_BH_on_hierarchy", unique: true
   end
 
-  create_table "business_objects", id: :serial, force: :cascade do |t|
+  create_table "business_objects", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false
     t.integer "main_scope_id"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_bo_on_name", unique: true
   end
 
-  create_table "business_processes", id: :serial, force: :cascade do |t|
+  create_table "business_processes", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_flow_id", null: false
     t.string "code", limit: 60, null: false
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_bp_on_name", unique: true
   end
 
-  create_table "business_rules", id: :serial, force: :cascade do |t|
+  create_table "business_rules", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "business_process_id", null: false
     t.integer "business_object_id"
@@ -325,7 +325,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "groups", id: :serial, force: :cascade do |t|
     t.string "code", limit: 60, null: false
     t.string "name", limit: 100, null: false
     t.string "description"
@@ -340,7 +340,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
-  create_table "landscapes", id: :serial, force: :cascade do |t|
+  create_table "landscapes", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
@@ -488,7 +488,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["name"], name: "index_pg_on_name", unique: true
   end
 
-  create_table "scopes", id: :serial, force: :cascade do |t|
+  create_table "scopes", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "landscape_id", null: false
     t.string "code", limit: 60, null: false
@@ -536,7 +536,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["business_object_id", "name"], name: "index_skills_on_bo_name", unique: true
   end
 
-  create_table "tasks", id: :serial, force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.integer "playground_id", null: false
     t.integer "activity_id", null: false
     t.string "code", limit: 60, null: false

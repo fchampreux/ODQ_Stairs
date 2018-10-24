@@ -53,7 +53,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
   
-  before_create :set_default_values
   before_save :email_format
   before_save :name_update
 
@@ -76,12 +75,6 @@ class User < ApplicationRecord
   private
 
   ### before filters
-    def set_default_values
-      self.playground_id = 1
-      self.default_playground_id = 1
-      self.current_playground_id = 1
-      self.group = group || 0
-    end
       
     def email_format
       self.email = email.downcase 
