@@ -197,8 +197,8 @@ class Base < ActiveRecord::Migration[5.1]
       t.datetime "active_from",                      null: false
       t.datetime "active_to",                        null: false
       t.timestamps
-      t.index ["group_id, user_id"], name: "index_memberships_on_group", unique: true
-      t.index ["user_id, group_id" ], name: "index_memberships_on_user", unique: true
+      t.index ["group_id", "user_id"], name: "index_memberships_on_group", unique: true
+      t.index ["user_id", "group_id" ], name: "index_memberships_on_user", unique: true
     end
       
     create_table "landscapes", id: false do |t|
@@ -539,7 +539,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.timestamps
-      t.index ["activity_id","code"], name: "index_task_on_code", unique: true
+      t.index ["todo_id","code"], name: "index_task_on_code", unique: true
       t.index ["hierarchy"], name: "index_task_on_hierarchy", unique: true
       t.index ["playground_id", "name" ], name: "index_task_on_name", unique: true
     end

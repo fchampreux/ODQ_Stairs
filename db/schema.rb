@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "business_process_id", null: false
     t.string "code", limit: 60, null: false
@@ -86,7 +87,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "business_areas", force: :cascade do |t|
+  create_table "business_areas", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
@@ -146,7 +148,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["hierarchy"], name: "index_BH_on_hierarchy", unique: true
   end
 
-  create_table "business_objects", force: :cascade do |t|
+  create_table "business_objects", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "business_area_id", null: false
     t.integer "main_scope_id"
@@ -170,7 +173,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_bo_on_name", unique: true
   end
 
-  create_table "business_processes", force: :cascade do |t|
+  create_table "business_processes", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "business_flow_id", null: false
     t.string "code", limit: 60, null: false
@@ -193,21 +197,25 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["playground_id", "name"], name: "index_bp_on_name", unique: true
   end
 
-  create_table "business_rules", force: :cascade do |t|
+  create_table "business_rules", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "business_process_id", null: false
     t.integer "business_object_id"
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
     t.text "description"
+    t.integer "major_version", null: false
+    t.integer "minor_version", null: false
+    t.boolean "is_finalised", default: false
     t.text "business_value"
     t.string "hierarchy", limit: 25, null: false
     t.text "check_description"
     t.text "check_script"
-    t.text "check_language_id", default: "0"
+    t.integer "check_language_id", default: 0
     t.text "correction_method"
     t.text "correction_script"
-    t.text "correction_language_id", default: "0"
+    t.integer "correction_language_id", default: 0
     t.string "correction_batch", limit: 100
     t.text "white_list"
     t.integer "added_value", default: 0
@@ -327,11 +335,13 @@ ActiveRecord::Schema.define(version: 20180317234616) do
   end
 
   create_table "groups", id: :serial, force: :cascade do |t|
+    t.integer "membership_id", null: false
     t.string "code", limit: 60, null: false
     t.string "name", limit: 100, null: false
     t.string "description"
     t.integer "territory_id", null: false
     t.integer "organisation_id", null: false
+    t.integer "role_id", null: false
     t.integer "owner_id", null: false
     t.string "created_by", limit: 100, null: false
     t.string "updated_by", limit: 100, null: false
@@ -341,7 +351,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
-  create_table "landscapes", force: :cascade do |t|
+  create_table "landscapes", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
@@ -396,6 +407,18 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.datetime "updated_at", null: false
     t.index ["playground_id", "code"], name: "index_ml_on_code", unique: true
     t.index ["playground_id", "name"], name: "index_ml_on_name", unique: true
+  end
+
+  create_table "memberships", id: :serial, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "is_active", default: true
+    t.datetime "active_from", null: false
+    t.datetime "active_to", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id", "user_id"], name: "index_memberships_on_group", unique: true
+    t.index ["user_id", "group_id"], name: "index_memberships_on_user", unique: true
   end
 
   create_table "notifications", id: :serial, force: :cascade do |t|
@@ -489,7 +512,8 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["name"], name: "index_pg_on_name", unique: true
   end
 
-  create_table "scopes", force: :cascade do |t|
+  create_table "scopes", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
     t.integer "landscape_id", null: false
     t.string "code", limit: 60, null: false
@@ -537,15 +561,19 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.index ["business_object_id", "name"], name: "index_skills_on_bo_name", unique: true
   end
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", id: false, force: :cascade do |t|
+    t.integer "id", default: -> { "nextval('global_seq'::regclass)" }, null: false
     t.integer "playground_id", null: false
-    t.integer "activity_id", null: false
+    t.string "todo_type"
+    t.bigint "todo_id"
     t.string "code", limit: 60, null: false
     t.string "name", limit: 200, null: false
     t.text "description"
     t.string "hierarchy", limit: 25, null: false
     t.string "pcf_index", limit: 30
     t.string "pcf_reference", limit: 100
+    t.text "script"
+    t.integer "language_id", default: 0
     t.integer "software_id"
     t.string "external_reference", limit: 100
     t.integer "status_id", null: false
@@ -554,9 +582,10 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.string "updated_by", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["activity_id", "code"], name: "index_task_on_code", unique: true
     t.index ["hierarchy"], name: "index_task_on_hierarchy", unique: true
     t.index ["playground_id", "name"], name: "index_task_on_name", unique: true
+    t.index ["todo_id", "code"], name: "index_task_on_code", unique: true
+    t.index ["todo_type", "todo_id"], name: "index_tasks_on_todo_type_and_todo_id"
   end
 
   create_table "territories", id: :serial, force: :cascade do |t|
@@ -600,7 +629,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.integer "playground_id", null: false
-    t.integer "group_id", null: false
+    t.integer "membership_id", null: false
     t.integer "default_playground_id", default: 1
     t.integer "current_playground_id", default: 1
     t.integer "current_landscape_id", default: 1
