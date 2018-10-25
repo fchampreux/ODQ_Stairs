@@ -181,6 +181,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "description"
       t.integer "territory_id",                      null: false
       t.integer "organisation_id",                   null: false
+      t.integer "role_id",                           null: false
       t.integer "owner_id",                          null: false
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
