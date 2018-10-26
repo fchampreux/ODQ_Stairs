@@ -145,6 +145,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.integer "major_version",                     null: false
       t.integer "minor_version",                     null: false
       t.boolean "is_finalised",                   default: false
+      t.boolean "is_current",                     default: true
       t.text "business_value"
       t.string "hierarchy",              limit: 25,  null: false
       t.text "check_description"
@@ -544,6 +545,19 @@ class Base < ActiveRecord::Migration[5.1]
       t.index ["playground_id", "name" ], name: "index_task_on_name", unique: true
     end
 
+    create_table "translations", id: :serial do |t|
+      t.references :document, polymorphic: true
+      t.string "field_name",             limit: 30 , null: false
+      t.string "language",               limit: 3 ,  null: false 
+      t.text "description"
+      t.tsvector "searchable"
+      t.string "created_by",             limit: 100, null: false
+      t.string "updated_by",             limit: 100, null: false
+      t.timestamps
+      t.index ["document", "field_name", "language"], name: "index_translation_on_field", unique: true
+    end
+      
+      
 # Create temorary table for imports
 
     create_table :business_hierarchies, id: :serial do |t|
