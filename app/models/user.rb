@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  playground_id          :integer          not null
+#  membership_id          :integer          not null
 #  default_playground_id  :integer          default(1)
 #  current_playground_id  :integer          default(1)
 #  current_landscape_id   :integer          default(1)

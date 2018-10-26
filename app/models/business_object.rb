@@ -2,7 +2,7 @@
 #
 # Table name: business_objects
 #
-#  id                 :integer          not null, primary key
+#  id                 :integer          not null
 #  playground_id      :integer          not null
 #  business_area_id   :integer          not null
 #  main_scope_id      :integer

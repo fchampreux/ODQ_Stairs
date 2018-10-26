@@ -2,15 +2,18 @@
 #
 # Table name: tasks
 #
-#  id                 :integer          not null, primary key
+#  id                 :integer          not null
 #  playground_id      :integer          not null
-#  activity_id        :integer          not null
+#  todo_type          :string
+#  todo_id            :bigint(8)
 #  code               :string(60)       not null
 #  name               :string(200)      not null
 #  description        :text
 #  hierarchy          :string(25)       not null
 #  pcf_index          :string(30)
 #  pcf_reference      :string(100)
+#  script             :text
+#  language_id        :integer          default(0)
 #  software_id        :integer
 #  external_reference :string(100)
 #  status_id          :integer          not null

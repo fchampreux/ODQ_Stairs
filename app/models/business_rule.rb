@@ -2,21 +2,25 @@
 #
 # Table name: business_rules
 #
-#  id                     :integer          not null, primary key
+#  id                     :integer          not null
 #  playground_id          :integer          not null
 #  business_process_id    :integer          not null
 #  business_object_id     :integer
 #  code                   :string(60)       not null
 #  name                   :string(200)      not null
 #  description            :text
+#  major_version          :integer          not null
+#  minor_version          :integer          not null
+#  is_finalised           :boolean          default(FALSE)
+#  is_current             :boolean          default(TRUE)
 #  business_value         :text
 #  hierarchy              :string(25)       not null
 #  check_description      :text
 #  check_script           :text
-#  check_language_id      :text             default("0")
+#  check_language_id      :integer          default(0)
 #  correction_method      :text
 #  correction_script      :text
-#  correction_language_id :text             default("0")
+#  correction_language_id :integer          default(0)
 #  correction_batch       :string(100)
 #  white_list             :text
 #  added_value            :integer          default(0)

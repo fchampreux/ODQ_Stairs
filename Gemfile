@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0'
-gem 'bootstrap-sass', '~> 3.3'
-gem 'sass-rails',   '~> 5.0'
+gem 'rails', '~> 5.2'
+gem 'bootstrap-sass'
+gem 'sassc-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'uglifier', '~> 3.0'
 gem 'bcrypt', '~> 3.1'
@@ -21,8 +21,6 @@ gem 'iconv'
 gem 'write_xlsx'
 gem 'roo'
 
-# gem 'rails-i18n', '~> 5.1'
-
 # Authorisations
 gem 'devise'
 gem 'cancancan', '~> 2.0'
@@ -35,7 +33,8 @@ gem 'mailgun-ruby', '~>1.1'
 # gem for dev and test only
 group :development, :test, :eval do
   gem 'annotate', '~> 2.7'
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
   gem 'capybara', '~> 2.7'
@@ -59,7 +58,7 @@ end
 # gem for ORACLE POC
 group :ORACLE do
   gem 'ruby-oci8', '~> 2.2'
-  gem 'activerecord-oracle_enhanced-adapter', '~> 1.7'
+  gem 'activerecord-oracle_enhanced-adapter', '~> 5.2'
 end
 
 # gem for production

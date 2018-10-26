@@ -2,6 +2,7 @@
 #
 # Table name: odq_dwh.dm_processes
 #
+#  id               :integer          not null, primary key
 #  playground_id    :integer          not null
 #  odq_object_id    :integer          not null
 #  odq_parent_id    :integer          not null

@@ -176,7 +176,6 @@ class Base < ActiveRecord::Migration[5.1]
     end
     
     create_table "groups", id: :serial do |t|
-      t.integer "membership_id",                     null: false
       t.string "code",                   limit: 60,  null: false
       t.string "name",                   limit: 100, null: false
       t.string "description"
@@ -429,7 +428,6 @@ class Base < ActiveRecord::Migration[5.1]
   
     create_table "users", id: :serial do |t|
       t.integer "playground_id",                     null: false
-      t.integer "membership_id",                     null: false
       t.integer "default_playground_id",          default: 1
       t.integer "current_playground_id",          default: 1
       t.integer "current_landscape_id",           default: 1

@@ -2,7 +2,7 @@
 #
 # Table name: business_areas
 #
-#  id            :integer          not null, primary key
+#  id            :integer          not null
 #  playground_id :integer          not null
 #  code          :string(60)       not null
 #  name          :string(200)      not null
