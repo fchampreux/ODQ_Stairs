@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.integer "major_version", null: false
     t.integer "minor_version", null: false
     t.boolean "is_finalised", default: false
+    t.boolean "is_current", default: true
     t.text "business_value"
     t.string "hierarchy", limit: 25, null: false
     t.text "check_description"
@@ -625,6 +626,21 @@ ActiveRecord::Schema.define(version: 20180317234616) do
     t.string "updated_by", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "translations", id: :serial, force: :cascade do |t|
+    t.string "document_type"
+    t.bigint "document_id"
+    t.string "field_name", limit: 30, null: false
+    t.string "language", limit: 3, null: false
+    t.text "description"
+    t.tsvector "searchable"
+    t.string "created_by", limit: 100, null: false
+    t.string "updated_by", limit: 100, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id", "field_name", "language"], name: "index_translation_on_field", unique: true
+    t.index ["document_type", "document_id"], name: "index_translations_on_document_type_and_document_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

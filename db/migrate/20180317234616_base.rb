@@ -554,7 +554,7 @@ class Base < ActiveRecord::Migration[5.1]
       t.string "created_by",             limit: 100, null: false
       t.string "updated_by",             limit: 100, null: false
       t.timestamps
-      t.index ["document", "field_name", "language"], name: "index_translation_on_field", unique: true
+      t.index ["document_id", "field_name", "language"], name: "index_translation_on_field", unique: true
     end
       
       
